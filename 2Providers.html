@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags - NOINDEX for privacy -->
+    <title>Provider Portal - Get Listed on Crossing Sunsets™</title>
+    <meta name="description" content="Join Crossing Sunsets and connect with families seeking hospice care, boarding care, and skilled nursing facilities. Get found faster with our Lotus Rating™ system.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://yourdomain.com/providers-access.html">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .lotus-badge {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #14B8A6;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .provider-badge {
+            background: #F97316;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
+            padding: 4rem 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 30%, rgba(249,115,22,0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-main {
+            background: #F97316;
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(249,115,22,0.4);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(249,115,22,0.5);
+        }
+
+        .benefits {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .benefits-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid #14B8A6;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #14B8A6;
+        }
+
+        .benefit-description {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .pricing {
+            padding: 4rem 2rem;
+            background: #f9fafb;
+        }
+
+        .pricing-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
+            color: white;
+            border-radius: 16px;
+        }
+
+        .pricing-intro h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .pricing-card.premium {
+            border-color: #F97316;
+            transform: scale(1.02);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+        }
+
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1f2937;
+        }
+
+        .plan-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .badge-standard {
+            background: #6b7280;
+            color: white;
+        }
+
+        .badge-premium {
+            background: #F97316;
+            color: white;
+        }
+
+        .pricing-tiers {
+            margin-bottom: 2rem;
+        }
+
+        .price-tier {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: #f9fafb;
+            border-radius: 12px;
+        }
+
+        .price-duration {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 1.1rem;
+        }
+
+        .price-amount {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #14B8A6;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #14B8A6;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .yearly-note {
+            background: #fef3c7;
+            border-left: 4px solid #fbbf24;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .yearly-note h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .yearly-note p {
+            color: #78350f;
+        }
+
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: #F97316;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #14B8A6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <a href="index.html" class="logo-text">Crossing Sunsets™</a>
+                <div class="lotus-badge">
+                    <span>🪷</span> Lotus Rating™
+                </div>
+            </div>
+            <div class="provider-badge">Provider Portal</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Reach Families Who Need Your Care</h1>
+            <p class="hero-subtitle">Join Crossing Sunsets™ and connect with families seeking trusted hospice care, boarding care homes, and skilled nursing facilities</p>
+            <a href="#pricing" class="cta-main">Get Found. Get Trusted. Get Started Today</a>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="benefits-content">
+            <h2 class="section-title">Why Join Crossing Sunsets?</h2>
+            <p class="section-subtitle">The exclusive platform connecting care providers with families during life's most important moments</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔍</div>
+                    <h3 class="benefit-title">Be Found Faster</h3>
+                    <p class="benefit-description">Families searching for care providers will discover you instantly. Increase your visibility where it matters most.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🪷</div>
+                    <h3 class="benefit-title">Build Trust with Lotus Rating™</h3>
+                    <p class="benefit-description">Our unique 4-quality rating system takes just 30 seconds for families to complete, resulting in MORE reviews and MORE trust for your facility.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">✨</div>
+                    <h3 class="benefit-title">Exclusive Access</h3>
+                    <p class="benefit-description">This is the only platform where families can find care providers with comprehensive, meaningful Lotus Ratings. Stand out from the competition.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3 class="benefit-title">Showcase Your Strengths</h3>
+                    <p class="benefit-description">Highlight what makes you special: "We have 98% Compassionate rating!" Differentiate your facility with specific feedback on 4 key areas.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">💬</div>
+                    <h3 class="benefit-title">Get MORE Reviews</h3>
+                    <p class="benefit-description">Because our system is so simple (tap 4 lotus flowers = done!), families actually complete reviews. More reviews = more credibility.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Specific, Actionable Feedback</h3>
+                    <p class="benefit-description">Know exactly where you excel: Compassionate, Responsive, Supportive, or Professional. Use insights to improve and market your best qualities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="pricing-content">
+            <h2 class="section-title">Choose Your Plan</h2>
+            <p class="section-subtitle">Flexible pricing designed for providers of all sizes</p>
+
+            <div class="pricing-intro">
+                <h3>🪷 Every plan includes the Lotus Rating™ system</h3>
+                <p>Join the only platform where families can leave meaningful, comprehensive reviews in just 30 seconds</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="plan-name">Standard</div>
+                        <div class="plan-badge badge-standard">STANDARD</div>
+                    </div>
+
+                    <div class="pricing-tiers">
+                        <div class="price-tier">
+                            <span class="price-duration">1 Month</span>
+                            <span class="price-amount">$149.00</span>
+                        </div>
+                        <div class="price-tier" style="background: #fef3c7;">
+                            <span class="price-duration">6 Months</span>
+                            <span class="price-amount">$709.99</span>
+                        </div>
+                        <div class="price-tier">
+                            <span class="price-duration">Yearly</span>
+                            <span class="price-amount">$1,639</span>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight: 700; margin-bottom: 1rem; color: #1f2937;">Features:</h4>
+                    <ul class="features-list">
+                        <li>Full Provider Profile in the directory</li>
+                        <li>Receive family reviews & feedback</li>
+                        <li>Profile management dashboard</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card premium">
+                    <div class="pricing-header">
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-badge badge-premium">PREMIUM</div>
+                    </div>
+
+                    <div class="pricing-tiers">
+                        <div class="price-tier">
+                            <span class="price-duration">1 Month</span>
+                            <span class="price-amount">$199.00</span>
+                        </div>
+                        <div class="price-tier" style="background: #fef3c7;">
+                            <span class="price-duration">6 Months</span>
+                            <span class="price-amount">$890</span>
+                        </div>
+                        <div class="price-tier">
+                            <span class="price-duration">Yearly</span>
+                            <span class="price-amount">$1,309</span>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight: 700; margin-bottom: 1rem; color: #1f2937;">Everything in Standard, plus:</h4>
+                    <ul class="features-list">
+                        <li>Top placement in search results & provider listings</li>
+                        <li>Appear in family searches</li>
+                        <li>Featured badge on your profile</li>
+                        <li>Spotlight in our "Provider of the Month" rotation</li>
+                        <li>Inclusion in promotional emails to families</li>
+                        <li>Priority review approval & profile updates</li>
+                        <li>Access to real-time Lotus Rating™ analytics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="yearly-note">
+                <h4>📅 Yearly Plans Available</h4>
+                <p>Yearly subscription plans are available exclusively on our website. Due to Apple's subscription limits, we're currently limited to monthly and 6-month plans in the mobile app until we reach 1,000 subscribers. Subscribe through our website to access yearly pricing!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Connect with Families?</h2>
+            <p>Join the trusted providers already using Crossing Sunsets to reach families in need</p>
+            <a href="mailto:info@crossingsunsets.com?subject=Provider Signup Interest" class="cta-button">Get Found. Get Trusted. Get Started Today</a>
+            <p style="margin-top: 2rem; font-size: 1rem;">Questions? Email us at info@crossingsunsets.com</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Crossing Sunsets™</h3>
+                <p>Connecting families with trusted hospice care, boarding care homes, and skilled nursing facilities.</p>
+                <p style="margin-top: 1rem;">🪷 Powered by Lotus Rating™</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Families</h3>
+                <p><a href="families.html" style="color: white; text-decoration: none;">Browse Providers</a></p>
+                <p><a href="families.html" style="color: white; text-decoration: none;">Leave a Review</a></p>
+                <p><a href="https://tinyurl.com/crossingsunsetsapps" style="color: white; text-decoration: none;" target="_blank">Download App</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Providers</h3>
+                <p style="color: #14B8A6;">You are here!</p>
+                <p>Get Listed</p>
+                <p>Subscription Plans</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📧 info@crossingsunsets.com</p>
+                <p>📱 <a href="https://tinyurl.com/crossingsunsetsapps" style="color: white; text-decoration: none;" target="_blank">Download App</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Crossing Sunsets™. All rights reserved. | Lotus Rating™ is a trademark of Crossing Sunsets.</p>
+        </div>
+    </footer>
+</body>
+</html>

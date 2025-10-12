@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Crossing Sunsets™ - Find Trusted Hospice Care & End-of-Life Care Providers</title>
+    <meta name="description" content="Find compassionate hospice care, boarding care homes, and skilled nursing facilities. Read authentic reviews with our unique Lotus Rating™ system. Connect with trusted end-of-life care providers.">
+    <meta name="keywords" content="hospice care, end of life care, palliative care, hospice reviews, nursing home reviews, boarding care, skilled nursing facility, find hospice, hospice near me, compassionate care, Lotus Rating">
+    <meta name="author" content="Crossing Sunsets">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Crossing Sunsets™ - Find Trusted Hospice Care Providers">
+    <meta property="og:description" content="Connect families with compassionate hospice care providers. Read authentic reviews using our unique Lotus Rating™ system.">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:site_name" content="Crossing Sunsets">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Crossing Sunsets™ - Find Trusted Hospice Care">
+    <meta name="twitter:description" content="Connect families with compassionate end-of-life care providers through authentic Lotus Rating™ reviews.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .lotus-badge {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #14B8A6;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 50%, #F97316 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .cta-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.95);
+            color: #14B8A6;
+        }
+
+        .btn-tertiary {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1f2937;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .download-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .download-btn {
+            background: white;
+            color: #0EA5E9;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background: #f9fafb;
+        }
+
+        .features-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #14B8A6;
+        }
+
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Lotus Rating Section */
+        .lotus-section {
+            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
+            padding: 4rem 2rem;
+            color: white;
+        }
+
+        .lotus-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .lotus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .lotus-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .lotus-item:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+        }
+
+        .lotus-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .lotus-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .lotus-desc {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #14B8A6;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-text">Crossing Sunsets™</div>
+                <div class="lotus-badge">
+                    <span>🪷</span> Lotus Rating™
+                </div>
+            </div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="families.html">For Families</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connecting Families with Trusted Care Providers</h1>
+            <p class="hero-subtitle">Find compassionate hospice care, licensed boarding care, and skilled nursing facilities</p>
+            <p class="hero-tagline">Powered by our unique Lotus Rating™ system</p>
+
+            <div class="cta-section">
+                <div class="cta-title">Who are you?</div>
+                <div class="cta-buttons">
+                    <a href="families.html" class="btn btn-primary">I am a Caregiver</a>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">For family, friends, guardians & care advocates</span>
+                    
+                    <a href="families.html" class="btn btn-tertiary">Browse Providers</a>
+                    
+                    <a href="providers-access.html" class="btn btn-secondary">I am a Provider</a>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Download the Crossing Sunsets App</p>
+                <a href="https://tinyurl.com/crossingsunsetsapps" class="download-btn" target="_blank">📱 Get the App (iOS & Android)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-content">
+            <h2 class="section-title">Why Choose Crossing Sunsets?</h2>
+            <p class="section-subtitle">Making difficult decisions easier with trusted reviews and verified providers</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Easy Provider Search</h3>
+                    <p class="feature-description">Find hospice care, boarding care homes, and skilled nursing facilities by location, specialty, or name.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🪷</div>
+                    <h3 class="feature-title">Simple Lotus Rating™</h3>
+                    <p class="feature-description">Our unique 4-quality rating system makes it easy to share your experience in just 30 seconds.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3 class="feature-title">Verified Providers</h3>
+                    <p class="feature-description">All providers are verified and licensed, ensuring you connect with legitimate, professional care services.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💝</div>
+                    <h3 class="feature-title">Compassionate Care</h3>
+                    <p class="feature-description">Find providers who truly care during life's most difficult moments. Real reviews from real families.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Mobile & Web</h3>
+                    <p class="feature-description">Access Crossing Sunsets anywhere - on your phone, tablet, or computer. Available for iOS and Android.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3 class="feature-title">Anonymous Reviews</h3>
+                    <p class="feature-description">Share your experience privately and anonymously if you prefer. Your feedback helps other families.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lotus Rating Section -->
+    <section class="lotus-section">
+        <div class="lotus-content">
+            <h2 class="section-title" style="color: white;">The Lotus Rating™ System</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Four meaningful qualities that matter most in end-of-life care</p>
+            
+            <div class="lotus-grid">
+                <div class="lotus-item">
+                    <div class="lotus-icon">🪷</div>
+                    <div class="lotus-title">Compassionate</div>
+                    <p class="lotus-desc">Kind, caring, and empathetic staff</p>
+                </div>
+
+                <div class="lotus-item">
+                    <div class="lotus-icon">🪷</div>
+                    <div class="lotus-title">Responsive</div>
+                    <p class="lotus-desc">Quick to respond to needs and concerns</p>
+                </div>
+
+                <div class="lotus-item">
+                    <div class="lotus-icon">🪷</div>
+                    <div class="lotus-title">Supportive</div>
+                    <p class="lotus-desc">Helpful guidance for family and patient</p>
+                </div>
+
+                <div class="lotus-item">
+                    <div class="lotus-icon">🪷</div>
+                    <div class="lotus-title">Professional</div>
+                    <p class="lotus-desc">Skilled, knowledgeable, and reliable</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 1.1rem;">Each provider is rated on these four essential qualities. Simply tap each lotus once to share your experience.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Crossing Sunsets™</h3>
+                <p>Connecting families with trusted hospice care, boarding care homes, and skilled nursing facilities.</p>
+                <p style="margin-top: 1rem;">🪷 Powered by Lotus Rating™</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Families</h3>
+                <p><a href="families.html" style="color: white; text-decoration: none;">Browse Providers</a></p>
+                <p><a href="families.html" style="color: white; text-decoration: none;">Leave a Review</a></p>
+                <p><a href="https://tinyurl.com/crossingsunsetsapps" style="color: white; text-decoration: none;" target="_blank">Download App</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Providers</h3>
+                <p><a href="providers-access.html" style="color: white; text-decoration: none;">Provider Portal</a></p>
+                <p style="color: #9ca3af;">Get Listed</p>
+                <p style="color: #9ca3af;">Subscription Plans</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 <a href="https://tinyurl.com/crossingsunsetsapps" style="color: white; text-decoration: none;" target="_blank">Download App</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Crossing Sunsets™. All rights reserved. | Lotus Rating™ is a trademark of Crossing Sunsets.</p>
+        </div>
+    </footer>
+</body>
+</html>

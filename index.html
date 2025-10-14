@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossing Sunsets - Compassionate Care Connection</title>
+    <title>Crossing Sunsets™ - Compassionate Care Connection</title>
     <style>
         * {
             margin: 0;
@@ -13,12 +13,11 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #20b2aa 0%, #00CED1 100%);
             min-height: 100vh;
             color: #333;
         }
 
-        /* Navigation */
         nav {
             background: rgba(255, 255, 255, 0.98);
             padding: 1rem 2rem;
@@ -45,7 +44,7 @@
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -66,10 +65,9 @@
         }
 
         nav a:hover {
-            color: #667eea;
+            color: #20b2aa;
         }
 
-        /* Hero Section */
         .hero {
             text-align: center;
             padding: 4rem 2rem;
@@ -83,7 +81,7 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -96,17 +94,34 @@
             line-height: 1.6;
         }
 
-        /* Download Button with Modal */
+        .care-types-badge {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .care-badge {
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #20b2aa;
+            border: 2px solid rgba(32, 178, 170, 0.3);
+        }
+
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
             color: white;
             padding: 1rem 3rem;
             border-radius: 50px;
             text-decoration: none;
             font-size: 1.2rem;
             font-weight: 600;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
             transition: all 0.3s;
             cursor: pointer;
             border: none;
@@ -114,10 +129,9 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -217,7 +231,62 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* Features Section */
+        .care-types-section {
+            background: white;
+            padding: 4rem 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .care-types-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .care-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .care-type-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(32, 178, 170, 0.1);
+            transition: all 0.3s;
+        }
+
+        .care-type-card:hover {
+            transform: translateY(-5px);
+            border-color: #20b2aa;
+            box-shadow: 0 10px 30px rgba(32, 178, 170, 0.2);
+        }
+
+        .care-type-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .care-type-card h3 {
+            color: #20b2aa;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .care-type-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -240,12 +309,11 @@
         }
 
         .feature-card h3 {
-            color: #667eea;
+            color: #20b2aa;
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
 
-        /* Lotus Rating Section */
         .lotus-section {
             background: white;
             padding: 4rem 2rem;
@@ -287,7 +355,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.8);
             color: white;
@@ -301,7 +368,6 @@
             text-decoration: none;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -320,38 +386,55 @@
                 margin: 20% auto;
                 padding: 2rem;
             }
+
+            .care-types-badge {
+                gap: 0.5rem;
+            }
+
+            .care-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="logo-container">
             <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo" class="logo" onerror="this.style.display='none'">
-            <span class="logo-text">Crossing Sunsets</span>
+            <span class="logo-text">Crossing Sunsets™</span>
         </div>
         <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#lotus-rating">Lotus Rating</a></li>
-            <li><a href="browse-providers.html">Browse Providers</a></li>
+            <li><a href="#care-types">Care Types</a></li>
+            <li><a href="#for-families">For Families</a></li>
+            <li><a href="#for-providers">For Providers</a></li>
+            <li><a href="#lotus-rating">Lotus Rating™</a></li>
             <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="providers.html">For Providers</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <div class="hero">
-        <h1>🌅 Connecting Families with Compassionate Care</h1>
-        <p>Find trusted hospice and healthcare providers through community reviews and our unique Lotus Rating System</p>
-        <button class="cta-button" onclick="openDownloadModal()">📱 Download the App</button>
+        <h1>🌅 Find Trusted Care Facilities and Providers</h1>
+        <p>Connecting families with compassionate care through community reviews and our unique Lotus Rating System™</p>
+        
+        <div class="care-types-badge">
+            <span class="care-badge">🏥 Hospice Care</span>
+            <span class="care-badge">🏡 Licensed Boarding Care</span>
+            <span class="care-badge">🏥 Skilled Nursing</span>
+            <span class="care-badge">🧠 Memory Support</span>
+            <span class="care-badge">🏠 Assisted Living</span>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <button class="cta-button" onclick="openDownloadModal()">📱 Download the App</button>
+        </div>
     </div>
 
-    <!-- Download Modal -->
     <div id="downloadModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeDownloadModal()">&times;</span>
             <h2>Choose Your Platform</h2>
-            <p>Download Crossing Sunsets on your device</p>
+            <p>Download Crossing Sunsets™ on your device</p>
             <div class="store-buttons">
                 <a href="https://play.google.com/store/apps/details?id=com.crossingsunsets.app" class="store-button google" target="_blank">
                     <span style="font-size: 2rem;">📱</span>
@@ -365,38 +448,181 @@
         </div>
     </div>
 
-    <!-- Features Section -->
-    <div id="features" class="features">
-        <div class="feature-card">
-            <h3>🔍 Easy Search</h3>
-            <p>Find providers by name, city, or specialty. Filter by care type including hospice, palliative care, home health, and more.</p>
-        </div>
-        <div class="feature-card">
-            <h3>⭐ Trusted Reviews</h3>
-            <p>Read authentic reviews from families who've experienced the care. Share your own experience to help others.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🪷 Lotus Rating</h3>
-            <p>Our unique 4-criteria rating system evaluates Compassion, Responsiveness, Supportiveness, and Professionalism.</p>
-        </div>
-        <div class="feature-card">
-            <h3>💼 For Providers</h3>
-            <p>Healthcare providers can create profiles, manage their information, and connect with families seeking care.</p>
-        </div>
-        <div class="feature-card">
-            <h3>📱 Mobile First</h3>
-            <p>Access Crossing Sunsets anytime, anywhere on iOS and Android devices.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🤝 Community Driven</h3>
-            <p>Built by and for families navigating the journey of end-of-life care with transparency and compassion.</p>
+    <div id="care-types" class="care-types-section">
+        <h2>Specialized Care Services We Cover</h2>
+        <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">Browse and review providers across multiple care specialties</p>
+        
+        <div class="care-types-grid">
+            <div class="care-type-card">
+                <div class="care-type-icon">🏥</div>
+                <h3>Hospice Care</h3>
+                <p>Compassionate end-of-life care focused on comfort and dignity for patients and families</p>
+            </div>
+            
+            <div class="care-type-card">
+                <div class="care-type-icon">🏡</div>
+                <h3>Licensed Boarding Care Homes</h3>
+                <p>Small residential facilities providing personalized care in a home-like environment</p>
+            </div>
+            
+            <div class="care-type-card">
+                <div class="care-type-icon">🏥</div>
+                <h3>Skilled Nursing Facilities</h3>
+                <p>24/7 medical care and rehabilitation services for complex health needs</p>
+            </div>
+            
+            <div class="care-type-card">
+                <div class="care-type-icon">🧠</div>
+                <h3>Memory Support Services</h3>
+                <p>Specialized care for individuals with Alzheimer's, dementia, and cognitive challenges</p>
+            </div>
+            
+            <div class="care-type-card">
+                <div class="care-type-icon">🏠</div>
+                <h3>Assisted Living</h3>
+                <p>Independent living with personalized support for daily activities and medical needs</p>
+            </div>
         </div>
     </div>
 
-    <!-- Lotus Rating Section -->
+    <div id="for-families" class="care-types-section">
+        <h2 style="background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">👨‍👩‍👧‍👦 For Families & Caregivers</h2>
+        
+        <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Whether you're a family member, caregiver, friend, or legal guardian seeking quality care for your loved ones, we're here to help you find trusted providers.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+            <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%); border-radius: 15px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍👩‍👧</div>
+                <h3 style="color: #20b2aa; margin-bottom: 0.5rem;">Family Members</h3>
+                <p style="color: #666;">Finding the right care for your loved ones</p>
+            </div>
+            
+            <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%); border-radius: 15px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div>
+                <h3 style="color: #20b2aa; margin-bottom: 0.5rem;">Caregivers & Friends</h3>
+                <p style="color: #666;">Supporting those who need compassionate care</p>
+            </div>
+            
+            <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%); border-radius: 15px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⚖️</div>
+                <h3 style="color: #20b2aa; margin-bottom: 0.5rem;">Legal Guardians</h3>
+                <p style="color: #666;">Making informed decisions for those in your care</p>
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem;">
+            <button onclick="openDownloadModal()" class="cta-button">
+                📱 Download App to Browse
+            </button>
+            
+            <a href="reviews.html" class="cta-button" style="background: linear-gradient(135deg, #20b2aa 0%, #ffd700 100%); text-decoration: none;">
+                ⭐ Leave a Review
+            </a>
+        </div>
+        
+        <p style="text-align: center; margin-top: 2rem; color: #999; font-size: 0.95rem;">
+            💯 100% Free for families • No sign-up required • Browse and review anytime
+        </p>
+    </div>
+
+    <div id="for-providers" style="max-width: 1200px; margin: 2rem auto; background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(247, 147, 30, 0.05) 100%); padding: 4rem 2rem; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 3px solid rgba(255, 107, 53, 0.2);">
+        <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">💼 For Healthcare Providers</h2>
+        
+        <p style="text-align: center; font-size: 1.3rem; color: #555; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <strong>Join Crossing Sunsets™</strong> and connect with families seeking quality care. Get found, build trust, and grow your practice.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                <h3 style="color: #FF6B35; margin-bottom: 0.5rem;">Get Discovered</h3>
+                <p style="color: #666; font-size: 0.95rem;">Appear in searches by families actively looking for care in your specialty</p>
+            </div>
+            
+            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⭐</div>
+                <h3 style="color: #FF6B35; margin-bottom: 0.5rem;">Build Trust</h3>
+                <p style="color: #666; font-size: 0.95rem;">Showcase your Lotus Rating™ reviews from real families</p>
+            </div>
+            
+            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
+                <h3 style="color: #FF6B35; margin-bottom: 0.5rem;">Grow Your Practice</h3>
+                <p style="color: #666; font-size: 0.95rem;">Stand out with premium features and priority placement</p>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 2.5rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+            <h3 style="text-align: center; color: #333; margin-bottom: 2rem; font-size: 1.5rem;">📋 Subscription Plans</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
+                <div>
+                    <div style="font-size: 1.1rem; font-weight: 600; color: #666; margin-bottom: 0.5rem;">🎁 Free Trial</div>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: #20b2aa;">30 Days</div>
+                    <p style="color: #999; font-size: 0.9rem; margin-top: 0.5rem;">No credit card required</p>
+                </div>
+                <div>
+                    <div style="font-size: 1.1rem; font-weight: 600; color: #666; margin-bottom: 0.5rem;">📦 Standard</div>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: #FF6B35;">$899-$1,309</div>
+                    <p style="color: #999; font-size: 0.9rem; margin-top: 0.5rem;">per year</p>
+                </div>
+                <div>
+                    <div style="font-size: 1.1rem; font-weight: 600; color: #666; margin-bottom: 0.5rem;">⭐ Premium</div>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: #F7931E;">$1,199-$1,639</div>
+                    <p style="color: #999; font-size: 0.9rem; margin-top: 0.5rem;">per year</p>
+                </div>
+            </div>
+            <p style="text-align: center; color: #999; font-size: 0.9rem; margin-top: 1.5rem;">
+                💡 Pricing varies by facility type • Volume discounts available
+            </p>
+        </div>
+
+        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="mailto:support@crossingsunsets.app?subject=Provider Subscription Inquiry" class="cta-button" style="background: linear-gradient(135deg, #20b2aa 0%, #00CED1 100%); text-decoration: none;">
+                📧 Email to Subscribe
+            </a>
+            
+            <a href="providers-access.html" class="cta-button" style="text-decoration: none;">
+                🔐 Access Provider Portal
+            </a>
+        </div>
+        
+        <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.95rem;">
+            ✨ Already a subscriber? <a href="providers-access.html" style="color: #FF6B35; font-weight: 600; text-decoration: none;">Access your portal here</a>
+        </p>
+    </div>
+
+    <div id="features" class="features">
+        <div class="feature-card">
+            <h3>🔍 Advanced Search</h3>
+            <p>Find providers by name, city, specialty, or care type in our mobile app. Filter across hospice, boarding care, skilled nursing, memory support, and assisted living.</p>
+        </div>
+        <div class="feature-card">
+            <h3>⭐ Trusted Reviews</h3>
+            <p>Read authentic reviews from families who've experienced the care. Share your own experience to help others make informed decisions.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🪷 Lotus Rating™</h3>
+            <p>Our unique 4-criteria rating system evaluates Compassion, Responsiveness, Supportiveness, and Professionalism.</p>
+        </div>
+        <div class="feature-card">
+            <h3>💼 For All Care Providers</h3>
+            <p>Whether you run a boarding care home, skilled nursing facility, or memory care center - create your profile and connect with families.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📱 Mobile First</h3>
+            <p>Access Crossing Sunsets™ anytime, anywhere on iOS and Android devices. Browse providers on the go.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🤝 Community Driven</h3>
+            <p>Built by and for families navigating care decisions with transparency, compassion, and trust.</p>
+        </div>
+    </div>
+
     <div id="lotus-rating" class="lotus-section">
         <img src="lotus-logo.png" alt="Lotus Rating Logo" class="lotus-logo" onerror="this.style.display='none'">
-        <h2>The Lotus Rating System</h2>
+        <h2>The Lotus Rating System™</h2>
         <p>Our thoughtful approach to rating care providers focuses on what matters most to families during difficult times.</p>
         
         <div class="lotus-criteria">
@@ -419,15 +645,22 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Crossing Sunsets. All rights reserved.</p>
+        <p>&copy; 2025 Crossing Sunsets™. All rights reserved.</p>
         <p>
-            <a href="reviews.html">Leave a Review</a> | 
-            <a href="browse-providers.html">Browse Providers</a> | 
-            <a href="providers.html">Provider Portal</a>
+            <a href="#for-families">For Families</a> | 
+            <a href="#for-providers">For Providers</a> | 
+            <a href="reviews.html">Leave a Review</a> |
+            <a href="privacy.html">Privacy & Data</a>
         </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">Compassionate care connections, one review at a time 🌅</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            Crossing Sunsets™ and Lotus Rating System™ are trademarks of Crossing Sunsets LLC.<br>
+            Unauthorized use is prohibited.
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            For support: <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.7);">Compassionate care connections, one review at a time 🌅</p>
     </footer>
 
     <script>
@@ -439,7 +672,6 @@
             document.getElementById('downloadModal').style.display = 'none';
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('downloadModal');
             if (event.target == modal) {

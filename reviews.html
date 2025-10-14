@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave a Review - Crossing Sunsets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #20b2aa 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Lotus Rating */
+        .lotus-rating {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .lotus-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border-radius: 15px;
+        }
+
+        .lotus-item label {
+            display: block;
+            margin-bottom: 1rem;
+            color: #20b2aa;
+            font-size: 1rem;
+        }
+
+        .lotus-checkbox {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            accent-color: #20b2aa;
+        }
+
+        /* Submit Button */
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #f0f8ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #20b2aa 0%, #ffd700 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .lotus-rating {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo" class="logo" onerror="this.style.display='none'">
+            <span class="logo-text">Crossing Sunsets</span>
+        </div>
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div id="successMessage" class="success-message">
+            <h2>🌅 Thank You!</h2>
+            <p>Your review has been submitted successfully. It will help other families find compassionate care.</p>
+        </div>
+
+        <h1>🪷 Leave a Review</h1>
+        <p class="subtitle">Share your experience to help other families find compassionate care</p>
+
+        <div class="info-box">
+            <p><strong>Your voice matters.</strong> Honest reviews help families make informed decisions during difficult times. Please share your genuine experience with the care provider.</p>
+        </div>
+
+        <form id="reviewForm" onsubmit="submitReview(event)">
+            <!-- Provider Name -->
+            <div class="form-group">
+                <label for="providerName">Provider Name *</label>
+                <input type="text" id="providerName" name="providerName" required placeholder="e.g., Sunrise Hospice Care">
+            </div>
+
+            <!-- Reviewer Name -->
+            <div class="form-group">
+                <label for="reviewerName">Your Name *</label>
+                <input type="text" id="reviewerName" name="reviewerName" required placeholder="First name or anonymous">
+            </div>
+
+            <!-- Care Type -->
+            <div class="form-group">
+                <label for="careType">Type of Care Received *</label>
+                <select id="careType" name="careType" required>
+                    <option value="">Select care type</option>
+                    <option value="hospice">Hospice Care</option>
+                    <option value="palliative">Palliative Care</option>
+                    <option value="home-health">Home Health Care</option>
+                    <option value="assisted-living">Assisted Living</option>
+                    <option value="nursing-home">Nursing Home</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Lotus Rating -->
+            <div class="form-group">
+                <label>Lotus Rating - Check all that apply *</label>
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Select the qualities you experienced with this provider</p>
+                <div class="lotus-rating">
+                    <div class="lotus-item">
+                        <label for="compassionate">
+                            🪷 Compassionate
+                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Kind & caring</small>
+                        </label>
+                        <input type="checkbox" id="compassionate" name="compassionate" class="lotus-checkbox">
+                    </div>
+                    <div class="lotus-item">
+                        <label for="responsive">
+                            🪷 Responsive
+                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Quick replies</small>
+                        </label>
+                        <input type="checkbox" id="responsive" name="responsive" class="lotus-checkbox">
+                    </div>
+                    <div class="lotus-item">
+                        <label for="supportive">
+                            🪷 Supportive
+                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Helpful guidance</small>
+                        </label>
+                        <input type="checkbox" id="supportive" name="supportive" class="lotus-checkbox">
+                    </div>
+                    <div class="lotus-item">
+                        <label for="professional">
+                            🪷 Professional
+                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Skilled & reliable</small>
+                        </label>
+                        <input type="checkbox" id="professional" name="professional" class="lotus-checkbox">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Text -->
+            <div class="form-group">
+                <label for="reviewText">Your Review *</label>
+                <textarea id="reviewText" name="reviewText" required placeholder="Please share your experience with this provider. What made them stand out? How did they support you and your loved one?"></textarea>
+            </div>
+
+            <!-- Would Recommend -->
+            <div class="form-group">
+                <label for="recommend">Would you recommend this provider? *</label>
+                <select id="recommend" name="recommend" required>
+                    <option value="">Select an option</option>
+                    <option value="yes">Yes, I would recommend</option>
+                    <option value="no">No, I would not recommend</option>
+                    <option value="maybe">Maybe, with reservations</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Submit Review</button>
+        </form>
+    </div>
+
+    <script>
+        function submitReview(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = {
+                providerName: document.getElementById('providerName').value,
+                reviewerName: document.getElementById('reviewerName').value,
+                careType: document.getElementById('careType').value,
+                compassionate: document.getElementById('compassionate').checked,
+                responsive: document.getElementById('responsive').checked,
+                supportive: document.getElementById('supportive').checked,
+                professional: document.getElementById('professional').checked,
+                reviewText: document.getElementById('reviewText').value,
+                recommend: document.getElementById('recommend').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Validate at least one lotus criteria is checked
+            if (!formData.compassionate && !formData.responsive && !formData.supportive && !formData.professional) {
+                alert('Please select at least one Lotus Rating criterion.');
+                return;
+            }
+
+            console.log('Review submitted:', formData);
+            
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Reset form
+            document.getElementById('reviewForm').reset();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+
+            // Here you would normally send the data to your backend/Firebase
+            // Example: sen

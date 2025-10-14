@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #20b2aa 0%, #00CED1 100%);
             min-height: 100vh;
             padding: 2rem;
         }
@@ -47,7 +47,7 @@
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -61,7 +61,7 @@
         }
 
         nav a:hover {
-            color: #667eea;
+            color: #20b2aa;
         }
 
         /* Main Container */
@@ -116,7 +116,7 @@
 
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #20b2aa;
         }
 
         textarea {
@@ -157,7 +157,7 @@
         .submit-button {
             width: 100%;
             padding: 1.2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
             color: white;
             border: none;
             border-radius: 15px;
@@ -170,13 +170,13 @@
 
         .submit-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
         }
 
         /* Info Box */
         .info-box {
             background: #f0f8ff;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #20b2aa;
             padding: 1.5rem;
             border-radius: 10px;
             margin-bottom: 2rem;
@@ -252,6 +252,7 @@
 
         <div class="info-box">
             <p><strong>Your voice matters.</strong> Honest reviews help families make informed decisions during difficult times. Please share your genuine experience with the care provider.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">Questions? Email <a href="mailto:support@crossingsunsets.app" style="color: #20b2aa;">support@crossingsunsets.app</a></p>
         </div>
 
         <form id="reviewForm" onsubmit="submitReview(event)">
@@ -273,10 +274,10 @@
                 <select id="careType" name="careType" required>
                     <option value="">Select care type</option>
                     <option value="hospice">Hospice Care</option>
-                    <option value="palliative">Palliative Care</option>
-                    <option value="home-health">Home Health Care</option>
+                    <option value="boarding-care">Licensed Boarding Care Home</option>
+                    <option value="skilled-nursing">Skilled Nursing Facility</option>
+                    <option value="memory-support">Memory Support Services</option>
                     <option value="assisted-living">Assisted Living</option>
-                    <option value="nursing-home">Nursing Home</option>
                     <option value="other">Other</option>
                 </select>
             </div>
@@ -383,5 +384,21 @@
             // Example: sendToFirebase(formData);
         }
     </script>
+
+    <!-- Footer -->
+    <footer style="background: rgba(0, 0, 0, 0.8); color: white; text-align: center; padding: 2rem; margin-top: 4rem; border-radius: 15px;">
+        <p>&copy; 2025 Crossing Sunsets™. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="index.html" style="color: #20b2aa; text-decoration: none;">Home</a> | 
+            <a href="privacy.html" style="color: #20b2aa; text-decoration: none;">Privacy & Data</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            Crossing Sunsets™ and Lotus Rating System™ are trademarks of Crossing Sunsets LLC.<br>
+            Unauthorized use is prohibited.
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            For support: <a href="mailto:support@crossingsunsets.app" style="color: #20b2aa; text-decoration: none;">support@crossingsunsets.app</a>
+        </p>
+    </footer>
 </body>
 </html>

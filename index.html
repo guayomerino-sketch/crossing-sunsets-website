@@ -324,6 +324,37 @@
             opacity: 0.95;
         }
 
+        .lotus-criteria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .criterion-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .criterion-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .criterion-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .criterion-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
         /* How It Works */
         .how-it-works {
             padding: 4rem 2rem;
@@ -428,6 +459,14 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .lotus-criteria {
+                grid-template-columns: 1fr;
+            }
+
+            .criterion-card {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -530,13 +569,39 @@
     <section class="lotus-rating-section">
         <div class="lotus-content">
             <div class="lotus-logo">🪷</div>
-            <h2 class="lotus-title">The Lotus Rating™</h2>
+            <h2 class="lotus-title">The Lotus Rating™ System</h2>
             <p class="lotus-description">
                 Like the lotus flower that brings beauty and peace, our rating system helps you find care providers who honor dignity, compassion, and comfort during life's most precious transition.
             </p>
             <p class="lotus-description">
-                Each provider is rated on four pillars: Compassionate Care, Clear Communication, Comfort & Pain Management, and Family Support.
+                Each provider is rated on four key pillars of end-of-life care:
             </p>
+            
+            <div class="lotus-criteria">
+                <div class="criterion-card">
+                    <div class="criterion-icon">🪷</div>
+                    <div class="criterion-title">#1 Compassionate</div>
+                    <p class="criterion-description">Kind, caring, and empathetic staff who treat patients and families with dignity</p>
+                </div>
+                
+                <div class="criterion-card">
+                    <div class="criterion-icon">🪷</div>
+                    <div class="criterion-title">#2 Responsive</div>
+                    <p class="criterion-description">Quick to respond to needs, concerns, and questions from families</p>
+                </div>
+                
+                <div class="criterion-card">
+                    <div class="criterion-icon">🪷</div>
+                    <div class="criterion-title">#3 Supportive</div>
+                    <p class="criterion-description">Helpful guidance and support for both family and patient throughout the journey</p>
+                </div>
+                
+                <div class="criterion-card">
+                    <div class="criterion-icon">🪷</div>
+                    <div class="criterion-title">#4 Professional</div>
+                    <p class="criterion-description">Skilled, knowledgeable, and reliable care with proper credentials and expertise</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -576,11 +641,16 @@
                 <a href="quick-signup.html">Leave a Review</a>
                 <a href="choose-plan.html">For Providers</a>
                 <a href="privacy.html">Privacy Policy</a>
-                <a href="mailto:support@crossingsunsets.app">Contact Us</a>
+                <a href="mailto:support@crossingsunsets.app" style="text-decoration: underline;">📧 Contact Us</a>
             </div>
             <div class="copyright">
                 <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
                 <p>Helping families find compassionate end-of-life care.</p>
+                <p style="margin-top: 0.5rem;">
+                    📧 Support: 
+                    <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">support@crossingsunsets.app</a> | 
+                    <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">eduardo@crossingsunsets.app</a>
+                </p>
             </div>
         </div>
     </footer>

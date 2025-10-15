@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossing Sunsets™ - Compassionate Care Connection</title>
+    <title>Crossing Sunsets™ - Healthcare Provider Directory</title>
     <style>
         * {
             margin: 0;
@@ -12,672 +12,454 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #20b2aa 0%, #00CED1 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #40E0D0 0%, #48D1CC 50%, #20B2AA 100%);
             min-height: 100vh;
-            color: #333;
         }
 
-        nav {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .header {
+            background: white;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .logo-container {
+        .logo-section {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
         .logo {
+            width: 50px;
             height: 50px;
+            background: linear-gradient(135deg, #40E0D0, #20B2AA);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .trademark {
+            font-size: 14px;
+            vertical-align: super;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .app-store-link {
+            transition: transform 0.3s;
+        }
+
+        .app-store-link:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge {
+            height: 40px;
             width: auto;
         }
 
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
+        .admin-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
             text-decoration: none;
-            color: #333;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .admin-btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .navigation {
+            background: white;
+            padding: 0 30px;
+            display: flex;
+            gap: 30px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav-link {
+            padding: 15px 0;
+            color: #4b5563;
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
             font-weight: 500;
-            transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: #20b2aa;
+        .nav-link:hover {
+            color: #0d7377;
+            border-bottom-color: #0d7377;
         }
 
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            margin: 2rem auto;
+        .container {
             max-width: 1200px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #555;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .care-types-badge {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .care-badge {
-            background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #20b2aa;
-            border: 2px solid rgba(32, 178, 170, 0.3);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
-            color: white;
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background: white;
-            margin: 10% auto;
-            padding: 3rem;
-            border-radius: 20px;
-            max-width: 500px;
-            text-align: center;
-            position: relative;
-            animation: slideIn 0.3s;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.3s;
-        }
-
-        .close:hover {
-            color: #333;
-        }
-
-        .modal h2 {
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .store-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .store-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            padding: 1.2rem 2rem;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .store-button.google {
-            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
-            color: white;
-        }
-
-        .store-button.google:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4);
-        }
-
-        .store-button.apple {
-            background: linear-gradient(135deg, #000000 0%, #434343 100%);
-            color: white;
-        }
-
-        .store-button.apple:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .care-types-section {
-            background: white;
-            padding: 4rem 2rem;
-            margin: 2rem auto;
-            max-width: 1200px;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        .care-types-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .care-types-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .care-type-card {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
-            border-radius: 15px;
-            border: 2px solid rgba(32, 178, 170, 0.1);
-            transition: all 0.3s;
-        }
-
-        .care-type-card:hover {
-            transform: translateY(-5px);
-            border-color: #20b2aa;
-            box-shadow: 0 10px 30px rgba(32, 178, 170, 0.2);
-        }
-
-        .care-type-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .care-type-card h3 {
-            color: #20b2aa;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .care-type-card p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .features {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
         .feature-card {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
             transition: transform 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
-        .feature-card h3 {
-            color: #20b2aa;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
-        .lotus-section {
+        .feature-title {
+            font-size: 22px;
+            color: #f97316;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .subscription-section {
             background: white;
-            padding: 4rem 2rem;
-            margin: 2rem auto;
-            max-width: 1200px;
+            padding: 50px;
             border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
             text-align: center;
+            font-size: 36px;
+            color: #2d3748;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .lotus-logo {
-            height: 100px;
-            margin-bottom: 2rem;
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        .lotus-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #20b2aa 0%, #ffd700 100%);
+        .plan-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(to bottom, #f8fafc, #ffffff);
+            border: 2px solid #e5e7eb;
+        }
+
+        .plan-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 15px;
+        }
+
+        .plan-price {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .plan-card.free .plan-price {
+            color: #40E0D0;
+        }
+
+        .plan-card.standard .plan-price {
+            color: #f97316;
+        }
+
+        .plan-card.premium .plan-price {
+            color: #f59e0b;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .lotus-criteria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .plan-period {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        .lotus-item {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
-            border-radius: 15px;
+        .plan-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .lotus-item h4 {
-            color: #20b2aa;
-            margin-bottom: 0.5rem;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.8);
+        .stripe-button {
+            display: block;
+            padding: 14px 24px;
+            background: #0d7377;
             color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
         }
 
-        footer a {
-            color: #20b2aa;
+        .stripe-button:hover {
+            background: #0a5a5d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(13, 115, 119, 0.4);
+        }
+
+        .stripe-button.premium {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .stripe-button.premium:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .stripe-button.free {
+            background: #40E0D0;
+        }
+
+        .stripe-button.free:hover {
+            background: #20B2AA;
+            box-shadow: 0 4px 15px rgba(64, 224, 208, 0.4);
+        }
+
+        .pricing-note {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 14px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .cta-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .cta-button {
+            padding: 16px 40px;
+            border-radius: 12px;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-primary {
+            background: #f97316;
+            color: white;
+        }
+
+        .cta-primary:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .subscriber-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #ef4444;
+            font-size: 14px;
+        }
+
+        .subscriber-link a {
+            color: #ef4444;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .subscriber-link a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            nav ul {
+            .header {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 15px;
             }
 
-            .modal-content {
-                margin: 20% auto;
-                padding: 2rem;
+            .header-buttons {
+                width: 100%;
+                justify-content: center;
             }
 
-            .care-types-badge {
-                gap: 0.5rem;
+            .navigation {
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
-            .care-badge {
-                font-size: 0.8rem;
-                padding: 0.4rem 1rem;
+            .section-title {
+                font-size: 28px;
+            }
+
+            .subscription-section {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo-container">
-            <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo" class="logo" onerror="this.style.display='none'">
-            <span class="logo-text">Crossing Sunsets™</span>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">🌅</div>
+            <span class="brand-name">Crossing Sunsets<span class="trademark">™</span></span>
         </div>
-        <ul>
-            <li><a href="#care-types">Care Types</a></li>
-            <li><a href="#for-families">For Families</a></li>
-            <li><a href="#for-providers">For Providers</a></li>
-            <li><a href="#lotus-rating">Lotus Rating™</a></li>
-            <li><a href="reviews.html">Reviews</a></li>
-        </ul>
+        <div class="header-buttons">
+            <a href="https://tinyurl.com/CrossingSunsets" target="_blank" class="app-store-link">
+                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-example-preferred.png" 
+                     alt="Download on the App Store" 
+                     class="app-store-badge">
+            </a>
+            <a href="#" class="admin-btn">🏠 Admin</a>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <a href="#" class="nav-link">Care Types</a>
+        <a href="#" class="nav-link">For Families</a>
+        <a href="browse-providers.html" class="nav-link">Browse Providers</a>
+        <a href="#" class="nav-link">Lotus Rating™</a>
+        <a href="#" class="nav-link">Reviews</a>
     </nav>
 
-    <div class="hero">
-        <h1>🌅 Find Trusted Care Facilities and Providers</h1>
-        <p>Connecting families with compassionate care through community reviews and our unique Lotus Rating System™</p>
-        
-        <div class="care-types-badge">
-            <span class="care-badge">🏥 Hospice Care</span>
-            <span class="care-badge">🏡 Licensed Boarding Care</span>
-            <span class="care-badge">🏥 Skilled Nursing</span>
-            <span class="care-badge">🧠 Memory Support</span>
-            <span class="care-badge">🏠 Assisted Living</span>
-        </div>
-        
-        <div style="margin-top: 2rem;">
-            <button class="cta-button" onclick="openDownloadModal()">📱 Download the App</button>
-        </div>
-    </div>
-
-    <div id="downloadModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeDownloadModal()">&times;</span>
-            <h2>Choose Your Platform</h2>
-            <p>Download Crossing Sunsets™ on your device</p>
-            <div class="store-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.crossingsunsets.app" class="store-button google" target="_blank">
-                    <span style="font-size: 2rem;">📱</span>
-                    <span>Get it on Google Play</span>
-                </a>
-                <a href="https://apps.apple.com/us/app/crossing-sunsets/id6738828924" class="store-button apple" target="_blank">
-                    <span style="font-size: 2rem;">🍎</span>
-                    <span>Download on App Store</span>
-                </a>
+    <div class="container">
+        <!-- Features Section -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Get Discovered</h3>
+                <p class="feature-description">Appear in searches by families actively looking for care in your specialty</p>
             </div>
-        </div>
-    </div>
-
-    <div id="care-types" class="care-types-section">
-        <h2>Specialized Care Services We Cover</h2>
-        <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">Browse and review providers across multiple care specialties</p>
-        
-        <div class="care-types-grid">
-            <div class="care-type-card">
-                <div class="care-type-icon">🏥</div>
-                <h3>Hospice Care</h3>
-                <p>Compassionate end-of-life care focused on comfort and dignity for patients and families</p>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3 class="feature-title">Build Trust</h3>
+                <p class="feature-description">Showcase your Lotus Rating™ reviews from real families</p>
             </div>
-            
-            <div class="care-type-card">
-                <div class="care-type-icon">🏡</div>
-                <h3>Licensed Boarding Care Homes</h3>
-                <p>Small residential facilities providing personalized care in a home-like environment</p>
-            </div>
-            
-            <div class="care-type-card">
-                <div class="care-type-icon">🏥</div>
-                <h3>Skilled Nursing Facilities</h3>
-                <p>24/7 medical care and rehabilitation services for complex health needs</p>
-            </div>
-            
-            <div class="care-type-card">
-                <div class="care-type-icon">🧠</div>
-                <h3>Memory Support Services</h3>
-                <p>Specialized care for individuals with Alzheimer's, dementia, and cognitive challenges</p>
-            </div>
-            
-            <div class="care-type-card">
-                <div class="care-type-icon">🏠</div>
-                <h3>Assisted Living</h3>
-                <p>Independent living with personalized support for daily activities and medical needs</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="for-families" class="care-types-section">
-        <h2 style="background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">👨‍👩‍👧‍👦 For Families & Caregivers</h2>
-        
-        <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-            Whether you're a family member, caregiver, friend, or legal guardian seeking quality care for your loved ones, we're here to help you find trusted providers.
-        </p>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
-            <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%); border-radius: 15px;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍👩‍👧</div>
-                <h3 style="color: #20b2aa; margin-bottom: 0.5rem;">Family Members</h3>
-                <p style="color: #666;">Finding the right care for your loved ones</p>
-            </div>
-            
-            <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%); border-radius: 15px;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div>
-                <h3 style="color: #20b2aa; margin-bottom: 0.5rem;">Caregivers & Friends</h3>
-                <p style="color: #666;">Supporting those who need compassionate care</p>
-            </div>
-            
-            <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(32, 178, 170, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%); border-radius: 15px;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">⚖️</div>
-                <h3 style="color: #20b2aa; margin-bottom: 0.5rem;">Legal Guardians</h3>
-                <p style="color: #666;">Making informed decisions for those in your care</p>
-            </div>
-        </div>
-        
-        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem;">
-            <button onclick="openDownloadModal()" class="cta-button">
-                📱 Download App to Browse
-            </button>
-            
-            <a href="reviews.html" class="cta-button" style="background: linear-gradient(135deg, #20b2aa 0%, #ffd700 100%); text-decoration: none;">
-                ⭐ Leave a Review
-            </a>
-        </div>
-        
-        <p style="text-align: center; margin-top: 2rem; color: #999; font-size: 0.95rem;">
-            💯 100% Free for families • No sign-up required • Browse and review anytime
-        </p>
-    </div>
-
-    <div id="for-providers" style="max-width: 1200px; margin: 2rem auto; background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(247, 147, 30, 0.05) 100%); padding: 4rem 2rem; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 3px solid rgba(255, 107, 53, 0.2);">
-        <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">💼 For Healthcare Providers</h2>
-        
-        <p style="text-align: center; font-size: 1.3rem; color: #555; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-            <strong>Join Crossing Sunsets™</strong> and connect with families seeking quality care. Get found, build trust, and grow your practice.
-        </p>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
-                <h3 style="color: #FF6B35; margin-bottom: 0.5rem;">Get Discovered</h3>
-                <p style="color: #666; font-size: 0.95rem;">Appear in searches by families actively looking for care in your specialty</p>
-            </div>
-            
-            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">⭐</div>
-                <h3 style="color: #FF6B35; margin-bottom: 0.5rem;">Build Trust</h3>
-                <p style="color: #666; font-size: 0.95rem;">Showcase your Lotus Rating™ reviews from real families</p>
-            </div>
-            
-            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
-                <h3 style="color: #FF6B35; margin-bottom: 0.5rem;">Grow Your Practice</h3>
-                <p style="color: #666; font-size: 0.95rem;">Stand out with premium features and priority placement</p>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">Grow Your Practice</h3>
+                <p class="feature-description">Stand out with premium features and priority placement</p>
             </div>
         </div>
 
-        <div style="background: white; padding: 2.5rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-            <h3 style="text-align: center; color: #333; margin-bottom: 2rem; font-size: 1.5rem;">📋 Subscription Plans</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
-                <div>
-                    <div style="font-size: 1.1rem; font-weight: 600; color: #666; margin-bottom: 0.5rem;">🎁 Free Trial</div>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: #20b2aa;">30 Days</div>
-                    <p style="color: #999; font-size: 0.9rem; margin-top: 0.5rem;">No credit card required</p>
+        <!-- Subscription Plans Section -->
+        <div class="subscription-section">
+            <h2 class="section-title">
+                📋 Subscription Plans
+            </h2>
+
+            <div class="plans-container">
+                <!-- Free Trial -->
+                <div class="plan-card free">
+                    <div class="plan-badge">🎁 Free Trial</div>
+                    <div class="plan-price">30 Days</div>
+                    <p class="plan-period">No credit card required</p>
+                    <div class="plan-buttons">
+                        <a href="quick-signup.html" class="stripe-button free">Start Free Trial</a>
+                    </div>
                 </div>
-                <div>
-                    <div style="font-size: 1.1rem; font-weight: 600; color: #666; margin-bottom: 0.5rem;">📦 Standard</div>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: #FF6B35;">$899-$1,309</div>
-                    <p style="color: #999; font-size: 0.9rem; margin-top: 0.5rem;">per year</p>
+
+                <!-- Standard Plan -->
+                <div class="plan-card standard">
+                    <div class="plan-badge">🏢 Standard</div>
+                    <div class="plan-price">$899-$1,309</div>
+                    <p class="plan-period">per year</p>
+                    <div class="plan-buttons">
+                        <a href="https://buy.stripe.com/6oU14m37ze7B5AFddmdUY07" class="stripe-button" target="_blank">
+                            6 Months
+                        </a>
+                        <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQdUY08" class="stripe-button" target="_blank">
+                            12 Months (Save More)
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <div style="font-size: 1.1rem; font-weight: 600; color: #666; margin-bottom: 0.5rem;">⭐ Premium</div>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: #F7931E;">$1,199-$1,639</div>
-                    <p style="color: #999; font-size: 0.9rem; margin-top: 0.5rem;">per year</p>
+
+                <!-- Premium Plan -->
+                <div class="plan-card premium">
+                    <div class="plan-badge">⭐ Premium</div>
+                    <div class="plan-price">$1,199-$1,639</div>
+                    <p class="plan-period">per year</p>
+                    <div class="plan-buttons">
+                        <a href="https://buy.stripe.com/7sYbJ0eQh4x12ot5KUdUY06" class="stripe-button premium" target="_blank">
+                            6 Months
+                        </a>
+                        <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OYdUY03" class="stripe-button premium" target="_blank">
+                            12 Months (Best Value)
+                        </a>
+                    </div>
                 </div>
             </div>
-            <p style="text-align: center; color: #999; font-size: 0.9rem; margin-top: 1.5rem;">
+
+            <p class="pricing-note">
                 💡 Pricing varies by facility type • Volume discounts available
             </p>
-        </div>
 
-        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-            <a href="mailto:support@crossingsunsets.app?subject=Provider Subscription Inquiry" class="cta-button" style="background: linear-gradient(135deg, #20b2aa 0%, #00CED1 100%); text-decoration: none;">
-                📧 Email to Subscribe
-            </a>
-            
-            <a href="providers-access.html" class="cta-button" style="text-decoration: none;">
-                🔐 Access Provider Portal
-            </a>
-        </div>
-        
-        <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.95rem;">
-            ✨ Already a subscriber? <a href="providers-access.html" style="color: #FF6B35; font-weight: 600; text-decoration: none;">Access your portal here</a>
-        </p>
-    </div>
+            <!-- CTA Buttons -->
+            <div class="cta-section">
+                <a href="provider-portal.html" class="cta-button cta-primary">
+                    🔐 Access Provider Portal
+                </a>
+            </div>
 
-    <div id="features" class="features">
-        <div class="feature-card">
-            <h3>🔍 Advanced Search</h3>
-            <p>Find providers by name, city, specialty, or care type in our mobile app. Filter across hospice, boarding care, skilled nursing, memory support, and assisted living.</p>
-        </div>
-        <div class="feature-card">
-            <h3>⭐ Trusted Reviews</h3>
-            <p>Read authentic reviews from families who've experienced the care. Share your own experience to help others make informed decisions.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🪷 Lotus Rating™</h3>
-            <p>Our unique 4-criteria rating system evaluates Compassion, Responsiveness, Supportiveness, and Professionalism.</p>
-        </div>
-        <div class="feature-card">
-            <h3>💼 For All Care Providers</h3>
-            <p>Whether you run a boarding care home, skilled nursing facility, or memory care center - create your profile and connect with families.</p>
-        </div>
-        <div class="feature-card">
-            <h3>📱 Mobile First</h3>
-            <p>Access Crossing Sunsets™ anytime, anywhere on iOS and Android devices. Browse providers on the go.</p>
-        </div>
-        <div class="feature-card">
-            <h3>🤝 Community Driven</h3>
-            <p>Built by and for families navigating care decisions with transparency, compassion, and trust.</p>
-        </div>
-    </div>
-
-    <div id="lotus-rating" class="lotus-section">
-        <img src="lotus-logo.png" alt="Lotus Rating Logo" class="lotus-logo" onerror="this.style.display='none'">
-        <h2>The Lotus Rating System™</h2>
-        <p>Our thoughtful approach to rating care providers focuses on what matters most to families during difficult times.</p>
-        
-        <div class="lotus-criteria">
-            <div class="lotus-item">
-                <h4>🪷 Compassionate</h4>
-                <p>Kind, caring, and empathetic staff who treat patients and families with dignity</p>
-            </div>
-            <div class="lotus-item">
-                <h4>🪷 Responsive</h4>
-                <p>Quick to respond to needs, concerns, and questions from families</p>
-            </div>
-            <div class="lotus-item">
-                <h4>🪷 Supportive</h4>
-                <p>Helpful guidance and emotional support for both patient and family members</p>
-            </div>
-            <div class="lotus-item">
-                <h4>🪷 Professional</h4>
-                <p>Skilled, knowledgeable, reliable care with proper credentials and expertise</p>
+            <div class="subscriber-link">
+                ✨ Already a subscriber? <a href="provider-portal.html">Access your portal here</a>
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2025 Crossing Sunsets™. All rights reserved.</p>
-        <p>
-            <a href="#for-families">For Families</a> | 
-            <a href="#for-providers">For Providers</a> | 
-            <a href="reviews.html">Leave a Review</a> |
-            <a href="privacy.html">Privacy & Data</a>
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">
-            Crossing Sunsets™ and Lotus Rating System™ are trademarks of Crossing Sunsets LLC.<br>
-            Unauthorized use is prohibited.
-        </p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
-            For support: <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a>
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.7);">Compassionate care connections, one review at a time 🌅</p>
-    </footer>
-
-    <script>
-        function openDownloadModal() {
-            document.getElementById('downloadModal').style.display = 'block';
-        }
-
-        function closeDownloadModal() {
-            document.getElementById('downloadModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('downloadModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>

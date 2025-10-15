@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave a Review - Crossing Sunsets™</title>
+    <title>Provider Reviews - Crossing Sunsets™</title>
     <style>
         * {
             margin: 0;
@@ -39,6 +39,12 @@
             text-decoration: none;
         }
 
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
         .page-header {
             background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
             color: white;
@@ -46,198 +52,131 @@
             text-align: center;
         }
 
-        .page-title {
+        .provider-header {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .provider-name {
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
         }
 
-        .page-subtitle {
-            font-size: 1.2rem;
+        .provider-location {
+            font-size: 1.3rem;
             opacity: 0.95;
+            margin-bottom: 1rem;
         }
 
-        .form-container {
-            max-width: 800px;
+        .lotus-rating {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .reviews-container {
+            max-width: 900px;
             margin: 3rem auto;
             padding: 0 2rem 4rem;
         }
 
-        .form-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .lotus-intro {
-            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 3rem;
-            border-left: 4px solid #14B8A6;
-        }
-
-        .lotus-intro h2 {
-            color: #14B8A6;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .lotus-intro p {
-            color: #4b5563;
-            font-size: 1.1rem;
-        }
-
-        .form-section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e5e7eb;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .required {
-            color: #ef4444;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #14B8A6;
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .rating-group {
-            background: #f9fafb;
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            border: 2px solid #e5e7eb;
-        }
-
-        .rating-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #14B8A6;
-            margin-bottom: 0.5rem;
-        }
-
-        .rating-description {
-            color: #6b7280;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .lotus-rating-input {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .lotus-option {
-            flex: 1;
-            min-width: 100px;
-        }
-
-        .lotus-option input[type="radio"] {
-            display: none;
-        }
-
-        .lotus-option label {
-            display: block;
-            padding: 1rem;
-            text-align: center;
-            border: 3px solid #e5e7eb;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .lotus-option input[type="radio"]:checked + label {
-            border-color: #14B8A6;
-            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
-        }
-
-        .lotus-option label:hover {
-            border-color: #14B8A6;
-            transform: translateY(-2px);
-        }
-
-        .lotus-icon {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .lotus-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #4b5563;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: 700;
+        .add-review-btn {
             background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
             color: white;
-            border: none;
+            padding: 1rem 2rem;
             border-radius: 12px;
-            cursor: pointer;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 2rem;
             transition: all 0.3s;
-            margin-top: 2rem;
         }
 
-        .submit-btn:hover {
+        .add-review-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
         }
 
-        .helper-text {
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .reviewer-info h3 {
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .review-date {
             color: #6b7280;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .review-ratings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-item {
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .rating-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .rating-value {
+            font-size: 1.5rem;
+        }
+
+        .review-text {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .no-reviews {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 16px;
+        }
+
+        .no-reviews-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-reviews h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .no-reviews p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
         }
 
         footer {
@@ -248,17 +187,31 @@
             margin-top: 4rem;
         }
 
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
         @media (max-width: 768px) {
-            .form-card {
-                padding: 2rem 1.5rem;
+            .provider-name {
+                font-size: 2rem;
             }
 
-            .lotus-rating-input {
+            .review-header {
                 flex-direction: column;
+                gap: 1rem;
             }
 
-            .lotus-option {
-                min-width: 100%;
+            .review-ratings {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -268,225 +221,89 @@
         <div class="header-content">
             <a href="index.html" class="logo-text">Crossing Sunsets™</a>
             <nav>
-                <a href="index.html" style="color: white; text-decoration: none; margin-left: 2rem;">← Back to Home</a>
+                <a href="index.html">Home</a>
+                <a href="browse-providers.html">← Back to Providers</a>
             </nav>
         </div>
     </header>
 
     <div class="page-header">
-        <h1 class="page-title">📝 Share Your Experience</h1>
-        <p class="page-subtitle">Help other families by sharing your honest review</p>
-    </div>
-
-    <div class="form-container">
-        <div class="form-card">
-            <div class="lotus-intro">
-                <h2>🪷 The Lotus Rating™ System</h2>
-                <p>Rate your experience across four key areas of end-of-life care. Your honest feedback helps other families make informed decisions during difficult times.</p>
-            </div>
-
-            <form id="reviewForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                
-                <!-- Basic Information -->
-                <div class="form-section">
-                    <h2 class="section-title">Your Information</h2>
-                    
-                    <div class="form-group">
-                        <label>Your Name <span class="required">*</span></label>
-                        <input type="text" name="reviewer_name" required placeholder="First and Last Name">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email <span class="required">*</span></label>
-                        <input type="email" name="reviewer_email" required placeholder="your.email@example.com">
-                        <p class="helper-text">Your email will not be published publicly</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Provider Name <span class="required">*</span></label>
-                        <input type="text" name="provider_name" required placeholder="Name of hospice or care facility">
-                    </div>
-
-                    <div class="form-group">
-                        <label>City/Location <span class="required">*</span></label>
-                        <input type="text" name="location" required placeholder="City, State">
-                    </div>
-                </div>
-
-                <!-- Lotus Rating Criteria -->
-                <div class="form-section">
-                    <h2 class="section-title">🪷 Rate Your Experience</h2>
-
-                    <!-- Criterion 1: Compassionate -->
-                    <div class="rating-group">
-                        <div class="rating-title">🪷 #1 Compassionate</div>
-                        <p class="rating-description">Kind, caring, and empathetic staff</p>
-                        <div class="lotus-rating-input">
-                            <div class="lotus-option">
-                                <input type="radio" id="compassion-1" name="compassionate" value="1" required>
-                                <label for="compassion-1">
-                                    <span class="lotus-icon">🪷</span>
-                                    <span class="lotus-label">Poor</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="compassion-2" name="compassionate" value="2">
-                                <label for="compassion-2">
-                                    <span class="lotus-icon">🪷🪷</span>
-                                    <span class="lotus-label">Fair</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="compassion-3" name="compassionate" value="3">
-                                <label for="compassion-3">
-                                    <span class="lotus-icon">🪷🪷🪷</span>
-                                    <span class="lotus-label">Good</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="compassion-4" name="compassionate" value="4">
-                                <label for="compassion-4">
-                                    <span class="lotus-icon">🪷🪷🪷🪷</span>
-                                    <span class="lotus-label">Excellent</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Criterion 2: Responsive -->
-                    <div class="rating-group">
-                        <div class="rating-title">🪷 #2 Responsive</div>
-                        <p class="rating-description">Quick to respond to needs and concerns</p>
-                        <div class="lotus-rating-input">
-                            <div class="lotus-option">
-                                <input type="radio" id="responsive-1" name="responsive" value="1" required>
-                                <label for="responsive-1">
-                                    <span class="lotus-icon">🪷</span>
-                                    <span class="lotus-label">Poor</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="responsive-2" name="responsive" value="2">
-                                <label for="responsive-2">
-                                    <span class="lotus-icon">🪷🪷</span>
-                                    <span class="lotus-label">Fair</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="responsive-3" name="responsive" value="3">
-                                <label for="responsive-3">
-                                    <span class="lotus-icon">🪷🪷🪷</span>
-                                    <span class="lotus-label">Good</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="responsive-4" name="responsive" value="4">
-                                <label for="responsive-4">
-                                    <span class="lotus-icon">🪷🪷🪷🪷</span>
-                                    <span class="lotus-label">Excellent</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Criterion 3: Supportive -->
-                    <div class="rating-group">
-                        <div class="rating-title">🪷 #3 Supportive</div>
-                        <p class="rating-description">Helpful guidance for family and patient</p>
-                        <div class="lotus-rating-input">
-                            <div class="lotus-option">
-                                <input type="radio" id="supportive-1" name="supportive" value="1" required>
-                                <label for="supportive-1">
-                                    <span class="lotus-icon">🪷</span>
-                                    <span class="lotus-label">Poor</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="supportive-2" name="supportive" value="2">
-                                <label for="supportive-2">
-                                    <span class="lotus-icon">🪷🪷</span>
-                                    <span class="lotus-label">Fair</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="supportive-3" name="supportive" value="3">
-                                <label for="supportive-3">
-                                    <span class="lotus-icon">🪷🪷🪷</span>
-                                    <span class="lotus-label">Good</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="supportive-4" name="supportive" value="4">
-                                <label for="supportive-4">
-                                    <span class="lotus-icon">🪷🪷🪷🪷</span>
-                                    <span class="lotus-label">Excellent</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Criterion 4: Professional -->
-                    <div class="rating-group">
-                        <div class="rating-title">🪷 #4 Professional</div>
-                        <p class="rating-description">Skilled, knowledgeable, and reliable</p>
-                        <div class="lotus-rating-input">
-                            <div class="lotus-option">
-                                <input type="radio" id="professional-1" name="professional" value="1" required>
-                                <label for="professional-1">
-                                    <span class="lotus-icon">🪷</span>
-                                    <span class="lotus-label">Poor</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="professional-2" name="professional" value="2">
-                                <label for="professional-2">
-                                    <span class="lotus-icon">🪷🪷</span>
-                                    <span class="lotus-label">Fair</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="professional-3" name="professional" value="3">
-                                <label for="professional-3">
-                                    <span class="lotus-icon">🪷🪷🪷</span>
-                                    <span class="lotus-label">Good</span>
-                                </label>
-                            </div>
-                            <div class="lotus-option">
-                                <input type="radio" id="professional-4" name="professional" value="4">
-                                <label for="professional-4">
-                                    <span class="lotus-icon">🪷🪷🪷🪷</span>
-                                    <span class="lotus-label">Excellent</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Written Review -->
-                <div class="form-section">
-                    <h2 class="section-title">Your Story</h2>
-                    
-                    <div class="form-group">
-                        <label>Share Your Experience <span class="required">*</span></label>
-                        <textarea name="review_text" required placeholder="Tell us about your experience with this provider. What stood out? What would you want other families to know?"></textarea>
-                        <p class="helper-text">Your story helps other families during their most difficult times</p>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">Submit Review</button>
-            </form>
+        <div class="provider-header">
+            <h1 class="provider-name">AllPeace Care Hospice</h1>
+            <p class="provider-location">📍 Torrance, CA</p>
+            <div class="lotus-rating">🪷🪷🪷🪷</div>
+            <p style="font-size: 1.2rem; opacity: 0.95;">Read authentic reviews from families</p>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">Questions? <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6;">support@crossingsunsets.app</a> | <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6;">eduardo@crossingsunsets.app</a></p>
-    </footer>
+    <div class="reviews-container">
+        <a href="quick-signup.html?provider=allpeace" class="add-review-btn">✍️ Leave Your Review</a>
 
-    <script>
-        document.getElementById('reviewForm').addEventListener('submit', function(e) {
-            alert('Thank you for your review! Your feedback helps families find compassionate care.');
-        });
-    </script>
+        <!-- Example Review (you can add more later) -->
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <h3>Maria G.</h3>
+                    <p class="review-date">October 2024</p>
+                </div>
+            </div>
+
+            <div class="review-ratings">
+                <div style="padding: 1.5rem; background: #f0fdfa; border-radius: 12px; border-left: 4px solid #14B8A6; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.2rem; color: #0f766e; margin-bottom: 1rem;"><strong>Qualities Experienced:</strong></p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span style="font-size: 1.5rem;">✓</span>
+                            <span style="font-size: 1.1rem; color: #1f2937;"><strong>🪷 #1 Compassionate</strong> - Kind, caring, and empathetic staff</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span style="font-size: 1.5rem;">✓</span>
+                            <span style="font-size: 1.1rem; color: #1f2937;"><strong>🪷 #2 Responsive</strong> - Quick to respond to needs and concerns</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span style="font-size: 1.5rem;">✓</span>
+                            <span style="font-size: 1.1rem; color: #1f2937;"><strong>🪷 #3 Supportive</strong> - Helpful guidance for family and patient</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span style="font-size: 1.5rem;">✓</span>
+                            <span style="font-size: 1.1rem; color: #1f2937;"><strong>🪷 #4 Professional</strong> - Skilled, knowledgeable, and reliable</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px;">
+                        <p style="font-size: 1.3rem; font-weight: 700; color: #14B8A6;">Overall Rating: 🪷🪷🪷🪷 (All 4 qualities!)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-text">
+                <p>AllPeace Care provided exceptional care for my mother during her final months. The staff was incredibly compassionate, always taking time to explain everything and make sure both my mother and our family felt supported. They truly brought peace and dignity to a difficult time. The pain management was excellent, and my mother was comfortable throughout her journey. I cannot recommend them highly enough.</p>
+            </div>
+        </div>
+
+        <!-- Placeholder for no reviews yet -->
+        <!-- Uncomment this section if there are no reviews initially
+        <div class="no-reviews">
+            <div class="no-reviews-icon">💭</div>
+            <h2>No reviews yet</h2>
+            <p>Be the first to share your experience with AllPeace Care Hospice</p>
+            <a href="quick-signup.html?provider=allpeace" class="add-review-btn">Write the First Review</a>
+        </div>
+        -->
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="browse-providers.html">Browse Providers</a>
+            <a href="choose-plan.html">For Providers</a>
+            <a href="mailto:support@crossingsunsets.app" style="text-decoration: underline;">📧 Contact Us</a>
+        </div>
+        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            📧 Support: 
+            <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">support@crossingsunsets.app</a> | 
+            <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">eduardo@crossingsunsets.app</a>
+        </p>
+    </footer>
 </body>
 </html>

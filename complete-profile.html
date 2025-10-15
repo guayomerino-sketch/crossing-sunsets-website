@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile - Crossing Sunsets™</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0d7377 0%, #14b8a6 50%, #0ea5e9 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #40E0D0, #20B2AA);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .trademark {
+            font-size: 14px;
+            vertical-align: super;
+        }
+
+        .back-button {
+            background: transparent;
+            color: #0d7377;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #0d7377;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #0d7377;
+            color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .form-title {
+            font-size: 32px;
+            color: #0d7377;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0d7377, #14b8a6);
+            width: 30%;
+            transition: width 0.3s;
+        }
+
+        .info-banner {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        .info-banner p {
+            color: #92400e;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .section-header {
+            font-size: 20px;
+            color: #0d7377;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .optional-tag {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #0d7377;
+            box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #e5e7eb;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .file-upload-area:hover {
+            border-color: #0d7377;
+            background: #f0fdfa;
+        }
+
+        .file-upload-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .help-text {
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0d7377 0%, #14b8a6 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0a5a5d 0%, #0d9488 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(13, 115, 119, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-card {
+                padding: 30px 20px;
+            }
+
+            .form-title {
+                font-size: 26px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">🌅</div>
+            <span class="brand-name">Crossing Sunsets<span class="trademark">™</span></span>
+        </div>
+        <a href="provider-portal.html" class="back-button">← Back to Portal</a>
+    </header>
+
+    <div class="container">
+        <div class="form-card">
+            <h1 class="form-title">Complete Your Profile</h1>
+            <p class="form-subtitle">
+                Enhance your listing with additional details. You can save and come back anytime!
+            </p>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="info-banner">
+                <p><strong>💡 Take your time!</strong> All fields are optional. Add as much or as little as you want. You can always come back and update your profile later.</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✓ Profile updated successfully!
+            </div>
+
+            <form id="profileForm">
+                <!-- Professional Details -->
+                <h2 class="section-header">
+                    🏥 Professional Details
+                    <span class="optional-tag">All Optional</span>
+                </h2>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="licenseNumber">
+                            License/Certification Number
+                        </label>
+                        <input 
+                            type="text" 
+                            id="licenseNumber" 
+                            class="form-input" 
+                            placeholder="License #"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="yearsInPractice">
+                            Years in Practice
+                        </label>
+                        <input 
+                            type="number" 
+                            id="yearsInPractice" 
+                            class="form-input" 
+                            placeholder="e.g., 5"
+                            min="0"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Additional Specialties/Services
+                    </label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hospice" class="checkbox-input">
+                            <label for="hospice">Hospice Care</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="palliative" class="checkbox-input">
+                            <label for="palliative">Palliative Care</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="homeHealth" class="checkbox-input">
+                            <label for="homeHealth">Home Health</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="seniorCare" class="checkbox-input">
+                            <label for="seniorCare">Senior Care</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="memorycare" class="checkbox-input">
+                            <label for="memorycare">Memory Care</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rehabilitation" class="checkbox-input">
+                            <label for="rehabilitation">Rehabilitation</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="insuranceAccepted">
+                            Insurance Accepted
+                        </label>
+                        <input 
+                            type="text" 
+                            id="insuranceAccepted" 
+                            class="form-input" 
+                            placeholder="Medicare, Medicaid, etc."
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="languages">
+                            Languages Spoken
+                        </label>
+                        <input 
+                            type="text" 
+                            id="languages" 
+                            class="form-input" 
+                            placeholder="English, Spanish, etc."
+                        >
+                    </div>
+                </div>
+
+                <!-- Enhanced Description -->
+                <h2 class="section-header">
+                    📝 About Your Practice
+                    <span class="optional-tag">Optional</span>
+                </h2>
+
+                <div class="form-group">
+                    <label class="form-label" for="description">
+                        Detailed Description
+                    </label>
+                    <textarea 
+                        id="description" 
+                        class="form-textarea" 
+                        placeholder="Tell families about your practice, philosophy, and what makes your care special..."
+                    ></textarea>
+                    <p class="help-text">This helps families understand your approach to care</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="testimonial">
+                        Patient/Family Testimonial or Success Story
+                    </label>
+                    <textarea 
+                        id="testimonial" 
+                        class="form-textarea" 
+                        placeholder="Share a meaningful story or testimonial..."
+                    ></textarea>
+                </div>
+
+                <!-- Contact & Web Presence -->
+                <h2 class="section-header">
+                    🔗 Additional Contact Info
+                    <span class="optional-tag">Optional</span>
+                </h2>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="website">
+                            Website
+                        </label>
+                        <input 
+                            type="url" 
+                            id="website" 
+                            class="form-input" 
+                            placeholder="https://yourwebsite.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="hoursOfOperation">
+                            Hours of Operation
+                        </label>
+                        <input 
+                            type="text" 
+                            id="hoursOfOperation" 
+                            class="form-input" 
+                            placeholder="Mon-Fri 9AM-5PM"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="socialMedia">
+                        Social Media Links
+                    </label>
+                    <textarea 
+                        id="socialMedia" 
+                        class="form-textarea" 
+                        placeholder="Facebook: https://facebook.com/yourpage&#10;LinkedIn: https://linkedin.com/company/yourcompany"
+                        style="min-height: 80px;"
+                    ></textarea>
+                </div>
+
+                <!-- Documents Upload -->
+                <h2 class="section-header">
+                    📄 Documents & Media
+                    <span class="optional-tag">Optional</span>
+                </h2>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Professional License
+                    </label>
+                    <div class="file-upload-area" onclick="document.getElementById('licenseUpload').click()">
+                        <div class="file-upload-icon">📄</div>
+                        <p><strong>Upload your professional license</strong></p>
+                        <p class="help-text">PDF, JPG, or PNG (max 5MB)</p>
+                        <p id="licenseFileName" class="help-text" style="color: #0d7377; margin-top: 10px;"></p>
+                    </div>
+                    <input type="file" id="licenseUpload" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Logo or Professional Photo
+                    </label>
+                    <div class="file-upload-area" onclick="document.getElementById('logoUpload').click()">
+                        <div class="file-upload-icon">🖼️</div>
+                        <p><strong>Upload your logo or photo</strong></p>
+                        <p class="help-text">JPG or PNG (max 2MB)</p>
+                        <p id="logoFileName" class="help-text" style="color: #0d7377; margin-top: 10px;"></p>
+                    </div>
+                    <input type="file" id="logoUpload" class="file-input" accept=".jpg,.jpeg,.png">
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        Save Profile
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='provider-portal.html'">
+                        Save for Later
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // File upload handlers
+        document.getElementById('licenseUpload').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                document.getElementById('licenseFileName').textContent = '✓ ' + e.target.files[0].name;
+                updateProgress();
+            }
+        });
+
+        document.getElementById('logoUpload').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                document.getElementById('logoFileName').textContent = '✓ ' + e.target.files[0].name;
+                updateProgress();
+            }
+        });
+
+        // Update progress bar
+        function updateProgress() {
+            const form = document.getElementById('profileForm');
+            const inputs = form.querySelectorAll('input:not([type="file"]):not([type="checkbox"]), textarea, select');
+            let filled = 0;
+            
+            inputs.forEach(input => {
+                if (input.value.trim() !== '') filled++;
+            });
+
+            // Count checked checkboxes
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+            filled += checkboxes.length;
+
+            // Count uploaded files
+            if (document.getElementById('licenseUpload').files.length > 0) filled++;
+            if (document.getElementById('logoUpload').files.length > 0) filled++;
+
+            const total = inputs.length + 6 + 2; // inputs + checkboxes + files
+            const percentage = Math.min((filled / total) * 100, 100);
+            
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        // Update progress on input
+        document.querySelectorAll('input, textarea, select').forEach(element => {
+            element.addEventListener('input', updateProgress);
+            element.addEventListener('change', updateProgress);
+        });
+
+        // Form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            // Simulate save (replace with actual API call)
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save Profile';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Auto-hide success message
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+            }, 1500);
+        });
+
+        // Initial progress update
+        updateProgress();
+    </script>
+</body>
+</html>

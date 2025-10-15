@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave a Review - Crossing Sunsets</title>
+    <title>Provider Reviews - Crossing Sunsets™</title>
     <style>
         * {
             margin: 0;
@@ -12,392 +12,289 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #20b2aa 0%, #00CED1 100%);
-            min-height: 100vh;
-            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
         }
 
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.98);
+        header {
+            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
             padding: 1rem 2rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            height: 50px;
-            width: auto;
         }
 
         .logo-text {
+            color: white;
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #20b2aa 0%, #FF6B35 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-decoration: none;
         }
 
         nav a {
+            color: white;
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            margin-left: 2rem;
         }
 
-        nav a:hover {
-            color: #20b2aa;
+        .page-header {
+            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
         }
 
-        /* Main Container */
-        .container {
+        .provider-header {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #20b2aa 0%, #ffd700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .provider-name {
             font-size: 2.5rem;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            color: #333;
+            font-weight: 800;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
         }
 
-        input, textarea, select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #20b2aa;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        /* Lotus Rating */
-        .lotus-rating {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .lotus-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
-            border-radius: 15px;
-        }
-
-        .lotus-item label {
-            display: block;
+        .provider-location {
+            font-size: 1.3rem;
+            opacity: 0.95;
             margin-bottom: 1rem;
-            color: #20b2aa;
-            font-size: 1rem;
         }
 
-        .lotus-checkbox {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            accent-color: #20b2aa;
+        .lotus-rating {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        /* Submit Button */
-        .submit-button {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+        .reviews-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .add-review-btn {
+            background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
             color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 2rem;
             transition: all 0.3s;
-            margin-top: 1rem;
         }
 
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        .add-review-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
         }
 
-        /* Info Box */
-        .info-box {
-            background: #f0f8ff;
-            border-left: 4px solid #20b2aa;
-            padding: 1.5rem;
-            border-radius: 10px;
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             margin-bottom: 2rem;
         }
 
-        .info-box p {
-            color: #555;
-            line-height: 1.6;
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
         }
 
-        /* Success Message */
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #20b2aa 0%, #ffd700 100%);
+        .reviewer-info h3 {
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .review-date {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .review-ratings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-item {
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .rating-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .rating-value {
+            font-size: 1.5rem;
+        }
+
+        .review-text {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .no-reviews {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 16px;
+        }
+
+        .no-reviews-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-reviews h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .no-reviews p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background: #1f2937;
             color: white;
             padding: 2rem;
-            border-radius: 15px;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-top: 4rem;
         }
 
-        .success-message.show {
-            display: block;
-            animation: slideDown 0.5s ease-out;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
-        @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
+            .provider-name {
                 font-size: 2rem;
             }
 
-            .lotus-rating {
-                grid-template-columns: 1fr 1fr;
+            .review-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .review-ratings {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="logo-container">
-            <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo" class="logo" onerror="this.style.display='none'">
-            <span class="logo-text">Crossing Sunsets</span>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo-text">Crossing Sunsets™</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="browse-providers.html">← Back to Providers</a>
+            </nav>
         </div>
-        <a href="index.html">← Back to Home</a>
-    </nav>
+    </header>
 
-    <!-- Main Container -->
-    <div class="container">
-        <div id="successMessage" class="success-message">
-            <h2>🌅 Thank You!</h2>
-            <p>Your review has been submitted successfully. It will help other families find compassionate care.</p>
+    <div class="page-header">
+        <div class="provider-header">
+            <h1 class="provider-name">AllPeace Care Hospice</h1>
+            <p class="provider-location">📍 Torrance, CA</p>
+            <div class="lotus-rating">🪷🪷🪷🪷</div>
+            <p style="font-size: 1.2rem; opacity: 0.95;">Read authentic reviews from families</p>
         </div>
+    </div>
 
-        <h1>🪷 Leave a Review</h1>
-        <p class="subtitle">Share your experience to help other families find compassionate care</p>
+    <div class="reviews-container">
+        <a href="quick-signup.html?provider=allpeace" class="add-review-btn">✍️ Leave Your Review</a>
 
-        <div class="info-box">
-            <p><strong>Your voice matters.</strong> Honest reviews help families make informed decisions during difficult times. Please share your genuine experience with the care provider.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">Questions? Email <a href="mailto:support@crossingsunsets.app" style="color: #20b2aa;">support@crossingsunsets.app</a></p>
-        </div>
-
-        <form id="reviewForm" onsubmit="submitReview(event)">
-            <!-- Provider Name -->
-            <div class="form-group">
-                <label for="providerName">Provider Name *</label>
-                <input type="text" id="providerName" name="providerName" required placeholder="e.g., Sunrise Hospice Care">
-            </div>
-
-            <!-- Reviewer Name -->
-            <div class="form-group">
-                <label for="reviewerName">Your Name *</label>
-                <input type="text" id="reviewerName" name="reviewerName" required placeholder="First name or anonymous">
-            </div>
-
-            <!-- Care Type -->
-            <div class="form-group">
-                <label for="careType">Type of Care Received *</label>
-                <select id="careType" name="careType" required>
-                    <option value="">Select care type</option>
-                    <option value="hospice">Hospice Care</option>
-                    <option value="boarding-care">Licensed Boarding Care Home</option>
-                    <option value="skilled-nursing">Skilled Nursing Facility</option>
-                    <option value="memory-support">Memory Support Services</option>
-                    <option value="assisted-living">Assisted Living</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
-            <!-- Lotus Rating -->
-            <div class="form-group">
-                <label>Lotus Rating - Check all that apply *</label>
-                <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Select the qualities you experienced with this provider</p>
-                <div class="lotus-rating">
-                    <div class="lotus-item">
-                        <label for="compassionate">
-                            🪷 Compassionate
-                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Kind & caring</small>
-                        </label>
-                        <input type="checkbox" id="compassionate" name="compassionate" class="lotus-checkbox">
-                    </div>
-                    <div class="lotus-item">
-                        <label for="responsive">
-                            🪷 Responsive
-                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Quick replies</small>
-                        </label>
-                        <input type="checkbox" id="responsive" name="responsive" class="lotus-checkbox">
-                    </div>
-                    <div class="lotus-item">
-                        <label for="supportive">
-                            🪷 Supportive
-                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Helpful guidance</small>
-                        </label>
-                        <input type="checkbox" id="supportive" name="supportive" class="lotus-checkbox">
-                    </div>
-                    <div class="lotus-item">
-                        <label for="professional">
-                            🪷 Professional
-                            <small style="display: block; color: #666; font-weight: normal; margin-top: 0.5rem;">Skilled & reliable</small>
-                        </label>
-                        <input type="checkbox" id="professional" name="professional" class="lotus-checkbox">
-                    </div>
+        <!-- Example Review (you can add more later) -->
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <h3>Maria G.</h3>
+                    <p class="review-date">October 2024</p>
                 </div>
             </div>
 
-            <!-- Review Text -->
-            <div class="form-group">
-                <label for="reviewText">Your Review *</label>
-                <textarea id="reviewText" name="reviewText" required placeholder="Please share your experience with this provider. What made them stand out? How did they support you and your loved one?"></textarea>
+            <div class="review-ratings">
+                <div class="rating-item">
+                    <div class="rating-label">Compassionate Care</div>
+                    <div class="rating-value">🪷🪷🪷🪷</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-label">Clear Communication</div>
+                    <div class="rating-value">🪷🪷🪷🪷</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-label">Comfort & Pain Management</div>
+                    <div class="rating-value">🪷🪷🪷🪷</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-label">Family Support</div>
+                    <div class="rating-value">🪷🪷🪷🪷</div>
+                </div>
             </div>
 
-            <!-- Would Recommend -->
-            <div class="form-group">
-                <label for="recommend">Would you recommend this provider? *</label>
-                <select id="recommend" name="recommend" required>
-                    <option value="">Select an option</option>
-                    <option value="yes">Yes, I would recommend</option>
-                    <option value="no">No, I would not recommend</option>
-                    <option value="maybe">Maybe, with reservations</option>
-                </select>
+            <div class="review-text">
+                <p>AllPeace Care provided exceptional care for my mother during her final months. The staff was incredibly compassionate, always taking time to explain everything and make sure both my mother and our family felt supported. They truly brought peace and dignity to a difficult time. The pain management was excellent, and my mother was comfortable throughout her journey. I cannot recommend them highly enough.</p>
             </div>
+        </div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="submit-button">Submit Review</button>
-        </form>
+        <!-- Placeholder for no reviews yet -->
+        <!-- Uncomment this section if there are no reviews initially
+        <div class="no-reviews">
+            <div class="no-reviews-icon">💭</div>
+            <h2>No reviews yet</h2>
+            <p>Be the first to share your experience with AllPeace Care Hospice</p>
+            <a href="quick-signup.html?provider=allpeace" class="add-review-btn">Write the First Review</a>
+        </div>
+        -->
     </div>
 
-    <script>
-        function submitReview(event) {
-            event.preventDefault();
-            
-            // Get form data
-            const formData = {
-                providerName: document.getElementById('providerName').value,
-                reviewerName: document.getElementById('reviewerName').value,
-                careType: document.getElementById('careType').value,
-                compassionate: document.getElementById('compassionate').checked,
-                responsive: document.getElementById('responsive').checked,
-                supportive: document.getElementById('supportive').checked,
-                professional: document.getElementById('professional').checked,
-                reviewText: document.getElementById('reviewText').value,
-                recommend: document.getElementById('recommend').value,
-                timestamp: new Date().toISOString()
-            };
-
-            // Validate at least one lotus criteria is checked
-            if (!formData.compassionate && !formData.responsive && !formData.supportive && !formData.professional) {
-                alert('Please select at least one Lotus Rating criterion.');
-                return;
-            }
-
-            console.log('Review submitted:', formData);
-            
-            // Show success message
-            document.getElementById('successMessage').classList.add('show');
-            
-            // Reset form
-            document.getElementById('reviewForm').reset();
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                document.getElementById('successMessage').classList.remove('show');
-            }, 5000);
-
-            // Here you would normally send the data to your backend/Firebase
-            // Example: sendToFirebase(formData);
-        }
-    </script>
-
-    <!-- Footer -->
-    <footer style="background: rgba(0, 0, 0, 0.8); color: white; text-align: center; padding: 2rem; margin-top: 4rem; border-radius: 15px;">
-        <p>&copy; 2025 Crossing Sunsets™. All rights reserved.</p>
-        <p style="margin-top: 1rem;">
-            <a href="index.html" style="color: #20b2aa; text-decoration: none;">Home</a> | 
-            <a href="privacy.html" style="color: #20b2aa; text-decoration: none;">Privacy & Data</a>
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">
-            Crossing Sunsets™ and Lotus Rating System™ are trademarks of Crossing Sunsets LLC.<br>
-            Unauthorized use is prohibited.
-        </p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
-            For support: <a href="mailto:support@crossingsunsets.app" style="color: #20b2aa; text-decoration: none;">support@crossingsunsets.app</a>
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="browse-providers.html">Browse Providers</a>
+            <a href="choose-plan.html">For Providers</a>
+            <a href="mailto:support@crossingsunsets.app" style="text-decoration: underline;">📧 Contact Us</a>
+        </div>
+        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            📧 Support: 
+            <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">support@crossingsunsets.app</a> | 
+            <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">eduardo@crossingsunsets.app</a>
         </p>
     </footer>
 </body>

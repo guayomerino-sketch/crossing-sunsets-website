@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Signup - Crossing Sunsets™</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #40E0D0 0%, #48D1CC 50%, #20B2AA 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #40E0D0, #20B2AA);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .trademark {
+            font-size: 14px;
+            vertical-align: super;
+        }
+
+        .back-button {
+            background: transparent;
+            color: #0d7377;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #0d7377;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #0d7377;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-icon {
+            font-size: 56px;
+            margin-bottom: 15px;
+        }
+
+        .form-title {
+            font-size: 32px;
+            color: #0d7377;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-subtitle {
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .highlight-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            color: #065f46;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #0d7377;
+            box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+        }
+
+        .help-text {
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        .checkbox-group {
+            margin-top: 25px;
+            background: #f0fdfa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #14b8a6;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            color: #374151;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            width: 40px;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+
+        .step.active {
+            background: #0d7377;
+        }
+
+        .info-banner {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        .info-banner p {
+            color: #92400e;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 30px 20px;
+            }
+
+            .form-title {
+                font-size: 26px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">🌅</div>
+            <span class="brand-name">Crossing Sunsets<span class="trademark">™</span></span>
+        </div>
+        <a href="index.html" class="back-button">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <div class="form-card">
+            <div class="step-indicator">
+                <div class="step active"></div>
+                <div class="step"></div>
+                <div class="step"></div>
+            </div>
+
+            <div class="form-header">
+                <div class="form-icon">🚀</div>
+                <h1 class="form-title">Quick Sign Up</h1>
+                <p class="form-subtitle">
+                    Get started in just 2 minutes! Complete your full profile later in your portal.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>✨ What happens next:</strong></p>
+                <p>1️⃣ Fill in basic info (takes 2 minutes)</p>
+                <p>2️⃣ Choose your subscription plan</p>
+                <p>3️⃣ Complete your full profile in the portal anytime</p>
+            </div>
+
+            <form id="quickSignupForm">
+                <div class="form-group">
+                    <label class="form-label" for="businessName">
+                        Business/Provider Name <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="businessName" 
+                        class="form-input" 
+                        placeholder="Your hospice or practice name"
+                        required
+                    >
+                    <p class="help-text">This is how families will find you</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="contactName">
+                        Your Name <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="contactName" 
+                        class="form-input" 
+                        placeholder="First and last name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">
+                        Email Address <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="form-input" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                    <p class="help-text">We'll send your portal login credentials here</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="phone">
+                        Phone Number <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        class="form-input" 
+                        placeholder="(555) 123-4567"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="serviceType">
+                        Primary Service Type <span class="required">*</span>
+                    </label>
+                    <select id="serviceType" class="form-select" required>
+                        <option value="">Select your specialty...</option>
+                        <option value="hospice">Hospice Care</option>
+                        <option value="palliative">Palliative Care</option>
+                        <option value="home-health">Home Health Care</option>
+                        <option value="senior-care">Senior Care</option>
+                        <option value="memory-care">Memory Care</option>
+                        <option value="rehabilitation">Rehabilitation Services</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="serviceArea">
+                        Service Area <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="serviceArea" 
+                        class="form-input" 
+                        placeholder="City, County, or Region"
+                        required
+                    >
+                    <p class="help-text">e.g., "Los Angeles County" or "Southern California"</p>
+                </div>
+
+                <div class="info-banner">
+                    <p><strong>📝 Don't worry!</strong> You can add licenses, certifications, detailed descriptions, photos, and more after you subscribe - right from your provider portal.</p>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="consentTerms" class="checkbox-input" required>
+                        <label for="consentTerms" class="checkbox-label">
+                            I agree to the <strong>Terms of Service</strong> and confirm that all information provided is accurate.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        Continue to Plans →
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+
+            <div style="text-align: center; margin-top: 25px; color: #6b7280; font-size: 14px;">
+                <p>🔒 Your information is secure and will never be shared</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('quickSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!document.getElementById('consentTerms').checked) {
+                alert('Please agree to the Terms of Service to continue.');
+                return;
+            }
+
+            // Collect form data
+            const formData = {
+                businessName: document.getElementById('businessName').value,
+                contactName: document.getElementById('contactName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                serviceType: document.getElementById('serviceType').value,
+                serviceArea: document.getElementById('serviceArea').value
+            };
+
+            // Store in localStorage (temporary - should go to backend)
+            localStorage.setItem('pendingProvider', JSON.stringify(formData));
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            // Simulate processing and redirect to subscription page
+            setTimeout(() => {
+                window.location.href = 'choose-plan.html';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

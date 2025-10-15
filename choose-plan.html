@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Plan - Crossing Sunsets™</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #40E0D0 0%, #48D1CC 50%, #20B2AA 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #40E0D0, #20B2AA);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .trademark {
+            font-size: 14px;
+            vertical-align: super;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            width: 40px;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+
+        .step.active {
+            background: #0d7377;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            color: #0d7377;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            color: #6b7280;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .welcome-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 20px 25px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+
+        .welcome-box p {
+            color: #065f46;
+            margin-bottom: 5px;
+            line-height: 1.6;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .plan-card {
+            border: 3px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s;
+            background: white;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .plan-card.recommended {
+            border-color: #f59e0b;
+            background: linear-gradient(to bottom, #fffbeb, white);
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-icon {
+            font-size: 56px;
+            margin-bottom: 15px;
+        }
+
+        .plan-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .plan-price {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .plan-card.standard .plan-price {
+            color: #f97316;
+        }
+
+        .plan-card.premium .plan-price {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .plan-period {
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .plan-features {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .feature-icon {
+            color: #10b981;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .plan-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .plan-button {
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: block;
+            text-align: center;
+        }
+
+        .plan-button.primary {
+            background: #0d7377;
+            color: white;
+        }
+
+        .plan-button.primary:hover {
+            background: #0a5a5d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(13, 115, 119, 0.4);
+        }
+
+        .plan-button.premium {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .plan-button.premium:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .savings-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .help-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .help-section p {
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+
+        .help-link {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .help-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-card {
+                padding: 30px 20px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">🌅</div>
+            <span class="brand-name">Crossing Sunsets<span class="trademark">™</span></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-card">
+            <div class="step-indicator">
+                <div class="step active"></div>
+                <div class="step active"></div>
+                <div class="step"></div>
+            </div>
+
+            <div class="page-header">
+                <h1 class="page-title">Choose Your Plan</h1>
+                <p class="page-subtitle">Select the plan that best fits your practice</p>
+            </div>
+
+            <div class="welcome-box" id="welcomeBox" style="display: none;">
+                <p><strong>👋 Welcome, <span id="providerName"></span>!</strong></p>
+                <p>You're almost there! Just choose your subscription plan to get started.</p>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Standard Plan -->
+                <div class="plan-card standard">
+                    <div class="plan-icon">🏢</div>
+                    <h2 class="plan-name">Standard</h2>
+                    <div class="plan-price">$899-$1,309</div>
+                    <p class="plan-period">per year</p>
+
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Listed in provider directory</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Basic profile page</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Lotus Rating™ reviews</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Contact information displayed</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Email support</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-options">
+                        <a href="https://buy.stripe.com/6oU14m37ze7B5AFddmdUY07" class="plan-button primary" target="_blank">
+                            6 Months
+                        </a>
+                        <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQdUY08" class="plan-button primary" target="_blank">
+                            12 Months <span class="savings-badge">SAVE</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="plan-card premium recommended">
+                    <div class="recommended-badge">⭐ MOST POPULAR</div>
+                    <div class="plan-icon">🌟</div>
+                    <h2 class="plan-name">Premium</h2>
+                    <div class="plan-price">$1,199-$1,639</div>
+                    <p class="plan-period">per year</p>
+
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Everything in Standard, plus:</strong></span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Priority placement</strong> in search results</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Enhanced profile with photos & videos</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Featured provider badge</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Monthly performance analytics</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Priority customer support</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-options">
+                        <a href="https://buy.stripe.com/7sYbJ0eQh4x12ot5KUdUY06" class="plan-button premium" target="_blank">
+                            6 Months
+                        </a>
+                        <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OYdUY03" class="plan-button premium" target="_blank">
+                            12 Months <span class="savings-badge">BEST VALUE</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <p>💡 <strong>Pricing varies by facility type.</strong> Volume discounts available for multiple locations.</p>
+                <p>Need help choosing? <a href="mailto:support@crossingsunsets.com" class="help-link">Contact our team</a> or <a href="index.html" class="help-link">go back home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Display provider info if available
+        const pendingProvider = localStorage.getItem('pendingProvider');
+        if (pendingProvider) {
+            const providerData = JSON.parse(pendingProvider);
+            document.getElementById('providerName').textContent = providerData.businessName;
+            document.getElementById('welcomeBox').style.display = 'block';
+        }
+
+        // Track which button was clicked
+        document.querySelectorAll('.plan-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Store selected plan info
+                const planInfo = {
+                    type: this.closest('.plan-card').classList.contains('premium') ? 'premium' : 'standard',
+                    duration: this.textContent.includes('12') ? '12' : '6',
+                    timestamp: new Date().toISOString()
+                };
+                localStorage.setItem('selectedPlan', JSON.stringify(planInfo));
+                
+                // Continue to Stripe (link opens in same window)
+            });
+        });
+    </script>
+</body>
+</html>

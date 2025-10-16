@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Care Providers - Crossing Sunsets™</title>
+    <title>Provider Subscription Plans - Crossing Sunsets™</title>
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,zh-CN,fr,de,it,pt,ru,ja,ko,ar',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
         * {
             margin: 0;
@@ -13,373 +24,269 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f7fa;
-        }
-
-        /* Navigation */
-        nav {
             background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        nav .container {
-            max-width: 1200px;
+        /* Google Translate Widget */
+        #google_translate_element {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-section img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-        }
-
-        .logo-section h1 {
-            color: white;
-            font-size: 24px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .page-header {
+        .logo {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        .page-header h2 {
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+        }
+
+        h1 {
             color: #2c3e50;
-            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .provider-types {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #00bcd4;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .provider-types h2 {
+            color: #00838f;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .provider-types p {
+            color: #00838f;
+            line-height: 1.6;
+        }
+
+        .plans-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .plan-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 15px;
+            padding: 30px;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .plan-card:hover {
+            border-color: #00bcd4;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .plan-name {
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 700;
             margin-bottom: 10px;
         }
 
-        .page-header p {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-        }
-
-        /* Search Box */
-        .search-box {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #00bcd4;
-        }
-
-        /* Provider Cards */
-        .providers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .provider-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .provider-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .provider-header {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .provider-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: white;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .provider-header h3 {
-            color: white;
-            font-size: 1.5rem;
+        .plan-price {
+            color: #00bcd4;
+            font-size: 36px;
+            font-weight: 800;
             margin-bottom: 5px;
         }
 
-        .provider-header .location {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
+        .plan-period {
+            color: #7f8c8d;
+            font-size: 14px;
         }
 
-        .provider-body {
-            padding: 25px;
+        .plan-features {
+            list-style: none;
+            margin: 20px 0;
         }
 
-        .provider-info {
-            margin-bottom: 20px;
-        }
-
-        .info-item {
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+            color: #2c3e50;
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            color: #555;
+            align-items: center;
         }
 
-        .info-icon {
-            margin-right: 10px;
+        .plan-features li:before {
+            content: "✓";
             color: #00bcd4;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 12px;
         }
 
-        .provider-description {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #00bcd4;
+        .plan-features li:last-child {
+            border-bottom: none;
         }
 
-        .provider-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 12px;
+        .subscribe-btn {
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            color: white;
             border: none;
-            border-radius: 8px;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
+            width: 100%;
             transition: all 0.3s;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
         }
 
-        .btn-reviews {
-            background: #ff6b35;
-            color: white;
-        }
-
-        .btn-reviews:hover {
-            background: #e55a2b;
+        .subscribe-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
         }
 
-        .btn-review {
-            background: transparent;
-            color: #00bcd4;
-            border: 2px solid #00bcd4;
-        }
-
-        .btn-review:hover {
-            background: #00bcd4;
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 20px;
+        .back-link {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 25px;
         }
 
-        footer .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        footer a {
-            color: white;
+        .back-link a {
+            color: #00bcd4;
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 600;
+            font-size: 16px;
         }
 
-        footer a:hover {
-            color: #00bcd4;
+        .back-link a:hover {
+            text-decoration: underline;
         }
 
-        footer .contact-info {
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        footer .contact-info a {
-            color: #00bcd4;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
+            .container {
+                padding: 25px;
             }
 
-            .providers-grid {
+            h1 {
+                font-size: 24px;
+            }
+
+            .plan-price {
+                font-size: 28px;
+            }
+
+            .plans-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .page-header h2 {
-                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="logo-section">
-                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
-                <h1>Crossing Sunsets™</h1>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="browse-providers.html">Browse Providers</a></li>
-                <li><a href="quick-signup.html">Leave a Review</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="main-content">
-        <div class="page-header">
-            <h2>Browse Care Providers</h2>
-            <p>Find compassionate hospice and palliative care in your area</p>
+    <div id="google_translate_element"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
         </div>
 
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()">
+        <h1>Provider Subscription Plans</h1>
+        <p class="subtitle">For Healthcare Providers</p>
+
+        <div class="provider-types">
+            <h2>🏥 Join Our Network</h2>
+            <p>Are you a hospice, palliative care, skilled nursing facility, boarding home, or memory care provider? Get your facility listed on Crossing Sunsets™</p>
         </div>
 
-        <div class="providers-grid" id="providersGrid">
-            <!-- Provider Card Example -->
-            <div class="provider-card" data-name="allpeace" data-location="Moreno Valley, California">
-                <div class="provider-header">
-                    <div class="provider-logo">🌺</div>
-                    <h3>All Peace</h3>
-                    <div class="location">📍 Moreno Valley, California</div>
+        <h2 class="plans-title">Choose Your Plan</h2>
+
+        <div class="plans-grid">
+            <!-- Standard Plan -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-name">Standard Plan</div>
+                    <div class="plan-price">$1,309</div>
+                    <div class="plan-period">per year</div>
                 </div>
-                <div class="provider-body">
-                    <div class="provider-description">
-                        We bring peace, comfort, and dignity to every patient and their loved ones.
-                    </div>
-                    <div class="provider-info">
-                        <div class="info-item">
-                            <span class="info-icon">👤</span>
-                            <span><strong>Contact:</strong> main desk</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">📧</span>
-                            <span><strong>Email:</strong> <a href="mailto:info@allpeace.com" style="color: #00bcd4;">info@allpeace.com</a></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">🌐</span>
-                            <span><strong>Website:</strong> <a href="https://allpeacecare.com" target="_blank" style="color: #00bcd4;">allpeacecare.com</a></span>
-                        </div>
-                    </div>
-                    <div class="provider-actions">
-                        <button class="btn btn-reviews">📖 Read Reviews</button>
-                        <a href="quick-signup.html?provider=allpeace" class="btn btn-review">✍️ Leave a Review</a>
-                    </div>
-                </div>
+                <ul class="plan-features">
+                    <li>Basic profile listing</li>
+                    <li>Contact information displayed</li>
+                    <li>Searchable by location</li>
+                    <li>Standard support</li>
+                </ul>
+                <button class="subscribe-btn" onclick="window.location.href='https://buy.stripe.com/dRmfZgdMd6F99QV4GQdUY08'">
+                    Subscribe Now
+                </button>
             </div>
 
-            <!-- Add more provider cards here -->
+            <!-- Premium Plan -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-name">Premium Plan</div>
+                    <div class="plan-price">$1,639</div>
+                    <div class="plan-period">per year</div>
+                </div>
+                <ul class="plan-features">
+                    <li>Enhanced profile with logo</li>
+                    <li>Featured placement in search</li>
+                    <li>Detailed facility description</li>
+                    <li>Priority support</li>
+                    <li>Analytics dashboard</li>
+                </ul>
+                <button class="subscribe-btn" onclick="window.location.href='https://buy.stripe.com/aFa14mdMdgfJbZ36OYdUY03'">
+                    Subscribe Now
+                </button>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">← Back to Home</a> | 
+            <a href="browse-providers.html">Browse Providers</a>
         </div>
     </div>
-
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="browse-providers.html">Browse Providers</a>
-            <a href="choose-plan.html">🔒 For Healthcare Providers</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="mailto:support@crossingsunsets.app">📧 Contact Us</a>
-        </div>
-        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
-        <div class="contact-info">
-            💬 Support: <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> | 
-            <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
-        </div>
-    </footer>
-
-    <script>
-        function searchProviders() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.provider-card');
-
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                const location = card.getAttribute('data-location').toLowerCase();
-
-                if (name.includes(searchTerm) || location.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </body>
 </html>

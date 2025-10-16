@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse Care Providers - Crossing Sunsets™</title>
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,zh-CN,fr,de,it,pt,ru,ja,ko,ar',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
         * {
             margin: 0;
@@ -16,6 +27,18 @@
             line-height: 1.6;
             color: #333;
             background: #f5f7fa;
+        }
+
+        /* Google Translate Widget */
+        #google_translate_element {
+            position: fixed;
+            top: 70px;
+            right: 10px;
+            z-index: 9999;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         /* Navigation */
@@ -288,6 +311,8 @@
     </style>
 </head>
 <body>
+    <div id="google_translate_element"></div>
+    
     <nav>
         <div class="container">
             <div class="logo-section">
@@ -305,7 +330,7 @@
     <div class="main-content">
         <div class="page-header">
             <h2>Browse Care Providers</h2>
-            <p>Find compassionate hospice and palliative care in your area</p>
+            <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
         </div>
 
         <div class="search-box">
@@ -339,7 +364,7 @@
                         </div>
                     </div>
                     <div class="provider-actions">
-                        <button class="btn btn-reviews">📖 Read Reviews</button>
+                        <a href="#reviews-allpeace" class="btn btn-reviews">📖 Read Reviews</a>
                         <a href="quick-signup.html?provider=allpeace" class="btn btn-review">✍️ Leave a Review</a>
                     </div>
                 </div>

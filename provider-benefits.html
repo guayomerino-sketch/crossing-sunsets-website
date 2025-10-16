@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner With Us - For Healthcare Providers | Crossing Sunsets™</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
+            color: white;
+            padding: 1.25rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #14B8A6;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-description {
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #14B8A6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #4b5563;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .features-list {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #14B8A6;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo-text">Crossing Sunsets™</a>
+            <nav>
+                <a href="index.html" style="color: white; text-decoration: none; margin-left: 2rem;">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🏥 Partner With Crossing Sunsets™</h1>
+            <p class="hero-subtitle">Join the leading platform connecting families with trusted hospice and end-of-life care providers</p>
+            <a href="choose-plan.html" class="cta-primary">View Subscription Plans →</a>
+        </div>
+    </section>
+
+    <div class="content-section">
+        <h2 class="section-title">Why Join Crossing Sunsets?</h2>
+        <p class="section-subtitle">Help more families find your compassionate care services</p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3 class="benefit-title">Reach More Families</h3>
+                <p class="benefit-description">Get discovered by families actively searching for hospice and palliative care in your area. Increase your visibility and connect with those who need your services most.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🪷</div>
+                <h3 class="benefit-title">Showcase Your Care Quality</h3>
+                <p class="benefit-description">Display authentic reviews using our unique Lotus Rating™ system. Let families see the compassion, responsiveness, and professionalism that sets you apart.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">⭐</div>
+                <h3 class="benefit-title">Build Trust & Credibility</h3>
+                <p class="benefit-description">Verified provider status and authentic family testimonials help build immediate trust with potential clients during their most difficult decisions.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3 class="benefit-title">Premium Visibility Options</h3>
+                <p class="benefit-description">Featured placement and enhanced profiles help you stand out in search results. Premium plans include analytics to track your visibility and engagement.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🤝</div>
+                <h3 class="benefit-title">Connect Directly with Families</h3>
+                <p class="benefit-description">Your complete contact information, website, and service details make it easy for families to reach out and learn more about your care approach.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💼</div>
+                <h3 class="benefit-title">Professional Support</h3>
+                <p class="benefit-description">Dedicated support team to help you optimize your profile and make the most of your listing. We're here to help you succeed.</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Verified Providers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">🪷</div>
+                    <div class="stat-label">Unique Rating System</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Profile Visibility</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>What's Included in Your Listing?</h2>
+            <p>All subscription plans include these essential features:</p>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Complete provider profile with description and photos</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Display authentic reviews and Lotus Rating™</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Full contact information and website link</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Service area and location visibility</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Searchable by location and care type</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Verified provider badge</span>
+                </div>
+            </div>
+
+            <a href="choose-plan.html" class="cta-primary">View Subscription Plans →</a>
+            
+            <p style="margin-top: 2rem; color: #6b7280;">
+                Questions? <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">Contact us at support@crossingsunsets.app</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="browse-providers.html">Browse Providers</a>
+            <a href="provider-benefits.html">For Providers</a>
+            <a href="mailto:support@crossingsunsets.app">Contact Us</a>
+        </div>
+        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            📧 Support: 
+            <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">support@crossingsunsets.app</a> | 
+            <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">eduardo@crossingsunsets.app</a>
+        </p>
+    </footer>
+</body>
+</html>

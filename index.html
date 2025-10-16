@@ -30,11 +30,7 @@
     <meta name="twitter:description" content="Connect families with compassionate end-of-life care providers through authentic Lotus Rating™ reviews.">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -52,421 +48,112 @@
             top: 0;
             z-index: 100;
         }
-
         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem;
         }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .logo-text {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
+        .logo-section { display: flex; align-items: center; gap: 1.5rem; }
+        .logo-text { color: white; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; }
         .lotus-badge {
-            background: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #14B8A6;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            background: white; padding: 0.5rem 1rem; border-radius: 20px;
+            font-size: 0.9rem; font-weight: 600; color: #14B8A6;
+            display: flex; align-items: center; gap: 0.5rem;
         }
+        nav { display: flex; gap: 2rem; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.8; }
 
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 50%, #F97316 100%);
-            padding: 4rem 2rem;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            padding: 4rem 2rem; text-align: center; color: white;
+            position: relative; overflow: hidden;
         }
-
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            content: ''; position: absolute; inset: 0;
             background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
             pointer-events: none;
         }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            opacity: 0.95;
-        }
-
-        .hero-tagline {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
+        .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .hero-subtitle { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; opacity: 0.95; }
+        .hero-tagline { font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9; }
 
         .cta-section {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            margin: 2rem auto;
-            max-width: 600px;
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+            padding: 2rem; border-radius: 20px; margin: 2rem auto; max-width: 600px;
         }
-
-        .cta-title {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .cta-buttons {
-            display: grid;
-            gap: 1rem;
-        }
+        .cta-title { font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 600; }
+        .cta-buttons { display: grid; gap: 1rem; }
 
         .btn {
-            padding: 1.2rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
+            padding: 1.2rem 2rem; font-size: 1.1rem; font-weight: 700;
+            border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s;
+            text-decoration: none; display: inline-block; text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
         }
+        .btn-primary { background: linear-gradient(135deg, #F97316 0%, #ea580c 100%); color: white; }
+        .btn-secondary { background: rgba(255,255,255,0.95); color: #14B8A6; }
+        .btn-tertiary { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #1f2937; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.95);
-            color: #14B8A6;
-        }
-
-        .btn-tertiary {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #1f2937;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        .download-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.3);
-        }
-
+        .download-section { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3); }
         .download-btn {
-            background: white;
-            color: #0EA5E9;
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 12px;
-            display: inline-block;
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s;
+            background: white; color: #0EA5E9; padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 700;
+            text-decoration: none; border-radius: 12px; display: inline-block; margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s;
         }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
 
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
+        /* Features */
+        .features { padding: 4rem 2rem; background: #f9fafb; }
+        .features-content { max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: #1f2937; }
+        .section-subtitle { text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 3rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .feature-card { background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .feature-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #14B8A6; }
+        .feature-description { color: #6b7280; line-height: 1.6; }
 
-        /* Features Section */
-        .features {
-            padding: 4rem 2rem;
-            background: #f9fafb;
-        }
+        /* Lotus Rating */
+        .lotus-rating-section { background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%); padding: 4rem 2rem; color: white; text-align: center; }
+        .lotus-content { max-width: 800px; margin: 0 auto; }
+        .lotus-logo { font-size: 4rem; margin-bottom: 1rem; }
+        .lotus-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .lotus-description { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95; }
+        .lotus-criteria { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .criterion-card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 16px; border: 2px solid rgba(255, 255, 255, 0.2); }
+        .criterion-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .criterion-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .criterion-description { font-size: 0.95rem; opacity: 0.9; }
 
-        .features-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: #1f2937;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #6b7280;
-            margin-bottom: 3rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #14B8A6;
-        }
-
-        .feature-description {
-            color: #6b7280;
-            line-height: 1.6;
-        }
-
-        /* Lotus Rating Section */
-        .lotus-rating-section {
-            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
-            padding: 4rem 2rem;
-            color: white;
-            text-align: center;
-        }
-
-        .lotus-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .lotus-logo {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .lotus-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .lotus-description {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .lotus-criteria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .criterion-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .criterion-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .criterion-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .criterion-description {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        /* How It Works */
-        .how-it-works {
-            padding: 4rem 2rem;
-            background: white;
-        }
-
-        .steps-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .step-number {
-            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 auto 1rem;
-        }
-
-        .step-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-        }
-
-        .step-description {
-            color: #6b7280;
-        }
+        .how-it-works { padding: 4rem 2rem; background: white; }
+        .steps-container { max-width: 1200px; margin: 0 auto; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .step { text-align: center; padding: 2rem; }
+        .step-number { background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 1rem; }
+        .step-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: #1f2937; }
+        .step-description { color: #6b7280; }
 
         /* Footer */
-        footer {
-            background: #1f2937;
-            color: white;
-            padding: 3rem 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #14B8A6;
-        }
-
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1rem;
-            color: #9ca3af;
-            font-size: 0.9rem;
-        }
+        footer { background: #1f2937; color: white; padding: 3rem 2rem 1rem; text-align: center; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .footer-links a { color: white; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: #14B8A6; }
+        .copyright { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; color: #9ca3af; font-size: 0.9rem; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            nav {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .lotus-criteria {
-                grid-template-columns: 1fr;
-            }
-
-            .criterion-card {
-                text-align: center;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            nav { width: 100%; justify-content: center; }
+            .lotus-criteria { grid-template-columns: 1fr; }
+            .criterion-card { text-align: center; }
         }
     </style>
 </head>
@@ -484,7 +171,7 @@
             <nav>
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How It Works</a>
-                <a href="browse-providers.html">Browse Providers</a>
+                <a href="/browse-providers.html">Browse Providers</a>
             </nav>
         </div>
     </header>
@@ -499,17 +186,17 @@
             <div class="cta-section">
                 <p class="cta-title">Get Started Today</p>
                 <div class="cta-buttons">
-                    <a href="browse-providers.html" class="btn btn-primary">🔍 Browse Care Providers</a>
-                    <a href="quick-signup.html" class="btn btn-secondary">📝 Leave a Review</a>
+                    <a href="/browse-providers.html" class="btn btn-primary">🔍 Browse Care Providers</a>
+                    <a href="/quick-signup.html" class="btn btn-secondary">📝 Leave a Review</a>
                 </div>
 
                 <div class="download-section">
                     <p>📥 Need Help Choosing? Download Our Comprehensive Guide</p>
-                    <a href="https://tinyurl.com/CrossingSunsets" class="download-btn" target="_blank">Download Free Guide</a>
+                    <a href="https://tinyurl.com/CrossingSunsets" class="download-btn" target="_blank" rel="noopener">Download Free Guide</a>
                     
                     <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3);">
                         <p style="margin-bottom: 1rem; font-size: 1.1rem;">📱 Download Our Mobile App</p>
-                        <a href="https://tinyurl.com/crossingsunsetsapps" target="_blank" class="download-btn" style="background: linear-gradient(135deg, #F97316 0%, #ea580c 100%); margin-top: 0.5rem;">
+                        <a href="https://tinyurl.com/crossingsunsetsapps" target="_blank" rel="noopener" class="download-btn" style="background: linear-gradient(135deg, #F97316 0%, #ea580c 100%); margin-top: 0.5rem;">
                             Download Mobile Apps
                         </a>
                     </div>
@@ -636,27 +323,40 @@
         </div>
     </section>
 
+    <!-- Spacer so sticky bar doesn't cover footer -->
+    <div style="height:72px"></div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="browse-providers.html">Browse Providers</a>
-                <a href="quick-signup.html">Leave a Review</a>
-                <a href="choose-plan.html">For Providers</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="/browse-providers.html">Browse Providers</a>
+                <a href="/quick-signup.html">Leave a Review</a>
+                <a href="/providers-access.html">For Providers</a>
+                <a href="/privacy.html">Privacy Policy</a>
                 <a href="mailto:support@crossingsunsets.app">📧 Contact Us</a>
             </div>
             <div class="copyright">
                 <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
                 <p>Helping families find compassionate end-of-life care.</p>
                 <p style="margin-top: 0.5rem;">
-                    📧 Support: 
-                    <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">support@crossingsunsets.app</a> | 
-                    <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6; text-decoration: underline; font-weight: 600;">eduardo@crossingsunsets.app</a>
+                    📧 Support:
+                    <a href="mailto:support@crossingsunsets.app" style="color:#14B8A6; text-decoration:underline; font-weight:600;">support@crossingsunsets.app</a>
+                    |
+                    <a href="mailto:eduardo@crossingsunsets.app" style="color:#14B8A6; text-decoration:underline; font-weight:600;">eduardo@crossingsunsets.app</a>
                 </p>
             </div>
         </div>
     </footer>
+
+    <!-- Full-Width Sticky Provider Bar -->
+    <a href="/providers-access.html"
+       aria-label="For Healthcare Providers — Members Area"
+       style="position:fixed; left:0; right:0; bottom:calc(env(safe-area-inset-bottom,0px));
+              z-index:9999; background:#0f6f68; color:#ffffff; text-decoration:none;
+              display:block; text-align:center; padding:1rem 1rem; font-weight:800;
+              letter-spacing:.2px; box-shadow:0 -8px 24px rgba(0,0,0,.15);">
+      🏥 For Healthcare Providers — Members Area
+    </a>
 </body>
 </html>
-Hyper Icon

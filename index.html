@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossing Sunsets™ - Find Trusted Hospice & End-of-Life Care</title>
+    <title>Crossing Sunsets™ - Compassionate End-of-Life Care</title>
     <style>
         * {
             margin: 0;
@@ -12,46 +12,49 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
-            color: #2c3e50;
+            color: #333;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
-            padding: 1rem 0;
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            padding: 1rem 2rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .header-container {
+        nav .container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
-        .logo {
+        .logo-section {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
+            gap: 15px;
         }
 
-        .logo img {
+        .logo-section img {
             width: 50px;
             height: 50px;
             border-radius: 10px;
         }
 
-        nav {
+        .logo-section h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style: none;
             display: flex;
-            align-items: center;
             gap: 2rem;
         }
 
@@ -66,368 +69,224 @@
             opacity: 0.8;
         }
 
-        .lotus-badge {
-            background: white;
-            color: #00b4d8;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Google Translate */
-        #google_translate_element {
-            background: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .goog-te-banner-frame.skiptranslate {
-            display: none !important;
-        }
-
-        body {
-            top: 0px !important;
-        }
-
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #00b4d8 0%, #48cae4 100%);
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.95) 0%, rgba(0, 151, 167, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1200') center/cover;
             color: white;
-            padding: 4rem 2rem;
             text-align: center;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 100px 20px;
         }
 
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
+        .hero h2 {
+            font-size: 3rem;
             margin-bottom: 1rem;
-            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            opacity: 0.95;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .cta-container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            max-width: 500px;
-            margin: 2rem auto 0;
-        }
-
-        .cta-title {
             font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        .browse-button {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8b4a 100%);
-            color: white;
-            padding: 1rem 2rem;
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-            margin-bottom: 1rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .browse-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-        }
-
-        .review-button {
-            display: block;
-            width: 100%;
-            background: white;
-            color: #00b4d8;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
             transition: all 0.3s;
-            margin-bottom: 1.5rem;
-            border: none;
-            cursor: pointer;
+            display: inline-block;
         }
 
-        .review-button:hover {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .divider {
-            text-align: center;
-            margin: 1.5rem 0;
-            color: white;
-            opacity: 0.7;
-        }
-
-        .guide-section {
-            margin: 1.5rem 0;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .guide-text {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .guide-button {
-            display: block;
-            width: 100%;
+        .btn-primary {
             background: white;
-            color: #00b4d8;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
-            margin-bottom: 1.5rem;
-            border: none;
-            cursor: pointer;
+            color: #00bcd4;
         }
 
-        .guide-button:hover {
-            background: rgba(255, 255, 255, 0.9);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
-        .app-section {
-            margin-top: 1.5rem;
-        }
-
-        .app-text {
+        .btn-secondary {
+            background: transparent;
             color: white;
-            margin-bottom: 1rem;
-            font-size: 1rem;
+            border: 2px solid white;
         }
 
-        .app-button {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8b4a 100%);
-            color: #00b4d8;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .app-button:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Why Choose Section */
-        .why-choose {
-            padding: 4rem 2rem;
+        .btn-secondary:hover {
             background: white;
-            text-align: center;
+            color: #00bcd4;
         }
 
-        .why-choose h2 {
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
             color: #2c3e50;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #00bcd4;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
 
         /* Footer */
         footer {
             background: #2c3e50;
             color: white;
-            padding: 3rem 2rem 1rem;
-        }
-
-        .provider-cta-footer {
-            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
-            padding: 2rem;
+            padding: 40px 20px;
             text-align: center;
-            margin-bottom: 2rem;
-            border-radius: 10px;
         }
 
-        .provider-cta-footer a {
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer a {
             color: white;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .footer-links {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links a {
-            color: #ecf0f1;
-            text-decoration: none;
-            margin: 0 1.5rem;
             transition: color 0.3s;
         }
 
-        .footer-links a:hover {
-            color: #00b4d8;
+        footer a:hover {
+            color: #00bcd4;
         }
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #34495e;
-            color: #95a5a6;
+        footer .contact-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
         }
 
-        .footer-bottom a {
-            color: #00b4d8;
-            text-decoration: none;
+        footer .contact-info a {
+            color: #00bcd4;
         }
 
-        .footer-bottom a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive */
+        /* Mobile Menu */
         @media (max-width: 768px) {
-            .header-container {
+            nav ul {
                 flex-direction: column;
                 gap: 1rem;
             }
 
-            nav {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .hero h1 {
+            .hero h2 {
                 font-size: 2rem;
             }
 
-            .footer-links a {
-                display: block;
-                margin: 0.5rem 0;
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features h2 {
+                font-size: 2rem;
             }
         }
     </style>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,vi',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets">
-                <span>Crossing Sunsets™</span>
-            </a>
-            <nav>
-                <span class="lotus-badge">🪷 Lotus Rating™</span>
-                <a href="#features">Features</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="browse-providers.html">Browse Providers</a>
-                <div id="google_translate_element"></div>
-            </nav>
+    <nav>
+        <div class="container">
+            <div class="logo-section">
+                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
+                <h1>Crossing Sunsets™</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="browse-providers.html">Browse Providers</a></li>
+                <li><a href="quick-signup.html">Leave a Review</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Find Trusted Hospice & End-of-Life Care</h1>
-            <p>Connect with Compassionate Care Providers</p>
-            <p class="hero-subtitle">Read authentic reviews using our unique Lotus Rating™ system</p>
+        <h2>Compassionate End-of-Life Care</h2>
+        <p>Finding peace and dignity in life's final journey. Connect with trusted hospice and palliative care providers in your area.</p>
+        <div class="cta-buttons">
+            <a href="browse-providers.html" class="btn btn-primary">Find Care Providers</a>
+            <a href="choose-plan.html" class="btn btn-secondary">⭐ Join as Provider</a>
+        </div>
+    </section>
 
-            <div class="cta-container">
-                <p class="cta-title">Get Started Today</p>
-                
-                <a href="browse-providers.html" class="browse-button">
-                    🔍 Browse Care Providers
-                </a>
-
-                <a href="leave-review.html" class="review-button">
-                    📝 Leave a Review
-                </a>
-
-                <div class="guide-section">
-                    <p class="guide-text">📚 Need Help Choosing? Download Our Comprehensive Guide</p>
-                    <a href="#guide" class="guide-button">Download Free Guide</a>
-                </div>
-
-                <div class="app-section">
-                    <p class="app-text">📱 Download Our Mobile App</p>
-                    <a href="#app" class="app-button">Download Mobile Apps</a>
-                </div>
+    <section class="features">
+        <h2>Why Choose Crossing Sunsets™</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏥</div>
+                <h3>Trusted Providers</h3>
+                <p>Access verified hospice and palliative care facilities committed to compassionate end-of-life care.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Local Care</h3>
+                <p>Find providers in your area with our easy-to-use search tool.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💙</div>
+                <h3>Peace of Mind</h3>
+                <p>Make informed decisions with detailed provider information and family reviews.</p>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Section -->
-    <section id="features" class="why-choose">
-        <h2>Why Choose Crossing Sunsets?</h2>
-        <p style="font-size: 1.2rem; color: #7f8c8d; max-width: 800px; margin: 0 auto;">
-            The most comprehensive platform for end-of-life care decisions
-        </p>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="provider-cta-footer">
-            <a href="choose-plan.html">🏥 For Healthcare Providers — Members Area</a>
-        </div>
-
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="browse-providers.html">Browse Providers</a>
-            <a href="leave-review.html">Leave a Review</a>
-            <a href="choose-plan.html">For Providers</a>
-            <a href="privacy.html">Privacy Policy</a>
+            <a href="choose-plan.html">🔒 For Healthcare Providers</a>
+            <a href="privacy.html">Privacy</a>
             <a href="mailto:support@crossingsunsets.app">📧 Contact Us</a>
         </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
-            <p style="margin-top: 1rem;">
-                📧 Support: 
-                <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> | 
-                <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
-            </p>
+        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
+        <div class="contact-info">
+            💬 Support: <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> | 
+            <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
         </div>
     </footer>
 </body>

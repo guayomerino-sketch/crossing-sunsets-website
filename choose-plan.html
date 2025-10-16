@@ -24,49 +24,6 @@
             margin: 0 auto;
         }
 
-        .header {
-            background: white;
-            padding: 1.5rem 2rem;
-            border-radius: 10px 10px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00b4d8;
-            text-decoration: none;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
-        .back-link {
-            color: #00b4d8;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
         /* Verification Screen */
         .verification-screen {
             background: white;
@@ -192,18 +149,6 @@
             margin-bottom: 3rem;
         }
 
-        .back-button {
-            display: inline-block;
-            color: #00b4d8;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .back-button:hover {
-            text-decoration: underline;
-        }
-
         .plans-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -302,14 +247,6 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="index.html" class="logo">
-                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets">
-                <span>Crossing Sunsets</span>
-            </a>
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </div>
-
         <!-- Verification Screen -->
         <div id="verificationScreen" class="verification-screen">
             <div class="icon-large">
@@ -339,7 +276,6 @@
         <!-- Plans Screen -->
         <div id="plansScreen" class="plans-screen">
             <div class="header-plans">
-                <a href="#" class="back-button" onclick="showVerification(); return false;">← Back</a>
                 <div class="icon-large">
                     <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" style="width: 100px; height: 100px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                 </div>
@@ -384,4 +320,8 @@
                     
                     <div style="margin: 2rem 0;">
                         <div class="plan-price">$1,639</div>
-                        <div class="p
+                        <div class="plan-period">per year</div>
+                        <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">Save with annual billing</p>
+                    </div>
+
+                    <ul class="plan-features">

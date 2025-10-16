@@ -113,6 +113,50 @@
             font-size: 1.1rem;
         }
 
+        /* Filter Buttons */
+        .filter-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .filter-label {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #00bcd4;
+            background: white;
+            color: #00bcd4;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover {
+            background: #e0f7fa;
+        }
+
+        .filter-btn.active {
+            background: #00bcd4;
+            color: white;
+        }
+
         .search-box {
             background: white;
             padding: 30px;
@@ -186,6 +230,17 @@
             padding: 25px;
         }
 
+        .provider-type-badge {
+            display: inline-block;
+            background: #e0f7fa;
+            color: #00838f;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
         .provider-info {
             margin-bottom: 20px;
         }
@@ -252,6 +307,19 @@
             color: white;
         }
 
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .no-results p {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+
         footer {
             background: #2c3e50;
             color: white;
@@ -300,6 +368,10 @@
             .page-header h2 {
                 font-size: 2rem;
             }
+
+            .filter-buttons {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -326,19 +398,33 @@
             <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
         </div>
 
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+            <span class="filter-label">🏥 Filter by Type of Care:</span>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProviders('all')">All Providers</button>
+                <button class="filter-btn" onclick="filterProviders('hospice')">🏥 Hospice</button>
+                <button class="filter-btn" onclick="filterProviders('palliative')">💙 Palliative Care</button>
+                <button class="filter-btn" onclick="filterProviders('skilled-nursing')">🏨 Skilled Nursing</button>
+                <button class="filter-btn" onclick="filterProviders('boarding')">🏡 Boarding Homes</button>
+                <button class="filter-btn" onclick="filterProviders('memory-care')">🧠 Memory Care</button>
+            </div>
+        </div>
+
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()">
         </div>
 
         <div class="providers-grid" id="providersGrid">
             <!-- All Peace Provider Card -->
-            <div class="provider-card" data-name="allpeace" data-location="Moreno Valley, California">
+            <div class="provider-card" data-name="allpeace" data-location="Moreno Valley, California" data-category="hospice">
                 <div class="provider-header">
                     <div class="provider-logo">🌺</div>
                     <h3>All Peace</h3>
                     <div class="location">📍 Moreno Valley, California</div>
                 </div>
                 <div class="provider-body">
+                    <span class="provider-type-badge">🏥 Hospice Care</span>
                     <div class="provider-description">
                         We bring peace, comfort, and dignity to every patient and their loved ones.
                     </div>
@@ -363,7 +449,11 @@
                 </div>
             </div>
 
-            <!-- Add more provider cards here -->
+            <!-- Add more provider cards here with data-category attribute -->
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No providers found matching your search. Try a different search term or filter.</p>
         </div>
     </div>
 
@@ -383,20 +473,58 @@
     </footer>
 
     <script>
-        function searchProviders() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        let currentFilter = 'all';
+
+        function filterProviders(category) {
+            currentFilter = category;
+            
+            // Update active button
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
             const cards = document.querySelectorAll('.provider-card');
+            let visibleCount = 0;
 
             cards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                const location = card.getAttribute('data-location').toLowerCase();
-
-                if (name.includes(searchTerm) || location.includes(searchTerm)) {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
                     card.style.display = 'block';
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
+
+            // Show/hide no results message
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        function searchProviders() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.provider-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const location = card.getAttribute('data-location').toLowerCase();
+                const cardCategory = card.getAttribute('data-category');
+
+                // Check if card matches both filter AND search
+                const matchesFilter = (currentFilter === 'all' || cardCategory === currentFilter);
+                const matchesSearch = (name.includes(searchTerm) || location.includes(searchTerm));
+
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
         }
     </script>
 </body>

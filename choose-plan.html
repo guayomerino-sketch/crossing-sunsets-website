@@ -24,6 +24,49 @@
             margin: 0 auto;
         }
 
+        .header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00b4d8;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .back-link {
+            color: #00b4d8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
         /* Verification Screen */
         .verification-screen {
             background: white;
@@ -259,9 +302,19 @@
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <a href="index.html" class="logo">
+                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets">
+                <span>Crossing Sunsets</span>
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+
         <!-- Verification Screen -->
         <div id="verificationScreen" class="verification-screen">
-            <div class="icon-large">🏥</div>
+            <div class="icon-large">
+                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" style="width: 120px; height: 120px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            </div>
             <h1>Provider Subscription Plans</h1>
             <p class="subtitle">This page is for healthcare providers only.</p>
 
@@ -287,7 +340,9 @@
         <div id="plansScreen" class="plans-screen">
             <div class="header-plans">
                 <a href="#" class="back-button" onclick="showVerification(); return false;">← Back</a>
-                <div class="icon-large">🏥</div>
+                <div class="icon-large">
+                    <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" style="width: 100px; height: 100px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                </div>
                 <h1>Choose Your Plan</h1>
                 <p class="subtitle">Get listed on Crossing Sunsets and connect with families</p>
             </div>
@@ -329,53 +384,4 @@
                     
                     <div style="margin: 2rem 0;">
                         <div class="plan-price">$1,639</div>
-                        <div class="plan-period">per year</div>
-                        <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">Save with annual billing</p>
-                    </div>
-
-                    <ul class="plan-features">
-                        <li><strong>Everything in Standard, plus:</strong></li>
-                        <li>Featured provider placement</li>
-                        <li>Enhanced profile with photos</li>
-                        <li>Priority in search results</li>
-                        <li>Detailed service descriptions</li>
-                        <li>Priority email support</li>
-                        <li>Monthly analytics report</li>
-                    </ul>
-
-                    <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OYdUY03" class="subscribe-button">Subscribe Now - 12 Months</a>
-                    
-                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0;">
-                        <div class="plan-price" style="font-size: 2rem;">$1,199</div>
-                        <div class="plan-period">for 6 months</div>
-                        <a href="https://buy.stripe.com/7sYbJ0eQh4x12ot5KUdUY06" class="subscribe-button" style="background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);">Subscribe Now - 6 Months</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-box" style="background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); border-left-color: #ffc107;">
-                <h3 style="color: #856404;">📝 Next Steps After Subscription</h3>
-                <p style="color: #856404;">After completing your payment, you'll receive an email with a link to complete your provider profile. Fill out your business information, upload photos, and get listed on Crossing Sunsets!</p>
-            </div>
-
-            <div class="looking-for-care">
-                <p>Looking for care? <a href="browse-providers.html">Browse our providers here</a></p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function showPlans() {
-            document.getElementById('verificationScreen').style.display = 'none';
-            document.getElementById('plansScreen').classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        function showVerification() {
-            document.getElementById('plansScreen').classList.remove('active');
-            document.getElementById('verificationScreen').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-    </script>
-</body>
-</html>
+                        <div class="p

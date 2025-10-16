@@ -235,22 +235,33 @@
     </style>
 </head>
 <body>
-    <!-- Password Protection -->
-    <div class="password-container" id="passwordContainer">
-        <div class="lock-icon">🔒</div>
-        <h1 class="password-title">Provider Access Only</h1>
-        <p class="password-subtitle">This page is for verified providers only. Please enter your password to continue.</p>
-        <form id="passwordForm">
-            <input 
-                type="password" 
-                id="passwordInput" 
-                class="password-input" 
-                placeholder="Enter password"
-                required
-            >
-            <button type="submit" class="submit-btn">Access Plans</button>
-            <p class="error-message" id="errorMessage">❌ Incorrect password. Please try again.</p>
-        </form>
+    <!-- Provider Gate (No Password Needed) -->
+    <div class="password-container" id="providerGate">
+        <div class="lock-icon">🏥</div>
+        <h1 class="password-title">Provider Subscription Plans</h1>
+        <p class="password-subtitle" style="font-size: 1.3rem; margin-bottom: 1.5rem;">This page is for healthcare providers only.</p>
+        
+        <div style="background: #f0fdfa; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border-left: 4px solid #14B8A6;">
+            <p style="color: #0f766e; font-size: 1.1rem; margin-bottom: 1rem;">
+                <strong>Are you a hospice, palliative care, or skilled nursing provider?</strong>
+            </p>
+            <p style="color: #4b5563; font-size: 0.95rem;">
+                If yes, click below to view subscription plans and get your facility listed on Crossing Sunsets.
+            </p>
+        </div>
+
+        <div style="display: grid; gap: 1rem; max-width: 400px; margin: 0 auto;">
+            <button onclick="showPlans()" class="submit-btn" style="background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);">
+                ✓ Yes, I'm a Provider - Show Plans
+            </button>
+            <a href="index.html" class="submit-btn" style="background: #6b7280; text-decoration: none; display: block; text-align: center;">
+                ← No, Take Me Back
+            </a>
+        </div>
+
+        <p style="color: #6b7280; margin-top: 2rem; font-size: 0.95rem;">
+            Looking for care? <a href="browse-providers.html" style="color: #14B8A6; text-decoration: underline;">Browse our providers here</a>
+        </p>
     </div>
 
     <!-- Plans Content (Hidden Until Password Correct) -->
@@ -258,6 +269,9 @@
         <div class="plans-header">
             <h1 class="plans-title">🌟 Provider Subscription Plans</h1>
             <p class="plans-subtitle">Choose the perfect plan to showcase your hospice care services</p>
+            <div style="background: #fef3c7; padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #f59e0b;">
+                <p style="color: #92400e;"><strong>📋 Next Step:</strong> After subscribing, you'll need to <a href="complete-profile.html" style="color: #f59e0b; text-decoration: underline; font-weight: 700;">complete your provider profile here</a></p>
+            </div>
         </div>
 
         <div class="plans-grid">
@@ -314,7 +328,7 @@
                         <strong>Best Value!</strong>
                     </div>
                 </div>
-                <a href="https://buy.stripe.com/dRmfZgMd6F99QV4GqdUY08" class="plan-btn" target="_blank" rel="noopener">
+                <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQdUY08" class="plan-btn" target="_blank" rel="noopener">
                     Subscribe Now
                 </a>
             </div>
@@ -382,13 +396,19 @@
                         <strong>Best Premium Value!</strong>
                     </div>
                 </div>
-                <a href="https://buy.stripe.com/aFa14mdMdgfJbZ360YdUY03" class="plan-btn" target="_blank" rel="noopener">
+                <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OYdUY03" class="plan-btn" target="_blank" rel="noopener">
                     Subscribe Now
                 </a>
             </div>
         </div>
 
         <div style="text-align: center;">
+            <div style="background: #f0fdfa; padding: 2rem; border-radius: 16px; margin-bottom: 2rem; border: 3px solid #14B8A6;">
+                <h3 style="color: #14B8A6; font-size: 1.5rem; margin-bottom: 1rem;">✨ Already Subscribed?</h3>
+                <p style="color: #4b5563; margin-bottom: 1.5rem;">Complete your provider profile to get listed!</p>
+                <a href="complete-profile.html" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #F97316 0%, #ea580c 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem;">📝 Complete Your Profile</a>
+            </div>
+            
             <a href="index.html" class="back-btn">← Back to Home</a>
             <p style="margin-top: 2rem; color: #6b7280;">
                 📧 Questions? Contact us at 

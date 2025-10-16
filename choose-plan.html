@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossing Sunsets™ - Find Trusted Hospice & End-of-Life Care</title>
+    <title>Provider Subscription Plans - Crossing Sunsets™</title>
     <style>
         * {
             margin: 0;
@@ -14,453 +14,368 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #2c3e50;
+            background: linear-gradient(135deg, #00b4d8 0%, #48cae4 100%);
+            min-height: 100vh;
+            padding: 2rem;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-container {
-            max-width: 1200px;
+        .container {
+            max-width: 900px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        /* Verification Screen */
+        .verification-screen {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .icon-large {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-left: 4px solid #00b4d8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            color: #00838f;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            color: #006064;
+            line-height: 1.6;
+        }
+
+        .button-primary {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
             color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.4);
+            margin-bottom: 1rem;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.6);
+        }
+
+        .button-secondary {
+            display: block;
+            width: 100%;
+            background: #7f8c8d;
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .button-secondary:hover {
+            background: #95a5a6;
+        }
+
+        .looking-for-care {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .looking-for-care a {
+            color: #00b4d8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .looking-for-care a:hover {
+            text-decoration: underline;
+        }
+
+        /* Plans Screen */
+        .plans-screen {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .plans-screen.active {
+            display: block;
+        }
+
+        .header-plans {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: #00b4d8;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plan-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.2);
+            border-color: #00b4d8;
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
             font-weight: bold;
         }
 
-        .logo-icon {
-            font-size: 2rem;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        .lotus-badge {
-            background: white;
-            color: #00b4d8;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Google Translate */
-        #google_translate_element {
-            background: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .goog-te-banner-frame.skiptranslate {
-            display: none !important;
-        }
-
-        body {
-            top: 0px !important;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #00b4d8 0%, #48cae4 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
+        .plan-price {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            color: #00b4d8;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            opacity: 0.95;
+        .plan-period {
+            color: #7f8c8d;
+            margin-bottom: 2rem;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
+        .plan-features {
+            text-align: left;
+            margin: 2rem 0;
         }
 
-        .cta-container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            max-width: 500px;
-            margin: 2rem auto 0;
+        .plan-features li {
+            margin-bottom: 0.75rem;
+            color: #34495e;
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
         }
 
-        .cta-title {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+        .plan-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
         }
 
-        .cta-button {
+        .subscribe-button {
             display: inline-block;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
             color: white;
             padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(238, 90, 111, 0.4);
-            margin-bottom: 1rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(238, 90, 111, 0.6);
-        }
-
-        .browse-button {
-            display: inline-block;
-            background: white;
-            color: #00b4d8;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
-            margin: 0.5rem;
+            margin-top: 1rem;
         }
 
-        .browse-button:hover {
+        .subscribe-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
         }
 
-        .review-button {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 2px solid white;
-            transition: all 0.3s;
-            margin: 0.5rem;
-        }
-
-        .review-button:hover {
-            background: white;
-            color: #00b4d8;
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            padding: 4rem 2rem;
-            background: white;
-            text-align: center;
-        }
-
-        .how-it-works h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .how-it-works-subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 3rem;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .step {
-            padding: 2rem;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .step p {
-            color: #7f8c8d;
-            font-size: 1rem;
-        }
-
-        /* Why Choose Section */
-        .why-choose {
-            padding: 4rem 2rem;
-            background: #f8f9fa;
-            text-align: center;
-        }
-
-        .why-choose h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .why-choose-subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 3rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 3rem 2rem 1rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-section a {
-            display: block;
-            color: #ecf0f1;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #00b4d8;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #34495e;
-            color: #95a5a6;
-        }
-
-        .footer-bottom a {
-            color: #00b4d8;
-            text-decoration: none;
-        }
-
-        .footer-bottom a:hover {
-            text-decoration: underline;
-        }
-
-        .provider-cta-footer {
-            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .provider-cta-footer a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
+            body {
+                padding: 1rem;
             }
 
-            nav {
-                flex-direction: column;
-                gap: 0.5rem;
+            h1 {
+                font-size: 1.8rem;
             }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .steps {
+            .plans-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,vi',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">🌅</span>
-                <span>Crossing Sunsets™</span>
+    <div class="container">
+        <!-- Verification Screen -->
+        <div id="verificationScreen" class="verification-screen">
+            <div class="icon-large">🏥</div>
+            <h1>Provider Subscription Plans</h1>
+            <p class="subtitle">This page is for healthcare providers only.</p>
+
+            <div class="info-box">
+                <h3>Are you a hospice, palliative care, or skilled nursing provider?</h3>
+                <p>If yes, click below to view subscription plans and get your facility listed on Crossing Sunsets.</p>
+            </div>
+
+            <button class="button-primary" onclick="showPlans()">
+                ✓ Yes, I'm a Provider - Show Plans
+            </button>
+
+            <a href="index.html" class="button-secondary">
+                ← No, Take Me Back
             </a>
-            <nav>
-                <span class="lotus-badge">🪷 Lotus Rating™</span>
-                <a href="#features">Features</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="browse-providers.html">Browse Providers</a>
-                <div id="google_translate_element"></div>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Find Trusted Hospice & End-of-Life Care</h1>
-        <p>Connect with Compassionate Care Providers</p>
-        <p class="hero-subtitle">Read authentic reviews using our unique Lotus Rating™ system</p>
-
-        <div class="cta-container">
-            <p class="cta-title">Get Started Today</p>
-            <a href="browse-providers.html" class="browse-button">🔍 Browse Care Providers</a>
-            <a href="leave-review.html" class="review-button">📝 Leave a Review</a>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <h2>How It Works</h2>
-        <p class="how-it-works-subtitle">Finding the right care in three simple steps</p>
-
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Search Providers</h3>
-                <p>Browse hospice care, boarding care homes, and skilled nursing facilities in your area.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Read Reviews</h3>
-                <p>Learn from authentic experiences using our Lotus Rating™ system.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Make Your Choice</h3>
-                <p>Connect with providers and make an informed decision with confidence.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section id="features" class="why-choose">
-        <h2>Why Choose Crossing Sunsets?</h2>
-        <p class="why-choose-subtitle">The most comprehensive platform for end-of-life care decisions</p>
-        <!-- Add more content here as needed -->
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="provider-cta-footer">
-            <a href="choose-plan.html">🏥 For Healthcare Providers — Members Area</a>
-        </div>
-
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>🌅 Crossing Sunsets™</h3>
-                <p>Helping families find compassionate end-of-life care.</p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="browse-providers.html">Browse Providers</a>
-                <a href="leave-review.html">Leave a Review</a>
-            </div>
-
-            <div class="footer-section">
-                <h3>For Providers</h3>
-                <a href="choose-plan.html">Join as Provider</a>
-                <a href="choose-plan.html">Subscription Plans</a>
-            </div>
-
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-                <a href="#contact">Contact Us</a>
+            <div class="looking-for-care">
+                Looking for care? <a href="browse-providers.html">Browse our providers here</a>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
-            <p>
-                📧 Support: 
-                <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> | 
-                <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
-            </p>
+        <!-- Plans Screen -->
+        <div id="plansScreen" class="plans-screen">
+            <div class="header-plans">
+                <a href="#" class="back-button" onclick="showVerification(); return false;">← Back</a>
+                <div class="icon-large">🏥</div>
+                <h1>Choose Your Plan</h1>
+                <p class="subtitle">Get listed on Crossing Sunsets and connect with families</p>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Standard Plan -->
+                <div class="plan-card">
+                    <h2 class="plan-name">Standard Plan</h2>
+                    
+                    <div style="margin: 2rem 0;">
+                        <div class="plan-price">$1,309</div>
+                        <div class="plan-period">per year</div>
+                        <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">Save with annual billing</p>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li>Basic provider listing</li>
+                        <li>Contact information displayed</li>
+                        <li>Review visibility</li>
+                        <li>Lotus Rating™ display</li>
+                        <li>Email support</li>
+                    </ul>
+
+                    <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQdUY08" class="subscribe-button">Subscribe Now - 12 Months</a>
+                    
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0;">
+                        <div class="plan-price" style="font-size: 2rem;">$899</div>
+                        <div class="plan-period">for 6 months</div>
+                        <a href="https://buy.stripe.com/6oU14m37ze7B5AFddmdUY07" class="subscribe-button" style="background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);">Subscribe Now - 6 Months</a>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="plan-card" style="border-color: #00b4d8; border-width: 3px;">
+                    <div style="background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%); color: white; padding: 0.5rem; border-radius: 20px; margin-bottom: 1rem; font-weight: 600;">
+                        ⭐ MOST POPULAR
+                    </div>
+                    <h2 class="plan-name">Premium Plan</h2>
+                    
+                    <div style="margin: 2rem 0;">
+                        <div class="plan-price">$1,639</div>
+                        <div class="plan-period">per year</div>
+                        <p style="color: #7f8c8d; font-size: 0.9rem; margin-top: 0.5rem;">Save with annual billing</p>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li><strong>Everything in Standard, plus:</strong></li>
+                        <li>Featured provider placement</li>
+                        <li>Enhanced profile with photos</li>
+                        <li>Priority in search results</li>
+                        <li>Detailed service descriptions</li>
+                        <li>Priority email support</li>
+                        <li>Monthly analytics report</li>
+                    </ul>
+
+                    <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OYdUY03" class="subscribe-button">Subscribe Now - 12 Months</a>
+                    
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0;">
+                        <div class="plan-price" style="font-size: 2rem;">$1,199</div>
+                        <div class="plan-period">for 6 months</div>
+                        <a href="https://buy.stripe.com/7sYbJ0eQh4x12ot5KUdUY06" class="subscribe-button" style="background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);">Subscribe Now - 6 Months</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); border-left-color: #ffc107;">
+                <h3 style="color: #856404;">📝 Next Steps After Subscription</h3>
+                <p style="color: #856404;">After completing your payment, you'll receive an email with a link to complete your provider profile. Fill out your business information, upload photos, and get listed on Crossing Sunsets!</p>
+            </div>
+
+            <div class="looking-for-care">
+                <p>Looking for care? <a href="browse-providers.html">Browse our providers here</a></p>
+            </div>
         </div>
-    </footer>
+    </div>
+
+    <script>
+        function showPlans() {
+            document.getElementById('verificationScreen').style.display = 'none';
+            document.getElementById('plansScreen').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showVerification() {
+            document.getElementById('plansScreen').classList.remove('active');
+            document.getElementById('verificationScreen').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>

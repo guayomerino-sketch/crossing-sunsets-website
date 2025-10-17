@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile - Crossing Sunsets™</title>
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,zh-CN,fr,de,it,pt,ru,ja,ko,ar',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        #google_translate_element {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 40px auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+        }
+
+        .success-icon {
+            text-align: center;
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #28a745;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .success-message h2 {
+            color: #155724;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #155724;
+            font-size: 14px;
+        }
+
+        .next-steps {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #00bcd4;
+            margin-bottom: 30px;
+        }
+
+        .next-steps h3 {
+            color: #00838f;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .next-steps ol {
+            color: #00838f;
+            margin-left: 20px;
+        }
+
+        .next-steps li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #00bcd4;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .helper-text {
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
+        </div>
+
+        <div class="success-icon">🎉</div>
+
+        <h1>Payment Successful!</h1>
+        <p class="subtitle">Thank you for subscribing to Crossing Sunsets™</p>
+
+        <div class="success-message">
+            <h2>✓ Your subscription is active</h2>
+            <p>Complete the form below to finish setting up your provider profile</p>
+        </div>
+
+        <div class="next-steps">
+            <h3>✨ What happens next:</h3>
+            <ol>
+                <li>Fill in basic info (takes 2 minutes)</li>
+                <li>Choose your subscription plan</li>
+                <li>Complete your full profile in the portal anytime</li>
+            </ol>
+        </div>
+
+        <form id="providerForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+            <div class="form-section">
+                <label>Business/Provider Name <span class="required">*</span></label>
+                <input type="text" name="business_name" required placeholder="Your hospice or practice name">
+                <p class="helper-text">This is how families will find you</p>
+            </div>
+
+            <div class="form-section">
+                <label>Your Name <span class="required">*</span></label>
+                <input type="text" name="contact_name" required placeholder="First and last name">
+            </div>
+
+            <div class="form-section">
+                <label>Email Address <span class="required">*</span></label>
+                <input type="email" name="email" required placeholder="your.email@example.com">
+                <p class="helper-text">We'll send your portal login credentials here</p>
+            </div>
+
+            <div class="form-section">
+                <label>Phone Number <span class="required">*</span></label>
+                <input type="tel" name="phone" required placeholder="(555) 123-4567">
+            </div>
+
+            <div class="form-section">
+                <label>Primary Service Type <span class="required">*</span></label>
+                <select name="service_type" required>
+                    <option value="">Select service type...</option>
+                    <option value="hospice">Hospice Care</option>
+                    <option value="palliative">Palliative Care</option>
+                    <option value="skilled-nursing">Skilled Nursing Facility</option>
+                    <option value="boarding">Boarding Home</option>
+                    <option value="memory-care">Memory Care</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label>City <span class="required">*</span></label>
+                <input type="text" name="city" required placeholder="City">
+            </div>
+
+            <div class="form-section">
+                <label>State <span class="required">*</span></label>
+                <input type="text" name="state" required placeholder="State">
+            </div>
+
+            <div class="form-section">
+                <label>Brief Description</label>
+                <textarea name="description" placeholder="Tell us about your services..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Complete Profile Setup</button>
+        </form>
+    </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('providerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Show success message and redirect
+                    alert('Profile submitted successfully! We\'ll contact you within 24 hours with your portal login.');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('There was an error submitting the form. Please try again or contact support@crossingsunsets.app');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form. Please try again or contact support@crossingsunsets.app');
+            });
+        });
+    </script>
+</body>
+</html>

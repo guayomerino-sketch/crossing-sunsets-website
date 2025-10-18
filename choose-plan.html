@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provider Subscription Plans - Crossing Sunsets™</title>
-    <!-- Google Translate -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,zh-CN,fr,de,it,pt,ru,ja,ko,ar',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <title>Choose Your Plan - Crossing Sunsets™</title>
     <style>
         * {
             margin: 0;
@@ -23,361 +12,354 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #00b4d8 0%, #48cae4 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        #google_translate_element {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 9999;
-            background: white;
-            padding: 5px 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 2rem;
         }
 
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 900px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-
-        .logo {
+            padding: 2rem;
+            border-radius: 10px;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        .logo img {
-            width: 80px;
-            height: 80px;
-            border-radius: 15px;
+        .header h1 {
+            color: #00b4d8;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        h1 {
-            color: #2c3e50;
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        /* Gate Question */
+        .gate-container {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
 
-        .subtitle {
-            color: #7f8c8d;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 16px;
+        .gate-container h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .gate-section {
-            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid #00bcd4;
-            margin-bottom: 25px;
+        .gate-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .gate-section h2 {
-            color: #00838f;
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-
-        .gate-section p {
-            color: #00838f;
-            line-height: 1.6;
-        }
-
-        .button {
-            width: 100%;
-            padding: 18px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
+        .gate-button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            border: none;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 15px;
         }
 
-        .button-primary {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+        .gate-yes {
+            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
             color: white;
         }
 
-        .button-primary:hover {
+        .gate-yes:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
         }
 
-        .button-secondary {
-            background: #95a5a6;
-            color: white;
+        .gate-no {
+            background: #e0e0e0;
+            color: #666;
         }
 
-        .button-secondary:hover {
-            background: #7f8c8d;
+        .gate-no:hover {
+            background: #d0d0d0;
         }
 
-        .plans-section {
-            display: none;
-            margin-top: 30px;
-        }
-
-        .plans-section.visible {
-            display: block;
-        }
-
-        .plans-title {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 26px;
-        }
-
+        /* Plans Grid */
         .plans-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .plans-grid.active {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
         }
 
         .plan-card {
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-            border-radius: 15px;
-            padding: 25px;
-            border: 3px solid transparent;
-            transition: all 0.3s;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
 
         .plan-card:hover {
-            border-color: #00bcd4;
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .plan-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
         }
 
         .plan-name {
-            color: #2c3e50;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
         }
 
         .plan-price {
-            color: #00bcd4;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 5px;
+            font-size: 2rem;
+            color: #00b4d8;
+            font-weight: bold;
         }
 
-        .plan-period {
-            color: #7f8c8d;
-            font-size: 14px;
+        .plan-price-period {
+            font-size: 0.9rem;
+            color: #666;
+            display: block;
+            margin-top: 0.25rem;
         }
 
         .plan-features {
             list-style: none;
-            margin: 20px 0;
+            margin: 1.5rem 0;
         }
 
         .plan-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-            color: #2c3e50;
+            padding: 0.5rem 0;
+            color: #555;
             display: flex;
-            align-items: center;
-            font-size: 14px;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
 
-        .plan-features li:before {
-            content: "✓";
-            color: #00bcd4;
+        .feature-icon {
+            color: #00b4d8;
             font-weight: bold;
-            font-size: 16px;
-            margin-right: 10px;
+            flex-shrink: 0;
         }
 
-        .plan-features li:last-child {
-            border-bottom: none;
-        }
-
-        .subscribe-btn {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+        .select-plan-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
             transition: all 0.3s;
         }
 
-        .subscribe-btn:hover {
+        .select-plan-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
         }
 
-        .back-link {
+        .popular-badge {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .signup-link {
+            display: none;
             text-align: center;
-            margin-top: 25px;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        .back-link a {
-            color: #00bcd4;
+        .signup-link.active {
+            display: block;
+        }
+
+        .signup-link a {
+            color: #00b4d8;
             text-decoration: none;
+            font-size: 1.1rem;
             font-weight: 600;
         }
 
-        .back-link a:hover {
+        .signup-link a:hover {
             text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 25px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
             .plans-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .gate-container h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div id="google_translate_element"></div>
-    
     <div class="container">
-        <div class="logo">
-            <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
+        <div class="header">
+            <h1>🏥 Provider Subscription Plans</h1>
+            <p>Choose the perfect plan for your organization</p>
         </div>
 
-        <h1>Provider Subscription Plans</h1>
-        <p class="subtitle">This page is for healthcare providers only.</p>
-
-        <div class="gate-section">
-            <h2>Are you a hospice, palliative care, skilled nursing facility, boarding home, or memory care provider?</h2>
-            <p>If yes, click below to view subscription plans and get your facility listed on Crossing Sunsets.</p>
+        <!-- Gate Question -->
+        <div id="gateQuestion" class="gate-container">
+            <h2>Are you a healthcare provider looking to join Crossing Sunsets™?</h2>
+            <div class="gate-buttons">
+                <button class="gate-button gate-yes" onclick="showPlans()">✅ Yes, I'm a Provider</button>
+                <button class="gate-button gate-no" onclick="goHome()">❌ No, Take Me Home</button>
+            </div>
         </div>
 
-        <button class="button button-primary" onclick="showPlans()">
-            ✓ Yes, I'm a Provider - Show Plans
-        </button>
-
-        <button class="button button-secondary" onclick="window.location.href='index.html'">
-            ← No, Take Me Back
-        </button>
-
-        <div class="plans-section" id="plansSection">
-            <h2 class="plans-title">Choose Your Plan</h2>
-
-            <div class="plans-grid">
-                <!-- Standard 6 Month -->
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <div class="plan-name">Standard</div>
-                        <div class="plan-price">$699</div>
-                        <div class="plan-period">6 months</div>
+        <!-- Plans Grid (Hidden Initially) -->
+        <div id="plansGrid" class="plans-grid">
+            <!-- Basic Plan -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">
+                        $99
+                        <span class="plan-price-period">per 6 months</span>
                     </div>
-                    <ul class="plan-features">
-                        <li>Basic profile listing</li>
-                        <li>Contact info displayed</li>
-                        <li>Searchable by location</li>
-                        <li>Standard support</li>
-                    </ul>
-                    <button class="subscribe-btn" onclick="window.location.href='https://buy.stripe.com/6oU14m37ze7B5AFddmdUY07'">
-                        Subscribe Now
-                    </button>
                 </div>
-
-                <!-- Standard 12 Month -->
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <div class="plan-name">Standard</div>
-                        <div class="plan-price">$1,309</div>
-                        <div class="plan-period">12 months</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>Basic profile listing</li>
-                        <li>Contact info displayed</li>
-                        <li>Searchable by location</li>
-                        <li>Standard support</li>
-                    </ul>
-                    <button class="subscribe-btn" onclick="window.location.href='https://buy.stripe.com/dRmfZgdMd6F99QV4GQdUY08'">
-                        Subscribe Now
-                    </button>
-                </div>
-
-                <!-- Premium 6 Month -->
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <div class="plan-name">Premium</div>
-                        <div class="plan-price">$899</div>
-                        <div class="plan-period">6 months</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>Enhanced profile with logo</li>
-                        <li>Featured placement</li>
-                        <li>Detailed description</li>
-                        <li>Priority support</li>
-                        <li>Analytics dashboard</li>
-                    </ul>
-                    <button class="subscribe-btn" onclick="window.location.href='https://buy.stripe.com/7sYbJ0eQh4x12ot5KUdUY06'">
-                        Subscribe Now
-                    </button>
-                </div>
-
-                <!-- Premium 12 Month -->
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <div class="plan-name">Premium</div>
-                        <div class="plan-price">$1,639</div>
-                        <div class="plan-period">12 months</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>Enhanced profile with logo</li>
-                        <li>Featured placement</li>
-                        <li>Detailed description</li>
-                        <li>Priority support</li>
-                        <li>Analytics dashboard</li>
-                    </ul>
-                    <button class="subscribe-btn" onclick="window.location.href='https://buy.stripe.com/aFa14mdMdgfJbZ36OYdUY03'">
-                        Subscribe Now
-                    </button>
-                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">✓</span> <span>Basic profile listing</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Lotus Rating™ display</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Contact information visible</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Email support</span></li>
+                </ul>
+                <a href="https://buy.stripe.com/test_14k4j95wS4OTa528ww" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Basic (6 months)</button>
+                </a>
             </div>
 
-            <div class="back-link">
-                <a href="index.html">← Back to Home</a> | 
-                <a href="browse-providers.html">Browse Providers</a>
+            <!-- Professional Plan -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <span class="popular-badge">⭐ Most Popular</span>
+                    <div class="plan-name">Professional</div>
+                    <div class="plan-price">
+                        $299
+                        <span class="plan-price-period">per year</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">✓</span> <span>Everything in Basic</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Enhanced profile</strong> with photos</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Review response capability</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Basic analytics dashboard</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Priority email support</span></li>
+                </ul>
+                <a href="https://buy.stripe.com/test_3cs7vl7ES8191m89AB" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Professional (12 months)</button>
+                </a>
             </div>
+
+            <!-- Premium Plan -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-name">Premium</div>
+                    <div class="plan-price">
+                        $749
+                        <span class="plan-price-period">per year</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">✓</span> <span>Everything in Professional</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Top placement</strong> in search results</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Enhanced profile</strong> with photos & videos</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Featured provider badge</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Real-time Lotus Rating™ analytics</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Promotional email inclusion</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Priority email & phone support</span></li>
+                </ul>
+                <a href="https://buy.stripe.com/test_aEU03V8J03KP6ycdQS" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Premium (12 months)</button>
+                </a>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-name">Enterprise</div>
+                    <div class="plan-price">
+                        $1,999
+                        <span class="plan-price-period">per year</span>
+                    </div>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">✓</span> <span>Everything in Premium</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Multiple locations</strong> supported</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Custom branding</strong> options</span></li>
+                    <li><span class="feature-icon">✓</span> <span>API access for integration</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Dedicated account manager</span></li>
+                    <li><span class="feature-icon">✓</span> <span>White-label reporting</span></li>
+                    <li><span class="feature-icon">✓</span> <span>24/7 priority support</span></li>
+                </ul>
+                <a href="https://buy.stripe.com/test_14k2bR2gC3KP5u89AE" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Enterprise (12 months)</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Signup Link (Hidden Initially) -->
+        <div id="signupLink" class="signup-link">
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">
+                Not ready to choose a plan yet?
+            </p>
+            <a href="provider-signup.html">📝 Or fill out your information first</a>
         </div>
     </div>
 
     <script>
         function showPlans() {
-            document.getElementById('plansSection').classList.add('visible');
-            document.querySelector('.gate-section').style.display = 'none';
-            document.querySelector('.button-primary').style.display = 'none';
-            document.querySelector('.button-secondary').style.display = 'none';
+            document.getElementById('gateQuestion').style.display = 'none';
+            document.getElementById('plansGrid').classList.add('active');
+            document.getElementById('signupLink').classList.add('active');
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
         }
     </script>
 </body>

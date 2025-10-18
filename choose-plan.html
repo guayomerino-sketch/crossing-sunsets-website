@@ -99,7 +99,7 @@
         /* Plans Grid */
         .plans-grid {
             display: none;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
@@ -253,10 +253,10 @@
 
         <!-- Plans Grid (Hidden Initially) -->
         <div id="plansGrid" class="plans-grid">
-            <!-- Basic Plan -->
+            <!-- Standard 6 Months -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <div class="plan-name">Basic</div>
+                    <div class="plan-name">Standard</div>
                     <div class="plan-price">
                         $99
                         <span class="plan-price-period">per 6 months</span>
@@ -266,78 +266,80 @@
                     <li><span class="feature-icon">✓</span> <span>Basic profile listing</span></li>
                     <li><span class="feature-icon">✓</span> <span>Lotus Rating™ display</span></li>
                     <li><span class="feature-icon">✓</span> <span>Contact information visible</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Review response capability</span></li>
                     <li><span class="feature-icon">✓</span> <span>Email support</span></li>
                 </ul>
-                <a href="https://buy.stripe.com/test_14k4j95wS4OTa528ww" target="_blank" style="text-decoration: none;">
-                    <button class="select-plan-button">Select Basic (6 months)</button>
+                <a href="https://buy.stripe.com/6oU14m37ze7B5AFddm" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Standard (6 months)</button>
                 </a>
             </div>
 
-            <!-- Professional Plan -->
+            <!-- Standard Yearly -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <span class="popular-badge">⭐ Most Popular</span>
-                    <div class="plan-name">Professional</div>
+                    <span class="popular-badge">💰 Best Value</span>
+                    <div class="plan-name">Standard</div>
                     <div class="plan-price">
-                        $299
+                        $179
                         <span class="plan-price-period">per year</span>
                     </div>
                 </div>
                 <ul class="plan-features">
-                    <li><span class="feature-icon">✓</span> <span>Everything in Basic</span></li>
-                    <li><span class="feature-icon">✓</span> <span><strong>Enhanced profile</strong> with photos</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Basic profile listing</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Lotus Rating™ display</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Contact information visible</span></li>
                     <li><span class="feature-icon">✓</span> <span>Review response capability</span></li>
-                    <li><span class="feature-icon">✓</span> <span>Basic analytics dashboard</span></li>
-                    <li><span class="feature-icon">✓</span> <span>Priority email support</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Email support</span></li>
                 </ul>
-                <a href="https://buy.stripe.com/test_3cs7vl7ES8191m89AB" target="_blank" style="text-decoration: none;">
-                    <button class="select-plan-button">Select Professional (12 months)</button>
+                <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQ" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Standard (12 months)</button>
                 </a>
             </div>
 
-            <!-- Premium Plan -->
+            <!-- Premium 6 Months -->
             <div class="plan-card">
                 <div class="plan-header">
                     <div class="plan-name">Premium</div>
                     <div class="plan-price">
-                        $749
-                        <span class="plan-price-period">per year</span>
+                        $199
+                        <span class="plan-price-period">per 6 months</span>
                     </div>
                 </div>
                 <ul class="plan-features">
-                    <li><span class="feature-icon">✓</span> <span>Everything in Professional</span></li>
-                    <li><span class="feature-icon">✓</span> <span><strong>Top placement</strong> in search results</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Everything in Standard</span></li>
                     <li><span class="feature-icon">✓</span> <span><strong>Enhanced profile</strong> with photos & videos</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Top placement</strong> in search results</span></li>
                     <li><span class="feature-icon">✓</span> <span>Featured provider badge</span></li>
                     <li><span class="feature-icon">✓</span> <span>Real-time Lotus Rating™ analytics</span></li>
                     <li><span class="feature-icon">✓</span> <span>Promotional email inclusion</span></li>
                     <li><span class="feature-icon">✓</span> <span>Priority email & phone support</span></li>
                 </ul>
-                <a href="https://buy.stripe.com/test_aEU03V8J03KP6ycdQS" target="_blank" style="text-decoration: none;">
-                    <button class="select-plan-button">Select Premium (12 months)</button>
+                <a href="https://buy.stripe.com/7sYbJ0eQh4x12ot5KU" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Premium (6 months)</button>
                 </a>
             </div>
 
-            <!-- Enterprise Plan -->
+            <!-- Premium Yearly -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <div class="plan-name">Enterprise</div>
+                    <span class="popular-badge">⭐ Most Popular</span>
+                    <div class="plan-name">Premium</div>
                     <div class="plan-price">
-                        $1,999
+                        $349
                         <span class="plan-price-period">per year</span>
                     </div>
                 </div>
                 <ul class="plan-features">
-                    <li><span class="feature-icon">✓</span> <span>Everything in Premium</span></li>
-                    <li><span class="feature-icon">✓</span> <span><strong>Multiple locations</strong> supported</span></li>
-                    <li><span class="feature-icon">✓</span> <span><strong>Custom branding</strong> options</span></li>
-                    <li><span class="feature-icon">✓</span> <span>API access for integration</span></li>
-                    <li><span class="feature-icon">✓</span> <span>Dedicated account manager</span></li>
-                    <li><span class="feature-icon">✓</span> <span>White-label reporting</span></li>
-                    <li><span class="feature-icon">✓</span> <span>24/7 priority support</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Everything in Standard</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Enhanced profile</strong> with photos & videos</span></li>
+                    <li><span class="feature-icon">✓</span> <span><strong>Top placement</strong> in search results</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Featured provider badge</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Real-time Lotus Rating™ analytics</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Promotional email inclusion</span></li>
+                    <li><span class="feature-icon">✓</span> <span>Priority email & phone support</span></li>
                 </ul>
-                <a href="https://buy.stripe.com/test_14k2bR2gC3KP5u89AE" target="_blank" style="text-decoration: none;">
-                    <button class="select-plan-button">Select Enterprise (12 months)</button>
+                <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OY" target="_blank" style="text-decoration: none;">
+                    <button class="select-plan-button">Select Premium (12 months)</button>
                 </a>
             </div>
         </div>

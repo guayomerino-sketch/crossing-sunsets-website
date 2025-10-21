@@ -82,9 +82,6 @@
             color: #14B8A6;
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .lotus-intro p {
@@ -123,7 +120,6 @@
 
         input[type="text"],
         input[type="email"],
-        select,
         textarea {
             width: 100%;
             padding: 1rem;
@@ -135,7 +131,6 @@
         }
 
         input:focus,
-        select:focus,
         textarea:focus {
             outline: none;
             border-color: #14B8A6;
@@ -151,20 +146,33 @@
             padding: 2rem;
             border-radius: 16px;
             margin-bottom: 2rem;
-            border: 2px solid #e5e7eb;
+            border: 3px solid #14B8A6;
         }
 
         .rating-title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #14B8A6;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .rating-description {
-            color: #6b7280;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border: 3px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
         }
 
         .submit-btn {
@@ -181,15 +189,42 @@
             margin-top: 2rem;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .helper-text {
             color: #6b7280;
             font-size: 0.9rem;
             margin-top: 0.5rem;
+        }
+
+        .status-message {
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .status-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+            display: block;
+        }
+
+        .status-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+            display: block;
         }
 
         footer {
@@ -232,7 +267,7 @@
                 </p>
             </div>
 
-            <form id="reviewForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form id="reviewForm">
                 
                 <!-- Basic Information -->
                 <div class="form-section">
@@ -240,23 +275,23 @@
                     
                     <div class="form-group">
                         <label>Your Name <span class="required">*</span></label>
-                        <input type="text" name="reviewer_name" required placeholder="First and Last Name">
+                        <input type="text" id="reviewer_name" required placeholder="First and Last Name">
                     </div>
 
                     <div class="form-group">
                         <label>Email <span class="required">*</span></label>
-                        <input type="email" name="reviewer_email" required placeholder="your.email@example.com">
+                        <input type="email" id="reviewer_email" required placeholder="your.email@example.com">
                         <p class="helper-text">Your email will not be published publicly</p>
                     </div>
 
                     <div class="form-group">
                         <label>Provider Name <span class="required">*</span></label>
-                        <input type="text" name="provider_name" required placeholder="Name of hospice or care facility">
+                        <input type="text" id="provider_name" required placeholder="Name of hospice or care facility">
                     </div>
 
                     <div class="form-group">
                         <label>City/Location <span class="required">*</span></label>
-                        <input type="text" name="location" required placeholder="City, State">
+                        <input type="text" id="location" required placeholder="City, State">
                     </div>
                 </div>
 
@@ -267,56 +302,54 @@
                         <strong>Simple!</strong> Just check each quality you experienced. The more qualities, the higher the rating!
                     </p>
 
-                    <div class="rating-group" style="border: 3px solid #14B8A6;">
-                        <div class="rating-title" style="font-size: 1.5rem; color: #14B8A6; margin-bottom: 1.5rem;">
+                    <div class="rating-group">
+                        <div class="rating-title">
                             Check all qualities that apply:
                         </div>
                         
-                        <div style="display: grid; gap: 1.5rem;">
-                            <!-- Checkbox 1: Compassionate -->
-                            <label style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: white; border: 3px solid #e5e7eb; border-radius: 12px; cursor: pointer; transition: all 0.3s;" class="checkbox-label">
-                                <input type="checkbox" name="lotus_compassionate" value="compassionate" style="width: 30px; height: 30px; cursor: pointer;">
-                                <div style="flex: 1;">
-                                    <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                        🪷 #1 Compassionate
-                                    </div>
-                                    <div style="color: #6b7280;">Kind, caring, and empathetic staff</div>
+                        <!-- Checkbox 1: Compassionate -->
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="lotus_compassionate" value="compassionate">
+                            <div style="flex: 1;">
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
+                                    🪷 #1 Compassionate
                                 </div>
-                            </label>
+                                <div style="color: #6b7280;">Kind, caring, and empathetic staff</div>
+                            </div>
+                        </label>
 
-                            <!-- Checkbox 2: Responsive -->
-                            <label style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: white; border: 3px solid #e5e7eb; border-radius: 12px; cursor: pointer; transition: all 0.3s;" class="checkbox-label">
-                                <input type="checkbox" name="lotus_responsive" value="responsive" style="width: 30px; height: 30px; cursor: pointer;">
-                                <div style="flex: 1;">
-                                    <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                        🪷 #2 Responsive
-                                    </div>
-                                    <div style="color: #6b7280;">Quick to respond to needs and concerns</div>
+                        <!-- Checkbox 2: Responsive -->
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="lotus_responsive" value="responsive">
+                            <div style="flex: 1;">
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
+                                    🪷 #2 Responsive
                                 </div>
-                            </label>
+                                <div style="color: #6b7280;">Quick to respond to needs and concerns</div>
+                            </div>
+                        </label>
 
-                            <!-- Checkbox 3: Supportive -->
-                            <label style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: white; border: 3px solid #e5e7eb; border-radius: 12px; cursor: pointer; transition: all 0.3s;" class="checkbox-label">
-                                <input type="checkbox" name="lotus_supportive" value="supportive" style="width: 30px; height: 30px; cursor: pointer;">
-                                <div style="flex: 1;">
-                                    <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                        🪷 #3 Supportive
-                                    </div>
-                                    <div style="color: #6b7280;">Helpful guidance for family and patient</div>
+                        <!-- Checkbox 3: Supportive -->
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="lotus_supportive" value="supportive">
+                            <div style="flex: 1;">
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
+                                    🪷 #3 Supportive
                                 </div>
-                            </label>
+                                <div style="color: #6b7280;">Helpful guidance for family and patient</div>
+                            </div>
+                        </label>
 
-                            <!-- Checkbox 4: Professional -->
-                            <label style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: white; border: 3px solid #e5e7eb; border-radius: 12px; cursor: pointer; transition: all 0.3s;" class="checkbox-label">
-                                <input type="checkbox" name="lotus_professional" value="professional" style="width: 30px; height: 30px; cursor: pointer;">
-                                <div style="flex: 1;">
-                                    <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                        🪷 #4 Professional
-                                    </div>
-                                    <div style="color: #6b7280;">Skilled, knowledgeable, and reliable</div>
+                        <!-- Checkbox 4: Professional -->
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="lotus_professional" value="professional">
+                            <div style="flex: 1;">
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
+                                    🪷 #4 Professional
                                 </div>
-                            </label>
-                        </div>
+                                <div style="color: #6b7280;">Skilled, knowledgeable, and reliable</div>
+                            </div>
+                        </label>
 
                         <div style="margin-top: 1.5rem; padding: 1rem; background: #f0fdfa; border-radius: 12px; border-left: 4px solid #14B8A6;">
                             <p style="color: #0f766e; font-size: 0.95rem;">
@@ -332,12 +365,13 @@
                     
                     <div class="form-group">
                         <label>Share Your Experience <span class="required">*</span></label>
-                        <textarea name="review_text" required placeholder="Tell us about your experience with this provider. What stood out? What would you want other families to know?"></textarea>
+                        <textarea id="review_text" required placeholder="Tell us about your experience with this provider. What stood out? What would you want other families to know?"></textarea>
                         <p class="helper-text">Your story helps other families during their most difficult times</p>
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit Review</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Review</button>
+                <div id="statusMessage" class="status-message"></div>
             </form>
         </div>
     </div>
@@ -347,7 +381,26 @@
         <p style="margin-top: 0.5rem;">Questions? <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6;">support@crossingsunsets.app</a> | <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6;">eduardo@crossingsunsets.app</a></p>
     </footer>
 
-    <script>
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB410YcmWKj09W82ck6tZ2WYhyLdyZWtEQ",
+            authDomain: "crossing-sunsets.firebaseapp.com",
+            projectId: "crossing-sunsets",
+            storageBucket: "crossing-sunsets.firebasestorage.app",
+            messagingSenderId: "83761464492",
+            appId: "1:83761464492:web:9ed5d8af5a45feff38b09",
+            measurementId: "G-LC8VN0EZB7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         // Add visual feedback for checkbox selection
         document.querySelectorAll('.checkbox-label').forEach(label => {
             const checkbox = label.querySelector('input[type="checkbox"]');
@@ -363,8 +416,82 @@
             });
         });
 
-        document.getElementById('reviewForm').addEventListener('submit', function(e) {
-            alert('Thank you for your review! Your feedback helps families find compassionate care.');
+        // Form submission handler with Firebase
+        document.getElementById('reviewForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                // Calculate Lotus Rating
+                const compassionate = document.getElementById('lotus_compassionate').checked;
+                const responsive = document.getElementById('lotus_responsive').checked;
+                const supportive = document.getElementById('lotus_supportive').checked;
+                const professional = document.getElementById('lotus_professional').checked;
+                
+                const lotusRating = [compassionate, responsive, supportive, professional].filter(Boolean).length;
+                
+                // Prepare review data
+                const reviewData = {
+                    reviewer_name: document.getElementById('reviewer_name').value,
+                    reviewer_email: document.getElementById('reviewer_email').value,
+                    provider_name: document.getElementById('provider_name').value,
+                    location: document.getElementById('location').value,
+                    
+                    // Lotus Rating
+                    lotus_compassionate: compassionate,
+                    lotus_responsive: responsive,
+                    lotus_supportive: supportive,
+                    lotus_professional: professional,
+                    lotus_rating: lotusRating,
+                    
+                    // Review text
+                    review_text: document.getElementById('review_text').value,
+                    
+                    // Metadata
+                    timestamp: serverTimestamp(),
+                    approved: false,
+                    source: 'website'
+                };
+
+                // Add to Firebase
+                await addDoc(collection(db, 'reviews'), reviewData);
+                
+                // Show success message
+                statusMessage.textContent = '✓ Thank you for your review! Your feedback has been submitted and will appear after approval. This helps families find compassionate care during difficult times.';
+                statusMessage.className = 'status-message success';
+                
+                // Reset form
+                document.getElementById('reviewForm').reset();
+                
+                // Reset checkbox styles
+                document.querySelectorAll('.checkbox-label').forEach(label => {
+                    label.style.borderColor = '#e5e7eb';
+                    label.style.background = 'white';
+                });
+                
+                // Scroll to success message
+                statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Review';
+                
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                
+                statusMessage.textContent = '✗ Error submitting review. Please try again or contact support@crossingsunsets.app';
+                statusMessage.className = 'status-message error';
+                
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Review';
+            }
         });
     </script>
 </body>

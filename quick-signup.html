@@ -32,11 +32,30 @@
             align-items: center;
         }
 
-        .logo-text {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: white;
+            text-decoration: none;
             font-size: 1.5rem;
             font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
             text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
         }
 
         .page-header {
@@ -57,40 +76,26 @@
             opacity: 0.95;
         }
 
-        .form-container {
+        .container {
             max-width: 800px;
-            margin: 3rem auto;
-            padding: 0 2rem 4rem;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
         .form-card {
             background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .lotus-intro {
-            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
-            padding: 2rem;
             border-radius: 16px;
-            margin-bottom: 3rem;
-            border-left: 4px solid #14B8A6;
-        }
-
-        .lotus-intro h2 {
-            color: #14B8A6;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .lotus-intro p {
-            color: #4b5563;
-            font-size: 1.1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
 
         .form-section {
-            margin-bottom: 3rem;
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
         }
 
         .section-title {
@@ -98,12 +103,14 @@
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e5e7eb;
         }
 
         .form-group {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
 
         label {
@@ -111,26 +118,33 @@
             font-weight: 600;
             color: #374151;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .required {
             color: #ef4444;
         }
 
+        .optional {
+            color: #6b7280;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 1rem;
-            font-size: 1rem;
+            padding: 0.75rem 1rem;
             border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-family: inherit;
+            border-radius: 8px;
+            font-size: 1rem;
             transition: border-color 0.3s;
+            font-family: inherit;
         }
 
-        input:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
         textarea:focus {
             outline: none;
             border-color: #14B8A6;
@@ -141,19 +155,73 @@
             resize: vertical;
         }
 
-        .rating-group {
-            background: #f9fafb;
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            border: 3px solid #14B8A6;
+        .helper-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
         }
 
-        .rating-title {
-            font-size: 1.5rem;
+        .privacy-note {
+            font-size: 0.875rem;
+            color: #059669;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Lotus Rating Explanation Box */
+        .lotus-explanation {
+            background: linear-gradient(135deg, #F0FDFA 0%, #E0F2FE 100%);
+            border: 2px solid #14B8A6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .lotus-explanation-title {
+            font-size: 1.2rem;
             font-weight: 700;
-            color: #14B8A6;
-            margin-bottom: 1.5rem;
+            color: #0f766e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lotus-criteria {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .criterion-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .criterion-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .criterion-content {
+            flex: 1;
+        }
+
+        .criterion-name {
+            font-weight: 600;
+            color: #0f766e;
+            margin-bottom: 0.25rem;
+        }
+
+        .criterion-description {
+            color: #047857;
+            font-size: 0.9rem;
+        }
+
+        /* Checkboxes */
+        .checkboxes-grid {
+            display: grid;
+            gap: 1rem;
         }
 
         .checkbox-label {
@@ -166,50 +234,83 @@
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-label:hover {
+            border-color: #14B8A6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15);
         }
 
         .checkbox-label input[type="checkbox"] {
             width: 30px;
             height: 30px;
             cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked {
+            accent-color: #14B8A6;
+        }
+
+        .checkbox-content {
+            flex: 1;
+        }
+
+        .checkbox-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .checkbox-description {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .checkbox-tip {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f0fdfa;
+            border-radius: 8px;
+            border-left: 4px solid #14B8A6;
+        }
+
+        .checkbox-tip p {
+            color: #0f766e;
+            font-size: 0.95rem;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
+            padding: 1rem;
+            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
             color: white;
             border: none;
             border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
             margin-top: 2rem;
         }
 
-        .submit-btn:hover:not(:disabled) {
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
         }
 
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .helper-text {
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+        .submit-btn:active {
+            transform: translateY(0);
         }
 
         .status-message {
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-            font-size: 1.1rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
             display: none;
         }
 
@@ -217,27 +318,34 @@
             background: #d1fae5;
             color: #065f46;
             border: 2px solid #10b981;
-            display: block;
         }
 
         .status-message.error {
             background: #fee2e2;
             color: #991b1b;
             border: 2px solid #ef4444;
-            display: block;
         }
 
         footer {
             background: #1f2937;
             color: white;
-            padding: 2rem;
             text-align: center;
+            padding: 2rem;
             margin-top: 4rem;
         }
 
         @media (max-width: 768px) {
-            .form-card {
-                padding: 2rem 1.5rem;
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+            }
+
+            .checkbox-label {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -245,31 +353,25 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html" class="logo-text">Crossing Sunsets™</a>
+            <a href="index.html" class="logo">
+                🌺 Crossing Sunsets™
+            </a>
             <nav>
-                <a href="index.html" style="color: white; text-decoration: none; margin-left: 2rem;">← Back to Home</a>
+                <a href="index.html">Home</a>
+                <a href="browse-providers.html">Browse Providers</a>
             </nav>
         </div>
     </header>
 
     <div class="page-header">
-        <h1 class="page-title">📝 Share Your Experience</h1>
-        <p class="page-subtitle">Help other families by sharing your honest review</p>
+        <h1 class="page-title">Share Your Experience</h1>
+        <p class="page-subtitle">Your voice helps families make informed choices</p>
     </div>
 
-    <div class="form-container">
+    <div class="container">
         <div class="form-card">
-            <div class="lotus-intro">
-                <h2>🪷 The Lotus Rating™ System - Simple & Fast!</h2>
-                <p><strong>Takes just 30 seconds!</strong> Simply check which qualities you experienced with your care provider. Each quality you check adds one lotus flower to their rating.</p>
-                <p style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px;">
-                    <strong>Example:</strong> If they were Compassionate, Responsive, and Professional (but not Supportive) → They get 🪷🪷🪷 (3 out of 4 lotus flowers)
-                </p>
-            </div>
-
             <form id="reviewForm">
-                
-                <!-- Basic Information -->
+                <!-- Your Information Section -->
                 <div class="form-section">
                     <h2 class="section-title">Your Information</h2>
                     
@@ -279,9 +381,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Email <span class="required">*</span></label>
-                        <input type="email" id="reviewer_email" required placeholder="your.email@example.com">
-                        <p class="helper-text">Your email will not be published publicly</p>
+                        <label>Email <span class="optional">(optional)</span></label>
+                        <input type="email" id="reviewer_email" placeholder="your.email@example.com">
+                        <p class="privacy-note">🔒 Your email will not be published publicly</p>
                     </div>
 
                     <div class="form-group">
@@ -290,76 +392,101 @@
                     </div>
 
                     <div class="form-group">
-                        <label>City/Location <span class="required">*</span></label>
-                        <input type="text" id="location" required placeholder="City, State">
+                        <label>City/Location <span class="optional">(optional)</span></label>
+                        <input type="text" id="location" placeholder="City, State">
                     </div>
                 </div>
 
-                <!-- Lotus Rating Criteria -->
+                <!-- Lotus Rating Section -->
                 <div class="form-section">
                     <h2 class="section-title">🪷 Rate Your Experience</h2>
-                    <p style="color: #6b7280; margin-bottom: 2rem; font-size: 1.1rem;">
-                        <strong>Simple!</strong> Just check each quality you experienced. The more qualities, the higher the rating!
-                    </p>
-
-                    <div class="rating-group">
-                        <div class="rating-title">
-                            Check all qualities that apply:
+                    
+                    <!-- Lotus Rating Explanation -->
+                    <div class="lotus-explanation">
+                        <div class="lotus-explanation-title">
+                            <span>📋</span>
+                            <span>Understanding the Lotus Rating System™</span>
                         </div>
-                        
+                        <p style="color: #047857; margin-bottom: 1rem; font-size: 0.95rem;">
+                            Please check the qualities below only if you believe the provider truly demonstrated them during your experience.
+                        </p>
+                        <div class="lotus-criteria">
+                            <div class="criterion-item">
+                                <div class="criterion-icon">🪷</div>
+                                <div class="criterion-content">
+                                    <div class="criterion-name">Compassionate</div>
+                                    <div class="criterion-description">Kind, caring, and empathetic staff</div>
+                                </div>
+                            </div>
+                            <div class="criterion-item">
+                                <div class="criterion-icon">🪷</div>
+                                <div class="criterion-content">
+                                    <div class="criterion-name">Responsive</div>
+                                    <div class="criterion-description">Quick to respond to needs and concerns</div>
+                                </div>
+                            </div>
+                            <div class="criterion-item">
+                                <div class="criterion-icon">🪷</div>
+                                <div class="criterion-content">
+                                    <div class="criterion-name">Supportive</div>
+                                    <div class="criterion-description">Helpful guidance for family and patient</div>
+                                </div>
+                            </div>
+                            <div class="criterion-item">
+                                <div class="criterion-icon">🪷</div>
+                                <div class="criterion-content">
+                                    <div class="criterion-name">Professional</div>
+                                    <div class="criterion-description">Skilled, knowledgeable, and reliable</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checkboxes -->
+                    <div class="checkboxes-grid">
                         <!-- Checkbox 1: Compassionate -->
                         <label class="checkbox-label">
-                            <input type="checkbox" id="lotus_compassionate" value="compassionate">
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                    🪷 #1 Compassionate
-                                </div>
-                                <div style="color: #6b7280;">Kind, caring, and empathetic staff</div>
+                            <input type="checkbox" id="lotus_compassionate" name="lotus_compassionate" value="compassionate">
+                            <div class="checkbox-content">
+                                <div class="checkbox-title">🪷 #1 Compassionate</div>
+                                <div class="checkbox-description">Kind, caring, and empathetic staff</div>
                             </div>
                         </label>
 
                         <!-- Checkbox 2: Responsive -->
                         <label class="checkbox-label">
-                            <input type="checkbox" id="lotus_responsive" value="responsive">
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                    🪷 #2 Responsive
-                                </div>
-                                <div style="color: #6b7280;">Quick to respond to needs and concerns</div>
+                            <input type="checkbox" id="lotus_responsive" name="lotus_responsive" value="responsive">
+                            <div class="checkbox-content">
+                                <div class="checkbox-title">🪷 #2 Responsive</div>
+                                <div class="checkbox-description">Quick to respond to needs and concerns</div>
                             </div>
                         </label>
 
                         <!-- Checkbox 3: Supportive -->
                         <label class="checkbox-label">
-                            <input type="checkbox" id="lotus_supportive" value="supportive">
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                    🪷 #3 Supportive
-                                </div>
-                                <div style="color: #6b7280;">Helpful guidance for family and patient</div>
+                            <input type="checkbox" id="lotus_supportive" name="lotus_supportive" value="supportive">
+                            <div class="checkbox-content">
+                                <div class="checkbox-title">🪷 #3 Supportive</div>
+                                <div class="checkbox-description">Helpful guidance for family and patient</div>
                             </div>
                         </label>
 
                         <!-- Checkbox 4: Professional -->
                         <label class="checkbox-label">
-                            <input type="checkbox" id="lotus_professional" value="professional">
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;">
-                                    🪷 #4 Professional
-                                </div>
-                                <div style="color: #6b7280;">Skilled, knowledgeable, and reliable</div>
+                            <input type="checkbox" id="lotus_professional" name="lotus_professional" value="professional">
+                            <div class="checkbox-content">
+                                <div class="checkbox-title">🪷 #4 Professional</div>
+                                <div class="checkbox-description">Skilled, knowledgeable, and reliable</div>
                             </div>
                         </label>
+                    </div>
 
-                        <div style="margin-top: 1.5rem; padding: 1rem; background: #f0fdfa; border-radius: 12px; border-left: 4px solid #14B8A6;">
-                            <p style="color: #0f766e; font-size: 0.95rem;">
-                                <strong>💡 Tip:</strong> Check at least one quality. The more qualities you check, the higher the overall Lotus Rating!
-                            </p>
-                        </div>
+                    <div class="checkbox-tip">
+                        <p><strong>💡 Tip:</strong> Check at least one quality. The more qualities you check, the higher the overall Lotus Rating!</p>
                     </div>
                 </div>
 
-                <!-- Written Review -->
+                <!-- Written Review Section -->
                 <div class="form-section">
                     <h2 class="section-title">Your Story</h2>
                     
@@ -370,7 +497,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">Submit Review</button>
+                <button type="submit" class="submit-btn" id="submitBtn">✨ Submit Review</button>
                 <div id="statusMessage" class="status-message"></div>
             </form>
         </div>
@@ -378,120 +505,107 @@
 
     <footer>
         <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">Questions? <a href="mailto:support@crossingsunsets.app" style="color: #14B8A6;">support@crossingsunsets.app</a> | <a href="mailto:eduardo@crossingsunsets.app" style="color: #14B8A6;">eduardo@crossingsunsets.app</a></p>
+        <p style="margin-top: 0.5rem;">Questions? Contact us at support@crossingsunsets.app</p>
     </footer>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-        // Firebase configuration
+        // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyB410YcmWKj09W82ck6tZ2WYhyLdyZWtEQ",
+            apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
             authDomain: "crossing-sunsets.firebaseapp.com",
             projectId: "crossing-sunsets",
             storageBucket: "crossing-sunsets.firebasestorage.app",
             messagingSenderId: "83761464492",
-            appId: "1:83761464492:web:9ed5d8af5a45feff38b09",
-            measurementId: "G-LC8VN0EZB7"
+            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+            measurementId: "G-LG8VN0EZB7"
         };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Add visual feedback for checkbox selection
-        document.querySelectorAll('.checkbox-label').forEach(label => {
+        // Form submission
+        const form = document.getElementById('reviewForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Get form values
+                const reviewData = {
+                    reviewer_name: document.getElementById('reviewer_name').value.trim(),
+                    reviewer_email: document.getElementById('reviewer_email').value.trim() || null,
+                    provider_name: document.getElementById('provider_name').value.trim(),
+                    location: document.getElementById('location').value.trim() || null,
+                    lotus_compassionate: document.getElementById('lotus_compassionate').checked,
+                    lotus_responsive: document.getElementById('lotus_responsive').checked,
+                    lotus_supportive: document.getElementById('lotus_supportive').checked,
+                    lotus_professional: document.getElementById('lotus_professional').checked,
+                    review_text: document.getElementById('review_text').value.trim(),
+                    timestamp: serverTimestamp(),
+                    source: 'website',
+                    lotus_rating: [
+                        document.getElementById('lotus_compassionate').checked,
+                        document.getElementById('lotus_responsive').checked,
+                        document.getElementById('lotus_supportive').checked,
+                        document.getElementById('lotus_professional').checked
+                    ].filter(Boolean).length
+                };
+
+                // Validate at least one checkbox is checked
+                if (reviewData.lotus_rating === 0) {
+                    throw new Error('Please check at least one Lotus quality');
+                }
+
+                // Add to Firestore
+                await addDoc(collection(db, 'reviews'), reviewData);
+
+                // Show success message
+                statusMessage.textContent = '✅ Thank you! Your review has been submitted successfully.';
+                statusMessage.className = 'status-message success';
+                statusMessage.style.display = 'block';
+
+                // Reset form
+                form.reset();
+
+                // Scroll to success message
+                statusMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                statusMessage.textContent = '❌ ' + (error.message || 'Error submitting review. Please try again.');
+                statusMessage.className = 'status-message error';
+                statusMessage.style.display = 'block';
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = '✨ Submit Review';
+            }
+        });
+
+        // Add visual feedback for checkbox changes
+        const checkboxLabels = document.querySelectorAll('.checkbox-label');
+        checkboxLabels.forEach(label => {
             const checkbox = label.querySelector('input[type="checkbox"]');
-            
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
                     label.style.borderColor = '#14B8A6';
-                    label.style.background = 'linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%)';
+                    label.style.background = '#f0fdfa';
                 } else {
                     label.style.borderColor = '#e5e7eb';
                     label.style.background = 'white';
                 }
             });
-        });
-
-        // Form submission handler with Firebase
-        document.getElementById('reviewForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const statusMessage = document.getElementById('statusMessage');
-            
-            // Disable submit button
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-            
-            try {
-                // Calculate Lotus Rating
-                const compassionate = document.getElementById('lotus_compassionate').checked;
-                const responsive = document.getElementById('lotus_responsive').checked;
-                const supportive = document.getElementById('lotus_supportive').checked;
-                const professional = document.getElementById('lotus_professional').checked;
-                
-                const lotusRating = [compassionate, responsive, supportive, professional].filter(Boolean).length;
-                
-                // Prepare review data
-                const reviewData = {
-                    reviewer_name: document.getElementById('reviewer_name').value,
-                    reviewer_email: document.getElementById('reviewer_email').value,
-                    provider_name: document.getElementById('provider_name').value,
-                    location: document.getElementById('location').value,
-                    
-                    // Lotus Rating
-                    lotus_compassionate: compassionate,
-                    lotus_responsive: responsive,
-                    lotus_supportive: supportive,
-                    lotus_professional: professional,
-                    lotus_rating: lotusRating,
-                    
-                    // Review text
-                    review_text: document.getElementById('review_text').value,
-                    
-                    // Metadata
-                    timestamp: serverTimestamp(),
-                    approved: false,
-                    source: 'website'
-                };
-
-                // Add to Firebase
-                await addDoc(collection(db, 'reviews'), reviewData);
-                
-                // Show success message
-                statusMessage.textContent = '✓ Thank you for your review! Your feedback has been submitted and will appear after approval. This helps families find compassionate care during difficult times.';
-                statusMessage.className = 'status-message success';
-                
-                // Reset form
-                document.getElementById('reviewForm').reset();
-                
-                // Reset checkbox styles
-                document.querySelectorAll('.checkbox-label').forEach(label => {
-                    label.style.borderColor = '#e5e7eb';
-                    label.style.background = 'white';
-                });
-                
-                // Scroll to success message
-                statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Review';
-                
-            } catch (error) {
-                console.error('Error submitting review:', error);
-                
-                statusMessage.textContent = '✗ Error submitting review. Please try again or contact support@crossingsunsets.app';
-                statusMessage.className = 'status-message error';
-                
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Review';
-            }
         });
     </script>
 </body>

@@ -1,0 +1,26 @@
+{
+  "rules": {
+    "bed_availability": {
+      ".read": "auth != null && (auth.token.orgType == 'superadmin' || auth.token.orgType == 'admin' || auth.token.orgType == 'hospital' || auth.token.orgType == 'hospice')",
+      ".write": "auth != null && (auth.token.orgType == 'superadmin' || auth.token.orgType == 'admin')",
+      "facilities": {
+        "$facilityId": {
+          "beds": {
+            "$bedType": {
+              ".validate": "newData.hasChildren(['total', 'available', 'last_updated'])",
+              "total": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 1000"
+              },
+              "available": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= newData.parent().child('total').val()"
+              },
+              "last_updated": {
+                ".validate": "newData.isString()"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

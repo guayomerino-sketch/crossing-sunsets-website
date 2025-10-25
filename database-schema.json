@@ -1,0 +1,23 @@
+{
+  "bed_availability": {
+    "last_updated": "2025-10-25T10:00:00Z",
+    "facilities": {
+      "facility_001": {
+        "name": "Sample SNF Facility",
+        "orgType": "snf",
+        "beds": {
+          "general": {
+            "total": 200,
+            "available": 87,
+            "last_updated": "2025-10-25T10:00:00Z"
+          },
+          "emergency": {
+            "total": 30,
+            "available": 8,
+            "last_updated": "2025-10-25T10:00:00Z"
+          }
+        }
+      }
+    }
+  }
+}

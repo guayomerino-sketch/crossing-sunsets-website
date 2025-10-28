@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Care Providers - Crossing Sunsets™</title>
-    <!-- Google Translate -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,zh-CN,fr,de,it,pt,ru,ja,ko,ar',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <title>Crossing Sunsets™ - Find Trusted Hospice & End-of-Life Care</title>
     <style>
         * {
             margin: 0;
@@ -23,60 +12,44 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f5f7fa;
+            color: #2c3e50;
         }
 
-        #google_translate_element {
-            position: fixed;
-            top: 70px;
-            right: 10px;
-            z-index: 9999;
-            background: white;
-            padding: 5px 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        nav {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            padding: 1rem 2rem;
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
+            padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
-        nav .container {
+        .header-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 2rem;
         }
 
-        .logo-section {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-
-        .logo-section img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-        }
-
-        .logo-section h1 {
+            gap: 0.5rem;
             color: white;
-            font-size: 24px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
-        nav ul {
-            list-style: none;
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        nav {
             display: flex;
+            align-items: center;
             gap: 2rem;
         }
 
@@ -91,441 +64,404 @@
             opacity: 0.8;
         }
 
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .page-header h2 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .page-header p {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-        }
-
-        /* Filter Buttons */
-        .filter-section {
+        .lotus-badge {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .filter-label {
-            color: #2c3e50;
+            color: #00b4d8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
-            font-size: 1.1rem;
         }
 
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid #00bcd4;
+        /* Google Translate */
+        #google_translate_element {
             background: white;
-            color: #00bcd4;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
-        .filter-btn:hover {
-            background: #e0f7fa;
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
         }
 
-        .filter-btn.active {
-            background: #00bcd4;
+        body {
+            top: 0px !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00b4d8 0%, #48cae4 100%);
             color: white;
-        }
-
-        .search-box {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #00bcd4;
-        }
-
-        .providers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .provider-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .provider-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .provider-header {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            padding: 20px;
+            padding: 4rem 2rem;
             text-align: center;
         }
 
-        .provider-logo {
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .cta-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(238, 90, 111, 0.4);
+            margin-bottom: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(238, 90, 111, 0.6);
+        }
+
+        .browse-button {
+            display: inline-block;
+            background: white;
+            color: #00b4d8;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+            margin: 0.5rem;
+        }
+
+        .browse-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
+        }
+
+        .review-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid white;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+
+        .review-button:hover {
+            background: white;
+            color: #00b4d8;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .how-it-works-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            padding: 2rem;
+        }
+
+        .step-number {
             width: 80px;
             height: 80px;
+            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
+            color: white;
             border-radius: 50%;
-            background: white;
-            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
         }
 
-        .provider-header h3 {
-            color: white;
+        .step h3 {
             font-size: 1.5rem;
-            margin-bottom: 5px;
+            margin-bottom: 1rem;
+            color: #2c3e50;
         }
 
-        .provider-header .location {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
-        }
-
-        .provider-body {
-            padding: 25px;
-        }
-
-        .provider-type-badge {
-            display: inline-block;
-            background: #e0f7fa;
-            color: #00838f;
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .provider-info {
-            margin-bottom: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            color: #555;
-        }
-
-        .info-icon {
-            margin-right: 10px;
-            color: #00bcd4;
-        }
-
-        .provider-description {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #00bcd4;
-        }
-
-        .provider-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-reviews {
-            background: #ff6b35;
-            color: white;
-        }
-
-        .btn-reviews:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-        }
-
-        .btn-review {
-            background: transparent;
-            color: #00bcd4;
-            border: 2px solid #00bcd4;
-        }
-
-        .btn-review:hover {
-            background: #00bcd4;
-            color: white;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .no-results p {
+        .step p {
             color: #7f8c8d;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
+        /* Why Choose Section */
+        .why-choose {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .why-choose h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .why-choose-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+        }
+
+        /* Footer */
         footer {
             background: #2c3e50;
             color: white;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 60px;
+            padding: 3rem 2rem 1rem;
         }
 
-        footer .footer-links {
-            display: flex;
-            justify-content: center;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
-        footer a {
-            color: white;
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #ecf0f1;
             text-decoration: none;
+            margin-bottom: 0.5rem;
             transition: color 0.3s;
         }
 
-        footer a:hover {
-            color: #00bcd4;
+        .footer-section a:hover {
+            color: #00b4d8;
         }
 
-        footer .contact-info {
-            margin-top: 20px;
-            font-size: 0.9rem;
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
         }
 
-        footer .contact-info a {
-            color: #00bcd4;
+        .footer-bottom a {
+            color: #00b4d8;
+            text-decoration: none;
         }
 
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        .provider-cta-footer {
+            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .provider-cta-footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
+            .header-container {
                 flex-direction: column;
                 gap: 1rem;
             }
 
-            .providers-grid {
-                grid-template-columns: 1fr;
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
             }
 
-            .page-header h2 {
+            .hero h1 {
                 font-size: 2rem;
             }
 
-            .filter-buttons {
-                justify-content: center;
+            .steps {
+                grid-template-columns: 1fr;
             }
         }
     </style>
-</head>
-<body>
-    <div id="google_translate_element"></div>
-    
-    <nav>
-        <div class="container">
-            <div class="logo-section">
-                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
-                <h1>Crossing Sunsets™</h1>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="browse-providers.html">Browse Providers</a></li>
-                <li><a href="quick-signup.html">Leave a Review</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="main-content">
-        <div class="page-header">
-            <h2>Browse Care Providers</h2>
-            <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
-        </div>
-
-        <!-- Filter Buttons -->
-        <div class="filter-section">
-            <span class="filter-label">🏥 Filter by Type of Care:</span>
-            <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterProviders('all')">All Providers</button>
-                <button class="filter-btn" onclick="filterProviders('hospice')">🏥 Hospice</button>
-                <button class="filter-btn" onclick="filterProviders('palliative')">💙 Palliative Care</button>
-                <button class="filter-btn" onclick="filterProviders('skilled-nursing')">🏨 Skilled Nursing</button>
-                <button class="filter-btn" onclick="filterProviders('board and care facilities')">🏡 Board and Care Facilities</button>
-                <button class="filter-btn" onclick="filterProviders('memory-care')">🧠 Memory Care</button>
-            </div>
-        </div>
-
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()">
-        </div>
-
-        <div class="providers-grid" id="providersGrid">
-            <!-- All Peace Provider Card -->
-            <div class="provider-card" data-name="allpeace" data-location="Torrance, California" data-category="hospice">
-                <div class="provider-header">
-                    <div class="provider-logo">☘️</div>
-                    <h3>All Peace</h3>
-                    <div class="location">📍 Torrance, California</div>
-                </div>
-                <div class="provider-body">
-                    <span class="provider-type-badge">🏥 Hospice Care</span>
-                    <div class="provider-description">
-                        We bring peace, comfort, and dignity to every patient and their loved ones.
-                    </div>
-                    <div class="provider-info">
-                        <div class="info-item">
-                            <span class="info-icon">👤</span>
-                            <span><strong>Contact:</strong> main desk</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">📧</span>
-                            <span><strong>Email:</strong> <a href="mailto:info@allpeace.com" style="color: #00bcd4;">info@allpeace.com</a></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">🌐</span>
-                            <span><strong>Website:</strong> <a href="https://allpeacecare.com" target="_blank" style="color: #00bcd4;">allpeacecare.com</a></span>
-                        </div>
-                    </div>
-                    <div class="provider-actions">
-                        <a href="reviews-allpeace.html" class="btn btn-reviews">📖 Read Reviews</a>
-                        <a href="quick-signup.html?provider=allpeace" class="btn btn-review">✍️ Leave a Review</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add more provider cards here with data-category attribute -->
-        </div>
-
-        <div id="noResults" class="no-results" style="display: none;">
-            <p>No providers found matching your search. Try a different search term or filter.</p>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="browse-providers.html">Browse Providers</a>
-            <a href="choose-plan.html">🔒 For Healthcare Providers</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="mailto:support@crossingsunsets.app">📧 Contact Us</a>
-        </div>
-        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
-        <div class="contact-info">
-            💬 Support: <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> | 
-            <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
-        </div>
-    </footer>
-
-    <script>
-        let currentFilter = 'all';
-
-        function filterProviders(category) {
-            currentFilter = category;
-            
-            // Update active button
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Filter cards
-            const cards = document.querySelectorAll('.provider-card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-                if (category === 'all' || cardCategory === category) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Show/hide no results message
-            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
-        }
-
-        function searchProviders() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.provider-card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                const location = card.getAttribute('data-location').toLowerCase();
-                const cardCategory = card.getAttribute('data-category');
-
-                // Check if card matches both filter AND search
-                const matchesFilter = (currentFilter === 'all' || cardCategory === currentFilter);
-                const matchesSearch = (name.includes(searchTerm) || location.includes(searchTerm));
-
-                if (matchesFilter && matchesSearch) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Show/hide no results message
-            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,vi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
         }
     </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🌅</span>
+                <span>Crossing Sunsets™</span>
+            </a>
+            <nav>
+                <span class="lotus-badge">🪷 Lotus Rating™</span>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="browse-providers.html">Browse Providers</a>
+                <div id="google_translate_element"></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find Trusted Hospice & End-of-Life Care</h1>
+        <p>Connect with Compassionate Care Providers</p>
+        <p class="hero-subtitle">Read authentic reviews using our unique Lotus Rating™ system</p>
+
+        <div class="cta-container">
+            <p class="cta-title">Get Started Today</p>
+            <a href="browse-providers.html" class="browse-button">🔍 Browse Care Providers</a>
+            <a href="leave-review.html" class="review-button">📝 Leave a Review</a>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <h2>How It Works</h2>
+        <p class="how-it-works-subtitle">Finding the right care in three simple steps</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Search Providers</h3>
+                <p>Browse hospice care, boarding care homes, and skilled nursing facilities in your area.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Read Reviews</h3>
+                <p>Learn from authentic experiences using our Lotus Rating™ system.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Make Your Choice</h3>
+                <p>Connect with providers and make an informed decision with confidence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="features" class="why-choose">
+        <h2>Why Choose Crossing Sunsets?</h2>
+        <p class="why-choose-subtitle">The most comprehensive platform for end-of-life care decisions</p>
+        <!-- Add more content here as needed -->
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="provider-cta-footer">
+            <a href="choose-plan.html">🏥 For Healthcare Providers — Members Area</a>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🌅 Crossing Sunsets™</h3>
+                <p>Helping families find compassionate end-of-life care.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="browse-providers.html">Browse Providers</a>
+                <a href="leave-review.html">Leave a Review</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Providers</h3>
+                <a href="choose-plan.html">Join as Provider</a>
+                <a href="choose-plan.html">Subscription Plans</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
+            <p>
+                📧 Support: 
+                <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> | 
+                <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
+Hyper Icon

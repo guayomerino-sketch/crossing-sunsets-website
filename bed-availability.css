@@ -1,0 +1,312 @@
+/* components/BedAvailabilityUpdater.css */
+/* Styles for Bed Availability Update Modal - Skilled Nursing Facilities Only */
+
+.bed-updater-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.bed-updater-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Header */
+.modal-header {
+  background: linear-gradient(135deg, #00B8D4 0%, #00ACC1 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Error Message */
+.error-message {
+  background: #FFEBEE;
+  color: #C62828;
+  padding: 12px 20px;
+  margin: 0;
+  border-left: 4px solid #C62828;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Provider Info */
+.provider-info {
+  padding: 20px;
+  background: #F5F5F5;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.provider-info h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.facility-type {
+  display: inline-block;
+  background: #E0F7FA;
+  color: #00ACC1;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.last-updated {
+  margin: 12px 0 0 0;
+  font-size: 13px;
+  color: #666;
+}
+
+/* Form Styles */
+form {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.required {
+  color: #FF5252;
+  margin-left: 4px;
+}
+
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-group input[type="number"]:focus {
+  outline: none;
+  border-color: #00ACC1;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #666;
+  font-size: 13px;
+}
+
+/* Input with Quick Buttons */
+.input-with-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.input-with-buttons input {
+  flex: 1;
+  text-align: center;
+}
+
+.quick-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #00ACC1;
+  background: white;
+  color: #00ACC1;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quick-btn:hover:not(:disabled) {
+  background: #00ACC1;
+  color: white;
+}
+
+.quick-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Visual Bed Representation */
+.bed-visual {
+  background: #F5F5F5;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.bed-bar {
+  width: 100%;
+  height: 30px;
+  background: #E8F5E9;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bed-bar-filled {
+  height: 100%;
+  background: linear-gradient(90deg, #FF6B35 0%, #E55100 100%);
+  transition: width 0.3s ease;
+}
+
+.bed-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-cancel,
+.btn-update {
+  flex: 1;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-cancel {
+  background: white;
+  color: #666;
+  border: 2px solid #E0E0E0;
+}
+
+.btn-cancel:hover {
+  background: #F5F5F5;
+}
+
+.btn-update {
+  background: linear-gradient(135deg, #00B8D4 0%, #00ACC1 100%);
+  color: white;
+}
+
+.btn-update:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+.btn-update:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Update Note */
+.update-note {
+  padding: 20px;
+  background: #FFF8E1;
+  border-top: 1px solid #FFE082;
+  border-radius: 0 0 16px 16px;
+}
+
+.update-note p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.update-note strong {
+  color: #F57C00;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .bed-updater-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .modal-header h2 {
+    font-size: 18px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .btn-cancel,
+  .btn-update {
+    width: 100%;
+  }
+}

@@ -314,6 +314,24 @@
             color: white;
         }
 
+        /* Special styling for bed availability */
+        .bed-availability-static {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #E8F5E9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: #2E7D32;
+            font-size: 16px;
+        }
+
+        .bed-availability-static.low {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
         .no-results {
             text-align: center;
             padding: 60px 20px;
@@ -324,14 +342,6 @@
 
         .no-results p {
             color: #7f8c8d;
-            font-size: 1.2rem;
-        }
-
-        /* Loading state */
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
             font-size: 1.2rem;
         }
 
@@ -413,7 +423,7 @@
             <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
         </div>
 
-        <!-- Bed Statistics Banner (ADD THIS - Hidden by default, shown for Skilled Nursing) -->
+        <!-- Bed Statistics Banner (Hidden by default, shown for Skilled Nursing) -->
         <div id="bed-stats-banner" class="bed-stats-banner" style="display: none;">
             <!-- Stats will be populated by JavaScript -->
         </div>
@@ -422,23 +432,95 @@
         <div class="filter-section">
             <span class="filter-label">🏥 Filter by Type of Care:</span>
             <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterByCategory('All')">All Providers</button>
-                <button class="filter-btn" onclick="filterByCategory('Hospice')">🏥 Hospice</button>
-                <button class="filter-btn" onclick="filterByCategory('Palliative Care')">💙 Palliative Care</button>
-                <button class="filter-btn" onclick="filterByCategory('Skilled Nursing')">🏨 Skilled Nursing</button>
-                <button class="filter-btn" onclick="filterByCategory('Board and Care Facilities')">🏡 Board and Care</button>
-                <button class="filter-btn" onclick="filterByCategory('Memory Care')">🧠 Memory Care</button>
+                <button class="filter-btn active" onclick="filterProviders('all')">All Providers</button>
+                <button class="filter-btn" onclick="filterProviders('hospice')">🏥 Hospice</button>
+                <button class="filter-btn" onclick="filterProviders('palliative')">💙 Palliative Care</button>
+                <button class="filter-btn" onclick="filterProviders('skilled-nursing')">🏨 Skilled Nursing</button>
+                <button class="filter-btn" onclick="filterProviders('board-care')">🏡 Board and Care</button>
+                <button class="filter-btn" onclick="filterProviders('memory-care')">🧠 Memory Care</button>
             </div>
         </div>
 
         <div class="search-box">
-            <input type="text" id="search-input" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()">
+            <input type="text" id="searchInput" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()">
         </div>
 
-        <!-- Providers Container (MODIFIED - Dynamic loading from Firebase) -->
-        <div id="providers-container" class="providers-grid">
-            <!-- Provider cards will be dynamically loaded here from Firebase -->
-            <div class="loading">Loading providers from database...</div>
+        <!-- Providers Grid with Static Test Data -->
+        <div class="providers-grid" id="providersGrid">
+            
+            <!-- KEEPING YOUR EXISTING: All Peace Provider Card -->
+            <div class="provider-card" data-name="allpeace" data-location="Torrance, California" data-category="hospice">
+                <div class="provider-header">
+                    <div class="provider-logo">☘️</div>
+                    <h3>All Peace</h3>
+                    <div class="location">📍 Torrance, California</div>
+                </div>
+                <div class="provider-body">
+                    <span class="provider-type-badge">🏥 Hospice Care</span>
+                    <div class="provider-description">
+                        We bring peace, comfort, and dignity to every patient and their loved ones.
+                    </div>
+                    <div class="provider-info">
+                        <div class="info-item">
+                            <span class="info-icon">👤</span>
+                            <span><strong>Contact:</strong> main desk</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <span><strong>Email:</strong> <a href="mailto:info@allpeace.com" style="color: #00bcd4;">info@allpeace.com</a></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🌐</span>
+                            <span><strong>Website:</strong> <a href="https://allpeacecare.com" target="_blank" style="color: #00bcd4;">allpeacecare.com</a></span>
+                        </div>
+                    </div>
+                    <div class="provider-actions">
+                        <a href="reviews-allpeace.html" class="btn btn-reviews">📖 Read Reviews</a>
+                        <a href="quick-signup.html?provider=allpeace" class="btn btn-review">✍️ Leave a Review</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW TEST: Bay Area Skilled Nursing Center with Bed Availability -->
+            <div class="provider-card" data-name="bay-area-skilled" data-location="South Bay, California" data-category="skilled-nursing">
+                <div class="provider-header">
+                    <div class="provider-logo">🍀</div>
+                    <h3>Bay Area Skilled Nursing Center</h3>
+                    <div class="location">📍 South Bay plus 60 miles radius from facility</div>
+                </div>
+                <div class="provider-body">
+                    <span class="provider-type-badge">🏨 Skilled Nursing</span>
+                    <div class="provider-description">
+                        We provide comprehensive healthcare services tailored to meet your unique needs.
+                    </div>
+                    <div class="provider-info">
+                        <div class="info-item">
+                            <span class="info-icon">👤</span>
+                            <span><strong>Contact:</strong> administrator</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <span><strong>Email:</strong> <a href="mailto:info@bayareaskillednursingcare.com" style="color: #00bcd4;">info@bayareaskillednursingcare.com</a></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🌐</span>
+                            <span><strong>Website:</strong> coming.comsoon</span>
+                        </div>
+                    </div>
+                    <!-- BED AVAILABILITY DISPLAY -->
+                    <div class="bed-availability-static low">
+                        <span style="font-size: 20px; margin-right: 10px;">🛏️</span>
+                        <span>2 / 100 Beds Available</span>
+                    </div>
+                    <div class="provider-actions">
+                        <a href="#" class="btn btn-reviews">📖 Read Reviews</a>
+                        <a href="quick-signup.html?provider=bay-area-skilled" class="btn btn-review">✍️ Leave a Review</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional providers will be loaded from Firebase and added here -->
+            <!-- The Firebase providers will be appended after these static ones -->
         </div>
 
         <div id="noResults" class="no-results" style="display: none;">
@@ -461,7 +543,7 @@
         </div>
     </footer>
 
-    <!-- Firebase Configuration (IMPORTANT - Replace with your actual config) -->
+    <!-- Firebase Configuration (REPLACE with your actual config) -->
     <script>
         // REPLACE THESE VALUES WITH YOUR ACTUAL FIREBASE CONFIG
         const firebaseConfig = {
@@ -473,37 +555,120 @@
             appId: "YOUR-APP-ID-HERE"
         };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        
-        // Helper functions for Firestore to work with bed-availability.js
-        const collection = (db, path) => db.collection(path);
-        const doc = (db, path, id) => db.collection(path).doc(id);
-        const getDocs = (query) => query.get();
-        const getDoc = (docRef) => docRef.get();
-        const query = firebase.firestore.Query;
-        const where = firebase.firestore.FieldPath.documentId;
-        const onSnapshot = (query, callback) => query.onSnapshot(callback);
-        const updateDoc = (docRef, data) => docRef.update(data);
-        const serverTimestamp = () => firebase.firestore.FieldValue.serverTimestamp();
+        // Initialize Firebase (will only work when config is added)
+        try {
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            const db = firebase.firestore();
+            
+            // Helper functions for Firestore
+            const collection = (db, path) => db.collection(path);
+            const doc = (db, path, id) => db.collection(path).doc(id);
+            const getDocs = (query) => query.get();
+            const getDoc = (docRef) => docRef.get();
+            const query = firebase.firestore.Query;
+            const where = firebase.firestore.FieldPath.documentId;
+            const onSnapshot = (query, callback) => query.onSnapshot(callback);
+            const updateDoc = (docRef, data) => docRef.update(data);
+            const serverTimestamp = () => firebase.firestore.FieldValue.serverTimestamp();
+            
+            console.log('Firebase initialized - will load providers from database');
+        } catch(error) {
+            console.log('Firebase not configured yet - showing static test data only');
+        }
     </script>
 
-    <!-- Bed Availability JavaScript (ADD THIS) -->
-    <script src="bed-availability.js"></script>
-
-    <!-- Keep this fallback script for any static provider cards you want to keep -->
+    <!-- Keep existing filter/search functionality -->
     <script>
-        // If you want to keep your static "All Peace" card while Firebase loads,
-        // you can add it manually after Firebase loads, or keep it as a backup
-        
-        // This will be overridden by the bed-availability.js functions
-        // but kept here for reference
-        let currentFilter = 'All';
+        let currentFilter = 'all';
 
-        // The filterByCategory function is now in bed-availability.js
-        // The searchProviders function is now in bed-availability.js
+        function filterProviders(category) {
+            currentFilter = category;
+            
+            // Update active button
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Show/hide bed stats banner for Skilled Nursing
+            const statsBanner = document.getElementById('bed-stats-banner');
+            if (statsBanner) {
+                if (category === 'skilled-nursing') {
+                    statsBanner.style.display = 'grid';
+                    // Update stats (if using Firebase, this will be updated by bed-availability.js)
+                    updateStatsBanner();
+                } else {
+                    statsBanner.style.display = 'none';
+                }
+            }
+
+            // Filter cards
+            const cards = document.querySelectorAll('.provider-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        function searchProviders() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.provider-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const location = card.getAttribute('data-location').toLowerCase();
+                const cardCategory = card.getAttribute('data-category');
+
+                // Check if card matches both filter AND search
+                const matchesFilter = (currentFilter === 'all' || cardCategory === currentFilter);
+                const matchesSearch = (name.includes(searchTerm) || location.includes(searchTerm));
+
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Update stats banner with static data (will be overridden by Firebase when loaded)
+        function updateStatsBanner() {
+            const statsBanner = document.getElementById('bed-stats-banner');
+            if (statsBanner && currentFilter === 'skilled-nursing') {
+                statsBanner.innerHTML = `
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Beds Available</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Facilities</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100</span>
+                        <span class="stat-label">Total Beds</span>
+                    </div>
+                `;
+            }
+        }
     </script>
+
+    <!-- Bed Availability JavaScript (This will enhance the page when Firebase is connected) -->
+    <script src="bed-availability.js"></script>
 </body>
 </html>

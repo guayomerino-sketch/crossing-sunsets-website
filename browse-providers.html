@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse Care Providers - Crossing Sunsets™</title>
+    
+    <!-- Firebase Scripts (ADDED) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
     <!-- Google Translate -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -657,6 +663,124 @@
             // Show/hide no results message
             document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
         }
+    </script>
+
+    <!-- FIREBASE CONFIGURATION WITH YOUR ACTUAL KEYS -->
+    <script>
+        // Your Crossing Sunsets Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSy8410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+            authDomain: "crossing-sunsets.firebaseapp.com",
+            databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+            projectId: "crossing-sunsets",
+            storageBucket: "crossing-sunsets.firebasestorage.app",
+            messagingSenderId: "83761464492",
+            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        
+        console.log('Firebase connected successfully!');
+        
+        // Load providers from Firebase when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const providersGrid = document.getElementById('providersGrid');
+                if (providersGrid && db) {
+                    db.collection('providers').get().then((snapshot) => {
+                        console.log('Loading ' + snapshot.size + ' providers from Firebase...');
+                        snapshot.forEach((doc) => {
+                            const provider = doc.data();
+                            
+                            // Skip if provider already exists in static HTML
+                            const providerNameSlug = provider.name?.toLowerCase().replace(/\s+/g, '-');
+                            if (document.querySelector(`[data-name="${providerNameSlug}"]`)) {
+                                console.log('Skipping duplicate:', provider.name);
+                                return;
+                            }
+                            
+                            // Determine provider category
+                            let category = 'other';
+                            if (provider.serviceType?.includes('Hospice')) category = 'hospice';
+                            else if (provider.serviceType === 'Skilled Nursing') category = 'skilled-nursing';
+                            else if (provider.serviceType?.includes('Memory')) category = 'memory-care';
+                            else if (provider.serviceType?.includes('Board')) category = 'board-and-care-facilities';
+                            else if (provider.serviceType?.includes('Palliative')) category = 'palliative';
+                            
+                            // Create provider card HTML
+                            let providerHTML = `
+                                <div class="provider-card" data-name="${providerNameSlug}" 
+                                     data-location="${provider.location || ''}" 
+                                     data-category="${category}">
+                                    <div class="provider-header">
+                                        <div class="provider-logo">🍀</div>
+                                        <h3>${provider.name}</h3>
+                                        <div class="location">📍 ${provider.location || 'Location not specified'}</div>
+                                    </div>
+                                    <div class="provider-body">
+                                        <span class="provider-type-badge">${provider.serviceType || 'Care Provider'}</span>
+                                        <div class="provider-description">
+                                            ${provider.description || 'Quality care services for your loved ones.'}
+                                        </div>
+                                        <div class="provider-info">`;
+                            
+                            if (provider.contact) {
+                                providerHTML += `
+                                    <div class="info-item">
+                                        <span class="info-icon">👤</span>
+                                        <span><strong>Contact:</strong> ${provider.contact}</span>
+                                    </div>`;
+                            }
+                            
+                            if (provider.email) {
+                                providerHTML += `
+                                    <div class="info-item">
+                                        <span class="info-icon">📧</span>
+                                        <span><strong>Email:</strong> <a href="mailto:${provider.email}" style="color: #00bcd4;">${provider.email}</a></span>
+                                    </div>`;
+                            }
+                            
+                            if (provider.website) {
+                                providerHTML += `
+                                    <div class="info-item">
+                                        <span class="info-icon">🌐</span>
+                                        <span><strong>Website:</strong> ${provider.website}</span>
+                                    </div>`;
+                            }
+                            
+                            providerHTML += `</div>`;
+                            
+                            // Add bed availability for Skilled Nursing only
+                            if (provider.serviceType === 'Skilled Nursing' && provider.bedsAvailable !== undefined && provider.totalBeds) {
+                                const lowAvailability = provider.bedsAvailable < (provider.totalBeds * 0.1);
+                                providerHTML += `
+                                    <div class="bed-availability ${lowAvailability ? 'low' : ''}">
+                                        <span class="bed-icon">🛏️</span>
+                                        <span>${provider.bedsAvailable} / ${provider.totalBeds} Beds Available</span>
+                                    </div>`;
+                            }
+                            
+                            providerHTML += `
+                                        <div class="provider-actions">
+                                            <a href="#" class="btn btn-reviews">📖 Read Reviews</a>
+                                            <a href="quick-signup.html?provider=${providerNameSlug}" class="btn btn-review">✍️ Leave a Review</a>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            
+                            // Add to grid
+                            providersGrid.innerHTML += providerHTML;
+                            console.log('Added provider:', provider.name);
+                        });
+                    }).catch((error) => {
+                        console.error("Error loading providers from Firebase:", error);
+                    });
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>

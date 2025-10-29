@@ -281,12 +281,12 @@
 
         .btn-secondary {
             background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
+            color: #06b6d4;
+            border: 2px solid #06b6d4;
         }
 
         .btn-secondary:hover {
-            background: #667eea;
+            background: #06b6d4;
             color: white;
         }
 
@@ -388,21 +388,23 @@
     <script src="bed-availability.js"></script>
 
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-            authDomain: "crossing-sunsets.firebaseapp.com",
-            databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
-            projectId: "crossing-sunsets",
-            storageBucket: "crossing-sunsets.firebasestorage.app",
-            messagingSenderId: "83761464492",
-            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-            measurementId: "G-LG8VN0EZB7"
-        };
+        // Wait for Firebase to load
+        window.addEventListener('DOMContentLoaded', function() {
+            // Firebase Configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+                authDomain: "crossing-sunsets.firebaseapp.com",
+                databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+                projectId: "crossing-sunsets",
+                storageBucket: "crossing-sunsets.firebasestorage.app",
+                messagingSenderId: "83761464492",
+                appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+                measurementId: "G-LG8VN0EZB7"
+            };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
 
         let allProviders = [];
         let filteredProviders = [];
@@ -437,7 +439,7 @@
             
             // Filter providers
             filteredProviders = allProviders.filter(provider => {
-                const providerType = provider.serviceType || provider.providerType || provider.type || '';
+                const providerType = provider['service Type'] || provider.serviceType || provider.providerType || provider.type || '';
                 const matchesType = selectedTypes.some(selectedType => 
                     providerType.toLowerCase().includes(selectedType.toLowerCase()) ||
                     selectedType.toLowerCase().includes(providerType.toLowerCase())
@@ -478,12 +480,12 @@
             // Get provider name
             const providerName = provider.name || provider.businessName || 'Unknown Provider';
             
-            // Get provider type
-            const providerType = provider.serviceType || provider.providerType || provider.type || '';
+            // Get provider type (handle field name with space)
+            const providerType = provider['service Type'] || provider.serviceType || provider.providerType || provider.type || '';
             
             // Generate lotus rating
             const lotusCount = provider.rating || provider.lotus_rating || 0;
-            const lotusFlowers = '🪷'.repeat(lotusCount) + '🤍'.repeat(4 - lotusCount);
+            const lotusFlowers = '🌸'.repeat(lotusCount) + '🤍'.repeat(4 - lotusCount);
             
             // Rating details
             const ratingDetails = provider.ratingDetails || {
@@ -522,11 +524,14 @@
             
             // Bed availability (only for Skilled Nursing)
             let bedAvailabilityHTML = '';
-            const isSkillledNursing = providerType.toLowerCase().includes('skilled') && providerType.toLowerCase().includes('nursing');
-            const bedsAvail = provider.bedsAvailable || provider.availableBeds;
-            const bedsTotal = provider.totalBeds;
+            const providerTypeStr = (providerType || '').toLowerCase();
+            const isSkillledNursing = providerTypeStr.includes('skilled nursing') || 
+                                      providerTypeStr.includes('skilled-nursing') ||
+                                      (providerTypeStr.includes('skilled') && providerTypeStr.includes('nursing'));
+            const bedsAvail = provider.bedsAvailable || provider.availableBeds || 0;
+            const bedsTotal = provider.totalBeds || 0;
             
-            if (isSkillledNursing && typeof bedsAvail !== 'undefined' && typeof bedsTotal !== 'undefined') {
+            if (isSkillledNursing && bedsTotal > 0) {
                 const bedStatus = bedsAvail > 10 ? 'available' : (bedsAvail > 0 ? 'limited' : 'unavailable');
                 const statusText = bedsAvail > 10 ? 'Good Availability' : (bedsAvail > 0 ? 'Limited Availability' : 'No Beds Available');
                 
@@ -582,12 +587,14 @@
 
         // View provider details
         function viewProvider(providerId) {
-            window.location.href = `provider-details.html?id=${providerId}`;
+            alert('Provider details page coming soon! Provider ID: ' + providerId);
+            // window.location.href = `provider-details.html?id=${providerId}`;
         }
 
         // Write review
         function writeReview(providerId) {
-            window.location.href = `write-review.html?id=${providerId}`;
+            alert('Write review page coming soon! Provider ID: ' + providerId);
+            // window.location.href = `write-review.html?id=${providerId}`;
         }
 
         // Add event listeners to filter checkboxes

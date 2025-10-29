@@ -536,43 +536,7 @@
                 </div>
             </div>
 
-            <!-- Bay Area Skilled Nursing Center with Bed Availability -->
-            <div class="provider-card" data-name="bay-area-skilled" data-location="South Bay, California" data-category="skilled-nursing">
-                <div class="provider-header">
-                    <div class="provider-logo">🍀</div>
-                    <h3>Bay Area Skilled Nursing Center</h3>
-                    <div class="location">📍 South Bay plus 60 miles radius from facility</div>
-                </div>
-                <div class="provider-body">
-                    <span class="provider-type-badge">🏨 Skilled Nursing</span>
-                    <div class="provider-description">
-                        We provide comprehensive healthcare services tailored to meet your unique needs.
-                    </div>
-                    <div class="provider-info">
-                        <div class="info-item">
-                            <span class="info-icon">👤</span>
-                            <span><strong>Contact:</strong> administrator</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">📧</span>
-                            <span><strong>Email:</strong> <a href="mailto:info@bayareaskillednursingcare.com" style="color: #00bcd4;">info@bayareaskillednursingcare.com</a></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">🌐</span>
-                            <span><strong>Website:</strong> coming.comsoon</span>
-                        </div>
-                    </div>
-                    <!-- BED AVAILABILITY DISPLAY -->
-                    <div class="bed-availability low">
-                        <span class="bed-icon">🛏️</span>
-                        <span>2 / 100 Beds Available</span>
-                    </div>
-                    <div class="provider-actions">
-                        <a href="#" class="btn btn-reviews">📖 Read Reviews</a>
-                        <a href="quick-signup.html?provider=bay-area-skilled" class="btn btn-review">✍️ Leave a Review</a>
-                    </div>
-                </div>
-            </div>
+            <!-- Firestore providers will be added here dynamically -->
         </div>
 
         <div id="noResults" class="no-results" style="display: none;">
@@ -658,6 +622,138 @@
             document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
         }
     </script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+            authDomain: "crossing-sunsets.firebaseapp.com",
+            databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+            projectId: "crossing-sunsets",
+            storageBucket: "crossing-sunsets.firebasestorage.app",
+            messagingSenderId: "83761464492",
+            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+            measurementId: "G-LG8VN0EZB7"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Load providers from Firestore and add them to the grid
+        function loadFirestoreProviders() {
+            db.collection('providers').onSnapshot((snapshot) => {
+                snapshot.forEach((doc) => {
+                    const provider = doc.data();
+                    const providerId = doc.id;
+                    
+                    // Check if this provider card already exists (to avoid duplicates)
+                    if (document.querySelector(`[data-firebase-id="${providerId}"]`)) {
+                        return; // Skip if already exists
+                    }
+                    
+                    // Create provider card
+                    const card = createProviderCard(provider, providerId);
+                    document.getElementById('providersGrid').appendChild(card);
+                });
+            });
+        }
+
+        function createProviderCard(provider, providerId) {
+            const card = document.createElement('div');
+            card.className = 'provider-card';
+            card.setAttribute('data-firebase-id', providerId);
+            card.setAttribute('data-name', (provider.name || '').toLowerCase().replace(/\s+/g, '-'));
+            card.setAttribute('data-location', provider.location || '');
+            
+            // Determine category from service Type or providerType
+            const serviceType = (provider['service Type'] || provider.serviceType || '').toLowerCase();
+            let category = 'hospice';
+            if (serviceType.includes('skilled nursing')) category = 'skilled-nursing';
+            else if (serviceType.includes('memory')) category = 'memory-care';
+            else if (serviceType.includes('boarding') || serviceType.includes('board and care')) category = 'board-and-care-facilities';
+            
+            card.setAttribute('data-category', category);
+
+            // Bed availability HTML (only for Skilled Nursing)
+            let bedHTML = '';
+            if (category === 'skilled-nursing' && provider.bedsAvailable && provider.totalBeds) {
+                const isLow = provider.bedsAvailable < 10;
+                bedHTML = `
+                    <div class="bed-availability ${isLow ? 'low' : ''}">
+                        <span class="bed-icon">🛏️</span>
+                        <span>${provider.bedsAvailable} / ${provider.totalBeds} Beds Available</span>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="provider-header">
+                    <div class="provider-logo">${provider.logo || '🏥'}</div>
+                    <h3>${provider.name || 'Provider Name'}</h3>
+                    <div class="location">📍 ${provider.location || 'Location not specified'}</div>
+                </div>
+                <div class="provider-body">
+                    <span class="provider-type-badge">${getCategoryIcon(category)} ${getCategoryName(category)}</span>
+                    <div class="provider-description">
+                        ${provider.description || 'Quality care services for your loved ones.'}
+                    </div>
+                    <div class="provider-info">
+                        ${provider.contact ? `
+                        <div class="info-item">
+                            <span class="info-icon">👤</span>
+                            <span><strong>Contact:</strong> ${provider.contact}</span>
+                        </div>` : ''}
+                        ${provider.email ? `
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <span><strong>Email:</strong> <a href="mailto:${provider.email}" style="color: #00bcd4;">${provider.email}</a></span>
+                        </div>` : ''}
+                        ${provider.website ? `
+                        <div class="info-item">
+                            <span class="info-icon">🌐</span>
+                            <span><strong>Website:</strong> <a href="${provider.website}" target="_blank" style="color: #00bcd4;">${provider.website}</a></span>
+                        </div>` : ''}
+                    </div>
+                    ${bedHTML}
+                    <div class="provider-actions">
+                        <a href="#" class="btn btn-reviews">📖 Read Reviews</a>
+                        <a href="quick-signup.html?provider=${providerId}" class="btn btn-review">✍️ Leave a Review</a>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function getCategoryIcon(category) {
+            const icons = {
+                'hospice': '🏥',
+                'skilled-nursing': '🏨',
+                'memory-care': '🧠',
+                'board-and-care-facilities': '🏡',
+                'palliative': '💙'
+            };
+            return icons[category] || '🏥';
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'hospice': 'Hospice Care',
+                'skilled-nursing': 'Skilled Nursing',
+                'memory-care': 'Memory Care',
+                'board-and-care-facilities': 'Board and Care Facilities',
+                'palliative': 'Palliative Care'
+            };
+            return names[category] || 'Healthcare Provider';
+        }
+
+        // Load Firestore providers when page loads
+        window.addEventListener('DOMContentLoaded', loadFirestoreProviders);
+    </script>
 </body>
 </html>
-Hyper Icon

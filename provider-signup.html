@@ -1,336 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provider Signup - Crossing Sunsets™</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #00b4d8 0%, #48cae4 100%);
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .header {
-            background: white;
-            padding: 1.5rem 2rem;
-            border-radius: 10px 10px 0 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header h1 {
-            color: #00b4d8;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .header p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        .form-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .required {
-            color: #e63946;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="url"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        input[type="url"]:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #00b4d8;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            margin-top: 0.25rem;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .checkbox-group label {
-            font-weight: 400;
-            cursor: pointer;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 1rem;
-            color: #00b4d8;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .info-box {
-            background: #e7f6f8;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #00b4d8;
-        }
-
-        .info-box p {
-            margin: 0.5rem 0;
-            color: #555;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .form-container {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Provider Signup - Crossing Sunsets™</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;line-height:1.6;background:linear-gradient(135deg,#00b4d8 0%,#48cae4 100%);min-height:100vh;padding:2rem}
+    .container{max-width:800px;margin:0 auto}
+    .header{background:#fff;padding:1.5rem 2rem;border-radius:10px 10px 0 0;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    .header h1{color:#00b4d8;font-size:2rem;margin-bottom:.5rem}
+    .header p{color:#666;font-size:1.1rem}
+    .form-container{background:#fff;padding:2rem;border-radius:0 0 10px 10px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+    .form-group{margin-bottom:1.5rem}
+    label{display:block;margin-bottom:.5rem;color:#333;font-weight:600}
+    .required{color:#e63946}
+    input[type="text"],input[type="email"],input[type="tel"],input[type="url"],select,textarea{width:100%;padding:.75rem;border:2px solid #e0e0e0;border-radius:8px;font-size:1rem;font-family:inherit;transition:border-color .3s}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:#00b4d8}
+    textarea{resize:vertical;min-height:100px}
+    .checkbox-group{display:flex;align-items:flex-start;gap:.5rem}
+    .checkbox-group input{margin-top:.25rem;width:18px;height:18px;cursor:pointer}
+    .checkbox-group label{font-weight:400;cursor:pointer}
+    .submit-button{width:100%;padding:1rem 2rem;background:linear-gradient(135deg,#00b4d8 0%,#0096c7 100%);color:#fff;border:none;border-radius:10px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:transform .3s,box-shadow .3s}
+    .submit-button:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,180,216,.4)}
+    .back-link{display:inline-block;margin-top:1rem;color:#00b4d8;text-decoration:none;font-weight:600}
+    .back-link:hover{text-decoration:underline}
+    .info-box{background:#e7f6f8;padding:1rem;border-radius:8px;margin-bottom:2rem;border-left:4px solid #00b4d8}
+    .info-box p{margin:.5rem 0;color:#555}
+    .note{margin-top:1rem;font-size:.95rem}
+    .success{color:#2e7d32}
+    .error{color:#b00020}
+    @media(max-width:768px){body{padding:1rem}.header h1{font-size:1.5rem}.form-container{padding:1.5rem}}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🏥 Provider Signup Form</h1>
-            <p>Complete your profile to get started with Crossing Sunsets™</p>
-        </div>
-
-        <div class="form-container">
-            <div class="info-box">
-                <p><strong>📋 Next Steps:</strong></p>
-                <p>1. Fill out this form with your information</p>
-                <p>2. You'll be redirected to choose your subscription plan</p>
-                <p>3. Complete payment to activate your profile</p>
-            </div>
-
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-                <!-- Organization Info -->
-                <h3 style="color: #00b4d8; margin-bottom: 1rem;">Organization Information</h3>
-                
-                <div class="form-group">
-                    <label>Organization/Facility Name <span class="required">*</span></label>
-                    <input type="text" name="organization_name" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Type of Care <span class="required">*</span></label>
-                    <select name="care_type" required>
-                        <option value="">Select Type of Care</option>
-                        <option value="hospice">Hospice Care</option>
-                        <option value="palliative">Palliative Care</option>
-                        <option value="skilled-nursing">Skilled Nursing</option>
-                        <option value="assisted-living">Assisted Living</option>
-                        <option value="memory-care">Memory Care</option>
-                        <option value="home-health">Home Health Care</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <!-- Contact Info -->
-                <h3 style="color: #00b4d8; margin: 2rem 0 1rem;">Contact Information</h3>
-
-                <div class="form-group">
-                    <label>Primary Contact Name <span class="required">*</span></label>
-                    <input type="text" name="contact_name" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Email Address <span class="required">*</span></label>
-                    <input type="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Phone Number <span class="required">*</span></label>
-                    <input type="tel" name="phone" required>
-                </div>
-
-                <!-- Address -->
-                <h3 style="color: #00b4d8; margin: 2rem 0 1rem;">Address</h3>
-
-                <div class="form-group">
-                    <label>Street Address <span class="required">*</span></label>
-                    <input type="text" name="address" required>
-                </div>
-
-                <div class="form-group">
-                    <label>City <span class="required">*</span></label>
-                    <input type="text" name="city" required>
-                </div>
-
-                <div class="form-group">
-                    <label>State <span class="required">*</span></label>
-                    <select name="state" required>
-                        <option value="">Select State</option>
-                        <option value="AL">Alabama</option>
-                        <option value="AK">Alaska</option>
-                        <option value="AZ">Arizona</option>
-                        <option value="AR">Arkansas</option>
-                        <option value="CA">California</option>
-                        <option value="CO">Colorado</option>
-                        <option value="CT">Connecticut</option>
-                        <option value="DE">Delaware</option>
-                        <option value="FL">Florida</option>
-                        <option value="GA">Georgia</option>
-                        <option value="HI">Hawaii</option>
-                        <option value="ID">Idaho</option>
-                        <option value="IL">Illinois</option>
-                        <option value="IN">Indiana</option>
-                        <option value="IA">Iowa</option>
-                        <option value="KS">Kansas</option>
-                        <option value="KY">Kentucky</option>
-                        <option value="LA">Louisiana</option>
-                        <option value="ME">Maine</option>
-                        <option value="MD">Maryland</option>
-                        <option value="MA">Massachusetts</option>
-                        <option value="MI">Michigan</option>
-                        <option value="MN">Minnesota</option>
-                        <option value="MS">Mississippi</option>
-                        <option value="MO">Missouri</option>
-                        <option value="MT">Montana</option>
-                        <option value="NE">Nebraska</option>
-                        <option value="NV">Nevada</option>
-                        <option value="NH">New Hampshire</option>
-                        <option value="NJ">New Jersey</option>
-                        <option value="NM">New Mexico</option>
-                        <option value="NY">New York</option>
-                        <option value="NC">North Carolina</option>
-                        <option value="ND">North Dakota</option>
-                        <option value="OH">Ohio</option>
-                        <option value="OK">Oklahoma</option>
-                        <option value="OR">Oregon</option>
-                        <option value="PA">Pennsylvania</option>
-                        <option value="RI">Rhode Island</option>
-                        <option value="SC">South Carolina</option>
-                        <option value="SD">South Dakota</option>
-                        <option value="TN">Tennessee</option>
-                        <option value="TX">Texas</option>
-                        <option value="UT">Utah</option>
-                        <option value="VT">Vermont</option>
-                        <option value="VA">Virginia</option>
-                        <option value="WA">Washington</option>
-                        <option value="WV">West Virginia</option>
-                        <option value="WI">Wisconsin</option>
-                        <option value="WY">Wyoming</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>ZIP Code <span class="required">*</span></label>
-                    <input type="text" name="zip" required>
-                </div>
-
-                <!-- Additional Info -->
-                <h3 style="color: #00b4d8; margin: 2rem 0 1rem;">Additional Information</h3>
-
-                <div class="form-group">
-                    <label>Website (Optional)</label>
-                    <input type="url" name="website" placeholder="https://yourwebsite.com">
-                </div>
-
-                <div class="form-group">
-                    <label>Brief Description of Services <span class="required">*</span></label>
-                    <textarea name="description" required placeholder="Tell us about your organization and the services you provide..."></textarea>
-                </div>
-
-                <!-- Agreement -->
-                <div class="form-group">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">I agree to the <a href="privacy.html" target="_blank" style="color: #00b4d8;">Terms of Service</a> and <a href="privacy.html" target="_blank" style="color: #00b4d8;">Privacy Policy</a> <span class="required">*</span></label>
-                    </div>
-                </div>
-
-                <!-- Hidden field for redirect -->
-                <input type="hidden" name="_next" value="https://crossingsunsets.github.io/Crossing-Sunsets-App/choose-plan.html">
-
-                <button type="submit" class="submit-button">Continue to Select Plan →</button>
-            </form>
-
-            <a href="choose-plan.html" class="back-link">← Back to Plans</a>
-        </div>
+  <div class="container">
+    <div class="header">
+      <h1>🏥 Provider Signup Form</h1>
+      <p>Complete your profile to get started with Crossing Sunsets™</p>
     </div>
+
+    <div class="form-container">
+      <div class="info-box">
+        <p><strong>📋 Next Steps:</strong></p>
+        <p>1) Fill out this form • 2) You’ll choose a plan • 3) We approve your listing</p>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <form id="signupForm" novalidate>
+        <h3 style="color:#00b4d8;margin-bottom:1rem;">Organization Information</h3>
+        <div class="form-group">
+          <label>Organization/Facility Name <span class="required">*</span></label>
+          <input id="organization_name" type="text" required />
+        </div>
+
+        <div class="form-group">
+          <label>Type of Care <span class="required">*</span></label>
+          <select id="care_type" required>
+            <option value="">Select Type of Care</option>
+            <option value="hospice">Hospice Care</option>
+            <option value="palliative">Palliative Care</option>
+            <option value="skilled_nursing">Skilled Nursing</option>
+            <option value="assisted_living">Assisted Living</option>
+            <option value="memory_care">Memory Care</option>
+            <option value="home_health">Home Health Care</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <h3 style="color:#00b4d8;margin:2rem 0 1rem;">Contact Information</h3>
+        <div class="form-group">
+          <label>Primary Contact Name <span class="required">*</span></label>
+          <input id="contact_name" type="text" required />
+        </div>
+        <div class="form-group">
+          <label>Email Address <span class="required">*</span></label>
+          <input id="email" type="email" required />
+        </div>
+        <div class="form-group">
+          <label>Phone Number <span class="required">*</span></label>
+          <input id="phone" type="tel" required />
+        </div>
+
+        <h3 style="color:#00b4d8;margin:2rem 0 1rem;">Address</h3>
+        <div class="form-group">
+          <label>Street Address <span class="required">*</span></label>
+          <input id="address" type="text" required />
+        </div>
+        <div class="form-group">
+          <label>City <span class="required">*</span></label>
+          <input id="city" type="text" required />
+        </div>
+        <div class="form-group">
+          <label>State <span class="required">*</span></label>
+          <select id="state" required>
+            <option value="">Select State</option>
+            <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+            <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+            <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+            <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+            <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+            <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+            <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+            <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
+            <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+            <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+            <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+            <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+            <option>WI</option><option>WY</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ZIP Code <span class="required">*</span></label>
+          <input id="zip" type="text" required />
+        </div>
+
+        <h3 style="color:#00b4d8;margin:2rem 0 1rem;">Additional Information</h3>
+        <div class="form-group">
+          <label>Website (Optional)</label>
+          <input id="website" type="url" placeholder="https://yourwebsite.com" />
+        </div>
+        <div class="form-group">
+          <label>Brief Description of Services <span class="required">*</span></label>
+          <textarea id="description" required placeholder="Tell us about your organization and the services you provide..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input id="terms" type="checkbox" required />
+            <label for="terms">I agree to the
+              <a href="privacy.html" target="_blank" style="color:#00b4d8;">Terms of Service</a> and
+              <a href="privacy.html" target="_blank" style="color:#00b4d8;">Privacy Policy</a>
+              <span class="required">*</span></label>
+          </div>
+        </div>
+
+        <button class="submit-button" type="submit">Continue to Select Plan →</button>
+        <div id="note" class="note"></div>
+      </form>
+
+      <a href="choose-plan.html" class="back-link">← Back to Plans</a>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script>
+    // --- Firebase config (unchanged) ---
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    // Anonymous login so rules can allow controlled creates
+    firebase.auth().signInAnonymously().catch(()=>{});
+
+    // Helpers
+    const $ = (id)=>document.getElementById(id);
+    const slugify = (s)=> (s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,64);
+
+    // Map select values to the Firestore schema you're using
+    function normalizeProviderType(v){
+      switch(v){
+        case "skilled_nursing": return "skilled_nursing";
+        case "memory_care":     return "memory_care";
+        case "assisted_living": return "assisted_living";
+        case "home_health":     return "home_health";
+        case "palliative":      return "palliative";
+        case "hospice":         return "hospice";
+        default:                return "other";
+      }
+    }
+
+    $("signupForm").addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const note = $("note");
+      note.className = "note";
+      note.textContent = "";
+
+      // Basic client validation
+      const requiredOk = ["organization_name","care_type","contact_name","email","phone","address","city","state","zip","description","terms"]
+        .every(id => id==="terms" ? $(id).checked : $(id).value.trim().length>0);
+      if(!requiredOk){
+        note.classList.add("error");
+        note.textContent = "Please complete all required fields.";
+        return;
+      }
+
+      const businessName = $("organization_name").value.trim();
+      const providerType = normalizeProviderType($("care_type").value);
+      const city  = $("city").value.trim();
+      const state = $("state").value.trim();
+      const serviceArea = `${city}, ${state}`;
+
+      // Deterministic doc id to reduce duplicates
+      const docId = slugify(`${businessName}-${serviceArea}-${providerType}`);
+
+      const payload = {
+        businessName,
+        providerType,                 // e.g., "hospice", "skilled_nursing"
+        serviceArea,                  // e.g., "Torrance, CA"
+        contactName: $("contact_name").value.trim(),
+        email: $("email").value.trim(),
+        phone: $("phone").value.trim(),
+        address: $("address").value.trim(),
+        city, state, zip: $("zip").value.trim(),
+        website: $("website").value.trim(),
+        description: $("description").value.trim(),
+        status: "pending",            // you will flip to "approved"
+        createdAt: new Date().toISOString(),
+        createdBy: "public-form"
+      };
+
+      try{
+        const ref = db.collection("providers").doc(docId);
+        const snap = await ref.get();
+        if (snap.exists) {
+          // If the same org is re-submitting, gently merge new public fields (keep status)
+          await ref.set({
+            ...payload,
+            status: snap.data().status || "pending"
+          }, { merge: true });
+        } else {
+          await ref.set(payload, { merge: false });
+        }
+
+        note.classList.add("success");
+        note.textContent = "Thanks! Your profile was submitted. Redirecting…";
+
+        // Redirect to plans
+        setTimeout(()=>{ window.location.href = "choose-plan.html"; }, 900);
+      } catch(err){
+        note.classList.add("error");
+        note.textContent = "Could not submit right now. Please try again.";
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>

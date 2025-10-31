@@ -1,763 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Care Providers - Crossing Sunsets™</title>
-    <!-- Google Translate -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,zh-CN,fr,de,it,pt,ru,ja,ko,ar',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f7fa;
-        }
-
-        #google_translate_element {
-            position: fixed;
-            top: 70px;
-            right: 10px;
-            z-index: 9999;
-            background: white;
-            padding: 5px 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        nav {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-section img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-        }
-
-        .logo-section h1 {
-            color: white;
-            font-size: 24px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .page-header h2 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .page-header p {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-        }
-
-        /* Bed Stats Banner */
-        .bed-stats-banner {
-            display: none;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 15px;
-            border-right: 1px solid #E0E0E0;
-        }
-
-        .stat-item:last-child {
-            border-right: none;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 32px;
-            font-weight: 700;
-            color: #00ACC1;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            display: block;
-            font-size: 14px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Filter Buttons */
-        .filter-section {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .filter-label {
-            color: #2c3e50;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
-            font-size: 1.1rem;
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid #00bcd4;
-            background: white;
-            color: #00bcd4;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-
-        .filter-btn:hover {
-            background: #e0f7fa;
-        }
-
-        .filter-btn.active {
-            background: #00bcd4;
-            color: white;
-        }
-
-        .search-box {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #00bcd4;
-        }
-
-        .providers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .provider-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .provider-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .provider-header {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .provider-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: white;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .provider-header h3 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .provider-header .location {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
-        }
-
-        .provider-body {
-            padding: 25px;
-        }
-
-        .provider-type-badge {
-            display: inline-block;
-            background: #e0f7fa;
-            color: #00838f;
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .provider-info {
-            margin-bottom: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            color: #555;
-        }
-
-        .info-icon {
-            margin-right: 10px;
-            color: #00bcd4;
-        }
-
-        .provider-description {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            min-height: 60px;
-        }
-
-        /* Bed Availability Display */
-        .bed-availability {
-            margin: 15px 0;
-            padding: 12px 16px;
-            background: #E8F5E9;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-            color: #2E7D32;
-            font-size: 16px;
-        }
-
-        .bed-availability.low {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .bed-icon {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-
-        .provider-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-reviews {
-            background: #ff6b35;
-            color: white;
-        }
-
-        .btn-reviews:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-        }
-
-        .btn-review {
-            background: transparent;
-            color: #00bcd4;
-            border: 2px solid #00bcd4;
-        }
-
-        .btn-review:hover {
-            background: #00bcd4;
-            color: white;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .no-results p {
-            color: #7f8c8d;
-            font-size: 1.2rem;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        footer .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        footer a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #00bcd4;
-        }
-
-        footer .contact-info {
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        footer .contact-info a {
-            color: #00bcd4;
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .providers-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .page-header h2 {
-                font-size: 2rem;
-            }
-
-            .filter-buttons {
-                justify-content: center;
-            }
-
-            .bed-stats-banner {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-item {
-                border-right: none;
-                border-bottom: 1px solid #E0E0E0;
-            }
-
-            .stat-item:last-child {
-                border-bottom: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Care Providers - Crossing Sunsets™</title>
+
+  <!-- Google Translate -->
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,es,zh-CN,fr,de,it,pt,ru,ja,ko,ar',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6; color:#333; background:#f5f7fa;
+    }
+    #google_translate_element {
+      position: fixed; top: 70px; right: 10px; z-index: 9999;
+      background: #fff; padding: 5px 10px; border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    }
+
+    nav {
+      background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+      padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,.1);
+      position: sticky; top:0; z-index:1000;
+    }
+    nav .container { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .logo-section { display:flex; align-items:center; gap:15px; }
+    .logo-section img { width:50px; height:50px; border-radius:10px; }
+    .logo-section h1 { color:#fff; font-size:24px; }
+    nav ul { list-style:none; display:flex; gap:2rem; }
+    nav a { color:#fff; text-decoration:none; font-weight:500; transition:opacity .3s; }
+    nav a:hover { opacity:.8; }
+
+    .main-content { max-width:1200px; margin:40px auto; padding:0 20px; }
+    .page-header { text-align:center; margin-bottom:40px; }
+    .page-header h2 { color:#2c3e50; font-size:2.5rem; margin-bottom:10px; }
+    .page-header p { color:#7f8c8d; font-size:1.1rem; }
+
+    /* Banner SIEMPRE visible */
+    .bed-stats-banner {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap:20px; margin-bottom:30px; padding:20px; background:#fff;
+      border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+    .stat-item { text-align:center; padding:15px; border-right:1px solid #E0E0E0; }
+    .stat-item:last-child { border-right:none; }
+    .stat-number { display:block; font-size:32px; font-weight:700; color:#00ACC1; margin-bottom:5px; }
+    .stat-label { display:block; font-size:14px; color:#666; text-transform:uppercase; letter-spacing:.5px; }
+
+    .filter-section { background:#fff; padding:25px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,.1); margin-bottom:20px; }
+    .filter-label { color:#2c3e50; font-weight:600; margin-bottom:15px; display:block; font-size:1.1rem; }
+    .filter-buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .filter-btn {
+      padding:10px 20px; border:2px solid #00bcd4; background:#fff; color:#00bcd4;
+      border-radius:25px; cursor:pointer; font-weight:600; transition:all .3s; font-size:14px;
+    }
+    .filter-btn:hover { background:#e0f7fa; }
+    .filter-btn.active { background:#00bcd4; color:#fff; }
+
+    .search-box { background:#fff; padding:30px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,.1); margin-bottom:40px; }
+    .search-box input {
+      width:100%; padding:15px; border:2px solid #e0e0e0; border-radius:10px; font-size:16px; transition:border-color .3s;
+    }
+    .search-box input:focus { outline:none; border-color:#00bcd4; }
+
+    .providers-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap:30px; }
+    .provider-card { background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,.1); transition: transform .3s; }
+    .provider-card:hover { transform: translateY(-10px); }
+    .provider-header { background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%); padding:20px; text-align:center; }
+    .provider-logo { width:80px; height:80px; border-radius:50%; background:#fff; margin:0 auto 15px;
+      display:flex; align-items:center; justify-content:center; font-size:2.5rem; }
+    .provider-header h3 { color:#fff; font-size:1.5rem; margin-bottom:5px; }
+    .provider-header .location { color:rgba(255,255,255,.9); font-size:.9rem; }
+    .provider-body { padding:25px; }
+
+    .provider-type-badge { display:inline-block; background:#e0f7fa; color:#00838f; padding:5px 15px; border-radius:15px; font-size:.85rem; font-weight:600; margin-bottom:15px; }
+    .provider-description { color:#666; font-size:.95rem; line-height:1.6; margin-bottom:20px; min-height:60px; }
+
+    .bed-availability { margin:15px 0; padding:12px 16px; background:#E8F5E9; border-radius:8px; display:flex; align-items:center; font-weight:600; color:#2E7D32; font-size:16px; }
+    .bed-availability.low { background:#FFF3E0; color:#E65100; }
+    .bed-icon { margin-right:10px; font-size:20px; }
+
+    .provider-actions { display:flex; gap:10px; }
+    .btn { flex:1; padding:12px; border:none; border-radius:8px; font-weight:600; cursor:pointer; transition:all .3s; text-align:center; text-decoration:none; display:inline-block; }
+    .btn-reviews { background:#ff6b35; color:#fff; }
+    .btn-reviews:hover { background:#e55a2b; transform: translateY(-2px); }
+    .btn-review { background:transparent; color:#00bcd4; border:2px solid #00bcd4; }
+    .btn-review:hover { background:#00bcd4; color:#fff; }
+
+    .no-results { text-align:center; padding:60px 20px; background:#fff; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,.1); }
+    .no-results p { color:#7f8c8d; font-size:1.2rem; }
+
+    footer { background:#2c3e50; color:#fff; padding:40px 20px; text-align:center; margin-top:60px; }
+    footer .footer-links { display:flex; justify-content:center; gap:2rem; margin-bottom:20px; flex-wrap:wrap; }
+    footer a { color:#fff; text-decoration:none; transition:color .3s; }
+    footer a:hover { color:#00bcd4; }
+    footer .contact-info { margin-top:20px; font-size:.9rem; }
+    footer .contact-info a { color:#00bcd4; }
+
+    @media (max-width:768px) {
+      nav ul { flex-direction:column; gap:1rem; }
+      .providers-grid { grid-template-columns:1fr; }
+      .page-header h2 { font-size:2rem; }
+      .filter-buttons { justify-content:center; }
+      .bed-stats-banner { grid-template-columns:1fr; }
+      .stat-item { border-right:none; border-bottom:1px solid #E0E0E0; }
+      .stat-item:last-child { border-bottom:none; }
+    }
+  </style>
 </head>
 <body>
-    <div id="google_translate_element"></div>
-    
-    <nav>
-        <div class="container">
-            <div class="logo-section">
-                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
-                <h1>Crossing Sunsets™</h1>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="browse-providers.html">Browse Providers</a></li>
-                <li><a href="quick-signup.html">Leave a Review</a></li>
-            </ul>
-        </div>
-    </nav>
+  <div id="google_translate_element"></div>
 
-    <div class="main-content">
-        <div class="page-header">
-            <h2>Browse Care Providers</h2>
-            <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
-        </div>
+  <nav>
+    <div class="container">
+      <div class="logo-section">
+        <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo"/>
+        <h1>Crossing Sunsets™</h1>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse-providers.html">Browse Providers</a></li>
+        <li><a href="quick-signup.html">Leave a Review</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <!-- Bed Statistics Banner (Hidden by default, shown for Skilled Nursing) -->
-        <div id="bed-stats-banner" class="bed-stats-banner">
-            <div class="stat-item">
-                <span class="stat-number">2</span>
-                <span class="stat-label">Beds Available</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">1</span>
-                <span class="stat-label">Facilities</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">100</span>
-                <span class="stat-label">Total Beds</span>
-            </div>
-        </div>
-
-        <!-- Filter Buttons -->
-        <div class="filter-section">
-            <span class="filter-label">🏥 Filter by Type of Care:</span>
-            <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterProviders('all')">All Providers</button>
-                <button class="filter-btn" onclick="filterProviders('hospice')">🏥 Hospice</button>
-                <button class="filter-btn" onclick="filterProviders('palliative')">💙 Palliative Care</button>
-                <button class="filter-btn" onclick="filterProviders('skilled-nursing')">🏨 Skilled Nursing</button>
-                <button class="filter-btn" onclick="filterProviders('board-and-care-facilities')">🏡 Board and Care Facilities</button>
-                <button class="filter-btn" onclick="filterProviders('memory-care')">🧠 Memory Care</button>
-            </div>
-        </div>
-
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()">
-        </div>
-
-        <div class="providers-grid" id="providersGrid">
-            <!-- All Peace Provider Card -->
-            <div class="provider-card" data-name="allpeace" data-location="Torrance, California" data-category="hospice">
-                <div class="provider-header">
-                    <div class="provider-logo">☘️</div>
-                    <h3>All Peace</h3>
-                    <div class="location">📍 Torrance, California</div>
-                </div>
-                <div class="provider-body">
-                    <span class="provider-type-badge">🏥 Hospice Care</span>
-                    <div class="provider-description">
-                        We bring peace, comfort, and dignity to every patient and their loved ones.
-                    </div>
-                    <div class="provider-info">
-                        <div class="info-item">
-                            <span class="info-icon">👤</span>
-                            <span><strong>Contact:</strong> main desk</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">📧</span>
-                            <span><strong>Email:</strong> <a href="mailto:info@allpeace.com" style="color: #00bcd4;">info@allpeace.com</a></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">🌐</span>
-                            <span><strong>Website:</strong> <a href="https://allpeacecare.com" target="_blank" style="color: #00bcd4;">allpeacecare.com</a></span>
-                        </div>
-                    </div>
-                    <div class="provider-actions">
-                        <a href="reviews-allpeace.html" class="btn btn-reviews">📖 Read Reviews</a>
-                        <a href="quick-signup.html?provider=allpeace" class="btn btn-review">✍️ Leave a Review</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Firestore providers will be added here dynamically -->
-        </div>
-
-        <div id="noResults" class="no-results" style="display: none;">
-            <p>No providers found matching your search. Try a different search term or filter.</p>
-        </div>
+  <div class="main-content">
+    <div class="page-header">
+      <h2>Browse Care Providers</h2>
+      <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
     </div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="browse-providers.html">Browse Providers</a>
-            <a href="choose-plan.html">🔒 For Healthcare Providers</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="mailto:support@crossingsunsets.app">📧 Contact Us</a>
+    <!-- Banner SIEMPRE visible, números en vivo -->
+    <div id="bed-stats-banner" class="bed-stats-banner">
+      <div class="stat-item">
+        <span id="bedsAvailableTotal" class="stat-number">0</span>
+        <span class="stat-label">Beds Available</span>
+      </div>
+      <div class="stat-item">
+        <span id="facilitiesCount" class="stat-number">0</span>
+        <span class="stat-label">Facilities</span>
+      </div>
+      <div class="stat-item">
+        <span id="bedsTotal" class="stat-number">0</span>
+        <span class="stat-label">Total Beds</span>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-section">
+      <span class="filter-label">🏥 Filter by Type of Care:</span>
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterProviders('all', this)">All Providers</button>
+        <button class="filter-btn" onclick="filterProviders('hospice', this)">🏥 Hospice</button>
+        <button class="filter-btn" onclick="filterProviders('palliative', this)">💙 Palliative Care</button>
+        <button class="filter-btn" onclick="filterProviders('skilled-nursing', this)">🏨 Skilled Nursing</button>
+        <button class="filter-btn" onclick="filterProviders('board-and-care-facilities', this)">🏡 Board and Care Facilities</button>
+        <button class="filter-btn" onclick="filterProviders('memory-care', this)">🧠 Memory Care</button>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()"/>
+    </div>
+
+    <div class="providers-grid" id="providersGrid"><!-- Firestore cards go here --></div>
+
+    <div id="noResults" class="no-results" style="display:none;">
+      <p>No providers found matching your search. Try a different search term or filter.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="browse-providers.html">Browse Providers</a>
+      <a href="choose-plan.html">🔒 For Healthcare Providers</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:support@crossingsunsets.app">📧 Contact Us</a>
+    </div>
+    <p>&copy; 2025 Crossing Sunsets™. All rights reserved.</p>
+    <div class="contact-info">
+      💬 Support: <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> |
+      <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
+    </div>
+  </footer>
+
+  <script>
+    let currentFilter = 'all';
+
+    // Totales por categoría + 'all'
+    const totalsByCategory = {
+      all: { facilities: 0, available: 0, total: 0 },
+      'skilled-nursing': { facilities: 0, available: 0, total: 0 },
+      hospice: { facilities: 0, available: 0, total: 0 },
+      palliative: { facilities: 0, available: 0, total: 0 },
+      'board-and-care-facilities': { facilities: 0, available: 0, total: 0 },
+      'memory-care': { facilities: 0, available: 0, total: 0 }
+    };
+
+    function resetTotals() {
+      Object.keys(totalsByCategory).forEach(k => {
+        totalsByCategory[k] = { facilities: 0, available: 0, total: 0 };
+      });
+    }
+
+    function bumpTotals(cat, available, total) {
+      const av = Number(available || 0);
+      const tt = Number(total || 0);
+      // Contar instalaciones SIEMPRE; sumar camas sólo si hay número
+      totalsByCategory[cat].facilities += 1;
+      totalsByCategory.all.facilities += 1;
+
+      if (Number.isFinite(av)) {
+        totalsByCategory[cat].available += av;
+        totalsByCategory.all.available += av;
+      }
+      if (Number.isFinite(tt)) {
+        totalsByCategory[cat].total += tt;
+        totalsByCategory.all.total += tt;
+      }
+    }
+
+    function updateBannerFor(category) {
+      const t = totalsByCategory[category] || totalsByCategory.all;
+      document.getElementById('bedsAvailableTotal').textContent = t.available;
+      document.getElementById('facilitiesCount').textContent = t.facilities;
+      document.getElementById('bedsTotal').textContent = t.total;
+    }
+
+    function filterProviders(category, btnEl) {
+      currentFilter = category;
+
+      // activar botón
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+
+      // filtrar tarjetas
+      const cards = document.querySelectorAll('.provider-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('noResults').style.display = (visibleCount === 0) ? 'block' : 'none';
+
+      // actualizar banner según filtro activo
+      updateBannerFor(currentFilter);
+    }
+
+    function searchProviders() {
+      const searchTerm = (document.getElementById('searchInput').value || '').toLowerCase();
+      const cards = document.querySelectorAll('.provider-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const location = (card.getAttribute('data-location') || '').toLowerCase();
+        const cardCategory = card.getAttribute('data-category');
+
+        const matchesFilter = (currentFilter === 'all' || cardCategory === currentFilter);
+        const matchesSearch = (name.includes(searchTerm) || location.includes(searchTerm));
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('noResults').style.display = (visibleCount === 0) ? 'block' : 'none';
+    }
+  </script>
+
+  <!-- Firebase SDK (compat para uso directo en script) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Config Firebase (la que compartiste)
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+      measurementId: "G-LG8VN0EZB7"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function normalizeCategory(provider) {
+      const raw = (
+        provider['service Type'] ||
+        provider.serviceType ||
+        provider.careType ||
+        provider.providerType ||
+        ''
+      ).toLowerCase();
+
+      if (raw.includes('skilled')) return 'skilled-nursing';
+      if (raw.includes('memory')) return 'memory-care';
+      if (raw.includes('board')) return 'board-and-care-facilities';
+      if (raw.includes('palliative')) return 'palliative';
+      return 'hospice';
+    }
+
+    async function getBeds(providerId, providerData) {
+      // Preferimos subdoc: providers/{id}/beds/current
+      try {
+        const sub = await db.collection('providers').doc(providerId).collection('beds').doc('current').get();
+        if (sub.exists) {
+          const b = sub.data() || {};
+          return {
+            available: Number(b.available || 0),
+            occupied: Number(b.occupied || 0),
+            total: Number(b.total || 0),
+          };
+        }
+      } catch (e) { console.warn('beds/current read error', providerId, e); }
+
+      // Fallback a campos raíz si existen
+      return {
+        available: Number(providerData.available || 0),
+        occupied: Number(providerData.occupied || 0),
+        total: Number(providerData.total || 0),
+      };
+    }
+
+    function upsertBedChip(card, category, beds) {
+      const body = card.querySelector('.provider-body');
+      if (!body) return;
+
+      if (category !== 'skilled-nursing' || !beds || !Number.isFinite(beds.total)) {
+        const existing = card.querySelector('.bed-availability');
+        if (existing) existing.remove();
+        return;
+      }
+      const isLow = (Number(beds.available) || 0) < 10;
+      const html = `
+        <div class="bed-availability ${isLow ? 'low' : ''}">
+          <span class="bed-icon">🛏️</span>
+          <span>${Number(beds.available || 0)} / ${Number(beds.total || 0)} Beds Available</span>
         </div>
-        <p>&copy; 2025 Crossing Sunsets™. All rights reserved.</p>
-        <div class="contact-info">
-            💬 Support: <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a> | 
-            <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
+      `;
+      const existing = card.querySelector('.bed-availability');
+      if (existing) existing.outerHTML = html;
+      else body.insertAdjacentHTML('beforeend', html);
+    }
+
+    function getCategoryIcon(category) {
+      const icons = {
+        'hospice':'🏥','skilled-nursing':'🏨','memory-care':'🧠',
+        'board-and-care-facilities':'🏡','palliative':'💙'
+      };
+      return icons[category] || '🏥';
+    }
+
+    function getCategoryName(category) {
+      const names = {
+        'hospice':'Hospice Care','skilled-nursing':'Skilled Nursing','memory-care':'Memory Care',
+        'board-and-care-facilities':'Board and Care Facilities','palliative':'Palliative Care'
+      };
+      return names[category] || 'Healthcare Provider';
+    }
+
+    function createProviderCard(provider, providerId, category, beds) {
+      const card = document.createElement('div');
+      card.className = 'provider-card';
+      card.setAttribute('data-firebase-id', providerId);
+      card.setAttribute('data-name', (provider.name || '').toLowerCase().replace(/\s+/g, '-'));
+      card.setAttribute('data-location', provider.location || '');
+      card.setAttribute('data-category', category);
+
+      const desc = provider.description || 'Quality care services for your loved ones.';
+      const logo = provider.logo || '🏥';
+      const contact = provider.contact;
+      const email = provider.email;
+      const website = provider.website;
+
+      card.innerHTML = `
+        <div class="provider-header">
+          <div class="provider-logo">${logo}</div>
+          <h3>${provider.name || 'Provider Name'}</h3>
+          <div class="location">📍 ${provider.location || 'Location not specified'}</div>
         </div>
-    </footer>
+        <div class="provider-body">
+          <span class="provider-type-badge">${getCategoryIcon(category)} ${getCategoryName(category)}</span>
+          <div class="provider-description">${desc}</div>
+          <div class="provider-info">
+            ${contact ? `
+              <div class="info-item"><span class="info-icon">👤</span>
+              <span><strong>Contact:</strong> ${contact}</span></div>` : ''}
+            ${email ? `
+              <div class="info-item"><span class="info-icon">📧</span>
+              <span><strong>Email:</strong> <a href="mailto:${email}" style="color:#00bcd4;">${email}</a></span></div>` : ''}
+            ${website ? `
+              <div class="info-item"><span class="info-icon">🌐</span>
+              <span><strong>Website:</strong> <a href="${website}" target="_blank" style="color:#00bcd4;">${website}</a></span></div>` : ''}
+          </div>
+          <!-- bed chip inserted by JS -->
+          <div class="provider-actions">
+            <a href="#" class="btn btn-reviews">📖 Read Reviews</a>
+            <a href="quick-signup.html?provider=${providerId}" class="btn btn-review">✍️ Leave a Review</a>
+          </div>
+        </div>
+      `;
 
-    <script>
-        let currentFilter = 'all';
+      upsertBedChip(card, category, beds);
+      return card;
+    }
 
-        function filterProviders(category) {
-            currentFilter = category;
-            
-            // Update active button
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+    // Carga principal: tarjetas + totales por categoría
+    function loadFirestoreProviders() {
+      db.collection('providers').onSnapshot(async (snapshot) => {
+        resetTotals();
 
-            // Show/hide bed stats banner for Skilled Nursing
-            const statsBanner = document.getElementById('bed-stats-banner');
-            if (category === 'skilled-nursing') {
-                statsBanner.style.display = 'grid';
-            } else {
-                statsBanner.style.display = 'none';
-            }
+        const jobs = snapshot.docs.map(async (docSnap) => {
+          const provider = docSnap.data();
+          const providerId = docSnap.id;
+          const category = normalizeCategory(provider);
 
-            // Filter cards
-            const cards = document.querySelectorAll('.provider-card');
-            let visibleCount = 0;
+          const beds = await getBeds(providerId, provider);
 
-            cards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-                if (category === 'all' || cardCategory === category) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Show/hide no results message
-            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
-        }
-
-        function searchProviders() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.provider-card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                const location = card.getAttribute('data-location').toLowerCase();
-                const cardCategory = card.getAttribute('data-category');
-
-                // Check if card matches both filter AND search
-                const matchesFilter = (currentFilter === 'all' || cardCategory === currentFilter);
-                const matchesSearch = (name.includes(searchTerm) || location.includes(searchTerm));
-
-                if (matchesFilter && matchesSearch) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Show/hide no results message
-            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
-        }
-    </script>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-            authDomain: "crossing-sunsets.firebaseapp.com",
-            databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
-            projectId: "crossing-sunsets",
-            storageBucket: "crossing-sunsets.firebasestorage.app",
-            messagingSenderId: "83761464492",
-            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-            measurementId: "G-LG8VN0EZB7"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // Load providers from Firestore and add them to the grid
-        function loadFirestoreProviders() {
-            db.collection('providers').onSnapshot((snapshot) => {
-                snapshot.forEach((doc) => {
-                    const provider = doc.data();
-                    const providerId = doc.id;
-                    
-                    // Check if this provider card already exists (to avoid duplicates)
-                    if (document.querySelector(`[data-firebase-id="${providerId}"]`)) {
-                        return; // Skip if already exists
-                    }
-                    
-                    // Create provider card
-                    const card = createProviderCard(provider, providerId);
-                    document.getElementById('providersGrid').appendChild(card);
-                });
-            });
-        }
-
-        function createProviderCard(provider, providerId) {
-            const card = document.createElement('div');
-            card.className = 'provider-card';
-            card.setAttribute('data-firebase-id', providerId);
-            card.setAttribute('data-name', (provider.name || '').toLowerCase().replace(/\s+/g, '-'));
-            card.setAttribute('data-location', provider.location || '');
-            
-            // Determine category from service Type or providerType
-            const serviceType = (provider['service Type'] || provider.serviceType || '').toLowerCase();
-            let category = 'hospice';
-            if (serviceType.includes('skilled nursing')) category = 'skilled-nursing';
-            else if (serviceType.includes('memory')) category = 'memory-care';
-            else if (serviceType.includes('boarding') || serviceType.includes('board and care')) category = 'board-and-care-facilities';
-            
+          // upsert tarjeta
+          let card = document.querySelector(`[data-firebase-id="${providerId}"]`);
+          if (!card) {
+            card = createProviderCard(provider, providerId, category, beds);
+            document.getElementById('providersGrid').appendChild(card);
+          } else {
             card.setAttribute('data-category', category);
+            upsertBedChip(card, category, beds);
+          }
 
-            // Bed availability HTML (only for Skilled Nursing)
-            let bedHTML = '';
-            if (category === 'skilled-nursing' && provider.bedsAvailable && provider.totalBeds) {
-                const isLow = provider.bedsAvailable < 10;
-                bedHTML = `
-                    <div class="bed-availability ${isLow ? 'low' : ''}">
-                        <span class="bed-icon">🛏️</span>
-                        <span>${provider.bedsAvailable} / ${provider.totalBeds} Beds Available</span>
-                    </div>
-                `;
-            }
+          // sumar totales (instalaciones siempre + camas si hay números)
+          bumpTotals(category, beds.available, beds.total);
+        });
 
-            card.innerHTML = `
-                <div class="provider-header">
-                    <div class="provider-logo">${provider.logo || '🏥'}</div>
-                    <h3>${provider.name || 'Provider Name'}</h3>
-                    <div class="location">📍 ${provider.location || 'Location not specified'}</div>
-                </div>
-                <div class="provider-body">
-                    <span class="provider-type-badge">${getCategoryIcon(category)} ${getCategoryName(category)}</span>
-                    <div class="provider-description">
-                        ${provider.description || 'Quality care services for your loved ones.'}
-                    </div>
-                    <div class="provider-info">
-                        ${provider.contact ? `
-                        <div class="info-item">
-                            <span class="info-icon">👤</span>
-                            <span><strong>Contact:</strong> ${provider.contact}</span>
-                        </div>` : ''}
-                        ${provider.email ? `
-                        <div class="info-item">
-                            <span class="info-icon">📧</span>
-                            <span><strong>Email:</strong> <a href="mailto:${provider.email}" style="color: #00bcd4;">${provider.email}</a></span>
-                        </div>` : ''}
-                        ${provider.website ? `
-                        <div class="info-item">
-                            <span class="info-icon">🌐</span>
-                            <span><strong>Website:</strong> <a href="${provider.website}" target="_blank" style="color: #00bcd4;">${provider.website}</a></span>
-                        </div>` : ''}
-                    </div>
-                    ${bedHTML}
-                    <div class="provider-actions">
-                        <a href="#" class="btn btn-reviews">📖 Read Reviews</a>
-                        <a href="quick-signup.html?provider=${providerId}" class="btn btn-review">✍️ Leave a Review</a>
-                    </div>
-                </div>
-            `;
-            
-            return card;
-        }
+        await Promise.all(jobs);
 
-        function getCategoryIcon(category) {
-            const icons = {
-                'hospice': '🏥',
-                'skilled-nursing': '🏨',
-                'memory-care': '🧠',
-                'board-and-care-facilities': '🏡',
-                'palliative': '💙'
-            };
-            return icons[category] || '🏥';
-        }
+        // refrescar banner según el filtro activo
+        updateBannerFor(currentFilter);
 
-        function getCategoryName(category) {
-            const names = {
-                'hospice': 'Hospice Care',
-                'skilled-nursing': 'Skilled Nursing',
-                'memory-care': 'Memory Care',
-                'board-and-care-facilities': 'Board and Care Facilities',
-                'palliative': 'Palliative Care'
-            };
-            return names[category] || 'Healthcare Provider';
-        }
+        // actualizar mensaje de sin resultados (por si al inicio no hay cards visibles con el filtro actual)
+        searchProviders();
+      });
+    }
 
-        // Load Firestore providers when page loads
-        window.addEventListener('DOMContentLoaded', loadFirestoreProviders);
-    </script>
+    window.addEventListener('DOMContentLoaded', loadFirestoreProviders);
+  </script>
 </body>
 </html>
-
-
-
-

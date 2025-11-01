@@ -261,17 +261,11 @@
       return 'hospice';
     }
 
-    // Icon logic: shamrock ONLY for AllPeace Care Hospice, otherwise default per category
+    // Shamrock ONLY for AllPeace Care Hospice, dove for other hospices
+    function providerIsAllPeace(name=''){ return /\ballpeace care hospice\b/i.test(name); }
     function getCategoryIcon(category, providerName='') {
-      const nameLower = (providerName || '').toLowerCase();
-      if (/\ballpeace care hospice\b/i.test(providerName || '')) return '☘️'; // special case
-      const map = {
-        'hospice':'🕊️', // default hospice icon (non-shamrock)
-        'skilled-nursing':'🏨',
-        'memory-care':'🧠',
-        'board-and-care-facilities':'🏡',
-        'palliative':'💙'
-      };
+      if (providerIsAllPeace(providerName)) return '☘️';
+      const map = { 'hospice':'🕊️','skilled-nursing':'🏨','memory-care':'🧠','board-and-care-facilities':'🏡','palliative':'💙' };
       return map[category] || '🏥';
     }
 
@@ -279,14 +273,10 @@
     function safeWebsite(u){ if(!u) return ''; return isUrlLikely(u)? u : `https://${u}`; }
 
     function computeLogoMarkup(p, category) {
-      const name = p.name || '';
-      // Show stored logo if present
-      if (p.logo && typeof p.logo === 'string' && /^https?:\/\//i.test(p.logo)) {
-        return `<img src="${p.logo}" alt="${name} logo" style="width:64px;height:64px;border-radius:50%;object-fit:cover;" />`;
-        }
-      // Otherwise emoji (with special-case shamrock for AllPeace Care Hospice)
-      const icon = getCategoryIcon(category, name);
-      return `<span aria-label="logo" role="img">${icon}</span>`;
+      if (p.logo && /^https?:\/\//i.test(p.logo)) {
+        return `<img src="${p.logo}" alt="${p.name||'logo'}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;" />`;
+      }
+      return `<span aria-label="logo" role="img">${getCategoryIcon(category, p.name)}</span>`;
     }
 
     // SNF beds chip (only shows for skilled-nursing)
@@ -311,68 +301,9 @@
     }
 
     function getBedsFromFields(p){
-      // Using top-level numeric fields if present (you said SNF is working now—leave as-is)
       const a = Number(p.available); const o = Number(p.occupied); const t = Number(p.total);
       const any = [a,o,t].some(n=>Number.isFinite(n));
       return any ? {available:a||0, occupied:o||0, total:t||0} : null;
-    }
-
-    function createProviderCard(provider, providerId, category, beds) {
-      const card = document.createElement('div');
-      card.className = 'provider-card';
-      card.setAttribute('data-firebase-id', providerId);
-      card.setAttribute('data-name', (provider.name || '').toLowerCase());
-      card.setAttribute('data-location', provider.location || '');
-      card.setAttribute('data-category', category);
-
-      const name = provider.name || 'Provider Name';
-      const desc = provider.description || 'Quality care services for your loved ones.';
-      const logoMarkup = computeLogoMarkup(provider, category);
-
-      const contact = provider.contact || provider.contactName || '';
-      const email = provider.email || '';
-      const websiteRaw = provider.website || '';
-      const website = safeWebsite(websiteRaw);
-
-      const emailHtml = email
-        ? `<div class="info-item"><span class="info-icon">📧</span>
-             <span><strong>Email:</strong> <a href="mailto:${email}" style="color:#00bcd4;">${email}</a></span>
-           </div>` : '';
-
-      const siteHtml = websiteRaw
-        ? `<div class="info-item"><span class="info-icon">🌐</span>
-             <span><strong>Website:</strong> <a href="${website}" target="_blank" rel="noopener" style="color:#00bcd4;">${websiteRaw.replace(/^https?:\/\//,'')}</a></span>
-           </div>` : '';
-
-      const contactHtml = contact
-        ? `<div class="info-item"><span class="info-icon">👤</span>
-             <span><strong>Contact:</strong> ${contact}</span>
-           </div>` : '';
-
-      card.innerHTML = `
-        <div class="provider-header">
-          <div class="provider-logo">${logoMarkup}</div>
-          <h3>${name}</h3>
-          <div class="location">📍 ${provider.location || 'Location not specified'}</div>
-        </div>
-        <div class="provider-body">
-          <span class="provider-type-badge">${getCategoryIcon(category, name)} ${getCategoryName(category)}</span>
-          <div class="provider-description">${desc}</div>
-          <div class="provider-info">
-            ${contactHtml}
-            ${emailHtml}
-            ${siteHtml}
-          </div>
-
-          <div class="provider-actions">
-            <a href="#" class="btn btn-reviews">📖 Read Reviews</a>
-            <a href="quick-signup.html?provider=${encodeURIComponent(providerId)}" class="btn btn-review">✍️ Leave a Review</a>
-          </div>
-        </div>
-      `;
-
-      upsertBedChip(card, category, beds);
-      return card;
     }
 
     function getCategoryName(category) {
@@ -386,6 +317,50 @@
       return names[category] || 'Healthcare Provider';
     }
 
+    function createProviderCard(provider, providerId, category, beds) {
+      const card = document.createElement('div');
+      card.className = 'provider-card';
+      card.setAttribute('data-firebase-id', providerId);
+      card.setAttribute('data-name', (provider.name || '').toLowerCase());
+      card.setAttribute('data-location', provider.location || '');
+      card.setAttribute('data-category', category);
+
+      const logoMarkup = computeLogoMarkup(provider, category);
+      const website = safeWebsite(provider.website || '');
+
+      card.innerHTML = `
+        <div class="provider-header">
+          <div class="provider-logo">${logoMarkup}</div>
+          <h3>${provider.name || 'Provider Name'}</h3>
+          <div class="location">📍 ${provider.location || 'Location not specified'}</div>
+        </div>
+        <div class="provider-body">
+          <span class="provider-type-badge">${getCategoryIcon(category, provider.name)} ${getCategoryName(category)}</span>
+          <div class="provider-description">${provider.description || 'Quality care services for your loved ones.'}</div>
+
+          <div class="provider-info">
+            ${provider.contact ? `<div>👤 <strong>Contact:</strong> ${provider.contact}</div>`:''}
+            ${provider.email ? `<div>📧 <strong>Email:</strong> <a href="mailto:${provider.email}" style="color:#00bcd4;">${provider.email}</a></div>`:''}
+            ${(provider.website||'') ? `<div>🌐 <strong>Website:</strong> <a href="${website}" target="_blank" rel="noopener" style="color:#00bcd4;">${(provider.website||'').replace(/^https?:\/\//,'')}</a></div>`:''}
+          </div>
+
+          <div class="provider-actions" style="margin-top:12px;display:flex;gap:10px;">
+            <a
+              href="${providerIsAllPeace(provider.name) ? 'reviews-allpeace.html' : `reviews.html?providerId=${encodeURIComponent(providerId)}&name=${encodeURIComponent(provider.name||'')}`}"
+              class="btn btn-reviews"
+            >📖 Read Reviews</a>
+
+            <a href="quick-signup.html?provider=${encodeURIComponent(providerId)}" class="btn btn-review">
+              ✍️ Leave a Review
+            </a>
+          </div>
+        </div>
+      `;
+
+      upsertBedChip(card, category, beds);
+      return card;
+    }
+
     // Main loader (live sync)
     function loadFirestoreProviders() {
       db.collection('providers')
@@ -394,6 +369,7 @@
           resetTotals();
 
           const container = document.getElementById('providersGrid');
+
           // remove cards for docs that no longer exist
           const existingIds = new Set(snapshot.docs.map(d=>d.id));
           document.querySelectorAll('.provider-card').forEach(c=>{
@@ -405,7 +381,6 @@
             const raw = docSnap.data() || {};
             const providerId = docSnap.id;
 
-            // Normalize into fields the UI expects
             const provider = {
               name: raw.businessName || raw.name || '',
               location: raw.serviceArea || raw.location || '',

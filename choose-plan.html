@@ -157,24 +157,7 @@
     </div>
   </div>
 
-  <!-- Simple modal -->
-  <div id="cs-subs-modal" role="dialog" aria-modal="true" aria-labelledby="cs-subs-title"
-       style="position:fixed;inset:0;display:none;z-index:9999;">
-    <div id="cs-subs-backdrop" style="position:absolute;inset:0;background:rgba(0,0,0,.45);"></div>
-    <div style="position:relative;max-width:560px;margin:8vh auto;background:#fff;border-radius:14px;
-                box-shadow:0 10px 30px rgba(0,0,0,.25);padding:22px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-        <h3 id="cs-subs-title" style="margin:0;font-size:20px;color:#084c61;">View the Best Value Plans</h3>
-        <button id="cs-subs-close" class="cs-btn" style="background:transparent;color:#666;font-size:20px;line-height:1">✕</button>
-      </div>
-      <p style="margin:12px 0 16px;color:#333;font-size:15px;">
-        The best pricing options are available here on the website.
-      </p>
-      <div style="text-align:center;">
-        <a id="cs-link-web" class="cs-btn" style="background:#0b6a7f;color:#fff" href="#plansGrid">View Website Plans</a>
-      </div>
-    </div>
-  </div>
+  
 
   <script>
     function showPlans(){
@@ -185,22 +168,7 @@
     }
     function goHome(){window.location.href='index.html';}
 
-    // modal logic
-    (function(){
-      const openBtn=document.getElementById('cs-best-value-btn');
-      const modal=document.getElementById('cs-subs-modal');
-      const closeBtn=document.getElementById('cs-subs-close');
-      const backdrop=document.getElementById('cs-subs-backdrop');
-      function open(){modal.style.display='block';document.body.style.overflow='hidden';}
-      function close(){modal.style.display='none';document.body.style.overflow='';}
-      openBtn&&openBtn.addEventListener('click',open);
-      [closeBtn,backdrop].forEach(el=>el&&el.addEventListener('click',close));
-      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.style.display==='block')close();});
-      document.getElementById('cs-link-web').addEventListener('click',function(e){
-        e.preventDefault();if(!document.getElementById('plansGrid').classList.contains('active'))showPlans();
-        document.getElementById('plansGrid').scrollIntoView({behavior:'smooth',block:'start'});close();
-      });
-    })();
+   
   </script>
 </body>
 </html>

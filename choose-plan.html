@@ -1,136 +1,177 @@
-<!-- Header -->
-<div class="header">
-  <h1>🏥 Provider Subscription Plans</h1>
-  <p>Choose the perfect plan for your organization</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choose Your Plan - Crossing Sunsets™</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+      line-height:1.6;
+      background:linear-gradient(135deg,#00b4d8 0%,#48cae4 100%);
+      min-height:100vh;
+      padding:2rem;
+    }
+    .container{max-width:1200px;margin:0 auto}
+    .header{
+      background:#fff;padding:2rem;border-radius:10px;text-align:center;margin-bottom:2rem;
+      box-shadow:0 4px 20px rgba(0,0,0,.1);
+    }
+    .header h1{color:#00b4d8;font-size:2.5rem;margin-bottom:1rem}
+    .header p{color:#666;font-size:1.2rem}
 
-  <!-- Best Value Button + Disclosure -->
-  <div style="text-align:center;margin:12px 0 0">
-    <button id="cs-best-value-btn" class="cs-btn cs-animated-btn" aria-label="View best-value website plans">
-      💎 Best Value on Web — See Plans
-    </button>
-    <p style="font-size:13px;color:#0b4f61;margin-top:6px;line-height:1.35;">
-      See six-month plans in the apps for shorter subscription options.
-    </p>
-  </div>
-</div>
+    /* Gate */
+    .gate-container{
+      background:#fff;padding:3rem 2rem;border-radius:10px;text-align:center;
+      box-shadow:0 4px 20px rgba(0,0,0,.1);margin-bottom:2rem;
+    }
+    .gate-container h2{color:#333;font-size:2rem;margin-bottom:2rem}
+    .gate-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .gate-button{
+      padding:1rem 2rem;font-size:1.1rem;font-weight:600;border:none;border-radius:10px;cursor:pointer;transition:.3s
+    }
+    .gate-yes{background:linear-gradient(135deg,#00b4d8 0%,#0096c7 100%);color:#fff}
+    .gate-yes:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,180,216,.4)}
+    .gate-no{background:#e0e0e0;color:#666}
+    .gate-no:hover{background:#d0d0d0}
 
-<!-- Standard Yearly -->
-<div class="plan-card">
-  <div class="plan-header">
-    <span class="popular-badge">💰 Save $489/year</span>
-    <div class="plan-name">🏥 Standard</div>
-    <div class="plan-price">
-      $1,309
-      <span class="plan-price-period">per year</span>
+    /* Plans */
+    .plans-grid{display:none;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:2rem}
+    .plans-grid.active{display:grid}
+    .plan-card{
+      background:#fff;padding:2rem;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.1);transition:.3s
+    }
+    .plan-card:hover{transform:translateY(-5px)}
+    .plan-header{text-align:center;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:2px solid #f0f0f0}
+    .plan-name{font-size:1.5rem;font-weight:700;color:#333;margin-bottom:.5rem}
+    .plan-price{font-size:2rem;color:#00b4d8;font-weight:700}
+    .plan-price-period{font-size:.9rem;color:#666;display:block;margin-top:.25rem}
+    .plan-features{list-style:none;margin:1.5rem 0}
+    .plan-features li{padding:.5rem 0;color:#555;display:flex;align-items:flex-start;gap:.5rem}
+    .feature-icon{color:#00b4d8;font-weight:700;flex-shrink:0}
+    .select-plan-button{
+      width:100%;padding:1rem;background:linear-gradient(135deg,#00b4d8 0%,#0096c7 100%);
+      color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:.3s
+    }
+    .select-plan-button:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,180,216,.4)}
+    .popular-badge{
+      background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);color:#fff;padding:.25rem 1rem;border-radius:20px;
+      font-size:.8rem;font-weight:600;display:inline-block;margin-bottom:1rem
+    }
+
+    /* Signup CTA */
+    .signup-link{display:none;text-align:center;margin:2rem 0;padding:1.5rem;background:#fff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+    .signup-link.active{display:block}
+    .signup-link a{color:#00b4d8;text-decoration:none;font-size:1.1rem;font-weight:600}
+    .signup-link a:hover{text-decoration:underline}
+
+    /* Best Value button style (simple) */
+    .cs-btn{cursor:pointer;border:none;border-radius:14px;padding:14px 18px;font-weight:700;font-size:16px;letter-spacing:.2px}
+    .cs-animated-btn{
+      color:#fff;background:linear-gradient(135deg,#0bb1d3 0%,#0b6a7f 50%,#f6b73c 100%);
+      box-shadow:0 10px 20px rgba(11,177,211,.25);transition:transform .15s ease, box-shadow .2s ease
+    }
+    .cs-animated-btn:hover{transform:translateY(-1px);box-shadow:0 14px 24px rgba(11,177,211,.3)}
+
+    @media (max-width:768px){
+      .plans-grid{grid-template-columns:1fr}
+      .header h1{font-size:2rem}
+      .gate-container h2{font-size:1.5rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🏥 Provider Subscription Plans</h1>
+      <p>Choose the perfect plan for your organization</p>
+
+      <!-- Best Value button + disclosure -->
+      <div style="text-align:center;margin:12px 0 0">
+        <button id="cs-best-value-btn" class="cs-btn cs-animated-btn" aria-label="View best-value website plans">
+          💎 Best Value on Web — See Plans
+        </button>
+        <p style="font-size:13px;color:#0b4f61;margin-top:6px;line-height:1.35;">
+          See six-month plans in the apps for shorter subscription options.
+        </p>
+      </div>
     </div>
-  </div>
-  <ul class="plan-features">
-    <li><span class="feature-icon">✓</span> Professional profile listing</li>
-    <li><span class="feature-icon">✓</span> Lotus Rating™ display</li>
-    <li><span class="feature-icon">✓</span> Contact information visible</li>
-    <li><span class="feature-icon">✓</span> Review response capability</li>
-    <li><span class="feature-icon">✓</span> Basic analytics dashboard</li>
-    <li><span class="feature-icon">✓</span> Priority email support</li>
-  </ul>
-  <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQ" target="_blank" style="text-decoration:none;">
-    <button class="select-plan-button">Select Standard (12 months) →</button>
-  </a>
-</div>
 
-<!-- Premium Yearly -->
-<div class="plan-card">
-  <div class="plan-header">
-    <span class="popular-badge">⭐ Most Popular – Save $759/year</span>
-    <div class="plan-name">⭐ Premium</div>
-    <div class="plan-price">
-      $1,639
-      <span class="plan-price-period">per year</span>
-    </div>
-  </div>
-  <ul class="plan-features">
-    <li><span class="feature-icon">✓</span> Everything in Standard</li>
-    <li><span class="feature-icon">✓</span> <strong>Enhanced profile</strong> with photos & videos</li>
-    <li><span class="feature-icon">✓</span> <strong>Top placement</strong> in search results</li>
-    <li><span class="feature-icon">✓</span> Featured provider badge</li>
-    <li><span class="feature-icon">✓</span> Real-time Lotus Rating™ analytics</li>
-    <li><span class="feature-icon">✓</span> Promotional email inclusion</li>
-    <li><span class="feature-icon">✓</span> Priority email & phone support</li>
-  </ul>
-  <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OY" target="_blank" style="text-decoration:none;">
-    <button class="select-plan-button">Select Premium (12 months) →</button>
-  </a>
-</div>
-
-
-      </button>
-    </div>
-
-    <!-- Gate -->
+    <!-- Gate Question -->
     <div id="gateQuestion" class="gate-container">
       <h2>Are you a healthcare provider looking to join Crossing Sunsets™?</h2>
       <div class="gate-buttons">
         <button class="gate-button gate-yes" onclick="showPlans()">✅ Yes, I'm a Provider</button>
         <button class="gate-button gate-no" onclick="goHome()">❌ No, Take Me Home</button>
       </div>
+
       <ul class="plan-features">
-        <li><span class="feature-icon">✓</span> Professional profile listing</li>
-        <li><span class="feature-icon">✓</span> Lotus Rating™ display</li>
-        <li><span class="feature-icon">✓</span> Contact information visible</li>
-        <li><span class="feature-icon">✓</span> Review response capability</li>
-        <li><span class="feature-icon">✓</span> Basic analytics dashboard</li>
-        <li><span class="feature-icon">✓</span> Priority email support</li>
+        <li><span class="feature-icon">✓</span> <span>Professional profile listing</span></li>
+        <li><span class="feature-icon">✓</span> <span>Lotus Rating™ display</span></li>
+        <li><span class="feature-icon">✓</span> <span>Contact information visible</span></li>
+        <li><span class="feature-icon">✓</span> <span>Review response capability</span></li>
+        <li><span class="feature-icon">✓</span> <span>Basic analytics dashboard</span></li>
+        <li><span class="feature-icon">✓</span> <span>Priority email support</span></li>
       </ul>
     </div>
 
-    <!-- Plans -->
+    <!-- Plans Grid (hidden until "Yes") -->
     <div id="plansGrid" class="plans-grid">
+      <!-- Standard Yearly -->
       <div class="plan-card">
         <div class="plan-header">
           <span class="popular-badge">💰 Save $489/year</span>
           <div class="plan-name">🏥 Standard</div>
-          <div class="plan-price">$1,309<span class="plan-price-period">per year</span></div>
+          <div class="plan-price">
+            $1,309
+            <span class="plan-price-period">per year</span>
+          </div>
         </div>
         <ul class="plan-features">
-          <li><span class="feature-icon">✓</span> Professional profile listing</li>
-          <li><span class="feature-icon">✓</span> Lotus Rating™ display</li>
-          <li><span class="feature-icon">✓</span> Contact information visible</li>
-          <li><span class="feature-icon">✓</span> Review response capability</li>
-          <li><span class="feature-icon">✓</span> Basic analytics dashboard</li>
-          <li><span class="feature-icon">✓</span> Priority email support</li>
+          <li><span class="feature-icon">✓</span> <span>Professional profile listing</span></li>
+          <li><span class="feature-icon">✓</span> <span>Lotus Rating™ display</span></li>
+          <li><span class="feature-icon">✓</span> <span>Contact information visible</span></li>
+          <li><span class="feature-icon">✓</span> <span>Review response capability</span></li>
+          <li><span class="feature-icon">✓</span> <span>Basic analytics dashboard</span></li>
+          <li><span class="feature-icon">✓</span> <span>Priority email support</span></li>
         </ul>
-        <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQ" target="_blank" style="text-decoration:none">
+        <a href="https://buy.stripe.com/dRmfZgdMd6F99QV4GQ" target="_blank" style="text-decoration:none;">
           <button class="select-plan-button">Select Standard (12 months) →</button>
         </a>
       </div>
 
+      <!-- Premium Yearly -->
       <div class="plan-card">
         <div class="plan-header">
           <span class="popular-badge">⭐ Most Popular - Save $759/year</span>
           <div class="plan-name">⭐ Premium</div>
-          <div class="plan-price">$1,639<span class="plan-price-period">per year</span></div>
+          <div class="plan-price">
+            $1,639
+            <span class="plan-price-period">per year</span>
+          </div>
         </div>
         <ul class="plan-features">
-          <li><span class="feature-icon">✓</span> Everything in Standard</li>
-          <li><span class="feature-icon">✓</span> Enhanced profile with photos & videos</li>
-          <li><span class="feature-icon">✓</span> Top placement in search results</li>
-          <li><span class="feature-icon">✓</span> Featured provider badge</li>
-          <li><span class="feature-icon">✓</span> Real-time Lotus Rating™ analytics</li>
-          <li><span class="feature-icon">✓</span> Promotional email inclusion</li>
-          <li><span class="feature-icon">✓</span> Priority email & phone support</li>
+          <li><span class="feature-icon">✓</span> <span>Everything in Standard</span></li>
+          <li><span class="feature-icon">✓</span> <span><strong>Enhanced profile</strong> with photos & videos</span></li>
+          <li><span class="feature-icon">✓</span> <span><strong>Top placement</strong> in search results</span></li>
+          <li><span class="feature-icon">✓</span> <span>Featured provider badge</span></li>
+          <li><span class="feature-icon">✓</span> <span>Real-time Lotus Rating™ analytics</span></li>
+          <li><span class="feature-icon">✓</span> <span>Promotional email inclusion</span></li>
+          <li><span class="feature-icon">✓</span> <span>Priority email & phone support</span></li>
         </ul>
-        <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OY" target="_blank" style="text-decoration:none">
+        <a href="https://buy.stripe.com/aFa14mdMdgfJbZ36OY" target="_blank" style="text-decoration:none;">
           <button class="select-plan-button">Select Premium (12 months) →</button>
         </a>
       </div>
     </div>
 
+    <!-- Signup Link (Hidden Initially) -->
     <div id="signupLink" class="signup-link">
-      <p>Not ready to choose a plan yet?</p>
+      <p style="font-size:1.1rem;color:#666;margin-bottom:1rem;">Not ready to choose a plan yet?</p>
       <a href="provider-signup.html">📝 Or fill out your information first</a>
     </div>
   </div>
-
-  
 
   <script>
     function showPlans(){
@@ -139,13 +180,13 @@
       document.getElementById('signupLink').classList.add('active');
       document.getElementById('plansGrid').scrollIntoView({behavior:'smooth',block:'start'});
     }
-    function goHome(){window.location.href='index.html';}
-document.getElementById('cs-best-value-btn').addEventListener('click', function() {
-  if (!document.getElementById('plansGrid').classList.contains('active')) showPlans();
-  document.getElementById('plansGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+    function goHome(){ window.location.href='index.html'; }
 
-   
+    // Make the Best Value button reveal + scroll to plans
+    document.getElementById('cs-best-value-btn').addEventListener('click', function(){
+      if(!document.getElementById('plansGrid').classList.contains('active')) showPlans();
+      else document.getElementById('plansGrid').scrollIntoView({behavior:'smooth',block:'start'});
+    });
   </script>
 </body>
 </html>

@@ -167,6 +167,10 @@
       document.getElementById('plansGrid').scrollIntoView({behavior:'smooth',block:'start'});
     }
     function goHome(){window.location.href='index.html';}
+document.getElementById('cs-best-value-btn').addEventListener('click', function() {
+  if (!document.getElementById('plansGrid').classList.contains('active')) showPlans();
+  document.getElementById('plansGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
    
   </script>

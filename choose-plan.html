@@ -96,15 +96,59 @@
           See six-month plans in the apps for shorter subscription options.
         </p>
       </div>
+    <!-- Gate Question -->
+<section class="provider-gate">
+  <div class="provider-gate-card">
+    <h2>Are you a healthcare provider?</h2>
+
+    <p class="provider-gate-subtitle">
+      Crossing Sunsets™ helps care givers discover trusted care providers.
+      Families use the platform for free.
+      Providers join by creating a verified profile and sharing accurate information
+      about their services.
+    </p>
+
+    <!-- Transparent note about paid plan -->
+    <p class="provider-note">
+      Provider membership includes a subscription fee.
+    </p>
+
+    <ul class="provider-gate-benefits">
+      <li>Verified professional profile listing</li>
+      <li>Lotus Rating™ display on your profile</li>
+      <li>Contact information visible to families</li>
+      <li>Ability to respond to reviews</li>
+      <li>Basic analytics about profile views</li>
+      <li>Priority email support</li>
+    </ul>
+
+    <div class="provider-gate-actions">
+      <button
+        class="btn btn-primary"
+        id="cs-join-provider-btn"
+        type="button"
+        onclick="showPlans()"
+      >
+        ✅ Yes, I’d like to join
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        id="cs-back-home-btn"
+        type="button"
+        onclick="goHome()"
+      >
+        ❌ No, take me home
+      </button>
     </div>
 
-    <!-- Gate Question -->
-    <div id="gateQuestion" class="gate-container">
-      <h2>Are you a healthcare provider looking to join Crossing Sunsets™?</h2>
-      <div class="gate-buttons">
-        <button class="gate-button gate-yes" onclick="showPlans()">✅ Yes, I'm a Provider</button>
-        <button class="gate-button gate-no" onclick="goHome()">❌ No, Take Me Home</button>
-      </div>
+    <p class="provider-gate-note">
+      You’ll be able to review your details and confirm your membership
+      before anything is published.
+    </p>
+  </div>
+</section>
+
 
       <ul class="plan-features">
         <li><span class="feature-icon">✓</span> <span>Professional profile listing</span></li>

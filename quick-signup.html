@@ -5,6 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave a Review - Crossing Sunsets™</title>
     <style>
+       .lotus-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 1.75rem;
+  margin: 2rem 0;
+  border-top: 6px solid #00b4d8;
+}
+
+.lotus-title {
+  color: #045e73;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.lotus-intro,
+.lotus-footer {
+  color: #555;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.lotus-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lotus-row {
+  display: grid;
+  grid-template-columns: 80px 160px 1fr;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  align-items: center;
+}
+
+.lotus-header {
+  background: #e0f4ff;
+  font-weight: bold;
+  color: #17445a;
+}
+
+.lotus-row:nth-child(odd):not(.lotus-header) {
+  background: #f8fcff;
+}
+
+.lotus-icon { font-weight: bold; }
+.lotus-quality { color: #045e73; font-weight: 600; }
+.lotus-desc { color: #333; }
+
+@media (max-width: 640px) {
+  .lotus-row {
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .lotus-desc {
+    grid-column: 1 / -1;
+    margin-top: 0.25rem;
+  }
+}
+
         * {
             margin: 0;
             padding: 0;

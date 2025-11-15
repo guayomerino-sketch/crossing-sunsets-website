@@ -68,13 +68,6 @@
       font-size: 1.05rem;
     }
 
-    .gate-note {
-      margin-bottom: 1.5rem;
-      color: #0b4f61;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
     .gate-buttons {
       display: flex;
       gap: 1rem;
@@ -110,19 +103,20 @@
     .gate-no:hover {
       background: #d0d0d0;
     }
-/* Transparency Banner */
-.transparency-banner {
-  background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-  color: #004d61;
-  font-weight: 600;
-  padding: 0.9rem 1rem;
-  border-radius: 8px;
-  margin: 1.25rem auto 2rem;
-  max-width: 520px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  font-size: 1rem;
-  line-height: 1.4;
-}
+
+    /* Transparency Banner */
+    .transparency-banner {
+      background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+      color: #004d61;
+      font-weight: 600;
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      margin: 1.25rem auto 2rem;
+      max-width: 520px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
 
     /* Plans grid */
     .plans-grid {
@@ -304,75 +298,63 @@
           💎 Best Value on Web — See Plans
         </button>
         <p style="font-size:13px;color:#0b4f61;margin-top:6px;line-height:1.35;">
-          See six-month plans in the apps for shorter subscription options.
+          Web: 12-month subscriptions. Six-month options are available in the apps.
         </p>
       </div>
     </div>
 
-   <!-- Gate Question -->
-<div id="gateQuestion" class="gate-container">
-  <h2>Are you a healthcare provider?</h2>
+    <!-- Gate Question -->
+    <div id="gateQuestion" class="gate-container">
+      <h2>Are you a healthcare provider?</h2>
 
-  <p class="gate-subtitle">
-    Families and caregivers <strong>browse Crossing Sunsets™ for free</strong>
-    to find trusted care.
-  </p>
+      <p class="gate-subtitle">
+        Families and caregivers <strong>browse Crossing Sunsets™ for free</strong>
+        to find trusted care.
+      </p>
 
-  <!-- Transparency Banner -->
-  <div class="transparency-banner">
-    💡 <strong>Transparency:</strong> Provider membership includes a subscription fee.
-  </div>
+      <!-- Transparency Banner -->
+      <div class="transparency-banner">
+        💡 <strong>Transparency:</strong> Provider membership includes a subscription fee.
+      </div>
 
-  <div class="gate-buttons">
-    <button class="gate-button gate-yes" onclick="showPlans()">
-      ✅ Yes, I’m a provider
-    </button>
-    <button class="gate-button gate-no" onclick="goHome()">
-      ✖ No, take me back
-    </button>
-  </div>
-</div>
-
+      <div class="gate-buttons">
+        <button class="gate-button gate-yes" onclick="showPlans()">
+          ✅ Yes, I’m a provider
+        </button>
+        <button class="gate-button gate-no" onclick="goHome()">
+          ✖ No, take me back
+        </button>
+      </div>
     </div>
 
-    <!-- Plans Grid (hidden until "Yes") -->
+    <!-- Plans Grid (12-month plans only) -->
     <div id="plansGrid" class="plans-grid">
-  
-<!-- STANDARD YEARLY -->
-<div class="plan-card">
-  <div class="plan-header">
-    <div class="plan-name">Standard</div>
-    <div class="plan-price">$1,309</div>
-    <span class="plan-price-period">per year</span>
-  </div>
-  <ul class="plan-features">
-    <li><span class="feature-icon">✔</span><span>Enhanced profile</span></li>
-    <li><span class="feature-icon">✔</span><span>Dashboard analytics</span></li>
-    <li><span class="feature-icon">✔</span><span>Faster review processing</span></li>
-  </ul>
-  <a href="https://buy.stripe.com/9B614m37z4x1fbffludUY0b" target="_blank" style="text-decoration:none;">
-    <button class="select-plan-button">Select Standard (12 months)</button>
-  </a>
-</div>
 
-<!-- PREMIUM YEARLY -->
-<div class="plan-card">
-  <div class="plan-header">
-    <span class="popular-badge">Save $759/year</span>
-    <div class="plan-name">Premium</div>
-    <div class="plan-price">$1,639</div>
-    <span class="plan-price-period">per year</span>
-  </div>
-  <ul class="plan-features">
-    <li><span class="feature-icon">✔</span><span>Featured placement</span></li>
-    <li><span class="feature-icon">✔</span><span>Real-time tools & analytics</span></li>
-    <li><span class="feature-icon">✔</span><span>Priority support</span></li>
-  </ul>
-  <a href="https://buy.stripe.com/8x2fZgdMdbZt7INfludUY0c" target="_blank" style="text-decoration:none;">
-    <button class="select-plan-button">Select Premium (12 months)</button>
-  </a>
-</div>
+      <!-- STANDARD YEARLY -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Standard</div>
+          <div class="plan-price">$1,309</div>
+          <span class="plan-price-period">per year</span>
+        </div>
+        <ul class="plan-features">
+          <li><span class="feature-icon">✓</span><span>Enhanced profile</span></li>
+          <li><span class="feature-icon">✓</span><span>Dashboard analytics</span></li>
+          <li><span class="feature-icon">✓</span><span>Faster review processing</span></li>
+        </ul>
+        <a href="https://buy.stripe.com/9B614m37z4x1fbffludUY0b" target="_blank" style="text-decoration:none;">
+          <button class="select-plan-button">Select Standard (12 months)</button>
+        </a>
+      </div>
 
+      <!-- PREMIUM YEARLY -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <span class="popular-badge">Save $759/year</span>
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">$1,639</div>
+          <span class="plan-price-period">per year</span>
+        </div>
         <ul class="plan-features">
           <li><span class="feature-icon">✓</span><span>Everything in Standard</span></li>
           <li><span class="feature-icon">✓</span><span><strong>Enhanced profile</strong> with photos & videos</span></li>
@@ -382,15 +364,11 @@
           <li><span class="feature-icon">✓</span><span>Promotional email inclusion</span></li>
           <li><span class="feature-icon">✓</span><span>Priority email & phone support</span></li>
         </ul>
-
-        <a
-          href="https://buy.stripe.com/aFa14mdMdgfJbZ36OY"
-          target="_blank"
-          style="text-decoration:none;"
-        >
-          <button class="select-plan-button">Select Premium (12 months) →</button>
+        <a href="https://buy.stripe.com/8x2fZgdMdbZt7INfludUY0c" target="_blank" style="text-decoration:none;">
+          <button class="select-plan-button">Select Premium (12 months)</button>
         </a>
       </div>
+
     </div>
 
     <!-- Signup Link (Hidden Initially) -->

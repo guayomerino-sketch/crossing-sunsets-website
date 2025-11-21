@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - Crossing Sunsets™</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif; }
+    body { min-height:100vh; background:#f5fbff; color:#023047; }
+    header {
+      background:#ffffff; border-bottom:1px solid #e0e7f1;
+      padding:0.8rem 1.2rem; display:flex; justify-content:space-between; align-items:center;
+      position:sticky; top:0; z-index:10;
+    }
+    .brand { display:flex; align-items:center; gap:10px; }
+    .brand-logo { width:40px; height:40px; border-radius:12px; }
+    .brand-title { display:flex; flex-direction:column; }
+    .brand-title span:first-child { font-size:0.85rem; color:#90a4ae; }
+    .brand-title span:last-child { font-size:1.1rem; font-weight:700; color:#00bcd4; }
+    .chip {
+      padding:6px 12px; border-radius:999px; background:#e0f7fa;
+      color:#006064; font-size:0.85rem; font-weight:600;
+    }
+    .btn-header {
+      padding:8px 16px; border-radius:999px; border:none;
+      font-size:0.9rem; font-weight:600; cursor:pointer;
+    }
+    .btn-home { background:#00bcd4; color:#fff; }
+    .btn-signout { background:#ffebee; color:#c62828; border:1px solid #ffcdd2; }
+
+    main { max-width:1100px; margin:1.5rem auto 2.5rem auto; padding:0 1rem; }
+    .welcome-card {
+      background:#fff; border-radius:18px; padding:1.3rem 1.4rem;
+      box-shadow:0 8px 30px rgba(0,0,0,0.04);
+      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;
+      margin-bottom:1.2rem;
+    }
+    .welcome-text h1 { font-size:1.4rem; margin-bottom:0.2rem; }
+    .welcome-text p { font-size:0.9rem; color:#607d8b; }
+    .stat-row {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:0.75rem; margin-bottom:1.2rem;
+    }
+    .stat-card {
+      border-radius:16px; padding:0.9rem; background:#e0f7fa; text-align:center;
+    }
+    .stat-card.pending { background:#fff3e0; }
+    .stat-card.approved { background:#e8f5e9; }
+    .stat-card.rejected { background:#ffebee; }
+    .stat-label { font-size:0.85rem; color:#607d8b; margin-bottom:0.2rem; }
+    .stat-value { font-size:1.3rem; font-weight:700; }
+
+    .filters-row {
+      margin-top:0.4rem; margin-bottom:0.6rem;
+      display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center;
+    }
+    .search-box {
+      flex:1 1 220px; background:#fff; border-radius:999px;
+      display:flex; align-items:center; padding:0.5rem 0.9rem;
+      box-shadow:0 4px 14px rgba(0,0,0,0.03); border:1px solid #e0e7f1;
+    }
+    .search-box input {
+      border:none; outline:none; width:100%; font-size:0.95rem; margin-left:0.4rem;
+    }
+    .filter-select {
+      border-radius:999px; border:1px solid #e0e7f1; padding:0.5rem 0.9rem; background:#fff;
+      font-size:0.9rem;
+    }
+
+    .providers-list { margin-top:0.8rem; display:flex; flex-direction:column; gap:0.75rem; }
+    .provider-card {
+      background:#fff; border-radius:18px; padding:0.9rem 1rem;
+      box-shadow:0 6px 20px rgba(0,0,0,0.04);
+      display:flex; flex-direction:column; gap:0.4rem;
+    }
+    .provider-main-row { display:flex; align-items:center; gap:0.8rem; }
+    .avatar {
+      width:40px; height:40px; border-radius:999px;
+      background:#00bcd4; color:#fff; display:flex; align-items:center;
+      justify-content:center; font-weight:700; font-size:1.1rem;
+    }
+    .provider-info { flex:1; }
+    .provider-name { font-weight:700; font-size:1rem; }
+    .provider-contact { font-size:0.85rem; color:#607d8b; }
+    .status-badge {
+      padding:4px 10px; border-radius:999px; font-size:0.8rem;
+      font-weight:600; display:inline-block; text-transform:capitalize;
+    }
+    .status-pending { background:#ffe0b2; color:#ef6c00; }
+    .status-approved { background:#c8e6c9; color:#2e7d32; }
+    .status-rejected { background:#ffcdd2; color:#c62828; }
+
+    .provider-actions { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.4rem; }
+    .btn-small {
+      padding:5px 10px; border-radius:999px; border:none;
+      font-size:0.78rem; font-weight:600; cursor:pointer;
+    }
+    .btn-approve { background:#e8f5e9; color:#2e7d32; }
+    .btn-reject { background:#ffebee; color:#c62828; }
+    .btn-delete { background:#eceff1; color:#455a64; }
+    .btn-bed { background:#ffe0b2; color:#e65100; }
+
+    .empty-state { margin-top:1rem; font-size:0.95rem; color:#90a4ae; text-align:center; }
+    .status-message { margin-top:0.8rem; font-size:0.9rem; color:#388e3c; }
+    .status-message.error { color:#c62828; }
+
+    @media (max-width:600px){
+      header { flex-direction:column; align-items:flex-start; gap:0.6rem; }
+      .welcome-card { align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="crossing-sunsets-logo.png" class="brand-logo" alt="Logo" />
+      <div class="brand-title">
+        <span>Admin Dashboard</span>
+        <span>Crossing Sunsets™</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:0.7rem; align-items:center;">
+      <div class="chip" id="admin-email-chip">Admin</div>
+      <button class="btn-header btn-home" onclick="window.location.href='index.html'">Home</button>
+      <button class="btn-hea

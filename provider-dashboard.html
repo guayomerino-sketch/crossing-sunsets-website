@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Provider Dashboard - Crossing Sunsets™</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box;
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;}
+    body { background:#f5fbff; color:#023047; min-height:100vh; }
+    header {
+      background:#ffffff; border-bottom:1px solid #e0e7f1;
+      padding:0.8rem 1.2rem; display:flex; justify-content:space-between; align-items:center;
+      position:sticky; top:0; z-index:10;
+    }
+    .brand { display:flex; align-items:center; gap:10px; }
+    .brand-logo { width:36px; height:36px; border-radius:12px; }
+    .brand-title span:first-child { font-size:0.85rem; color:#90a4ae; }
+    .brand-title span:last-child { font-size:1.05rem; font-weight:700; color:#00bcd4; }
+    .btn { padding:8px 16px; border-radius:999px; border:none; cursor:pointer; font-size:0.9rem; font-weight:600; }
+    .btn-signout { background:#ffebee; color:#c62828; border:1px solid #ffcdd2; }
+    main { max-width:720px; margin:1.7rem auto 2.5rem; padding:0 1rem; }
+
+    .card {
+      background:#ffffff; border-radius:18px; padding:1.4rem 1.5rem;
+      box-shadow:0 8px 30px rgba(0,0,0,0.04); margin-bottom:1.2rem;
+    }
+    .facility-name { font-size:1.3rem; font-weight:700; margin-bottom:0.2rem; }
+    .facility-meta { font-size:0.9rem; color:#607d8b; margin-bottom:0.7rem; }
+
+    .field-row { margin-bottom:0.9rem; }
+    .field-label { font-size:0.9rem; font-weight:600; color:#455a64; margin-bottom:0.2rem; }
+    input[type="number"] {
+      width:100%; padding:0.55rem 0.7rem; border-radius:10px; border:1px solid #cfd8dc; font-size:0.95rem;
+    }
+    input[type="number"]:focus {
+      outline:none; border-color:#00bcd4; box-shadow:0 0 0 2px rgba(0,188,212,0.18);
+    }
+    .btn-save {
+      background:#00bcd4; color:#fff; margin-top:0.6rem; width:100%; padding:0.75rem;
+    }
+    .note { font-size:0.8rem; color:#90a4ae; margin-top:0.4rem; }
+
+    .status { font-size:0.9rem; margin-top:0.8rem; color:#388e3c; }
+    .status.error { color:#c62828; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="crossing-sunsets-logo.png" class="brand-logo" alt="Logo" />
+      <div class="brand-title">
+        <span>Provider Dashboard</span>
+        <span>Crossing Sunsets™</span>
+      </div>
+    </div>
+    <button class="btn btn-signout" id="signout-btn">Sign Out</button>
+  </header>
+
+  <main>
+    <div class="card" id="facility-card" style="display:none;">
+      <div class="facility-name" id="facility-name"></div>
+      <div class="facility-meta" id="facility-meta"></div>
+
+      <div class="field-row">
+        <div class="field-label">Total Licensed Beds</div>
+        <input type="number" id="total-beds" min="0" />
+      </div>
+
+      <div class="field-row">
+        <div class="field-label">Beds Currently Available</div>
+        <input type="number" id="available-beds" min="0" />
+      </div>
+
+      <button class="btn btn-save" id="save-beds-btn">Save Bed Availability</button>
+      <div class="note">
+        Please update whenever bed availability changes. This helps families
+        see current openings at your facility.
+      </div>
+
+      <div id="status-message" class="status"></div>
+    </div>
+
+    <div class="card" id="loading-card">
+      Loading your facility information…
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      updateDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // 🔴 SAME CONFIG OBJECT HERE (copy–paste from admin-dashboard.html)
+    const firebaseConfig = {
+  apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+  authDomain: "crossing-sunsets.firebaseapp.com",
+  databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+  projectId: "crossing-sunsets",
+  storageBucket: "crossing-sunsets.firebasestorage.app",
+  messagingSenderId: "83761464492",
+  appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+  measurementId: "G-LG8VN0EZB7"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const loadingCard = document.getElementById("loading-card");
+    const facilityCard = document.getElementById("facility-card");
+    const signoutBtn = document.getElementById("signout-btn");
+    const facilityNameEl = document.getElementById("facility-name");
+    const facilityMetaEl = document.getElementById("facility-meta");
+    const totalBedsInput = document.getElementById("total-beds");
+    const availableBedsInput = document.getElementById("available-beds");
+    const saveBedsBtn = document.getElementById("save-beds-btn");
+    const statusMsgEl = document.getElementById("status-message");
+
+    let providerDocId = null;
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "provider-login.html";
+        return;
+      }
+
+      try {
+        const udocRef = doc(db, "users", user.uid);
+        const udoc = await getDoc(udocRef);
+        if (!udoc.exists()) throw new Error("No user record.");
+        const data = udoc.data();
+
+        // Only staff with writeAccess can use this page
+        if (data.role !== "staff" || data.writeAccess !== true) {
+          await signOut(auth);
+          window.location.href = "provider-login.html";
+          return;
+        }
+
+        providerDocId = data.facilityId;
+        if (!providerDocId) throw new Error("Missing facilityId for this user.");
+
+        await loadFacility();
+      } catch (err) {
+        console.error(err);
+        loadingCard.textContent = "Could not load facility. Please contact support.";
+      }
+    });
+
+    signoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "index.html";
+    });
+
+    async function loadFacility() {
+      const pref = doc(db, "providers", providerDocId);
+      const pdoc = await getDoc(pref);
+      if (!pdoc.exists()) {
+        loadingCard.textContent = "Facility not found in providers collection.";
+        return;
+      }
+      const p = pdoc.data();
+
+      facilityNameEl.textContent = p.businessName || "Your Facility";
+      const metaParts = [];
+      if (p.providerType) metaParts.push(p.providerType);
+      if (p.serviceArea) metaParts.push(p.serviceArea);
+      if (p.phone) metaParts.push(p.phone);
+      facilityMetaEl.textContent = metaParts.join(" · ");
+
+      totalBedsInput.value = p.totalBeds ?? "";
+      availableBedsInput.value = p.availableBeds ?? "";
+
+      loadingCard.style.display = "none";
+      facilityCard.style.display = "block";
+    }
+
+    saveBedsBtn.addEventListener("click", async () => {
+      statusMsgEl.textContent = "";
+      statusMsgEl.classList.remove("error");
+
+      const total = Number(totalBedsInput.value);
+      const avail = Number(availableBedsInput.value);
+
+      if (Number.isNaN(total) || total < 0 || Number.isNaN(avail) || avail < 0) {
+        statusMsgEl.textContent = "Please enter valid numbers.";
+        statusMsgEl.classList.add("error");
+        return;
+      }
+
+      if (avail > total) {
+        statusMsgEl.textContent = "Available beds cannot be greater than total beds.";
+        statusMsgEl.classList.add("error");
+        return;
+      }
+
+      try {
+        await updateDoc(doc(db, "providers", providerDocId), {
+          totalBeds: total,
+          availableBeds: avail,
+          updatedAt: new Date().toISOString()
+        });
+        statusMsgEl.textContent = "Bed availability updated.";
+      } catch (err) {
+        console.error(err);
+        statusMsgEl.textContent = "Could not save. Please try again.";
+        statusMsgEl.classList.add("error");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -299,12 +299,28 @@
       if (existing) existing.outerHTML = html;
       else body.insertAdjacentHTML('beforeend', html);
     }
+function getBedsFromFields(p) {
+  // Accept BOTH naming styles:
+  // - "available", "occupied", "total"        (new style)
+  // - "availableBeds", "occupiedBeds", "totalBeds" (old/app style)
+  const aSource = (p.available ?? p.availableBeds);
+  const oSource = (p.occupied ?? p.occupiedBeds);
+  const tSource = (p.total ?? p.totalBeds);
 
-    function getBedsFromFields(p){
-      const a = Number(p.available); const o = Number(p.occupied); const t = Number(p.total);
-      const any = [a,o,t].some(n=>Number.isFinite(n));
-      return any ? {available:a||0, occupied:o||0, total:t||0} : null;
-    }
+  const a = Number(aSource);
+  const o = Number(oSource);
+  const t = Number(tSource);
+
+  const any = [a, o, t].some(n => Number.isFinite(n));
+  if (!any) return null;
+
+  const clean = n => (Number.isFinite(n) ? n : 0);
+  return {
+    available: clean(a),
+    occupied: clean(o),
+    total: clean(t)
+  };
+}
 
     function getCategoryName(category) {
       const names = {

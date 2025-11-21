@@ -285,6 +285,55 @@
                 font-size: 2rem;
             }
         }
+        /* Login Dropdown */
+.login-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.login-btn {
+    background: #00bcd4;
+    color: white;
+    font-weight: 600;
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-btn:hover {
+    background: #0097a7;
+}
+
+.login-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    min-width: 160px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-top: 10px;
+    z-index: 10;
+}
+
+.login-menu a {
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #023047;
+    font-weight: 600;
+}
+
+.login-menu a:hover {
+    background: #e0f7fa;
+}
+
+.login-dropdown.show .login-menu {
+    display: block;
+}
+
     </style>
 </head>
 <body>
@@ -315,6 +364,15 @@
             <div class="logo-section">
                 <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo">
                 <h1>Crossing Sunsets™</h1>
+                <!-- Login Dropdown -->
+<div class="login-dropdown">
+    <button class="login-btn">🔐 Login ▾</button>
+    <div class="login-menu">
+        <a href="admin-login.html">🛠 Admin</a>
+        <a href="provider-login.html">🏥 Provider</a>
+    </div>
+</div>
+
             </div>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -376,6 +434,24 @@
             <a href="mailto:eduardo@crossingsunsets.app">eduardo@crossingsunsets.app</a>
         </div>
     </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const dropdown = document.querySelector(".login-dropdown");
+    const button = document.querySelector(".login-btn");
+
+    button.addEventListener("click", () => {
+        dropdown.classList.toggle("show");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (event) => {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove("show");
+        }
+    });
+});
+</script>
+
 </body>
 </html>
 Hyper Icon

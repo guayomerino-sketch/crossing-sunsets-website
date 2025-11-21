@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Login - Crossing Sunsets™</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h1 {
+      font-size: 1.7rem;
+      text-align: center;
+      color: #023047;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #607d8b;
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #023047;
+      margin-bottom: 0.3rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #cfd8dc;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #00bcd4;
+      box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.25);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 999px;
+      border: none;
+      background: #ff6b35;
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.25rem;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .link-row {
+      margin-top: 0.8rem;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+
+    .link-row a {
+      color: #00bcd4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .link-row a:hover {
+      text-decoration: underline;
+    }
+
+    .back {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .back a {
+      color: #00bcd4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .error {
+      margin-top: 0.75rem;
+      color: #d32f2f;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .success {
+      margin-top: 0.75rem;
+      color: #388e3c;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Admin Login</h1>
+    <p class="subtitle">Secure access to the admin dashboard.</p>
+
+    <form id="adminForm">
+      <label for="admin-email">Email</label>
+      <input id="admin-email" type="email" placeholder="admin@crossingsunsets.app" required />
+
+      <label for="admin-password">Password</label>
+      <input id="admin-password" type="password" placeholder="Enter your password" required />
+
+      <button type="submit" class="btn">Sign In</button>
+      <div class="link-row">
+        <a href="#" id="admin-forgot">Forgot password?</a>
+      </div>
+
+      <div id="admin-message" class=""></div>
+    </form>
+
+    <div class="back">
+      <a href="index.html">← Back to Home</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // TODO: REPLACE THIS BLOCK WITH YOUR REAL CONFIG FROM FIREBASE CONSOLE
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    // END CONFIG
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("adminForm");
+    const msgBox = document.getElementById("admin-message");
+    const forgotLink = document.getElementById("admin-forgot");
+
+    function showMessage(text, type) {
+      msgBox.textContent = text;
+      msgBox.className = type === "error" ? "error" : "success";
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      showMessage("", "");
+
+      const email = document.getElementById("admin-email").value.trim();
+      const password = document.getElementById("admin-password").value.trim();
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        showMessage("Login successful. Redirecting…", "success");
+        window.location.href = "admin-dashboard.html"; // create this page next
+      } catch (err) {
+        console.error(err);
+        showMessage("Login failed. Check your email or password.", "error");
+      }
+    });
+
+    // Forgot password flow
+    forgotLink.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("admin-email").value.trim();
+      if (!email) {
+        showMessage("Enter your email above first, then click Forgot password.", "error");
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showMessage("Password reset email sent.", "success");
+      } catch (err) {
+        console.error(err);
+        showMessage("Could not send reset email. Check the email address.", "error");
+      }
+    });
+
+    // Optional: if already logged in, go straight to dashboard
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        window.location.href = "admin-dashboard.html";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -140,13 +140,16 @@
         const udoc = await getDoc(udocRef);
         if (!udoc.exists()) throw new Error("No user record.");
         const data = udoc.data();
+// Allow provider or staff users with writeAccess to use this page
+const allowedRoles = ["provider", "staff"];
 
-        // Only staff with writeAccess can use this page
-        if (data.role !== "staff" || data.writeAccess !== true) {
-          await signOut(auth);
-          window.location.href = "provider-login.html";
-          return;
-        }
+if (!allowedRoles.includes(data.role) || data.writeAccess !== true) {
+  await signOut(auth);
+  window.location.href = "provider-login.html";
+  return;
+}
+
+       
 
         providerDocId = data.facilityId;
         if (!providerDocId) throw new Error("Missing facilityId for this user.");

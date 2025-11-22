@@ -16,6 +16,123 @@
     }
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+.contact-liaison-card {
+  max-width: 900px;
+  margin: 2rem auto 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.contact-liaison-inner {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  border: 2px solid #00b4d8;            /* teal outline */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  position: relative;
+
+  /* soft pulsing glow */
+  animation: contactGlow 3s ease-in-out infinite;
+}
+
+/* lotus icon on the left */
+.contact-liaison-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #00b4d8, #48cae4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 150, 199, 0.6);
+}
+
+.contact-liaison-text h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.35rem;
+  color: #023e8a;
+}
+
+.contact-liaison-text p {
+  margin-bottom: 0.25rem;
+  color: #334155;
+}
+
+.contact-liaison-phone a {
+  color: #00b4d8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-liaison-phone a:hover {
+  text-decoration: underline;
+}
+
+.contact-liaison-action {
+  flex-shrink: 0;
+}
+
+.contact-liaison-button {
+  display: inline-block;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #00b4d8, #0096c7);
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(0, 150, 199, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.contact-liaison-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 150, 199, 0.5);
+  opacity: 0.95;
+}
+
+.contact-liaison-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 150, 199, 0.35);
+}
+
+/* soft pulsing glow animation */
+@keyframes contactGlow {
+  0% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.45);
+  }
+  100% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .contact-liaison-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact-liaison-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-liaison-action {
+    width: 100%;
+  }
+}
 
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -119,6 +236,28 @@
       <h2>Browse Care Providers</h2>
       <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
     </div>
+<!-- Contact Christine Bottin Card -->
+<section class="contact-liaison-card">
+  <div class="contact-liaison-inner">
+    <div class="contact-liaison-icon">
+      🪷
+    </div>
+
+    <div class="contact-liaison-text">
+      <h3>Need help choosing care?</h3>
+      <p>Speak with <strong>Christine Bottin</strong>, Physician Liaison.</p>
+      <p class="contact-liaison-phone">
+        📞 <strong><a href="tel:+15622199922">(562) 219-9922</a></strong>
+      </p>
+    </div>
+
+    <div class="contact-liaison-action">
+      <a href="tel:+15622199922" class="contact-liaison-button">
+        Contact Christine
+      </a>
+    </div>
+  </div>
+</section>
 
     <!-- Always visible live stats -->
     <div id="bed-stats-banner" class="bed-stats-banner">

@@ -5,288 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leave a Review - Crossing Sunsets™</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* --- CORE STYLES --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%); /* Your Brand Blue/Teal */
       min-height: 100vh;
       padding: 20px;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 600px; /* Slightly narrower for mobile focus */
       margin: 0 auto;
       background: white;
-      border-radius: 15px;
-      padding: 40px;
+      border-radius: 20px;
+      padding: 30px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+    .header { text-align: center; margin-bottom: 30px; }
+    .logo { font-size: 28px; font-weight: bold; color: #0EA5E9; margin-bottom: 5px; }
+    .subtitle { color: #7f8c8d; font-size: 16px; font-style: italic; }
 
-    .logo {
-      font-size: 32px;
-      font-weight: bold;
-      color: #0EA5E9;
-      margin-bottom: 10px;
-    }
+    /* --- FORM FIELDS --- */
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: 600; color: #34495e; margin-bottom: 6px; font-size: 14px; }
+    .required { color: #e74c3c; margin-left: 3px; }
+    .optional { color: #95a5a6; font-weight: normal; font-size: 12px; margin-left: 5px; }
 
-    .subtitle {
-      color: #666;
-      font-size: 18px;
-    }
-
-    .form-group {
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
-
-    .required {
-      color: #e74c3c;
-      margin-left: 4px;
-    }
-
-    .optional {
-      color: #999;
-      font-weight: normal;
-      font-size: 13px;
-      margin-left: 8px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
+    input[type="text"], input[type="email"], textarea {
       width: 100%;
-      padding: 12px 15px;
+      padding: 12px;
       border: 2px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 15px;
+      border-radius: 10px;
+      font-size: 16px; /* 16px prevents zoom on iPhone */
       transition: border-color 0.3s;
       font-family: inherit;
     }
 
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #14B8A6;
-    }
+    input:focus, textarea:focus { outline: none; border-color: #14B8A6; }
+    textarea { min-height: 100px; resize: vertical; }
 
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    /* 4-Lotus System styles */
+    /* --- THE LOTUS SYSTEM (Upgraded) --- */
     .lotus-section {
-      background: #f8f9fa;
-      padding: 25px;
-      border-radius: 10px;
+      background: #f0f9ff; /* Very light blue bg */
+      padding: 20px;
+      border-radius: 15px;
       margin-bottom: 30px;
-      border-top: 6px solid #00b4d8;
+      border: 1px solid #bae6fd;
     }
 
     .lotus-title {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
-      color: #045e73;
-      margin-bottom: 8px;
+      color: #0369a1;
+      margin-bottom: 5px;
       text-align: center;
     }
 
-    .lotus-intro {
-      color: #555;
-      font-size: 14px;
-      text-align: center;
-      margin-bottom: 16px;
-    }
+    .lotus-intro { color: #64748b; font-size: 14px; text-align: center; margin-bottom: 20px; }
 
-    .lotus-help-line {
-      color: #666;
-      font-size: 13px;
-      text-align: center;
-      margin-bottom: 18px;
-      font-style: italic;
-    }
-
+    /* The Card Design */
     .lotus-item {
       background: white;
-      padding: 16px 14px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      border: 2px solid #e0e0e0;
-      transition: all 0.25s;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
+      position: relative;
     }
 
-    .lotus-item:last-child {
-      margin-bottom: 0;
+    /* THE BLOOM ANIMATION LOGIC */
+    .lotus-flower-img {
+      width: 50px;
+      height: auto;
+      margin-right: 15px;
+      filter: grayscale(100%) opacity(0.5); /* Start Dead/Gray */
+      transition: all 0.5s ease;
     }
 
+    /* When Checked (Active) */
     .lotus-item.checked {
-      border-color: #14B8A6;
-      background: #f0fdfa;
-      box-shadow: 0 3px 10px rgba(20, 184, 166, 0.18);
-    }
-
-    .lotus-header-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .lotus-flower {
-      font-size: 24px;
-      opacity: 0.35;
-      transition: opacity 0.25s, transform 0.25s;
-    }
-
-    .lotus-item.checked .lotus-flower {
-      opacity: 1;
+      border-color: #0EA5E9;
+      background: #e0f2fe;
       transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
     }
 
-    .lotus-label-text {
-      font-size: 16px;
-      font-weight: 600;
-      color: #333;
-      flex: 1;
+    /* Animate the Image */
+    .lotus-item.checked .lotus-flower-img {
+      filter: grayscale(0%) opacity(1); /* Bloom to Color */
+      transform: scale(1.15) rotate(5deg);
     }
 
-    .lotus-number {
-      font-size: 13px;
-      font-weight: 600;
-      color: #0EA5E9;
-    }
+    .lotus-header-row { display: flex; align-items: center; }
+    .lotus-label-text { font-size: 16px; font-weight: 700; color: #334155; flex: 1; }
+    .lotus-number { font-size: 12px; font-weight: 800; color: #0EA5E9; background: #e0f2fe; padding: 4px 8px; border-radius: 20px; }
+    .lotus-description { color: #64748b; font-size: 13px; margin-left: 65px; margin-top: -5px; margin-bottom: 5px;}
 
-    .lotus-description {
-      color: #555;
-      font-size: 14px;
-      margin-left: 34px; /* lines up under text */
-    }
+    /* Explanation Box (Hidden until checked) */
+    .explanation-box { margin-top: 10px; display: none; padding-left: 65px; }
+    .lotus-item.checked .explanation-box { display: block; animation: fadeIn 0.4s; }
+    .explanation-box textarea { min-height: 60px; font-size: 13px; }
 
-    .explanation-box {
-      margin-top: 10px;
-      display: none;
-    }
+    /* Hiding the raw checkbox */
+    .lotus-checkbox { position: absolute; opacity: 0; pointer-events: none; }
 
-    .lotus-item.checked .explanation-box {
-      display: block;
-    }
-
-    .explanation-box textarea {
-      width: 100%;
-      min-height: 70px;
-      padding: 8px 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 14px;
-      background: white;
-    }
-
-    .lotus-footer {
-      margin-top: 14px;
-      font-size: 13px;
-      color: #555;
+    /* --- THE BADGE (New Feature) --- */
+    #badge-display {
+      display: none; /* Hidden by default */
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid #fbbf24; /* Gold Border */
       text-align: center;
+      animation: slideUp 0.6s ease-out;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
+    .badge-img { width: 90px; margin-bottom: 10px; border-radius: 50%; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); border: 2px solid white; }
+    .gold-text { color: #fbbf24; font-weight: 800; margin: 0; font-size: 1.2rem; letter-spacing: 1px; text-transform: uppercase; }
 
-    /* hide the raw checkboxes but keep them accessible */
-    .lotus-checkbox {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .help-text {
-      color: #666;
-      font-size: 13px;
-      margin-top: 5px;
-      font-style: italic;
-    }
-
+    /* --- SUBMIT BUTTON --- */
     .submit-button {
       width: 100%;
       padding: 16px;
       background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
-      margin-top: 30px;
+      margin-top: 10px;
     }
+    .submit-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(14, 184, 166, 0.4); }
+    .submit-button:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; }
 
-    .submit-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(14, 165, 233, 0.4);
-    }
+    /* Messages */
+    .success-message, .error-message { padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none; text-align: center;}
+    .success-message { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .error-message { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
 
-    .submit-button:active {
-      transform: translateY(0);
-    }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    .submit-button:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .success-message {
-      background: #d4edda;
-      color: #155724;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border: 1px solid #c3e6cb;
-      display: none;
-    }
-
-    .error-message {
-      background: #f8d7da;
-      color: #721c24;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border: 1px solid #f5c6cb;
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 25px 20px;
-      }
-
-      .logo {
-        font-size: 24px;
-      }
-
-      .subtitle {
-        font-size: 16px;
-      }
-
-      .lotus-description {
-        margin-left: 0;
-      }
+    /* Mobile adjustments */
+    @media (max-width: 480px) {
+      .container { padding: 20px; border-radius: 0; min-height: 100vh; }
+      .lotus-flower-img { width: 40px; }
+      .lotus-description, .explanation-box { margin-left: 0; margin-top: 10px; padding-left: 0; }
     }
   </style>
 </head>
@@ -298,155 +172,109 @@
     </div>
 
     <div id="successMessage" class="success-message">
-      ✓ Thank you! Your review has been submitted and is pending approval.
+      🎉 <strong>Thank you!</strong><br>Your Lotus Review has been submitted.
     </div>
-
     <div id="errorMessage" class="error-message"></div>
 
     <form id="reviewForm">
-      <!-- Reviewer Name (Required) -->
       <div class="form-group">
-        <label>
-          Your Name
-          <span class="required">*</span>
-        </label>
+        <label>Your Name <span class="required">*</span></label>
         <input type="text" id="reviewerName" name="reviewerName" required placeholder="Enter your full name">
       </div>
 
-      <!-- Provider Name (Required) -->
       <div class="form-group">
-        <label>
-          Provider Name
-          <span class="required">*</span>
-        </label>
+        <label>Provider Name <span class="required">*</span></label>
         <input type="text" id="providerName" name="providerName" required placeholder="e.g., AllPeace Care Hospice">
       </div>
 
-      <!-- Email (Optional) -->
       <div class="form-group">
-        <label>
-          Email
-          <span class="optional">(optional)</span>
-        </label>
+        <label>Email <span class="optional">(optional)</span></label>
         <input type="email" id="email" name="email" placeholder="your.email@example.com">
       </div>
 
-      <!-- Location (Optional) -->
       <div class="form-group">
-        <label>
-          Location
-          <span class="optional">(optional)</span>
-        </label>
+        <label>Location <span class="optional">(optional)</span></label>
         <input type="text" id="location" name="location" placeholder="City, State">
       </div>
 
-      <!-- 4-Lotus Qualities Section -->
       <section class="lotus-section">
-        <h2 class="lotus-title">The Perfect 4-Lotus System 🪷</h2>
-        <p class="lotus-intro">
-          Tap each lotus that matches your experience with this provider.
-        </p>
-        <p class="lotus-help-line">
-          Filled lotus = “Yes, we experienced this.” &nbsp; Empty lotus = “No / didn’t experience this.”
-        </p>
+        <h2 class="lotus-title">The Perfect 4-Lotus System™ 🪷</h2>
+        <p class="lotus-intro">Tap the lotuses to rate your experience.</p>
 
-        <!-- Compassionate -->
         <div id="compassionateItem" class="lotus-item">
           <input type="checkbox" id="compassionate" class="lotus-checkbox">
           <div class="lotus-header-row">
-            <div class="lotus-flower">🪷</div>
+            <img src="lotus-logo.png" class="lotus-flower-img" alt="lotus">
             <div class="lotus-label-text">Compassionate</div>
             <div class="lotus-number">#1</div>
           </div>
-          <div class="lotus-description">
-            Kind, caring, and empathetic staff.
-          </div>
+          <div class="lotus-description">Kind, caring, and empathetic staff.</div>
           <div class="explanation-box">
-            <textarea id="compassionateExplanation" name="compassionateExplanation"
-              placeholder="Optional: How were they compassionate?"></textarea>
+            <textarea id="compassionateExplanation" placeholder="Tell us more about their compassion..."></textarea>
           </div>
         </div>
 
-        <!-- Responsive -->
         <div id="responsiveItem" class="lotus-item">
           <input type="checkbox" id="responsive" class="lotus-checkbox">
           <div class="lotus-header-row">
-            <div class="lotus-flower">🪷</div>
+            <img src="lotus-logo.png" class="lotus-flower-img" alt="lotus">
             <div class="lotus-label-text">Responsive</div>
             <div class="lotus-number">#2</div>
           </div>
-          <div class="lotus-description">
-            Quick to respond to needs and concerns.
-          </div>
+          <div class="lotus-description">Quick to respond to needs and concerns.</div>
           <div class="explanation-box">
-            <textarea id="responsiveExplanation" name="responsiveExplanation"
-              placeholder="Optional: How were they responsive?"></textarea>
+            <textarea id="responsiveExplanation" placeholder="Tell us more about their responsiveness..."></textarea>
           </div>
         </div>
 
-        <!-- Supportive -->
         <div id="supportiveItem" class="lotus-item">
           <input type="checkbox" id="supportive" class="lotus-checkbox">
           <div class="lotus-header-row">
-            <div class="lotus-flower">🪷</div>
+            <img src="lotus-logo.png" class="lotus-flower-img" alt="lotus">
             <div class="lotus-label-text">Supportive</div>
             <div class="lotus-number">#3</div>
           </div>
-          <div class="lotus-description">
-            Helpful guidance for family and patient.
-          </div>
+          <div class="lotus-description">Helpful guidance for family and patient.</div>
           <div class="explanation-box">
-            <textarea id="supportiveExplanation" name="supportiveExplanation"
-              placeholder="Optional: How were they supportive?"></textarea>
+            <textarea id="supportiveExplanation" placeholder="How did they support you?"></textarea>
           </div>
         </div>
 
-        <!-- Professional -->
         <div id="professionalItem" class="lotus-item">
           <input type="checkbox" id="professional" class="lotus-checkbox">
           <div class="lotus-header-row">
-            <div class="lotus-flower">🪷</div>
+            <img src="lotus-logo.png" class="lotus-flower-img" alt="lotus">
             <div class="lotus-label-text">Professional</div>
             <div class="lotus-number">#4</div>
           </div>
-          <div class="lotus-description">
-            Skilled, knowledgeable, and reliable.
-          </div>
+          <div class="lotus-description">Skilled, knowledgeable, and reliable.</div>
           <div class="explanation-box">
-            <textarea id="professionalExplanation" name="professionalExplanation"
-              placeholder="Optional: How were they professional?"></textarea>
+            <textarea id="professionalExplanation" placeholder="Tell us more about their professionalism..."></textarea>
           </div>
         </div>
 
-        <p class="lotus-footer">
-          Each lotus is either <strong>filled</strong> (yes, they have this quality)
-          or <strong>empty</strong> (no / didn’t experience this).
-        </p>
+        <div id="badge-display">
+          <img src="lotus-badge.png" class="badge-img" alt="Gold Badge">
+          <h3 class="gold-text">LOTUS CERTIFIED</h3>
+          <p style="color: #cbd5e1; font-size: 13px; margin-top:5px;">This provider meets the Gold Standard of Care.</p>
+        </div>
+
       </section>
 
-      <!-- Full Review (Required) -->
       <div class="form-group">
-        <label>
-          Your Review
-          <span class="required">*</span>
-        </label>
-        <textarea id="reviewText" name="reviewText" required
-          placeholder="Share your experience with this provider..."></textarea>
-        <div class="help-text">Please provide a detailed review of your experience.</div>
+        <label>Your Review <span class="required">*</span></label>
+        <textarea id="reviewText" name="reviewText" required placeholder="Share your detailed experience with this provider..."></textarea>
       </div>
 
-      <button type="submit" class="submit-button" id="submitButton">
-        Submit Review
-      </button>
+      <button type="submit" class="submit-button" id="submitButton">Submit Review</button>
     </form>
   </div>
 
-  <!-- Firebase SDK + logic -->
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
     import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-    // Firebase Configuration - Crossing Sunsets
+    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
       authDomain: "crossing-sunsets.firebaseapp.com",
@@ -457,11 +285,9 @@
       measurementId: "G-LG8VN0EZB7"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Make lotus items tappable (toggle checkbox + style)
     const lotusIds = ['compassionate', 'responsive', 'supportive', 'professional'];
 
     lotusIds.forEach(id => {
@@ -470,40 +296,51 @@
 
       if (!checkbox || !item) return;
 
-      // Clicking anywhere on the card toggles the lotus
+      // Click Card to Toggle
       item.addEventListener('click', (e) => {
-        // Don't toggle if user is typing in the explanation textarea
-        if (e.target.tagName === 'TEXTAREA') return;
-
+        if (e.target.tagName === 'TEXTAREA') return; // Allow typing
         checkbox.checked = !checkbox.checked;
         checkbox.dispatchEvent(new Event('change'));
       });
 
-      // Keep visual state in sync with checkbox
+      // Update Visuals & Badge
       checkbox.addEventListener('change', function () {
         if (this.checked) {
           item.classList.add('checked');
         } else {
           item.classList.remove('checked');
-          const explanation = document.getElementById(id + 'Explanation');
-          if (explanation) explanation.value = '';
         }
+        // TRIGGER BADGE CHECK
+        checkBadgeStatus();
       });
     });
 
-    // Form submission
+    // --- NEW FUNCTION: CHECK FOR BADGE ---
+    function checkBadgeStatus() {
+      let activeCount = 0;
+      lotusIds.forEach(id => {
+        if (document.getElementById(id).checked) activeCount++;
+      });
+
+      const badge = document.getElementById('badge-display');
+      if (activeCount >= 3) {
+        badge.style.display = 'block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    // --- SUBMIT LOGIC ---
     document.getElementById('reviewForm').addEventListener('submit', async function (e) {
       e.preventDefault();
+      const btn = document.getElementById('submitButton');
+      const success = document.getElementById('successMessage');
+      const errorDiv = document.getElementById('errorMessage');
 
-      const submitButton = document.getElementById('submitButton');
-      const successMessage = document.getElementById('successMessage');
-      const errorMessage = document.getElementById('errorMessage');
-
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting...';
-
-      successMessage.style.display = 'none';
-      errorMessage.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      success.style.display = 'none';
+      errorDiv.style.display = 'none';
 
       try {
         const reviewData = {
@@ -524,7 +361,7 @@
           approved: false
         };
 
-        // Total Lotus count
+        // Calculate total count
         let totalLotus = 0;
         if (reviewData.lotus_compassionate) totalLotus++;
         if (reviewData.lotus_responsive) totalLotus++;
@@ -534,22 +371,23 @@
 
         await addDoc(collection(db, 'reviews'), reviewData);
 
-        successMessage.style.display = 'block';
+        success.style.display = 'block';
         document.getElementById('reviewForm').reset();
-        document.querySelectorAll('.lotus-item').forEach(item => item.classList.remove('checked'));
+        document.querySelectorAll('.lotus-item').forEach(i => i.classList.remove('checked'));
+        document.getElementById('badge-display').style.display = 'none'; // Hide badge on reset
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
       } catch (error) {
-        console.error('Error submitting review:', error);
-        errorMessage.textContent = '❌ Error submitting review: ' + error.message;
-        errorMessage.style.display = 'block';
+        console.error('Error:', error);
+        errorDiv.textContent = '❌ Error: ' + error.message;
+        errorDiv.style.display = 'block';
       } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Review';
+        btn.disabled = false;
+        btn.textContent = 'Submit Review';
       }
     });
 
-    // Pre-fill provider from URL (?provider=allpeace, etc.)
+    // --- URL PARAMS Logic ---
     const urlParams = new URLSearchParams(window.location.search);
     const providerParam = urlParams.get('provider');
     if (providerParam) {
@@ -557,11 +395,7 @@
       if (providerParam.toLowerCase() === 'allpeace') {
         providerName = 'AllPeace Care Hospice';
       } else {
-        providerName = providerParam
-          .replace(/-/g, ' ')
-          .split(' ')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
+        providerName = providerParam.replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
       }
       document.getElementById('providerName').value = providerName;
     }

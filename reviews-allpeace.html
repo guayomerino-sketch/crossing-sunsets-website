@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Peace Reviews - Crossing Sunsets™</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* --- CSS STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -42,21 +39,9 @@
             font-weight: 700;
         }
 
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
+        nav { display: flex; gap: 2rem; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.8; }
 
         .provider-header {
             background: white;
@@ -72,6 +57,9 @@
             font-weight: 700;
             color: #0EA5E9;
             margin-bottom: 0.5rem;
+            display: flex;       /* Added for Badge alignment */
+            align-items: center; /* Added for Badge alignment */
+            flex-wrap: wrap;     /* Ensures it wraps on mobile */
         }
 
         .provider-location {
@@ -104,9 +92,7 @@
             margin-bottom: 2rem;
         }
 
-        .leave-review-btn:hover {
-            transform: translateY(-2px);
-        }
+        .leave-review-btn:hover { transform: translateY(-2px); }
 
         .reviews-container {
             display: flex;
@@ -122,9 +108,7 @@
             transition: box-shadow 0.3s;
         }
 
-        .review-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
+        .review-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
         .review-header {
             display: flex;
@@ -133,16 +117,8 @@
             margin-bottom: 1rem;
         }
 
-        .reviewer-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1f2937;
-        }
-
-        .review-date {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
+        .reviewer-name { font-size: 1.25rem; font-weight: 600; color: #1f2937; }
+        .review-date { color: #6b7280; font-size: 0.9rem; }
 
         .lotus-total {
             font-size: 1.3rem;
@@ -170,40 +146,11 @@
             font-weight: 500;
         }
 
-        .review-text {
-            color: #374151;
-            line-height: 1.8;
-            margin-top: 1rem;
-        }
-
-        .provider-info {
-            margin-top: 0.5rem;
-            color: #14B8A6;
-            font-weight: 500;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: #6b7280;
-            font-size: 1.1rem;
-        }
-
-        .no-reviews {
-            text-align: center;
-            padding: 3rem;
-            background: white;
-            border-radius: 12px;
-            color: #6b7280;
-        }
-
-        .error-message {
-            background: #fee;
-            color: #c00;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
+        .review-text { color: #374151; line-height: 1.8; margin-top: 1rem; }
+        .provider-info { margin-top: 0.5rem; color: #14B8A6; font-weight: 500; }
+        .loading { text-align: center; padding: 3rem; color: #6b7280; font-size: 1.1rem; }
+        .no-reviews { text-align: center; padding: 3rem; background: white; border-radius: 12px; color: #6b7280; }
+        .error-message { background: #fee; color: #c00; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
 
         footer {
             background: #1f2937;
@@ -229,7 +176,25 @@
     </header>
 
     <div class="provider-header">
-        <div class="provider-name">☘️ AllPeace Care Hospice</div>
+        <div class="provider-name">
+            ☘️ AllPeace Care Hospice
+            
+            <span style="
+                display: inline-flex; 
+                align-items: center; 
+                background: linear-gradient(145deg, #1e293b, #0f172a); 
+                padding: 6px 14px; 
+                border-radius: 50px; 
+                border: 2px solid #FFD700; 
+                margin-left: 15px; 
+                margin-top: 5px; /* Spacing for mobile wrapping */
+                vertical-align: middle;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            ">
+                <img src="lotus-badge.png" style="width: 24px; height: 24px; margin-right: 8px; border-radius: 50%;">
+                <span style="color: #FFD700; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Lotus Certified</span>
+            </span>
+            </div>
         <div class="provider-location">📍 Torrance, California</div>
     </div>
 
@@ -249,13 +214,11 @@
         <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
     </footer>
 
-    <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getFirestore, collection, query, orderBy, onSnapshot, where } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
             authDomain: "crossing-sunsets.firebaseapp.com",
@@ -266,7 +229,6 @@
             measurementId: "G-LG8VN0EZB7"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
@@ -274,25 +236,11 @@
         const reviewsContainer = document.getElementById('reviews-container');
         const errorContainer = document.getElementById('error-container');
 
-        // Get provider from URL parameter or default to "allpeace"
         const urlParams = new URLSearchParams(window.location.search);
         const provider = urlParams.get('provider') || 'allpeace';
 
-        // Query to fetch reviews - you can filter by provider or show all
-        // Option 1: Show ALL reviews (remove the where clause)
-        // const q = query(collection(db, 'reviews'), orderBy('timestamp', 'desc'));
-        
-        // Option 2: Show only reviews for this provider (uncomment below)
-        // const q = query(
-        //     collection(db, 'reviews'), 
-        //     where('provider_name', '==', 'AllPeace Care Hospice'),
-        //     orderBy('timestamp', 'desc')
-        // );
-
-        // Option 3: Show ALL reviews for now (recommended for testing)
         const q = query(collection(db, 'reviews'), orderBy('timestamp', 'desc'));
 
-        // Listen for real-time updates
         onSnapshot(q, (snapshot) => {
             loadingEl.style.display = 'none';
             reviewsContainer.style.display = 'flex';
@@ -318,7 +266,7 @@
             loadingEl.style.display = 'none';
             errorContainer.innerHTML = `
                 <div class="error-message">
-                    ⚠️ Error loading reviews. Please check your Firebase configuration and try again.
+                    ⚠️ Error loading reviews. Please check your Firebase configuration.
                 </div>
             `;
         });
@@ -327,7 +275,6 @@
             const card = document.createElement('div');
             card.className = 'review-card';
 
-            // Format date
             let dateString = 'Just now';
             if (review.timestamp) {
                 const date = review.timestamp.toDate();
@@ -338,7 +285,6 @@
                 });
             }
 
-            // Calculate total Lotus Rating (0-4)
             const lotusCount = [
                 review.lotus_compassionate,
                 review.lotus_professional,
@@ -346,20 +292,11 @@
                 review.lotus_supportive
             ].filter(Boolean).length;
 
-            // Build lotus badges
             let lotusBadges = '';
-            if (review.lotus_compassionate) {
-                lotusBadges += '<span class="lotus-badge">🪷 Compassionate Care</span>';
-            }
-            if (review.lotus_professional) {
-                lotusBadges += '<span class="lotus-badge">🪷 Professional</span>';
-            }
-            if (review.lotus_responsive) {
-                lotusBadges += '<span class="lotus-badge">🪷 Responsive</span>';
-            }
-            if (review.lotus_supportive) {
-                lotusBadges += '<span class="lotus-badge">🪷 Supportive</span>';
-            }
+            if (review.lotus_compassionate) lotusBadges += '<span class="lotus-badge">🪷 Compassionate Care</span>';
+            if (review.lotus_professional) lotusBadges += '<span class="lotus-badge">🪷 Professional</span>';
+            if (review.lotus_responsive) lotusBadges += '<span class="lotus-badge">🪷 Responsive</span>';
+            if (review.lotus_supportive) lotusBadges += '<span class="lotus-badge">🪷 Supportive</span>';
 
             card.innerHTML = `
                 <div class="review-header">

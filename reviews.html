@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  /* --- 1. Layout & Text --- */
+  .lotus-container {
+    max-width: 600px;
+    margin: 40px auto;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    background-color: #f9fbfd;
+    padding: 30px;
+    border-radius: 20px;
+  }
+  h3 { color: #2c3e50; margin-bottom: 5px; }
+  .subtitle { font-style: italic; color: #7f8c8d; margin-bottom: 25px; }
+
+  /* --- 2. The Card Design --- */
+  .lotus-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  /* --- 3. The Image Animation (The "Bloom") --- */
+  .lotus-img {
+    width: 60px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 20px;
+    /* Start nicely faded/grayscale */
+    filter: grayscale(100%) opacity(0.6); 
+    transition: all 0.5s ease;
+  }
+
+  /* When Active (Clicked) */
+  .lotus-card.active {
+    border-color: #3498db; /* Blue border like your logo */
+    background-color: #f0f8ff;
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+  }
+
+  /* Make the flower colorful and pulse */
+  .lotus-card.active .lotus-img {
+    filter: grayscale(0%) opacity(1); /* Full Color */
+    transform: scale(1.1);
+    animation: gentlePulse 2s infinite;
+  }
+
+  @keyframes gentlePulse {
+    0% { transform: scale(1.1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1.1); }
+  }
+
+  /* --- 4. Text Styling --- */
+  .text-content { text-align: left; flex-grow: 1; }
+  .text-content h4 { margin: 0; color: #34495e; font-size: 1.1rem; }
+  .text-content p { margin: 5px 0 0; color: #7f8c8d; font-size: 0.9rem; }
+  .tag { float: right; color: #3498db; font-weight: bold; }
+
+  /* --- 5. The "Badge" Design --- */
+  #badge-display {
+    display: none; /* Hidden by default */
+    margin-top: 30px;
+    animation: slideUp 0.8s ease-out;
+  }
+  .badge-card {
+    background: linear-gradient(145deg, #2c3e50, #000000);
+    color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #FFD700; /* Gold Border */
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  .badge-img {
+    width: 120px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px #FFD700; /* Glowing effect */
+    margin-bottom: 10px;
+  }
+  .gold-text { color: #FFD700; font-weight: bold; letter-spacing: 1px; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="lotus-container">
+  <h3>The Perfect 4-Lotus System™</h3>
+  <p class="subtitle">Tap the lotuses to rate your provider.</p>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'compassionate')">
+    <img src="lotus-icon.jpg" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Compassionate <span class="tag">#1</span></h4>
+      <p>Kind, caring, and empathetic staff.</p>
+    </div>
+  </div>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'responsive')">
+    <img src="lotus-icon.jpg" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Responsive <span class="tag">#2</span></h4>
+      <p>Quick to respond to needs and concerns.</p>
+    </div>
+  </div>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'supportive')">
+    <img src="lotus-icon.jpg" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Supportive <span class="tag">#3</span></h4>
+      <p>Helpful guidance for family and patient.</p>
+    </div>
+  </div>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'professional')">
+    <img src="lotus-icon.jpg" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Professional <span class="tag">#4</span></h4>
+      <p>Skilled, knowledgeable, and reliable.</p>
+    </div>
+  </div>
+
+  <div id="badge-display">
+    <div class="badge-card">
+      <img src="lotus-badge.jpg" class="badge-img" alt="Gold Badge">
+      <h2 class="gold-text">LOTUS CERTIFIED</h2>
+      <p>This provider has met the Gold Standard of Care.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Simple Logic to track the rating
+  let ratingState = { compassionate: false, responsive: false, supportive: false, professional: false };
+
+  function toggleLotus(element, category) {
+    // Toggle the visual class
+    element.classList.toggle('active');
+    
+    // Update the data
+    ratingState[category] = !ratingState[category];
+
+    // Check if they earned the badge
+    checkBadgeStatus();
+  }
+
+  function checkBadgeStatus() {
+    // Count how many are "true"
+    const trueCount = Object.values(ratingState).filter(v => v === true).length;
+    const badgeElement = document.getElementById('badge-display');
+
+    // Rule: If they have 3 or 4 Lotuses, show the Badge!
+    if (trueCount >= 3) {
+      badgeElement.style.display = "block";
+    } else {
+      badgeElement.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>

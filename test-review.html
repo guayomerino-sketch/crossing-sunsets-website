@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* --- 1. Main Branding (The Blue Background) --- */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #00bcd4; /* Your Brand Blue */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  /* --- 2. The Main White Card --- */
+  .main-container {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  /* --- 3. Header & Form Fields --- */
+  .header { text-align: center; margin-bottom: 30px; }
+  .header h2 { color: #00bcd4; margin: 0; }
+  .header p { color: #7f8c8d; font-size: 0.9rem; margin-top: 5px; }
+
+  label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Keeps padding inside */
+  }
+  input:focus { border-color: #00bcd4; outline: none; }
+
+  .required { color: red; }
+
+  /* --- 4. The Lotus Cards (Review Section) --- */
+  .lotus-section-title {
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    color: #008ba3;
+  }
+
+  .lotus-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  /* Animation & State */
+  .lotus-img {
+    width: 45px;
+    margin-right: 15px;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.5s ease;
+  }
+  .lotus-card.active {
+    border-color: #00bcd4;
+    background-color: #e0f7fa;
+    transform: scale(1.02);
+  }
+  .lotus-card.active .lotus-img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+  }
+
+  /* Text inside cards */
+  .text-content h4 { margin: 0; color: #333; font-size: 1rem; }
+  .text-content p { margin: 3px 0 0; color: #666; font-size: 0.8rem; }
+  .tag { float: right; color: #00bcd4; font-weight: bold; font-size: 0.8rem; }
+
+  /* --- 5. The Badge (Hidden Reward) --- */
+  #badge-display {
+    display: none;
+    margin-top: 20px;
+    background: linear-gradient(145deg, #2c3e50, #000000);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #FFD700;
+    text-align: center;
+    animation: slideUp 0.5s ease-out;
+  }
+  .badge-img { width: 100px; margin-bottom: 10px; border-radius: 50%; box-shadow: 0 0 15px #FFD700;}
+  .gold-text { color: #FFD700; font-weight: bold; margin: 0; }
+
+  /* --- 6. Submit Button --- */
+  .submit-btn {
+    background-color: #00bcd4;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background 0.3s;
+  }
+  .submit-btn:hover { background-color: #008ba3; }
+
+  @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+</style>
+</head>
+<body>
+
+<div class="main-container">
+  
+  <div class="header">
+    <h2>Crossing Sunsets™</h2>
+    <p>Share Your Experience</p>
+  </div>
+
+  <form id="reviewForm">
+    <label>Your Name <span class="required">*</span></label>
+    <input type="text" id="reviewerName" placeholder="Enter your full name" required>
+
+    <label>Provider Name <span class="required">*</span></label>
+    <input type="text" id="providerName" placeholder="e.g., Sunny Vale Hospice" required>
+
+    <label>Email <span class="optional">(optional)</span></label>
+    <input type="email" id="email" placeholder="your.email@example.com">
+  </form>
+
+  <h3 class="lotus-section-title">The Perfect 4-Lotus System™ 🪷</h3>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'compassionate')">
+    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Compassionate <span class="tag">#1</span></h4>
+      <p>Kind, caring, and empathetic staff.</p>
+    </div>
+  </div>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'responsive')">
+    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Responsive <span class="tag">#2</span></h4>
+      <p>Quick to respond to needs and concerns.</p>
+    </div>
+  </div>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'supportive')">
+    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Supportive <span class="tag">#3</span></h4>
+      <p>Helpful guidance for family and patient.</p>
+    </div>
+  </div>
+
+  <div class="lotus-card" onclick="toggleLotus(this, 'professional')">
+    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+    <div class="text-content">
+      <h4>Professional <span class="tag">#4</span></h4>
+      <p>Skilled, knowledgeable, and reliable.</p>
+    </div>
+  </div>
+
+  <div id="badge-display">
+    <img src="lotus-badge.png" class="badge-img" alt="Gold Badge">
+    <h3 class="gold-text">LOTUS CERTIFIED</h3>
+    <p style="color: #ddd; font-size: 0.9rem;">This provider meets the Gold Standard.</p>
+  </div>
+
+  <button class="submit-btn" onclick="submitReview()">Submit Review</button>
+
+</div>
+
+<script>
+  let ratingState = { compassionate: false, responsive: false, supportive: false, professional: false };
+
+  function toggleLotus(element, category) {
+    element.classList.toggle('active');
+    ratingState[category] = !ratingState[category];
+    checkBadgeStatus();
+  }
+
+  function checkBadgeStatus() {
+    const trueCount = Object.values(ratingState).filter(v => v === true).length;
+    const badgeElement = document.getElementById('badge-display');
+    
+    // Logic: Show badge if 3 or more are selected
+    if (trueCount >= 3) {
+      badgeElement.style.display = "block";
+    } else {
+      badgeElement.style.display = "none";
+    }
+  }
+
+  function submitReview() {
+    // This is where we will hook up the database later!
+    const name = document.getElementById('reviewerName').value;
+    if(!name) {
+      alert("Please enter your name first.");
+      return;
+    }
+    alert("Thanks " + name + "! Your Lotus Review is ready to send.");
+  }
+</script>
+
+</body>
+</html>

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Browse Care Providers - Crossing Sunsets™</title>
 
-  <!-- Google Translate -->
   <script>
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
@@ -17,7 +16,6 @@
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  <!-- Page + Contact Card Styles -->
   <style>
     /* Christine contact card */
     .contact-liaison-card {
@@ -162,7 +160,10 @@
     .search-box input:focus { outline:none; border-color:#00bcd4; }
 
     .providers-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap:30px; }
-    .provider-card { background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,.1); transition:transform .3s; }
+    
+    /* ADDED position:relative here for the badge positioning */
+    .provider-card { background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,.1); transition:transform .3s; position: relative; }
+    
     .provider-card:hover { transform:translateY(-10px); }
     .provider-header { background:linear-gradient(135deg, #00bcd4 0%, #0097a7 100%); padding:20px; text-align:center; }
     .provider-logo { width:80px; height:80px; border-radius:50%; background:#fff; margin:0 auto 15px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; line-height:1; overflow:hidden; }
@@ -228,7 +229,6 @@
       <p>Find compassionate hospice, palliative care, skilled nursing, boarding homes, and memory care in your area</p>
     </div>
 
-    <!-- Contact Christine Bottin Card -->
     <section class="contact-liaison-card">
       <div class="contact-liaison-inner">
         <div class="contact-liaison-icon">
@@ -251,7 +251,6 @@
       </div>
     </section>
 
-    <!-- Always visible live stats -->
     <div id="bed-stats-banner" class="bed-stats-banner">
       <div class="stat-item">
         <span id="bedsAvailableTotal" class="stat-number">0</span>
@@ -267,7 +266,6 @@
       </div>
     </div>
 
-    <!-- Filters -->
     <div class="filter-section">
       <span class="filter-label">🏥 Filter by Type of Care:</span>
       <div class="filter-buttons">
@@ -306,7 +304,6 @@
     </div>
   </footer>
 
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
@@ -472,9 +469,20 @@
 
       const logoMarkup = computeLogoMarkup(provider, category);
       const website = safeWebsite(provider.website || '');
+      
+      // CHECK IF PROVIDER IS ALLPEACE TO ADD BADGE
+      const isAllPeace = providerIsAllPeace(provider.name);
+      let badgeHTML = '';
+      if (isAllPeace) {
+         badgeHTML = `
+           <div style="position: absolute; top: 15px; right: 15px; z-index: 10;">
+             <img src="lotus-badge.png" style="width: 50px; height: 50px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.3);" title="Lotus Certified Provider">
+           </div>
+         `;
+      }
 
       card.innerHTML = `
-        <div class="provider-header">
+        ${badgeHTML} <div class="provider-header">
           <div class="provider-logo">${logoMarkup}</div>
           <h3>${provider.name || 'Provider Name'}</h3>
           <div class="location">📍 ${provider.location || 'Location not specified'}</div>

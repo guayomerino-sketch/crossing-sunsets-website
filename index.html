@@ -10,7 +10,6 @@
     
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* Custom gradient based on your teal brand color */
         .brand-gradient {
             background: linear-gradient(135deg, #00a6b4 0%, #008c99 100%);
         }
@@ -20,106 +19,125 @@
 
     <nav class="brand-gradient text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 font-bold text-2xl tracking-tight">
-                        <i class="fa-solid fa-sun text-yellow-300 mr-2"></i> Crossing Sunsets™
-                    </div>
-                    <a href="#" class="bg-white/20 hover:bg-white/30 text-white px-4 py-1.5 rounded-full text-sm font-medium transition">
-                        <i class="fa-solid fa-lock mr-1"></i> Login
+            <div class="flex items-center justify-between h-24"> <div class="flex items-center gap-4">
+                    <a href="#" class="flex-shrink-0">
+                        <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-16 w-auto bg-white/10 rounded-lg p-1"> 
                     </a>
                 </div>
 
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#" class="hover:text-yellow-200 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#" class="hover:text-yellow-200 px-3 py-2 rounded-md text-sm font-medium">Find Providers</a>
-                        <a href="#" class="hover:text-yellow-200 px-3 py-2 rounded-md text-sm font-medium">Leave a Review</a>
-                    </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="hover:text-yellow-200 font-medium">Home</a>
+                    <a href="browse-providers.html" class="hover:text-yellow-200 font-medium">Find Providers</a>
+                    <a href="#" class="hover:text-yellow-200 font-medium">Reviews</a>
+                    
+                    <a href="#" class="bg-white/20 hover:bg-white/30 text-white px-5 py-2 rounded-full text-sm font-bold transition">
+                        <i class="fa-solid fa-lock mr-2"></i>Login
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="brand-gradient relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
             
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
                 Compassionate Support for<br>Life’s Most Important Journey
             </h1>
 
-            <div class="relative mx-auto w-full max-w-3xl rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 mb-8 bg-black">
-                <div class="aspect-w-16 aspect-h-9" style="position: relative; padding-bottom: 56.25%; height: 0;">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/placeholder" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <i class="fa-solid fa-play-circle text-white text-6xl opacity-80"></i>
-                    </div>
+            <div class="relative mx-auto w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 mb-8 bg-black">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls playsinline>
+                        <source src="Thepromovideo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
 
             <div class="mb-8">
-                <p class="text-yellow-100 font-semibold text-sm md:text-base uppercase tracking-wider bg-white/10 inline-block px-6 py-2 rounded-full backdrop-blur-sm">
-                    <i class="fa-solid fa-shield-heart mr-2"></i> 
+                <p class="text-yellow-50 font-semibold text-sm md:text-base uppercase tracking-wider bg-white/10 inline-block px-6 py-2 rounded-full backdrop-blur-sm border border-white/20">
+                    <i class="fa-solid fa-shield-heart mr-2 text-yellow-300"></i> 
                     Trusted by Families, Caregivers, Social Workers, and Legal Guardians statewide.
                 </p>
             </div>
 
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-white/90 mb-10">
-                Navigate complex care decisions with confidence. We connect you with trusted palliative support and hospice providers in your area, so you can focus on comfort and connection.
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-white/90 mb-10 font-light">
+                Navigate complex care decisions with confidence. We connect you with trusted palliative support and hospice providers in your area.
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-                <a href="#" class="bg-white text-[#008c99] hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-bold shadow-lg transition transform hover:-translate-y-1">
+                <a href="browse-providers.html" class="bg-white text-[#008c99] hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-bold shadow-lg transition transform hover:-translate-y-1">
                     Find Support Near Me
                 </a>
-                
                 <a href="#" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full text-lg font-semibold transition">
                     <i class="fa-solid fa-user-doctor mr-2"></i> Join Our Network
                 </a>
             </div>
-
-            <div class="inline-block">
-                <a href="#" class="flex items-center text-white/80 hover:text-white border border-white/30 hover:border-white/60 px-6 py-3 rounded-lg transition bg-black/20">
-                    <i class="fa-solid fa-mobile-screen-button text-2xl mr-3"></i>
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold">Get the mobile app</div>
-                        <div class="font-bold">Download Crossing Sunsets</div>
-                    </div>
-                </a>
-            </div>
-
         </div>
         
         <div class="absolute bottom-0 w-full overflow-hidden leading-none">
-            <svg class="relative block w-full h-[50px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <svg class="relative block w-full h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-gray-50"></path>
             </svg>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid md:grid-cols-3 gap-8 text-center">
-            <div class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fa-solid fa-hand-holding-heart text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2">Dignified Care</h3>
-                <p class="text-gray-600">Prioritizing comfort and respect for patients at every stage.</p>
+    <div class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">What Families Are Saying</h2>
+                <p class="text-gray-600 mt-2">Real experiences from our community</p>
             </div>
-            <div class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fa-solid fa-user-shield text-xl"></i>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Finding a hospice provider for my father was overwhelming. Crossing Sunsets made it so much easier to compare options and find someone who truly cared."</p>
+                    <div class="font-bold text-gray-900">- Sarah M.</div>
                 </div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2">Vetted Providers</h3>
-                <p class="text-gray-600">Verified professionals trusted by legal guardians and social workers.</p>
-            </div>
-            <div class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fa-solid fa-comment-medical text-xl"></i>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"As a social worker, I use this platform constantly. It simplifies the referral process and helps families feel empowered."</p>
+                    <div class="font-bold text-gray-900">- James L., MSW</div>
                 </div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2">Transparent Reviews</h3>
-                <p class="text-gray-600">Real feedback from families to help you make informed choices.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"The transparency is what sold me. Being able to see real provider details and reviews gave me peace of mind."</p>
+                    <div class="font-bold text-gray-900">- Elena R.</div>
+                </div>
             </div>
+            
+            <div class="text-center mt-10">
+                <a href="#" class="text-teal-600 font-bold hover:underline">Read All Reviews <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Take Crossing Sunsets with you</h2>
+            <a href="download-app.html" class="inline-flex items-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
+                <i class="fa-brands fa-apple text-3xl mr-3"></i>
+                <div class="text-left">
+                    <div class="text-xs uppercase font-semibold">Download on the</div>
+                    <div class="font-bold text-lg leading-none">App Store</div>
+                </div>
+            </a>
+             <a href="download-app.html" class="inline-flex items-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition ml-4">
+                <i class="fa-brands fa-google-play text-2xl mr-3"></i>
+                <div class="text-left">
+                    <div class="text-xs uppercase font-semibold">Get it on</div>
+                    <div class="font-bold text-lg leading-none">Google Play</div>
+                </div>
+            </a>
         </div>
     </div>
 

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Browse Care Providers - Crossing Sunsets™</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
     function googleTranslateElementInit() {
@@ -17,110 +18,167 @@
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <style>
-    /* Christine contact card */
+    /* ---------- Contact Liaison Business Card Styles (UPDATED) ---------- */
     .contact-liaison-card {
       max-width: 900px;
-      margin: 2rem auto 1.5rem auto;
+      margin: 2rem auto 3rem auto;
       padding: 0 1rem;
     }
 
     .contact-liaison-inner {
       background: #ffffff;
       border-radius: 16px;
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-
-      border: 2px solid #00b4d8;            /* teal outline */
+      padding: 2rem;
+      border: 2px solid #00b4d8; 
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
       position: relative;
-
-      /* soft pulsing glow */
       animation: contactGlow 3s ease-in-out infinite;
     }
 
-    /* lotus icon on the left */
-    .contact-liaison-icon {
-      flex-shrink: 0;
-      width: 52px;
-      height: 52px;
+    /* Header inside card */
+    .liaison-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1.5rem;
+    }
+
+    .liaison-header h3 {
+      font-size: 1.5rem;
+      color: #023e8a;
+      margin: 0;
+    }
+
+    .liaison-icon-box {
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: linear-gradient(145deg, #00b4d8, #48cae4);
+      background: #e0f7fa;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 16px rgba(0, 150, 199, 0.6);
+    }
+    .liaison-icon-box img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
     }
 
-    .contact-liaison-icon img {
+    /* The 2-Column Grid */
+    .liaison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr; /* Left | Line | Right */
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .liaison-divider {
+      background-color: #e2e8f0;
+      height: 100%;
+      width: 1px;
+    }
+
+    /* Individual Person Column */
+    .liaison-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .liaison-role {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #00b4d8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    .liaison-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+
+    .liaison-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 1rem;
+    }
+
+    /* Call Button Style */
+    .liaison-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .liaison-btn:hover {
+      background: #e0f7fa;
+      border-color: #00b4d8;
+    }
+
+    .btn-icon-circle {
       width: 32px;
       height: 32px;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+      background: #00b4d8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.9rem;
     }
 
-    .contact-liaison-text h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.35rem;
-      color: #023e8a;
-    }
-
-    .contact-liaison-text p {
-      margin-bottom: 0.25rem;
+    .btn-text {
+      font-weight: 700;
       color: #334155;
     }
 
-    .contact-liaison-phone a {
-      color: #00b4d8;
-      text-decoration: none;
-      font-weight: 600;
+    .liaison-btn:hover .btn-text {
+      color: #0077b6;
     }
 
-    .contact-liaison-phone a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-liaison-action {
-      flex-shrink: 0;
-    }
-
-    .contact-liaison-button {
-      display: inline-block;
-      padding: 0.75rem 1.6rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #00b4d8, #0096c7);
-      color: #ffffff;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 0.95rem;
-      box-shadow: 0 6px 18px rgba(0, 150, 199, 0.4);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-    }
-
-    .contact-liaison-button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(0, 150, 199, 0.5);
-      opacity: 0.95;
-    }
-
-    .contact-liaison-button:active {
-      transform: translateY(0);
-      box-shadow: 0 4px 12px rgba(0, 150, 199, 0.35);
+    /* Mobile Responsive for Card */
+    @media (max-width: 768px) {
+      .liaison-grid {
+        grid-template-columns: 1fr; /* Stack them */
+        gap: 2rem;
+      }
+      .liaison-divider {
+        display: none; /* Hide vertical line */
+      }
+      .liaison-col {
+        align-items: center;
+        text-align: center;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 2rem;
+      }
+      .liaison-col:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .liaison-header {
+        justify-content: center;
+      }
     }
 
     /* soft pulsing glow animation */
     @keyframes contactGlow {
-      0% {
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      }
-      50% {
-        box-shadow: 0 0 25px rgba(0, 180, 216, 0.45);
-      }
-      100% {
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      }
+      0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); }
+      50% { box-shadow: 0 0 25px rgba(0, 180, 216, 0.45); }
+      100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); }
     }
 
     /* ---------- existing page styles ---------- */
@@ -161,7 +219,6 @@
 
     .providers-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap:30px; }
     
-    /* ADDED position:relative here for the badge positioning */
     .provider-card { background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,.1); transition:transform .3s; position: relative; }
     
     .provider-card:hover { transform:translateY(-10px); }
@@ -231,26 +288,41 @@
 
     <section class="contact-liaison-card">
       <div class="contact-liaison-inner">
-        <div class="contact-liaison-icon">
-          <img src="lotus-logo.png" alt="Lotus Icon">
-        </div>
-
-        <div class="contact-liaison-text">
+        
+        <div class="liaison-header">
+          <div class="liaison-icon-box">
+            <img src="lotus-logo.png" alt="Lotus Icon">
+          </div>
           <h3>Need help choosing care?</h3>
-          <p>Speak with <strong>Christine Bottin</strong>, Physician Liaison.</p>
-          <p class="contact-liaison-phone">
-            📞 <strong><a href="tel:+15622199922">(562) 219-9922</a></strong>
-          </p>
         </div>
 
-        <div class="contact-liaison-action">
-          <a href="tel:+15622199922" class="contact-liaison-button">
-            Contact Christine
-          </a>
+        <div class="liaison-grid">
+          
+          <div class="liaison-col">
+            <span class="liaison-role">Patient Liaison</span>
+            <h4 class="liaison-name">Iris Merino</h4>
+            <p class="liaison-desc">Assisting families with care & admissions.</p>
+            <a href="tel:3109240340" class="liaison-btn">
+              <div class="btn-icon-circle"><i class="fa-solid fa-phone"></i></div>
+              <span class="btn-text">(310) 924-0340</span>
+            </a>
+          </div>
+
+          <div class="liaison-divider"></div>
+
+          <div class="liaison-col">
+            <span class="liaison-role">Physician Liaison</span>
+            <h4 class="liaison-name">Christine Bottin</h4>
+            <p class="liaison-desc">Coordinating with doctors & facilities.</p>
+            <a href="tel:5622199922" class="liaison-btn">
+              <div class="btn-icon-circle"><i class="fa-solid fa-phone"></i></div>
+              <span class="btn-text">(562) 219-9922</span>
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
-
     <div id="bed-stats-banner" class="bed-stats-banner">
       <div class="stat-item">
         <span id="bedsAvailableTotal" class="stat-number">0</span>
@@ -293,7 +365,7 @@
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="browse-providers.html">Browse Providers</a>
-      <a href="choose-plan.html">🔒 For Healthcare Providers</a>
+      <a href="plans.html">🔒 For Healthcare Providers</a>
       <a href="privacy.html">Privacy</a>
       <a href="mailto:support@crossingsunsets.app">📧 Contact Us</a>
     </div>
@@ -435,153 +507,4 @@
 
       const a = Number(aSource);
       const o = Number(oSource);
-      const t = Number(tSource);
-
-      const any = [a, o, t].some(n => Number.isFinite(n));
-      if (!any) return null;
-
-      const clean = n => (Number.isFinite(n) ? n : 0);
-      return {
-        available: clean(a),
-        occupied: clean(o),
-        total: clean(t)
-      };
-    }
-
-    function getCategoryName(category) {
-      const names = {
-        'hospice':'Hospice Care',
-        'skilled-nursing':'Skilled Nursing',
-        'memory-care':'Memory Care',
-        'board-and-care-facilities':'Board and Care Facilities',
-        'palliative':'Palliative Care'
-      };
-      return names[category] || 'Healthcare Provider';
-    }
-
-    function createProviderCard(provider, providerId, category, beds) {
-      const card = document.createElement('div');
-      card.className = 'provider-card';
-      card.setAttribute('data-firebase-id', providerId);
-      card.setAttribute('data-name', (provider.name || '').toLowerCase());
-      card.setAttribute('data-location', provider.location || '');
-      card.setAttribute('data-category', category);
-
-      const logoMarkup = computeLogoMarkup(provider, category);
-      const website = safeWebsite(provider.website || '');
-      
-      // CHECK IF PROVIDER IS ALLPEACE TO ADD BADGE
-      const isAllPeace = providerIsAllPeace(provider.name);
-      let badgeHTML = '';
-      if (isAllPeace) {
-         badgeHTML = `
-           <div style="position: absolute; top: 15px; right: 15px; z-index: 10;">
-             <img src="lotus-badge.png" style="width: 50px; height: 50px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.3);" title="Lotus Certified Provider">
-           </div>
-         `;
-      }
-
-      card.innerHTML = `
-        ${badgeHTML} <div class="provider-header">
-          <div class="provider-logo">${logoMarkup}</div>
-          <h3>${provider.name || 'Provider Name'}</h3>
-          <div class="location">📍 ${provider.location || 'Location not specified'}</div>
-        </div>
-        <div class="provider-body">
-          <span class="provider-type-badge">${getCategoryIcon(category, provider.name)} ${getCategoryName(category)}</span>
-          <div class="provider-description">${provider.description || 'Quality care services for your loved ones.'}</div>
-
-          <div class="provider-info">
-            ${provider.contact ? `<div>👤 <strong>Contact:</strong> ${provider.contact}</div>`:''}
-            ${provider.email ? `<div>📧 <strong>Email:</strong> <a href="mailto:${provider.email}" style="color:#00bcd4;">${provider.email}</a></div>`:''}
-            ${(provider.website||'') ? `<div>🌐 <strong>Website:</strong> <a href="${website}" target="_blank" rel="noopener" style="color:#00bcd4;">${(provider.website||'').replace(/^https?:\/\//,'')}</a></div>`:''}
-          </div>
-
-          <div class="provider-actions" style="margin-top:12px;display:flex;gap:10px;">
-            <a
-              href="${providerIsAllPeace(provider.name) ? 'reviews-allpeace.html' : `reviews.html?providerId=${encodeURIComponent(providerId)}&name=${encodeURIComponent(provider.name||'')}`}"
-              class="btn btn-reviews"
-            >📖 Read Reviews</a>
-
-            <a href="quick-signup.html?provider=${encodeURIComponent(providerId)}" class="btn btn-review">
-              ✍️ Leave a Review
-            </a>
-          </div>
-        </div>
-      `;
-
-      upsertBedChip(card, category, beds);
-      return card;
-    }
-
-    function loadFirestoreProviders() {
-      db.collection('providers')
-        .where('status','==','approved')
-        .onSnapshot(async (snapshot) => {
-          resetTotals();
-
-          const container = document.getElementById('providersGrid');
-
-          const existingIds = new Set(snapshot.docs.map(d=>d.id));
-          document.querySelectorAll('.provider-card').forEach(c=>{
-            const id = c.getAttribute('data-firebase-id');
-            if (id && !existingIds.has(id)) c.remove();
-          });
-
-          const jobs = snapshot.docs.map(async (docSnap) => {
-            const raw = docSnap.data() || {};
-            const providerId = docSnap.id;
-
-            const provider = {
-              name: raw.businessName || raw.name || '',
-              location: raw.serviceArea || raw.location || '',
-              description: raw.description || '',
-              email: raw.email || '',
-              website: raw.website || '',
-              contact: raw.contactName || raw.contact || '',
-              phone: raw.phone || '',
-              logo: raw.logo || ''
-            };
-
-            const category = normalizeCategory(raw);
-            const beds = getBedsFromFields(raw);
-
-            let card = document.querySelector(`[data-firebase-id="${providerId}"]`);
-            if (!card) {
-              card = createProviderCard(provider, providerId, category, beds);
-              container.appendChild(card);
-            } else {
-              card.setAttribute('data-name', (provider.name || '').toLowerCase());
-              card.setAttribute('data-location', provider.location || '');
-              card.setAttribute('data-category', category);
-
-              const title = card.querySelector('.provider-header h3');
-              if (title) title.textContent = provider.name || 'Provider Name';
-
-              const loc = card.querySelector('.provider-header .location');
-              if (loc) loc.textContent = '📍 ' + (provider.location || 'Location not specified');
-
-              const logo = card.querySelector('.provider-logo');
-              if (logo) logo.innerHTML = computeLogoMarkup(provider, category);
-
-              const badge = card.querySelector('.provider-type-badge');
-              if (badge) badge.innerHTML = `${getCategoryIcon(category, provider.name)} ${getCategoryName(category)}`;
-
-              upsertBedChip(card, category, beds);
-            }
-
-            if (category === 'skilled-nursing' && beds) bumpTotals(category, beds.available, beds.total);
-            else bumpTotals(category, 0, 0);
-          });
-
-          await Promise.all(jobs);
-
-          updateBannerFor(currentFilter);
-          searchProviders();
-        });
-    }
-
-    window.addEventListener('DOMContentLoaded', loadFirestoreProviders);
-  </script>
-</body>
-</html>
+      const t

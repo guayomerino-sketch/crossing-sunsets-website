@@ -18,7 +18,28 @@
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <style>
-    /* ---------- Business Card Styles ---------- */
+    /* ---------- Styles for Business Cards & Layout ---------- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height:1.6; color:#333; background:#f5f7fa; }
+    #google_translate_element { position: fixed; top:70px; right:10px; z-index:9999; background:#fff; padding:5px 10px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,.2); }
+
+    /* Nav */
+    nav { background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%); padding:1rem 2rem; box-shadow:0 2px 10px rgba(0,0,0,.1); position:sticky; top:0; z-index:1000; }
+    nav .container { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .logo-section { display:flex; align-items:center; gap:15px; }
+    .logo-section img { width:50px; height:50px; border-radius:10px; }
+    .logo-section h1 { color:#fff; font-size:24px; }
+    nav ul { list-style:none; display:flex; gap:2rem; }
+    nav a { color:#fff; text-decoration:none; font-weight:500; transition:opacity .3s; }
+    nav a:hover { opacity:.8; }
+
+    /* Main Layout */
+    .main-content { max-width:1200px; margin:40px auto; padding:0 20px; }
+    .page-header { text-align:center; margin-bottom:40px; }
+    .page-header h2 { color:#2c3e50; font-size:2.5rem; margin-bottom:10px; }
+    .page-header p { color:#7f8c8d; font-size:1.1rem; }
+
+    /* Liaison Card */
     .contact-liaison-card { max-width: 900px; margin: 2rem auto 3rem auto; padding: 0 1rem; }
     .contact-liaison-inner { background: #ffffff; border-radius: 16px; padding: 2rem; border: 2px solid #00b4d8; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); position: relative; animation: contactGlow 3s ease-in-out infinite; }
     .liaison-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; }
@@ -36,39 +57,26 @@
     .btn-icon-circle { width: 32px; height: 32px; background: #00b4d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     .btn-text { font-weight: 700; color: #334155; }
     .liaison-btn:hover .btn-text { color: #0077b6; }
-    @media (max-width: 768px) { .liaison-grid { grid-template-columns: 1fr; gap: 2rem; } .liaison-divider { display: none; } .liaison-col { align-items: center; text-align: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 2rem; } .liaison-col:last-child { border-bottom: none; padding-bottom: 0; } .liaison-header { justify-content: center; } }
-    @keyframes contactGlow { 0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); } 50% { box-shadow: 0 0 25px rgba(0, 180, 216, 0.45); } 100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); } }
 
-    /* ---------- Page Styles ---------- */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height:1.6; color:#333; background:#f5f7fa; }
-    #google_translate_element { position: fixed; top:70px; right:10px; z-index:9999; background:#fff; padding:5px 10px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,.2); }
-    nav { background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%); padding:1rem 2rem; box-shadow:0 2px 10px rgba(0,0,0,.1); position:sticky; top:0; z-index:1000; }
-    nav .container { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
-    .logo-section { display:flex; align-items:center; gap:15px; }
-    .logo-section img { width:50px; height:50px; border-radius:10px; }
-    .logo-section h1 { color:#fff; font-size:24px; }
-    nav ul { list-style:none; display:flex; gap:2rem; }
-    nav a { color:#fff; text-decoration:none; font-weight:500; transition:opacity .3s; }
-    nav a:hover { opacity:.8; }
-    .main-content { max-width:1200px; margin:40px auto; padding:0 20px; }
-    .page-header { text-align:center; margin-bottom:40px; }
-    .page-header h2 { color:#2c3e50; font-size:2.5rem; margin-bottom:10px; }
-    .page-header p { color:#7f8c8d; font-size:1.1rem; }
+    /* Stats & Filters */
     .bed-stats-banner { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:30px; padding:20px; background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
     .stat-item { text-align:center; padding:15px; border-right:1px solid #E0E0E0; }
     .stat-item:last-child { border-right:none; }
     .stat-number { display:block; font-size:32px; font-weight:700; color:#00ACC1; margin-bottom:5px; }
     .stat-label { display:block; font-size:14px; color:#666; text-transform:uppercase; letter-spacing:.5px; }
+    
     .filter-section { background:#fff; padding:25px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,.1); margin-bottom:20px; }
     .filter-label { color:#2c3e50; font-weight:600; margin-bottom:15px; display:block; font-size:1.1rem; }
     .filter-buttons { display:flex; gap:10px; flex-wrap:wrap; }
     .filter-btn { padding:10px 20px; border:2px solid #00bcd4; background:#fff; color:#00bcd4; border-radius:25px; cursor:pointer; font-weight:600; transition:all .3s; font-size:14px; }
     .filter-btn:hover { background:#e0f7fa; }
     .filter-btn.active { background:#00bcd4; color:#fff; }
+
     .search-box { background:#fff; padding:30px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,.1); margin-bottom:40px; }
     .search-box input { width:100%; padding:15px; border:2px solid #e0e0e0; border-radius:10px; font-size:16px; transition:border-color .3s; }
     .search-box input:focus { outline:none; border-color:#00bcd4; }
+
+    /* Providers Grid */
     .providers-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap:30px; min-height: 200px; }
     .provider-card { background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,.1); transition:transform .3s; position: relative; }
     .provider-card:hover { transform:translateY(-10px); }
@@ -79,24 +87,30 @@
     .provider-body { padding:25px; }
     .provider-type-badge { display:inline-block; background:#e0f7fa; color:#00838f; padding:5px 15px; border-radius:15px; font-size:.85rem; font-weight:600; margin-bottom:15px; }
     .provider-description { color:#666; font-size:.95rem; line-height:1.6; margin-bottom:20px; min-height:60px; }
+    
     .bed-availability { margin:15px 0; padding:12px 16px; background:#E8F5E9; border-radius:8px; display:flex; align-items:center; font-weight:600; color:#2E7D32; font-size:16px; }
     .bed-availability.low { background:#FFF3E0; color:#E65100; }
     .bed-icon { margin-right:10px; font-size:20px; }
+
     .provider-actions { display:flex; gap:10px; }
     .btn { flex:1; padding:12px; border:none; border-radius:8px; font-weight:600; cursor:pointer; transition:all .3s; text-align:center; text-decoration:none; display:inline-block; }
     .btn-reviews { background:#ff6b35; color:#fff; }
     .btn-reviews:hover { background:#e55a2b; transform:translateY(-2px); }
     .btn-review { background:transparent; color:#00bcd4; border:2px solid #00bcd4; }
     .btn-review:hover { background:#00bcd4; color:#fff; }
+
     .no-results { text-align:center; padding:60px 20px; background:#fff; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,.1); }
     .no-results p { color:#7f8c8d; font-size:1.2rem; }
+
     footer { background:#2c3e50; color:#fff; padding:40px 20px; text-align:center; margin-top:60px; }
     footer .footer-links { display:flex; justify-content:center; gap:2rem; margin-bottom:20px; flex-wrap:wrap; }
     footer a { color:#fff; text-decoration:none; transition:color .3s; }
     footer a:hover { color:#00bcd4; }
     footer .contact-info { margin-top:20px; font-size:.9rem; }
     footer .contact-info a { color:#00bcd4; }
-    @media (max-width:768px) { nav ul { flex-direction:column; gap:1rem; } .providers-grid { grid-template-columns:1fr; } .page-header h2 { font-size:2rem; } .filter-buttons { justify-content:center; } .bed-stats-banner { grid-template-columns:1fr; } .stat-item { border-right:none; border-bottom:1px solid #E0E0E0; } .stat-item:last-child { border-bottom:none; } }
+
+    @media (max-width:768px) { nav ul { flex-direction:column; gap:1rem; } .providers-grid { grid-template-columns:1fr; } .page-header h2 { font-size:2rem; } .filter-buttons { justify-content:center; } .bed-stats-banner { grid-template-columns:1fr; } .stat-item { border-right:none; border-bottom:1px solid #E0E0E0; } .stat-item:last-child { border-bottom:none; } .liaison-grid { grid-template-columns: 1fr; gap: 2rem; } .liaison-divider { display: none; } .liaison-col { align-items: center; text-align: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 2rem; } .liaison-col:last-child { border-bottom: none; padding-bottom: 0; } .liaison-header { justify-content: center; } }
+    @keyframes contactGlow { 0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); } 50% { box-shadow: 0 0 25px rgba(0, 180, 216, 0.45); } 100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); } }
   </style>
 </head>
 <body>
@@ -184,7 +198,7 @@
     </div>
 
     <div class="providers-grid" id="providersGrid">
-        <p style="text-align:center; grid-column: 1/-1;">Loading providers from database...</p>
+        <p style="text-align:center; grid-column: 1/-1;">Connecting to secure database...</p>
     </div>
 
     <div id="noResults" class="no-results" style="display:none;">
@@ -211,7 +225,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // 1. Configure Firebase
+    // 1. Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
       authDomain: "crossing-sunsets.firebaseapp.com",
@@ -222,14 +236,13 @@
       appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
       measurementId: "G-LG8VN0EZB7"
     };
-    
-    // Initialize if not already initialized
+
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
     const db = firebase.firestore();
 
-    // 2. State Variables
+    // 2. Variables
     let currentFilter = 'all';
     const totalsByCategory = {
       all:{facilities:0,available:0,total:0},
@@ -240,7 +253,7 @@
       'memory-care':{facilities:0,available:0,total:0}
     };
 
-    // 3. Helper Functions
+    // 3. Logic
     function resetTotals(){Object.keys(totalsByCategory).forEach(k=>totalsByCategory[k]={facilities:0,available:0,total:0});}
     
     function bumpTotals(cat,a,t){
@@ -249,45 +262,12 @@
       if(Number.isFinite(a)){totalsByCategory[cat].available+=a; totalsByCategory.all.available+=a;}
       if(Number.isFinite(t)){totalsByCategory[cat].total+=t; totalsByCategory.all.total+=t;}
     }
-    
+
     function updateBannerFor(cat){
       const t=totalsByCategory[cat]||totalsByCategory.all;
       document.getElementById('bedsAvailableTotal').textContent=t.available;
       document.getElementById('facilitiesCount').textContent=t.facilities;
       document.getElementById('bedsTotal').textContent=t.total;
-    }
-
-    function filterProviders(category, btnEl){
-      currentFilter=category;
-      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-      if(btnEl)btnEl.classList.add('active');
-      const cards=document.querySelectorAll('.provider-card');
-      let visible=0;
-      cards.forEach(c=>{
-        const cat=c.getAttribute('data-category');
-        if(category==='all'||cat===category){c.style.display='block';visible++;}
-        else c.style.display='none';
-      });
-      document.getElementById('noResults').style.display=(visible===0 && cards.length > 0)?'block':'none';
-      updateBannerFor(currentFilter);
-    }
-
-    function searchProviders(){
-      const term=(document.getElementById('searchInput').value||'').toLowerCase();
-      const cards=document.querySelectorAll('.provider-card');
-      let visible=0;
-      cards.forEach(card=>{
-        const name=(card.getAttribute('data-name')||'').toLowerCase();
-        const loc=(card.getAttribute('data-location')||'').toLowerCase();
-        const cat=card.getAttribute('data-category');
-        const matchFilter=(currentFilter==='all'||cat===currentFilter);
-        const matchSearch=(name.includes(term)||loc.includes(term));
-        if(matchFilter&&matchSearch){card.style.display='block';visible++;}
-        else card.style.display='none';
-      });
-      const noRes = document.getElementById('noResults');
-      if(visible===0 && cards.length > 0) noRes.style.display='block';
-      else noRes.style.display='none';
     }
 
     function normalizeCategory(p){
@@ -300,7 +280,7 @@
     }
 
     function providerIsAllPeace(name=''){ return /\ballpeace care hospice\b/i.test(name); }
-    
+
     function getCategoryIcon(category, providerName='') {
       if (providerIsAllPeace(providerName)) return '☘️';
       const map = { 'hospice':'🕊️','skilled-nursing':'🏨','memory-care':'🧠','board-and-care-facilities':'🏡','palliative':'💙' };
@@ -349,7 +329,7 @@
       const clean = n => (Number.isFinite(n) ? n : 0);
       return { available: clean(a), occupied: clean(o), total: clean(t) };
     }
-
+    
     function getCategoryName(category) {
       const names = {
         'hospice':'Hospice Care',
@@ -402,28 +382,68 @@
       return card;
     }
 
-    // 4. MAIN LOADING FUNCTION (Waits for Auth)
+    function filterProviders(category, btnEl){
+      currentFilter=category;
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      if(btnEl)btnEl.classList.add('active');
+      const cards=document.querySelectorAll('.provider-card');
+      let visible=0;
+      cards.forEach(c=>{
+        const cat=c.getAttribute('data-category');
+        if(category==='all'||cat===category){c.style.display='block';visible++;}
+        else c.style.display='none';
+      });
+      document.getElementById('noResults').style.display=(visible===0 && cards.length > 0)?'block':'none';
+      updateBannerFor(currentFilter);
+    }
+
+    function searchProviders(){
+      const term=(document.getElementById('searchInput').value||'').toLowerCase();
+      const cards=document.querySelectorAll('.provider-card');
+      let visible=0;
+      cards.forEach(card=>{
+        const name=(card.getAttribute('data-name')||'').toLowerCase();
+        const loc=(card.getAttribute('data-location')||'').toLowerCase();
+        const cat=card.getAttribute('data-category');
+        const matchFilter=(currentFilter==='all'||cat===currentFilter);
+        const matchSearch=(name.includes(term)||loc.includes(term));
+        if(matchFilter&&matchSearch){card.style.display='block';visible++;}
+        else card.style.display='none';
+      });
+      const noRes = document.getElementById('noResults');
+      if(visible===0 && cards.length > 0) noRes.style.display='block';
+      else noRes.style.display='none';
+    }
+
+    // 4. MAIN FETCH LOGIC
     function loadFirestoreProviders() {
-      // Listen to ANY change in the providers collection (No Filters)
-      db.collection('providers').onSnapshot(
+      // ** CRITICAL: This line forces the approval check **
+      db.collection('providers')
+        .where('status', '==', 'approved') 
+        .onSnapshot(
         (snapshot) => {
           resetTotals();
           const container = document.getElementById('providersGrid');
           
+          // Clear "Loading..." message if it's there
+          const loadingMsg = container.querySelector('p');
+          if(loadingMsg && loadingMsg.innerText.includes('Connecting')) loadingMsg.remove();
+          
           if(snapshot.empty) {
-             container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">No providers found in database.</p>';
+             // Only show "No providers" if the collection is truly empty after filter
+             if (container.children.length === 0) {
+                 container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">No approved providers found.</p>';
+             }
              updateBannerFor(currentFilter);
              return;
           }
 
-          // Remove old cards that are not in the new snapshot
           const existingIds = new Set(snapshot.docs.map(d=>d.id));
           document.querySelectorAll('.provider-card').forEach(c=>{
             const id = c.getAttribute('data-firebase-id');
             if (id && !existingIds.has(id)) c.remove();
           });
 
-          // Create/Update cards
           snapshot.forEach((docSnap) => {
             const raw = docSnap.data() || {};
             const providerId = docSnap.id;
@@ -439,20 +459,12 @@
             };
             const category = normalizeCategory(raw);
             const beds = getBedsFromFields(raw);
-            
-            // Cleanup Loading Message if it exists
-            const loadingMsg = container.querySelector('p');
-            if(loadingMsg && loadingMsg.innerText.includes('Loading')) loadingMsg.remove();
 
             let card = document.querySelector(`[data-firebase-id="${providerId}"]`);
             if (!card) {
               card = createProviderCard(provider, providerId, category, beds);
               container.appendChild(card);
             } else {
-              // Update existing card logic (omitted for brevity, handled by create in most cases of refresh)
-              // But strictly speaking, we should update attributes here if card exists.
-              // For simplicity in this fix, we are trusting the create flow or just replacing. 
-              // To be safe, let's just replace innerHTML if it exists to ensure data is fresh:
               const newCard = createProviderCard(provider, providerId, category, beds);
               container.replaceChild(newCard, card);
             }
@@ -465,28 +477,24 @@
           searchProviders();
         },
         (error) => {
-          // ERROR HANDLER: Prints permission errors to the screen
           console.error("Firestore Error:", error);
           document.getElementById('providersGrid').innerHTML = 
-            `<div style="grid-column:1/-1; color:red; text-align:center; padding:20px; border:1px solid red; background:#fff0f0;">
-               <strong>Error loading data:</strong> ${error.message}<br>
-               (Check Firebase Console > Firestore Database > Rules)
-             </div>`;
+            `<div style="grid-column:1/-1; color:red; text-align:center;">Error: ${error.message}</div>`;
         }
       );
     }
 
-    // 5. INITIALIZE (Wait for Login, THEN load data)
+    // 5. AUTH HANDLER (Prevents blank page by waiting for login)
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log("User is signed in anonymously:", user.uid);
+        // User is logged in, safe to load data
         loadFirestoreProviders();
       } else {
-        console.log("Signing in anonymously...");
+        // Not logged in, force anonymous login
         firebase.auth().signInAnonymously().catch((error) => {
            console.error("Auth Failed:", error);
            document.getElementById('providersGrid').innerHTML = 
-             `<p style="color:red; text-align:center;">Authentication Failed: ${error.message}</p>`;
+             `<p style="color:red; text-align:center;">Login Failed: ${error.message}</p>`;
         });
       }
     });

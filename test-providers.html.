@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Providers List</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f7f6; padding: 20px; }
+        .provider-card { background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto; overflow: hidden; }
+        .card-header { background-color: #00acc1; padding: 20px; text-align: center; color: white; }
+        .card-body { padding: 20px; }
+        .logo { width: 60px; height: 60px; border-radius: 50%; background: white; padding: 2px; object-fit: cover; }
+        .badge { background: #e0f7fa; color: #006064; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
+        .btn-row { display: flex; gap: 10px; margin-top: 15px; }
+        button { flex: 1; padding: 10px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align:center;">Testing Database Connection...</h2>
+    
+    <div id="providers-container">
+        <p style="text-align:center;">Loading...</p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // 2. YOUR CONFIGURATION (Inserted from your request)
+        const firebaseConfig = {
+            apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+            authDomain: "crossing-sunsets.firebaseapp.com",
+            databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+            projectId: "crossing-sunsets",
+            storageBucket: "crossing-sunsets.firebasestorage.app",
+            messagingSenderId: "83761464492",
+            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Anonymous login to ensure we have permission to read
+        firebase.auth().signInAnonymously().catch((error) => {
+            console.error("Auth Error:", error);
+        });
+
+        // 3. The Script to Fetch Providers
+        const container = document.getElementById('providers-container');
+
+        console.log("Starting fetch...");
+
+        db.collection("providers")
+          .get()
+          .then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                container.innerHTML = "<p style='text-align:center;'>No providers found in database.</p>";
+                return;
+            }
+
+            let htmlContent = "";
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                console.log("Found provider:", data.businessName);
+
+                // Safe fallback if data is missing
+                const name = data.businessName || "Unknown Name";
+                const desc = data.description || "No description.";
+                const type = data.providerType || "Service";
+                // Uses the Shamrock as default if imageUrl is missing
+                const img = data.imageUrl || "https://makewebstudio.github.io/ease-in-hospice/assets/images/shamrock.png"; 
+
+                htmlContent += `
+                <div class="provider-card">
+                    <div class="card-header">
+                        <img src="${img}" class="logo" alt="Logo"><br>
+                        <h3>${name}</h3>
+                        <small>📍 ${data.serviceArea || 'CA'}</small>
+                    </div>
+                    <div class="card-body">
+                        <span class="badge">${type}</span>
+                        <p>${desc}</p>
+                        <hr>
+                        <p>📞 <a href="tel:${data.phone}">${data.phone}</a></p>
+                        <div class="btn-row">
+                            <button style="background:#ff9800; color:white; border:none;">Read Reviews</button>
+                            <button style="background:white; border:1px solid #00acc1; color:#00acc1;">Write Review</button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = htmlContent;
+          })
+          .catch((error) => {
+              console.error("Error:", error);
+              container.innerHTML = "<p style='color:red; text-align:center;'>Error loading data: " + error.message + "</p>";
+          });
+    </script>
+</body>
+</html>

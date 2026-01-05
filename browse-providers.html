@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +89,7 @@
     .provider-header h3 { color:#fff; font-size:1.5rem; margin-bottom:5px; position: relative; z-index: 2; text-shadow: 0 1px 3px rgba(0,0,0,0.2); }
     .provider-header .location { color:rgba(255,255,255,.9); font-size:.9rem; position: relative; z-index: 2; }
     
-    /* NEW: Splendid Badge Styles */
+    /* Splendid Badge Styles */
     .lotus-badge-container {
         position: absolute; 
         top: 15px; 
@@ -336,10 +337,22 @@
     function isUrlLikely(u){ return /^https?:\/\//i.test(u||''); }
     function safeWebsite(u){ if(!u) return ''; return isUrlLikely(u)? u : `https://${u}`; }
 
+    function providerIsAllPeace(name=''){ return /\ballpeace care hospice\b/i.test(name); }
+
     function computeLogoMarkup(p, category) {
+      // Logic: If AllPeace, and no valid logo URL, return Shamrock Emoji.
+      const isAllPeace = providerIsAllPeace(p.name);
+      
       if (p.logo && /^https?:\/\//i.test(p.logo)) {
-        return `<img src="${p.logo}" alt="${p.name||'logo'}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;" />`;
+        // Add onerror handler to fallback to emoji if URL breaks
+        const fallbackChar = isAllPeace ? '☘️' : getCategoryIcon(category);
+        return `<img src="${p.logo}" alt="${p.name||'logo'}" 
+                 style="width:64px;height:64px;border-radius:50%;object-fit:cover;" 
+                 onerror="this.outerHTML='<span aria-label=\\'logo\\' role=\\'img\\' style=\\'font-size:2.5rem;\\'>${fallbackChar}</span>'" />`;
       }
+      
+      // No URL? Return Emoji (Shamrock for AllPeace, Icon for others)
+      if (isAllPeace) return `<span aria-label="logo" role="img" style="color:#4caf50; font-size: 2.5rem;">☘️</span>`;
       return `<span aria-label="logo" role="img">${getCategoryIcon(category)}</span>`;
     }
 
@@ -399,11 +412,9 @@
       const website = safeWebsite(provider.website || '');
       
       // LOGIC: Lotus Badge & Rating
-      // We look for 'lotusRating' field. If missing, default to 0.
       const rating = Number(provider.lotusRating) || 0; 
       const reviewCount = Number(provider.reviewCount) || 0;
       
-      // Calculate how many lotus icons to show (max 4)
       let lotusIcons = '';
       for(let i=0; i<rating && i<4; i++) { lotusIcons += '☘️ '; }
 
@@ -417,7 +428,7 @@
          `;
       }
 
-      // Logic: Review Tally Bar (Fill % based on an arbitrary goal, e.g., 50 reviews)
+      // Logic: Review Tally Bar
       const fillPercent = Math.min((reviewCount / 50) * 100, 100);
 
       card.innerHTML = `
@@ -491,8 +502,6 @@
     }
 
     function loadFirestoreProviders() {
-      // 1. Fetch ALL providers (filtering by status if needed, removed for your request)
-      //    We filter in memory if "status" field exists, or just show all.
       db.collection('providers')
         .onSnapshot((snapshot) => {
           resetTotals();
@@ -516,9 +525,6 @@
             const raw = docSnap.data() || {};
             const providerId = docSnap.id;
             
-            // Check status manually if you added it back, or just allow all
-            // if(raw.status !== 'approved') return; 
-
             const provider = {
               name: raw.businessName || raw.name || 'Unknown Provider',
               location: raw.serviceArea || raw.location || '',
@@ -528,9 +534,8 @@
               contact: raw.contactName || raw.contact || '',
               phone: raw.phone || '',
               logo: raw.imageUrl || raw.logo || '',
-              // NEW FIELDS:
-              lotusRating: raw.lotusRating, // Expecting a number like 3 or 4
-              reviewCount: raw.reviewCount  // Expecting a number like 12
+              lotusRating: raw.lotusRating,
+              reviewCount: raw.reviewCount
             };
             const category = normalizeCategory(raw);
             const beds = getBedsFromFields(raw);

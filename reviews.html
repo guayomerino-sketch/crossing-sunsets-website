@@ -144,34 +144,74 @@
 
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
 <script>
-  // Simple Logic to track the rating
-  let ratingState = { compassionate: false, responsive: false, supportive: false, professional: false };
+  const firebaseConfig = {
+    apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+    authDomain: "crossing-sunsets.firebaseapp.com",
+    projectId: "crossing-sunsets",
+  };
 
-  function toggleLotus(element, category) {
-    // Toggle the visual class
-    element.classList.toggle('active');
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Get Provider Info from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const providerId = urlParams.get('providerId');
+  const providerName = urlParams.get('name');
+
+  if (providerName) {
+    document.querySelector('h3').textContent = `Reviews for ${decodeURIComponent(providerName)}`;
+  }
+
+  function loadApprovedReviews() {
+    const container = document.getElementById('reviews-container') || document.body;
     
-    // Update the data
-    ratingState[category] = !ratingState[category];
-
-    // Check if they earned the badge
-    checkBadgeStatus();
-  }
-
-  function checkBadgeStatus() {
-    // Count how many are "true"
-    const trueCount = Object.values(ratingState).filter(v => v === true).length;
-    const badgeElement = document.getElementById('badge-display');
-
-    // Rule: If they have 3 or 4 Lotuses, show the Badge!
-    if (trueCount >= 3) {
-      badgeElement.style.display = "block";
-    } else {
-      badgeElement.style.display = "none";
+    if (!providerId) {
+      container.innerHTML += '<p style="text-align:center;">No provider selected.</p>';
+      return;
     }
-  }
-</script>
 
-</body>
-</html>
+    // THE FILTER: Only fetch reviews marked as approved: true
+    db.collection('reviews')
+      .where('provider_id', '==', providerId)
+      .where('approved', '==', true)
+      .onSnapshot((snapshot) => {
+        // Remove old content but keep the header/legend
+        const existingReviews = document.querySelectorAll('.review-card');
+        existingReviews.forEach(r => r.remove());
+
+        if (snapshot.empty) {
+          const msg = document.createElement('p');
+          msg.className = 'review-card';
+          msg.style.textAlign = 'center';
+          msg.textContent = "No approved reviews found yet.";
+          container.appendChild(msg);
+          return;
+        }
+
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          const reviewDiv = document.createElement('div');
+          reviewDiv.className = 'review-card';
+          reviewDiv.style = "background:white; padding:20px; border-radius:15px; margin-bottom:15px; box-shadow:0 2px 10px rgba(0,0,0,0.1);";
+          
+          reviewDiv.innerHTML = `
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+              <strong>${data.reviewer_name || 'Verified User'}</strong>
+              <span style="color:#4caf50;">${'☘️ '.repeat(data.lotus_rating || 0)}</span>
+            </div>
+            <p style="font-style:italic; color:#555;">"${data.review_text}"</p>
+            <div style="font-size:0.8rem; color:#999; margin-top:10px;">
+              📍 ${data.location || ''}
+            </div>
+          `;
+          container.appendChild(reviewDiv);
+        });
+      });
+  }
+
+  loadApprovedReviews();
+</script>

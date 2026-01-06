@@ -1,86 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Reviews - Crossing Sunsets™</title>
 <style>
-  /* --- 1. Layout & Text --- */
-  body { background-color: #f4f7f6; margin: 0; padding: 20px; }
-  
-  #approved-reviews-display {
-    max-width: 600px;
-    margin: 20px auto;
-  }
-
-  .lotus-container {
-    max-width: 600px;
-    margin: 40px auto;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    text-align: center;
-    background-color: #f9fbfd;
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid #e0e6ed;
+  /* --- 1. Base Layout --- */
+  body { 
+    background-color: #f8fafc; 
+    margin: 0; 
+    padding: 20px; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   
-  h3 { color: #2c3e50; margin-bottom: 5px; text-align: center; font-family: sans-serif; }
-  .subtitle { font-style: italic; color: #7f8c8d; margin-bottom: 25px; text-align: center; }
+  .main-wrapper { max-width: 650px; margin: 0 auto; }
+  h3 { color: #1e293b; text-align: center; margin-bottom: 5px; font-size: 1.6rem; }
+  .subtitle { font-style: italic; color: #64748b; text-align: center; margin-bottom: 30px; font-size: 0.95rem; }
 
-  /* --- 2. Review Card Styling --- */
+  /* --- 2. The "Safari Style" Review Card --- */
+  #approved-reviews-display { margin-bottom: 40px; }
+  
   .review-card {
     background: white;
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-left: 5px solid #4caf50;
-    font-family: sans-serif;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    border: 2px solid #e2e8f0;
+    border-left: 6px solid #48bb78; /* That nice green you liked */
+    transition: transform 0.2s ease;
   }
+  
+  .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .reviewer-name { font-weight: 700; color: #1e293b; font-size: 1.15rem; }
+  .lotus-stars { color: #48bb78; font-size: 1.2rem; letter-spacing: 2px; }
+  .review-text { color: #475569; line-height: 1.7; font-style: italic; font-size: 1.05rem; margin: 15px 0; }
+  .review-footer { font-size: 0.85rem; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 12px; display: flex; align-items: center; gap: 5px; }
 
-  /* --- 3. Lotus Rating Legend Design --- */
+  /* --- 3. The Definition Legend --- */
+  .lotus-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .legend-title { color: #334155; font-weight: 700; margin-bottom: 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
   .lotus-card {
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 15px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
     padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     text-align: left;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   }
   
-  .lotus-img {
-    width: 50px;
-    height: auto;
-    margin-right: 20px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  }
+  .lotus-img { width: 45px; height: auto; margin-right: 15px; }
+  .text-content h4 { margin: 0; color: #1e293b; font-size: 1rem; }
+  .text-content p { margin: 3px 0 0; color: #64748b; font-size: 0.85rem; }
+  .tag { float: right; color: #3b82f6; font-weight: bold; font-size: 0.8rem; }
 
-  .text-content h4 { margin: 0; color: #34495e; font-size: 1.1rem; }
-  .text-content p { margin: 5px 0 0; color: #7f8c8d; font-size: 0.9rem; }
-  .tag { float: right; color: #3498db; font-weight: bold; }
-
-  hr.divider {
-    border: 0;
-    height: 1px;
-    background: #d1d9e0;
-    margin: 40px auto;
-    max-width: 600px;
-  }
+  hr.divider { border: 0; height: 1px; background: #e2e8f0; margin: 40px auto; }
 </style>
 </head>
 <body>
 
+<div class="main-wrapper">
   <h3>Reviews Gallery</h3>
   <p class="subtitle">Verified feedback from our community.</p>
 
   <div id="approved-reviews-display">
-    <p style="text-align:center; color:#999;">Loading verified reviews...</p>
+    <p style="text-align:center; color:#94a3b8;">Connecting to secure database...</p>
   </div>
 
   <hr class="divider">
 
   <div class="lotus-container">
-    <h4 style="color:#2c3e50; margin-bottom:20px;">The Perfect 4-Lotus System™</h4>
+    <div class="legend-title">The Perfect 4-Lotus System™</div>
     
     <div class="lotus-card">
       <img src="lotus-logo.png" class="lotus-img" alt="lotus">
@@ -114,6 +114,7 @@
       </div>
     </div>
   </div>
+</div>
 
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
@@ -125,35 +126,32 @@
     projectId: "crossing-sunsets",
   };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
+  if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
   const db = firebase.firestore();
 
   const urlParams = new URLSearchParams(window.location.search);
-  const providerId = urlParams.get('providerId');
-  const providerName = urlParams.get('name');
+  const pId = urlParams.get('providerId');
+  const pName = urlParams.get('name');
 
-  if (providerName) {
-    document.querySelector('h3').textContent = `Reviews for ${decodeURIComponent(providerName)}`;
+  if (pName) {
+    document.querySelector('h3').textContent = `Reviews for ${decodeURIComponent(pName)}`;
   }
 
   function loadApprovedReviews() {
     const container = document.getElementById('approved-reviews-display');
-    
-    if (!providerId) {
+    if (!pId) {
       container.innerHTML = '<p style="text-align:center;">No provider selected.</p>';
       return;
     }
 
     db.collection('reviews')
-      .where('provider_id', '==', providerId)
+      .where('provider_id', '==', pId)
       .where('approved', '==', true)
       .onSnapshot((snapshot) => {
-        container.innerHTML = ''; // Clear loading message
+        container.innerHTML = ''; 
 
         if (snapshot.empty) {
-          container.innerHTML = '<p style="text-align:center; color:#7f8c8d; margin-top:20px;">No approved reviews found yet.</p>';
+          container.innerHTML = '<p style="text-align:center; color:#64748b; margin-top:20px;">No approved reviews found yet for this provider.</p>';
           return;
         }
 
@@ -163,20 +161,20 @@
           reviewDiv.className = 'review-card';
           
           reviewDiv.innerHTML = `
-            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
-              <strong style="font-size:1.1rem; color:#2c3e50;">${data.reviewer_name || 'Verified User'}</strong>
-              <span style="font-size:1.2rem;">${'☘️'.repeat(data.lotus_rating || 0)}</span>
+            <div class="review-header">
+              <span class="reviewer-name">${data.reviewer_name || 'Verified User'}</span>
+              <span class="lotus-stars">${'☘️'.repeat(data.lotus_rating || 0)}</span>
             </div>
-            <p style="font-style:italic; color:#4a5568; line-height:1.6; font-size:1rem;">"${data.review_text}"</p>
-            <div style="font-size:0.85rem; color:#94a3b8; margin-top:15px; border-top:1px solid #f1f5f9; padding-top:10px;">
-              📍 ${data.location || 'Verified Location'}
+            <p class="review-text">"${data.review_text}"</p>
+            <div class="review-footer">
+              <span>📍 ${data.location || 'Verified Location'}</span>
+              <span style="margin-left:auto; color:#10b981; font-weight:600;">✓ Verified Review</span>
             </div>
           `;
           container.appendChild(reviewDiv);
         });
       }, (error) => {
-        console.error("Error:", error);
-        container.innerHTML = '<p style="text-align:center; color:red;">Error loading reviews.</p>';
+        container.innerHTML = '<p style="text-align:center; color:#ef4444;">Error loading reviews.</p>';
       });
   }
 

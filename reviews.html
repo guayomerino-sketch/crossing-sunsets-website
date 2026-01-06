@@ -3,6 +3,13 @@
 <head>
 <style>
   /* --- 1. Layout & Text --- */
+  body { background-color: #f4f7f6; margin: 0; padding: 20px; }
+  
+  #approved-reviews-display {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+
   .lotus-container {
     max-width: 600px;
     margin: 40px auto;
@@ -11,11 +18,24 @@
     background-color: #f9fbfd;
     padding: 30px;
     border-radius: 20px;
+    border: 1px solid #e0e6ed;
   }
-  h3 { color: #2c3e50; margin-bottom: 5px; }
-  .subtitle { font-style: italic; color: #7f8c8d; margin-bottom: 25px; }
+  
+  h3 { color: #2c3e50; margin-bottom: 5px; text-align: center; font-family: sans-serif; }
+  .subtitle { font-style: italic; color: #7f8c8d; margin-bottom: 25px; text-align: center; }
 
-  /* --- 2. The Card Design --- */
+  /* --- 2. Review Card Styling --- */
+  .review-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid #4caf50;
+    font-family: sans-serif;
+  }
+
+  /* --- 3. Lotus Rating Legend Design --- */
   .lotus-card {
     background: white;
     border: 2px solid #e0e0e0;
@@ -24,125 +44,76 @@
     margin-bottom: 15px;
     display: flex;
     align-items: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: left;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   }
- 
-  /* --- 3. The Image Animation (The "Bloom") --- */
+  
   .lotus-img {
-    width: 60px; /* Adjust size as needed */
+    width: 50px;
     height: auto;
     margin-right: 20px;
-    /* Start nicely faded/grayscale */
-    filter: grayscale(100%) opacity(0.6); 
-    transition: all 0.5s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
   }
 
-  /* When Active (Clicked) */
-  .lotus-card.active {
-    border-color: #3498db; /* Blue border like your logo */
-    background-color: #f0f8ff;
-    transform: scale(1.03);
-    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
-  }
-
-  /* Make the flower colorful and pulse */
-  .lotus-card.active .lotus-img {
-    filter: grayscale(0%) opacity(1); /* Full Color */
-    transform: scale(1.1);
-    animation: gentlePulse 2s infinite;
-  }
-
-  @keyframes gentlePulse {
-    0% { transform: scale(1.1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1.1); }
-  }
-
-  /* --- 4. Text Styling --- */
-  .text-content { text-align: left; flex-grow: 1; }
   .text-content h4 { margin: 0; color: #34495e; font-size: 1.1rem; }
   .text-content p { margin: 5px 0 0; color: #7f8c8d; font-size: 0.9rem; }
   .tag { float: right; color: #3498db; font-weight: bold; }
 
-  /* --- 5. The "Badge" Design --- */
-  #badge-display {
-    display: none; /* Hidden by default */
-    margin-top: 30px;
-    animation: slideUp 0.8s ease-out;
-  }
-  .badge-card {
-    background: linear-gradient(145deg, #2c3e50, #000000);
-    color: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid #FFD700; /* Gold Border */
-    text-align: center;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-  }
-  .badge-img {
-    width: 120px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 0 15px #FFD700; /* Glowing effect */
-    margin-bottom: 10px;
-  }
-  .gold-text { color: #FFD700; font-weight: bold; letter-spacing: 1px; }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  hr.divider {
+    border: 0;
+    height: 1px;
+    background: #d1d9e0;
+    margin: 40px auto;
+    max-width: 600px;
   }
 </style>
 </head>
 <body>
 
-<div class="lotus-container">
-  <h3>The Perfect 4-Lotus System™</h3>
-  <p class="subtitle">Tap the lotuses to rate your provider.</p>
+  <h3>Reviews Gallery</h3>
+  <p class="subtitle">Verified feedback from our community.</p>
 
-  <div class="lotus-card" onclick="toggleLotus(this, 'compassionate')">
-    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
-    <div class="text-content">
-      <h4>Compassionate <span class="tag">#1</span></h4>
-      <p>Kind, caring, and empathetic staff.</p>
-    </div>
+  <div id="approved-reviews-display">
+    <p style="text-align:center; color:#999;">Loading verified reviews...</p>
   </div>
 
-  <div class="lotus-card" onclick="toggleLotus(this, 'responsive')">
-    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
-    <div class="text-content">
-      <h4>Responsive <span class="tag">#2</span></h4>
-      <p>Quick to respond to needs and concerns.</p>
+  <hr class="divider">
+
+  <div class="lotus-container">
+    <h4 style="color:#2c3e50; margin-bottom:20px;">The Perfect 4-Lotus System™</h4>
+    
+    <div class="lotus-card">
+      <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+      <div class="text-content">
+        <h4>Compassionate <span class="tag">#1</span></h4>
+        <p>Kind, caring, and empathetic staff.</p>
+      </div>
+    </div>
+
+    <div class="lotus-card">
+      <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+      <div class="text-content">
+        <h4>Responsive <span class="tag">#2</span></h4>
+        <p>Quick to respond to needs and concerns.</p>
+      </div>
+    </div>
+
+    <div class="lotus-card">
+      <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+      <div class="text-content">
+        <h4>Supportive <span class="tag">#3</span></h4>
+        <p>Helpful guidance for family and patient.</p>
+      </div>
+    </div>
+
+    <div class="lotus-card">
+      <img src="lotus-logo.png" class="lotus-img" alt="lotus">
+      <div class="text-content">
+        <h4>Professional <span class="tag">#4</span></h4>
+        <p>Skilled, knowledgeable, and reliable.</p>
+      </div>
     </div>
   </div>
-
-  <div class="lotus-card" onclick="toggleLotus(this, 'supportive')">
-    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
-    <div class="text-content">
-      <h4>Supportive <span class="tag">#3</span></h4>
-      <p>Helpful guidance for family and patient.</p>
-    </div>
-  </div>
-
-  <div class="lotus-card" onclick="toggleLotus(this, 'professional')">
-    <img src="lotus-logo.png" class="lotus-img" alt="lotus">
-    <div class="text-content">
-      <h4>Professional <span class="tag">#4</span></h4>
-      <p>Skilled, knowledgeable, and reliable.</p>
-    </div>
-  </div>
-
-  <div id="badge-display">
-    <div class="badge-card">
-      <img src="lotus-badge.png" class="badge-img" alt="Gold Badge">
-      <h2 class="gold-text">LOTUS CERTIFIED</h2>
-      <p>This provider has met the Gold Standard of Care.</p>
-    </div>
-  </div>
-
-</div>
 
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
@@ -154,10 +125,11 @@
     projectId: "crossing-sunsets",
   };
 
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
   const db = firebase.firestore();
 
-  // Get Provider Info from URL
   const urlParams = new URLSearchParams(window.location.search);
   const providerId = urlParams.get('providerId');
   const providerName = urlParams.get('name');
@@ -167,28 +139,21 @@
   }
 
   function loadApprovedReviews() {
-    const container = document.getElementById('reviews-container') || document.body;
+    const container = document.getElementById('approved-reviews-display');
     
     if (!providerId) {
-      container.innerHTML += '<p style="text-align:center;">No provider selected.</p>';
+      container.innerHTML = '<p style="text-align:center;">No provider selected.</p>';
       return;
     }
 
-    // THE FILTER: Only fetch reviews marked as approved: true
     db.collection('reviews')
       .where('provider_id', '==', providerId)
       .where('approved', '==', true)
       .onSnapshot((snapshot) => {
-        // Remove old content but keep the header/legend
-        const existingReviews = document.querySelectorAll('.review-card');
-        existingReviews.forEach(r => r.remove());
+        container.innerHTML = ''; // Clear loading message
 
         if (snapshot.empty) {
-          const msg = document.createElement('p');
-          msg.className = 'review-card';
-          msg.style.textAlign = 'center';
-          msg.textContent = "No approved reviews found yet.";
-          container.appendChild(msg);
+          container.innerHTML = '<p style="text-align:center; color:#7f8c8d; margin-top:20px;">No approved reviews found yet.</p>';
           return;
         }
 
@@ -196,22 +161,26 @@
           const data = doc.data();
           const reviewDiv = document.createElement('div');
           reviewDiv.className = 'review-card';
-          reviewDiv.style = "background:white; padding:20px; border-radius:15px; margin-bottom:15px; box-shadow:0 2px 10px rgba(0,0,0,0.1);";
           
           reviewDiv.innerHTML = `
-            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-              <strong>${data.reviewer_name || 'Verified User'}</strong>
-              <span style="color:#4caf50;">${'☘️ '.repeat(data.lotus_rating || 0)}</span>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+              <strong style="font-size:1.1rem; color:#2c3e50;">${data.reviewer_name || 'Verified User'}</strong>
+              <span style="font-size:1.2rem;">${'☘️'.repeat(data.lotus_rating || 0)}</span>
             </div>
-            <p style="font-style:italic; color:#555;">"${data.review_text}"</p>
-            <div style="font-size:0.8rem; color:#999; margin-top:10px;">
-              📍 ${data.location || ''}
+            <p style="font-style:italic; color:#4a5568; line-height:1.6; font-size:1rem;">"${data.review_text}"</p>
+            <div style="font-size:0.85rem; color:#94a3b8; margin-top:15px; border-top:1px solid #f1f5f9; padding-top:10px;">
+              📍 ${data.location || 'Verified Location'}
             </div>
           `;
           container.appendChild(reviewDiv);
         });
+      }, (error) => {
+        console.error("Error:", error);
+        container.innerHTML = '<p style="text-align:center; color:red;">Error loading reviews.</p>';
       });
   }
 
   loadApprovedReviews();
 </script>
+</body>
+</html>

@@ -74,49 +74,96 @@
         </div>
     </nav>
 
-    <div class="brand-bg relative overflow-hidden"> 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-            
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-                Compassionate Support for<br>Life’s Most Important Journey
-            </h1>
+   <!-- HERO (Apple-style / full-screen) -->
+<section class="brand-bg relative overflow-hidden">
+  <!-- soft gradient + vignette -->
+  <div class="absolute inset-0 opacity-70">
+    <div class="absolute -top-40 -left-40 w-[680px] h-[680px] bg-white/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-56 -right-56 w-[760px] h-[760px] bg-yellow-200/20 rounded-full blur-3xl"></div>
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/0 to-black/20"></div>
 
-            <div class="relative mx-auto w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 mb-8 bg-black">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls playsinline>
-                      <source src="promo-video-v2.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-
-            <div class="mb-8">
-                <p class="text-teal-900 font-bold text-sm md:text-base uppercase tracking-wider bg-white/90 inline-block px-6 py-2 rounded-full shadow-lg">
-                    <i class="fa-solid fa-shield-heart mr-2 text-teal-600"></i> 
-                    Trusted by Families, Caregivers, Social Workers, and Legal Guardians statewide.
-                </p>
-            </div>
-
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-white/95 mb-10 font-light leading-relaxed">
-                Navigate complex care decisions with confidence. We connect you with trusted palliative support and hospice providers in your area.
-            </p>
-
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-                <a href="browse-providers.html" class="bg-white text-[#00acc1] hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-bold shadow-lg transition transform hover:-translate-y-1 border-2 border-transparent">
-                    Find Support Near Me
-                </a>
-                <a href="plans.html" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full text-lg font-se...
-                    <i class="fa-solid fa-user-doctor mr-2"></i> Join Our Network
-                </a>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
-            <svg class="relative block w-full h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
-            </svg>
-        </div>
+  <!-- content -->
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
+    <!-- floating 3D app icon (optional but looks premium) -->
+    <div class="absolute top-6 left-4 sm:left-6">
+      <div class="bg-white/10 backdrop-blur-md rounded-2xl p-2 shadow-2xl border border-white/15">
+        <img src="CrossingSunsets™cleanicon.png" alt="Crossing Sunsets App Icon" class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl" style="filter: drop-shadow(0 18px 25px rgba(0,0,0,.25));">
+      </div>
     </div>
+
+    <!-- hero text -->
+    <div class="min-h-[86vh] flex flex-col items-center justify-center text-center">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets™" class="h-11 sm:h-12 w-auto bg-white rounded-xl p-1 shadow-lg" style="filter: drop-shadow(0 18px 25px rgba(0,0,0,.18));">
+        <span class="text-white font-semibold tracking-tight text-lg sm:text-xl">Crossing Sunsets™</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+        Compassionate Support for<br class="hidden sm:block"> Life’s Most Important Journey
+      </h1>
+
+      <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg text-white/90 font-light leading-relaxed">
+        Navigate complex care decisions with confidence. We connect you with trusted palliative support and hospice providers in your area.
+      </p>
+
+      <!-- video card -->
+      <div class="mt-8 w-full max-w-5xl">
+        <div class="relative mx-auto w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-black"
+             style="box-shadow: 0 40px 90px rgba(0,0,0,.35);">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+            <video class="absolute top-0 left-0 w-full h-full object-cover" controls playsinline preload="metadata">
+              <source src="promo-video-v2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <!-- trust pill + lotus (3D-ish) -->
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div class="text-teal-900 font-bold text-xs sm:text-sm uppercase tracking-wider bg-white/90 inline-flex items-center gap-2 px-6 py-2 rounded-full shadow-lg">
+            <i class="fa-solid fa-shield-heart text-teal-600"></i>
+            Trusted by Families, Caregivers, Social Workers, and Legal Guardians statewide.
+          </div>
+
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/15 rounded-full px-4 py-2">
+            <img src="lotus-logo.png" alt="Lotus Rating System™" class="h-6 w-6"
+                 style="filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));">
+            <span class="text-white/90 text-sm font-semibold">Lotus Rating System™</span>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+          <a href="browse-providers.html"
+             class="bg-white text-[#00acc1] hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-bold shadow-lg transition transform hover:-translate-y-1 border-2 border-transparent">
+            Find Support Near Me
+          </a>
+
+          <a href="plans.html"
+             class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:-translate-y-1">
+            <i class="fa-solid fa-user-doctor mr-2"></i> Join Our Network
+          </a>
+        </div>
+
+        <!-- subtle scroll cue -->
+        <div class="mt-10 flex justify-center">
+          <div class="w-7 h-12 rounded-full border border-white/35 flex items-start justify-center p-2 opacity-80">
+            <div class="w-1.5 h-1.5 rounded-full bg-white animate-bounce"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom wave -->
+  <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+    <svg class="relative block w-full h-[55px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
+    </svg>
+  </div>
+</section>
+
 
     <div class="bg-white py-16 flex-grow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

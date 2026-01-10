@@ -516,18 +516,22 @@
       for(let i=0; i<rating && i<4; i++) { lotusIcons += '☘️ '; }
 
       let badgeHTML = '';
-      if (rating >= 3) {
-         badgeHTML = `
-          <div class="lotus-badge-container">
-  <div class="lotus-badge-frame">
-    <img
-      src="lotus-certified-badge.png"
-      class="lotus-badge-img"
-      title="Lotus Certified Provider – Awarded to providers who meet our highest standards of compassion, responsiveness, and professionalism."
-      alt="Lotus Certified Provider Badge"
-    />
-  </div>
-</div>
+     let badgeHTML = '';
+if (rating >= 3) {
+  badgeHTML = `
+    <div class="lotus-badge-container">
+      <div class="lotus-badge-frame">
+        <img
+          src="lotus-certified-badge.png"
+          class="lotus-badge-img"
+          alt="Lotus Certified Provider Badge"
+          title="Lotus Certified Provider – Awarded to providers who meet our highest standards of compassion, responsiveness, and professionalism."
+        />
+      </div>
+    </div>
+  `;
+}
+
 
 
       const fillPercent = Math.min((reviewCount / 50) * 100, 100);

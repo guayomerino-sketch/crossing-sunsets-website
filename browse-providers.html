@@ -518,11 +518,17 @@
       let badgeHTML = '';
       if (rating >= 3) {
          badgeHTML = `
-           <div class="lotus-badge-container">
-             <img src="lotus-certified-badge.png" class="lotus-badge-img" title="Lotus Certified Provider">
-           </div>
-         `;
-      }
+          <div class="lotus-badge-container">
+  <div class="lotus-badge-frame">
+    <img
+      src="lotus-certified-badge.png"
+      class="lotus-badge-img"
+      title="Lotus Certified Provider – Awarded to providers who meet our highest standards of compassion, responsiveness, and professionalism."
+      alt="Lotus Certified Provider Badge"
+    />
+  </div>
+</div>
+
 
       const fillPercent = Math.min((reviewCount / 50) * 100, 100);
 

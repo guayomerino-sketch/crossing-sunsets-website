@@ -527,15 +527,14 @@
       const rating = Number(provider.lotusRating) || 0; 
       const reviewCount = Number(provider.reviewCount) || 0;
       
-      let lotusIcons = '';
+    let lotusIcons = '';
       for(let i=0; i<rating && i<4; i++) { lotusIcons += '☘️ '; }
 
-      // --- NEW BADGE LOGIC (Cleaned) ---
       let badgeHTML = '';
       if (rating >= 3) {
           badgeHTML = `
-            <div class="absolute top-3 right-3 z-20 bg-white p-1.5 rounded-full shadow-lg border-2 border-yellow-400 transform transition hover:scale-110 cursor-help" title="Lotus Certified (3+ Rating)">
-              <img src="lotus-logo.png" class="h-6 w-6 object-contain" alt="Lotus Certified">
+            <div style="position: absolute; top: -15px; right: -15px; z-index: 10;">
+              <img src="lotus-certified-badge.png" class="lotus-badge-img" alt="Lotus Certified" title="Lotus Certified Provider">
             </div>
           `;
       }

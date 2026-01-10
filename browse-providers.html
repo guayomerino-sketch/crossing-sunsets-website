@@ -283,17 +283,24 @@
       </div>
     </div>
 
-    <div class="filter-section">
-      <span class="filter-label">🏥 Filter by Type of Care:</span>
-      <div class="filter-buttons">
-        <button class="filter-btn active" onclick="filterProviders('all', this)">All Providers</button>
-        <button class="filter-btn" onclick="filterProviders('hospice', this)">☘️ Hospice</button>
-        <button class="filter-btn" onclick="filterProviders('palliative', this)">💙 Palliative Care</button>
-        <button class="filter-btn" onclick="filterProviders('skilled-nursing', this)">🏨 Skilled Nursing</button>
-        <button class="filter-btn" onclick="filterProviders('board-and-care-facilities', this)">🏡 Board and Care Facilities</button>
-        <button class="filter-btn" onclick="filterProviders('memory-care', this)">🧠 Memory Care</button>
-      </div>
-    </div>
+   <div class="filter-section">
+  <span class="filter-label">🏥 Filter by Type of Care:</span>
+  <div class="filter-buttons">
+    <button class="filter-btn active" onclick="filterProviders('all', this)">All Providers</button>
+    <button class="filter-btn" onclick="filterProviders('hospice', this)">❇️ Hospice</button>
+    <button class="filter-btn" onclick="filterProviders('palliative', this)">💙 Palliative Care</button>
+    <button class="filter-btn" onclick="filterProviders('skilled-nursing', this)">🏨 Skilled Nursing</button>
+    <button class="filter-btn" onclick="filterProviders('board-and-care-facilities', this)">🏡 Board and Care Facilities</button>
+    <button class="filter-btn" onclick="filterProviders('memory-care', this)">🧠 Memory Care</button>
+    
+    <button class="filter-btn" onclick="filterProviders('senior-living', this)">🏙️ Senior Living</button>
+    <button class="filter-btn" onclick="filterProviders('dd-homes', this)">🧩 DD Homes</button>
+    <button class="filter-btn" onclick="filterProviders('care-agencies', this)">👩‍⚕️ Care Agencies</button>
+    <button class="filter-btn" onclick="filterProviders('assisted-living', this)">🦯 Assisted Living</button>
+    <button class="filter-btn" onclick="filterProviders('adult-day-care', this)">☀️ Adult Day Care</button>
+    <button class="filter-btn" onclick="filterProviders('respite-care', this)">🛌 Respite Care</button>
+  </div>
+</div>
 
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="🔍 Search by city, state, or provider name..." onkeyup="searchProviders()"/>

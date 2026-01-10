@@ -89,68 +89,14 @@
     .provider-header h3 { color:#fff; font-size:1.5rem; margin-bottom:5px; position: relative; z-index: 2; text-shadow: 0 1px 3px rgba(0,0,0,0.2); }
     .provider-header .location { color:rgba(255,255,255,.9); font-size:.9rem; position: relative; z-index: 2; }
     
-    /* Lotus Certified Badge (3D card) */
-.lotus-badge-container {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 10;
-
-  /* 3D badge card */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 10px;
-  border-radius: 16px;
-
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 215, 0, 0.45);
-  box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.22),
-    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
-
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  transform: translateZ(0);
-  animation: floatBadge 3s ease-in-out infinite;
-}
-
-.lotus-badge-container::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, rgba(255,215,0,0.22), rgba(0,172,193,0.12));
-  pointer-events: none;
-}
-
-.lotus-badge-img {
-  position: relative;
-  z-index: 1;
-
-  width: 56px;   /* mobile */
-  height: 56px;  /* mobile */
-  border-radius: 50%;
-
-  background: white;
-  border: 2px solid #ffd700;
-
-  padding: 4px;
-  object-fit: contain;
-
-  box-shadow: 0 0 22px rgba(255, 215, 0, 0.55);
-}
-
-/* Desktop size */
-@media (min-width: 768px) {
-  .lotus-badge-img {
-    width: 64px;
-    height: 64px;
-  }
-}
-
+    /* Splendid Badge Styles */
+    .lotus-badge-container {
+        position: absolute; 
+        top: 15px; 
+        right: 15px; 
+        z-index: 10;
+        animation: floatBadge 3s ease-in-out infinite;
+    }
    .lotus-badge-img {
   width: 72px;
   height: 72px;
@@ -536,20 +482,14 @@
       let lotusIcons = '';
       for(let i=0; i<rating && i<4; i++) { lotusIcons += '☘️ '; }
 
-  let badgeHTML = '';
-if (rating >= 3) {
-  badgeHTML = `
-    <div class="lotus-badge-container">
-      <img
-        src="lotus-certified-badge.png"
-        class="lotus-badge-img"
-        title="Lotus Certified Provider — Awarded to providers who meet our highest standards of compassion, responsiveness, and professionalism."
-        alt="Lotus Certified Provider Badge"
-      />
-    </div>
-  `;
-}
-      {
+      let badgeHTML = '';
+      if (rating >= 3) {
+         badgeHTML = `
+           <div class="lotus-badge-container">
+             <img src="lotus-certified-badge.png" class="lotus-badge-img" title="Lotus Certified Provider">
+           </div>
+         `;
+      }
 
       const fillPercent = Math.min((reviewCount / 50) * 100, 100);
 
@@ -683,3 +623,4 @@ if (rating >= 3) {
   </script>
 </body>
 </html>
+Hyper Icon

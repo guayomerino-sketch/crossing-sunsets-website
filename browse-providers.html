@@ -97,16 +97,25 @@
         z-index: 10;
         animation: floatBadge 3s ease-in-out infinite;
     }
-    .lotus-badge-img {
-        width: 60px; 
-        height: 60px; 
-        border-radius: 50%; 
-        border: 2px solid #ffd700; /* Gold Border */
-        background: white;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); /* Gold Glow */
-        object-fit: contain;
-        padding: 2px;
-    }
+   .lotus-badge-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid #ffd700;
+  background: white;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+  object-fit: contain;
+  padding: 4px;
+}
+
+/* Desktop emphasis */
+@media (min-width: 768px) {
+  .lotus-badge-img {
+    width: 84px;
+    height: 84px;
+  }
+}
+
     @keyframes floatBadge {
         0% { transform: translateY(0px); }
         50% { transform: translateY(-5px); }

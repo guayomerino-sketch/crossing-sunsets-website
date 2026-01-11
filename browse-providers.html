@@ -530,15 +530,14 @@
     let lotusIcons = '';
       for(let i=0; i<rating && i<4; i++) { lotusIcons += '☘️ '; }
 
-      let badgeHTML = '';
+let badgeHTML = '';
       if (rating >= 3) {
           badgeHTML = `
-            <div style="position: absolute; top: -15px; right: -15px; z-index: 10;">
-              <img src="lotus-certified-badge.png" class="lotus-badge-img" alt="Lotus Certified" title="Lotus Certified Provider">
+            <div style="position: absolute; top: -20px; right: -20px; z-index: 20; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+              <img src="Certified Lotus Provider.png" style="width: 80px; height: 80px; object-fit: contain;" alt="Lotus Certified" title="Lotus Certified Provider">
             </div>
           `;
       }
-
       const fillPercent = Math.min((reviewCount / 50) * 100, 100);
 
       card.innerHTML = `

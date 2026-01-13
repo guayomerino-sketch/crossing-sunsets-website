@@ -533,8 +533,12 @@
 let badgeHTML = '';
       if (rating >= 3) {
           badgeHTML = `
-            <div style="position: absolute; top: -20px; right: -20px; z-index: 30; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4)); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);" onmouseover="this.style.transform='scale(1.15) rotate(5deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
-              <img src="Certified Lotus Provider.png" style="width: 110px; height: 110px; object-fit: contain;" alt="Lotus Certified" title="Lotus Certified Provider">
+            <div style="position: absolute; top: -18px; right: -18px; z-index: 30; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;" 
+                 onmouseover="this.style.transform='scale(1.15) rotate(3deg) translateY(-2px)'" 
+                 onmouseout="this.style.transform='scale(1) rotate(0deg) translateY(0)'">
+              <div style="background: white; border-radius: 50%; width: 85px; height: 85px; position: absolute; top: 5px; left: 5px; z-index: -1;"></div>
+              
+              <img src="lotus-certificate.png" style="width: 95px; height: 95px; object-fit: contain;" alt="Lotus Certified Partner" title="Lotus Certified Partner">
             </div>
           `;
       }

@@ -5,39 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave a Review - Crossing Sunsets™</title>
     <style>
-        /* This section makes the form look professional again */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
         .form-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 450px; border-top: 6px solid #48bb78; }
         h2 { color: #1e293b; text-align: center; margin-bottom: 20px; }
         input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
-        button { width: 100%; padding: 14px; background-color: #48bb78; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: background 0.3s; }
+        button { width: 100%; padding: 14px; background-color: #48bb78; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; }
         button:hover { background-color: #38a169; }
     </style>
 </head>
 <body>
-
 <div class="form-card">
     <h2>Share Your Experience</h2>
     <form id="reviewForm">
         <input type="text" id="reviewerName" placeholder="Your Name" required>
         <input type="email" id="reviewerEmail" placeholder="Your Email (Private)" required>
         <input type="text" id="location" placeholder="City, State" required>
-        
         <select id="lotusRating">
             <option value="4">☘️☘️☘️☘️ (Perfect Care)</option>
             <option value="3">☘️☘️☘️ (Great Care)</option>
             <option value="2">☘️☘️ (Average)</option>
             <option value="1">☘️ (Needs Improvement)</option>
         </select>
-
-        <textarea id="reviewText" rows="4" placeholder="Tell us about the care received..." required></textarea>
+        <textarea id="reviewText" rows="4" placeholder="Share your experience..." required></textarea>
         <button type="submit">Submit Verified Review</button>
     </form>
 </div>
-
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
 <script>
     const firebaseConfig = {
         apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
@@ -46,10 +40,8 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-
     const urlParams = new URLSearchParams(window.location.search);
     const pId = urlParams.get('provider');
-
     document.getElementById('reviewForm').onsubmit = async (e) => {
         e.preventDefault();
         const reviewData = {
@@ -59,18 +51,15 @@
             location: document.getElementById('location').value,
             lotus_rating: parseInt(document.getElementById('lotusRating').value),
             review_text: document.getElementById('reviewText').value,
-            approved: false, // Moderation safety is still ON
+            approved: false, // Critical safety filter
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             source: "website"
         };
-
         try {
             await db.collection('reviews').add(reviewData);
-            alert("Thank you! Your review has been submitted for verification.");
+            alert("Thank you! Review submitted for verification.");
             window.location.href = "browse-providers.html";
-        } catch (err) {
-            alert("Submission error. Please try again.");
-        }
+        } catch (err) { alert("Error. Please try again."); }
     };
 </script>
 </body>

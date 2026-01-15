@@ -47,7 +47,8 @@
   const db = firebase.firestore();
 
   const urlParams = new URLSearchParams(window.location.search);
-  const pId = urlParams.get('provider');
+  const pId = urlParams.get('provider') || urlParams.get('providerId');
+
 
   document.getElementById('reviewForm').onsubmit = async (e) => {
     e.preventDefault();

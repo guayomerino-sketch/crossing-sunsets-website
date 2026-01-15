@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave a Review - Crossing Sunsets™</title>
+  <style>
+    body { font-family: sans-serif; background: #f8fafc; padding: 20px; display: flex; justify-content: center; }
+    .form-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 500px; border-top: 5px solid #48bb78; }
+    h2 { color: #1e293b; margin-bottom: 20px; text-align: center; }
+    input, textarea, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 10px; box-sizing: border-box; }
+    button { width: 100%; padding: 15px; background: #48bb78; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+    button:hover { background: #38a169; }
+  </style>
+</head>
+<body>
+
+<div class="form-card">
+  <h2>Share Your Experience</h2>
+  <form id="reviewForm">
+    <input type="text" id="reviewerName" placeholder="Your Name" required>
+    <input type="email" id="reviewerEmail" placeholder="Your Email (Private)" required>
+    <input type="text" id="location" placeholder="City, State (e.g. Torrance, CA)" required>
+    
+    <select id="lotusRating">
+      <option value="4">☘️☘️☘️☘️ (4 - Perfect Care)</option>
+      <option value="3">☘️☘️☘️ (3 - Great Care)</option>
+      <option value="2">☘️☘️ (2 - Average)</option>
+      <option value="1">☘️ (1 - Needs Improvement)</option>
+    </select>
+
+    <textarea id="reviewText" rows="5" placeholder="Tell us about the care received..." required></textarea>
+    <button type="submit">Submit Verified Review</button>
+  </form>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+    authDomain: "crossing-sunsets.firebaseapp.com",
+    projectId: "crossing-sunsets",
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const pId = urlParams.get('provider');
+
+  document.getElementById('reviewForm').onsubmit = async (e) => {
+    e.preventDefault();
+    
+    const reviewData = {
+      provider_id: pId || "unknown",
+      reviewer_name: document.getElementById('reviewerName').value,
+      reviewer_email: document.getElementById('reviewerEmail').value,
+      location: document.getElementById('location').value,
+      lotus_rating: parseInt(document.getElementById('lotusRating').value),
+      review_text: document.getElementById('reviewText').value,
+      approved: false, // CRITICAL: Keeps spam out until you moderate it
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      source: "website"
+    };
+
+    try {
+      await db.collection('reviews').add(reviewData);
+      alert("Thank you! Your review has been submitted for verification.");
+      window.location.href = "browse-providers.html";
+    } catch (err) {
+      alert("Error submitting review. Please try again.");
+    }
+  };
+</script>
+</body>
+</html>

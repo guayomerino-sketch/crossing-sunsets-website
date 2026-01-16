@@ -521,8 +521,6 @@
       const rating = Number(provider.lotusRating) || 0; 
       const reviewCount = Number(provider.reviewCount) || 0;
       
-    let lotusIcons = '';
-      for(let i=0; i<rating && i<4; i++) { lotusIcons += '☘️ '; }
 
 let badgeHTML = '';
       if (rating >= 3) {

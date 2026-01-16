@@ -29,6 +29,27 @@
         .goog-te-gadget-simple .goog-te-menu-value span {
             text-decoration: none !important;
         }
+        <script>
+  // ✅ Edit ONLY this list to change certified providers
+  const LOTUS_CERTIFIED = [
+    { name: "AllPeace Care Hospice", sub: "Torrance, CA" },
+    { name: "EASE IN Hospice Care, Inc.", sub: "Glendale, CA" }
+  ];
+
+  const grid = document.getElementById("certifiedProvidersGrid");
+  if (grid) {
+    grid.innerHTML = LOTUS_CERTIFIED.map(p => `
+      <div class="cert-pill">
+        <img src="lotus-certified-badge.png" alt="Certified">
+        <div>
+          <div class="name">${p.name}</div>
+          <span class="sub">${p.sub || ""}</span>
+        </div>
+      </div>
+    `).join("");
+  }
+</script>
+
     </style>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
@@ -126,7 +147,47 @@
   </div>
 
   <div class="mt-10 mb-20 flex flex-col sm:flex-row justify-center items-center gap-8 relative z-20">
-    
+   <!-- ✅ Lotus Certified Providers — HERO Highlight -->
+<section class="cert-hero">
+  <div class="cert-hero-card">
+    <div class="cert-hero-left">
+      <div class="cert-hero-badge">
+        <img src="lotus-certified-badge.png" alt="Lotus Certified Badge">
+      </div>
+
+      <div class="cert-hero-text">
+        <h2>Lotus Certified Providers™</h2>
+        <p>
+          The Gold Standard in Care — providers recognized for consistently outstanding
+          compassion, responsiveness, support, and professionalism.
+        </p>
+
+        <div class="cert-hero-tags">
+          <span>Compassionate</span>
+          <span>Responsive</span>
+          <span>Supportive</span>
+          <span>Professional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-hero-right">
+      <div id="certifiedProvidersGrid" class="cert-grid">
+        <!-- Filled dynamically (or you can hardcode names today) -->
+        <div class="cert-skeleton"></div>
+        <div class="cert-skeleton"></div>
+        <div class="cert-skeleton"></div>
+      </div>
+
+      <div class="cert-hero-cta">
+        <a href="browse-providers.html" class="cert-btn">
+          Browse Certified Providers →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
     <a href="browse-providers.html" 
        class="bg-white text-teal-700 hover:bg-teal-50 px-12 py-5 rounded-full text-lg font-bold shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl min-w-[280px] text-center border-2 border-transparent">
        Find Support Near Me

@@ -1,78 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leave a Review - Crossing Sunsets™</title>
-  <style>
-    body { font-family: sans-serif; background: #f8fafc; padding: 20px; display: flex; justify-content: center; }
-    .form-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 500px; border-top: 5px solid #48bb78; }
-    h2 { color: #1e293b; margin-bottom: 20px; text-align: center; }
-    input, textarea, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 10px; box-sizing: border-box; }
-    button { width: 100%; padding: 15px; background: #48bb78; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; }
-    button:hover { background: #38a169; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave a Review - Crossing Sunsets™</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f8fafc;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .form-card {
+      background: white;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 560px;
+      border-top: 6px solid #00bcd4; /* matches your site */
+      margin-top: 20px;
+    }
+    h2 {
+      color: #0f172a;
+      margin: 0 0 6px 0;
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+    .sub {
+      color: #64748b;
+      margin: 0 0 18px 0;
+      font-size: 1rem;
+    }
+    label {
+      display:block;
+      font-weight: 700;
+      color:#111827;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      background: #fff;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color:#00bcd4;
+      box-shadow: 0 0 0 3px rgba(0,188,212,0.15);
+    }
+    textarea { resize: vertical; min-height: 140px; }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 1.05rem;
+      margin-top: 18px;
+    }
+    .btn:hover { filter: brightness(0.95); }
+    .tiny {
+      margin-top: 10px;
+      color:#94a3b8;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+  </style>
 </head>
 <body>
 
 <div class="form-card">
-  <h2>Share Your Experience</h2>
-  <form id="reviewForm">
-    <input type="text" id="reviewerName" placeholder="Your Name" required>
-    <input type="email" id="reviewerEmail" placeholder="Your Email (Private)" required>
-    <input type="text" id="location" placeholder="City, State (e.g. Torrance, CA)" required>
-    
-    <select id="lotusRating">
-      <option value="4">☘️☘️☘️☘️ (4 - Perfect Care)</option>
-      <option value="3">☘️☘️☘️ (3 - Great Care)</option>
-      <option value="2">☘️☘️ (2 - Average)</option>
-      <option value="1">☘️ (1 - Needs Improvement)</option>
-    </select>
+  <h2>Crossing Sunsets™</h2>
+  <p class="sub">Share Your Experience</p>
 
-    <textarea id="reviewText" rows="5" placeholder="Tell us about the care received..." required></textarea>
-    <button type="submit">Submit Verified Review</button>
-  </form>
+  <form id="reviewForm">
+    <div class="row">
+      <div>
+        <label for="reviewerName">Your Name *</label>
+        <input type="text" id="reviewerName" placeholder="Enter your full name" required>
+      </div>
+      <div>
+        <label for="reviewerEmail">Email (Private) *</label>
+        <input type="email" id="reviewerEmail" placeholder="your.email@example.com" required>
+      </div>
+    </div>
+
+    <label for="location">City, State *</label>
+    <input type="text" id="location" placeholder="City, State (e.g. Torrance, CA)" required>
+
+    <label for="lotusRating">Lotus Rating</label>
+    <select id="lotusRating">
+      <option value="4">☘️☘️☘️☘️ (4 - Perfect Care)</option>
+      <option value="3">☘️☘️☘️ (3 - Great Care)</option>
+      <option value="2">☘️☘️ (2 - Average)</option>
+      <option value="1">☘️ (1 - Needs Improvement)</option>
+    </select>
+
+    <label for="reviewText">Tell us about the care received *</label>
+    <textarea id="reviewText" placeholder="Tell us about the care received..." required></textarea>
+
+    <button class="btn" type="submit">Submit Verified Review</button>
+
+    <div class="tiny">
+      © 2025 Crossing Sunsets™ — All rights reserved.
+    </div>
+  </form>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-    authDomain: "crossing-sunsets.firebaseapp.com",
-    projectId: "crossing-sunsets",
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  const firebaseConfig = {
+    apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+    authDomain: "crossing-sunsets.firebaseapp.com",
+    projectId: "crossing-sunsets",
+  };
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const pId = urlParams.get('provider') || urlParams.get('providerId');
+  const urlParams = new URLSearchParams(window.location.search);
+  const pId = urlParams.get('providerId') || urlParams.get('provider') || "unknown";
 
+  document.getElementById('reviewForm').onsubmit = async (e) => {
+    e.preventDefault();
 
-  document.getElementById('reviewForm').onsubmit = async (e) => {
-    e.preventDefault();
-    
-    const reviewData = {
-      provider_id: pId || "unknown",
-      reviewer_name: document.getElementById('reviewerName').value,
-      reviewer_email: document.getElementById('reviewerEmail').value,
-      location: document.getElementById('location').value,
-      lotus_rating: parseInt(document.getElementById('lotusRating').value),
-      review_text: document.getElementById('reviewText').value,
-      approved: false, // CRITICAL: Keeps spam out until you moderate it
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      source: "website"
-    };
+    const reviewData = {
+      provider_id: pId,
+      reviewer_name: document.getElementById('reviewerName').value,
+      reviewer_email: document.getElementById('reviewerEmail').value,
+      location: document.getElementById('location').value,
+      lotus_rating: parseInt(document.getElementById('lotusRating').value),
+      review_text: document.getElementById('reviewText').value,
+      approved: false,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      source: "website"
+    };
 
-    try {
-      await db.collection('reviews').add(reviewData);
-      alert("Thank you! Your review has been submitted for verification.");
-      window.location.href = "browse-providers.html";
-    } catch (err) {
-      alert("Error submitting review. Please try again.");
-    }
-  };
+    try {
+      await db.collection('reviews').add(reviewData);
+      alert("Thank you! Your review has been submitted for verification.");
+      window.location.href = "./browse-providers.html";
+    } catch (err) {
+      alert("Error submitting review. Please try again.");
+      console.error(err);
+    }
+  };
 </script>
+
 </body>
 </html>

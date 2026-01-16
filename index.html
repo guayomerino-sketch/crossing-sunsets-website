@@ -29,27 +29,6 @@
         .goog-te-gadget-simple .goog-te-menu-value span {
             text-decoration: none !important;
         }
-        <script>
-  // ✅ Edit ONLY this list to change certified providers
-  const LOTUS_CERTIFIED = [
-    { name: "AllPeace Care Hospice", sub: "Torrance, CA" },
-    { name: "EASE IN Hospice Care, Inc.", sub: "Glendale, CA" }
-  ];
-
-  const grid = document.getElementById("certifiedProvidersGrid");
-  if (grid) {
-    grid.innerHTML = LOTUS_CERTIFIED.map(p => `
-      <div class="cert-pill">
-        <img src="lotus-certified-badge.png" alt="Certified">
-        <div>
-          <div class="name">${p.name}</div>
-          <span class="sub">${p.sub || ""}</span>
-        </div>
-      </div>
-    `).join("");
-  }
-</script>
-
     </style>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
@@ -147,24 +126,7 @@
   </div>
 
   <div class="mt-10 mb-20 flex flex-col sm:flex-row justify-center items-center gap-8 relative z-20">
-
-
-      
-        <!-- Filled dynamically (or you can hardcode names today) -->
-        <div class="cert-skeleton"></div>
-        <div class="cert-skeleton"></div>
-        <div class="cert-skeleton"></div>
-      </div>
-
-      <div class="cert-hero-cta">
-        <a href="browse-providers.html" class="cert-btn">
-          Browse Certified Providers →
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
- 
+    
     <a href="browse-providers.html" 
        class="bg-white text-teal-700 hover:bg-teal-50 px-12 py-5 rounded-full text-lg font-bold shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl min-w-[280px] text-center border-2 border-transparent">
        Find Support Near Me
@@ -334,83 +296,6 @@
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!-- ✅ Firebase (for Certified Providers on Home) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
-<script>
-  // Same config you use elsewhere
-  const firebaseConfig = {
-    apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-    authDomain: "crossing-sunsets.firebaseapp.com",
-    databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
-    projectId: "crossing-sunsets",
-    storageBucket: "crossing-sunsets.firebasestorage.app",
-    messagingSenderId: "83761464492",
-    appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-    measurementId: "G-LG8VN0EZB7"
-  };
-
-  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  function escapeHtml(str="") {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-
-  function renderCertified(list) {
-    const el = document.getElementById("certifiedProviders");
-    if (!el) return;
-
-    if (!list.length) {
-      el.innerHTML = `<div class="text-slate-500">No certified providers yet.</div>`;
-      return;
-    }
-
-    el.innerHTML = list.map(p => `
-      <a href="browse-providers.html"
-         class="group block rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-lg transition overflow-hidden">
-        <div class="p-5 flex items-center gap-4">
-          <div class="shrink-0 w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center">
-            <img src="lotus-certified-badge.png" alt="Certified" class="w-10 h-10 object-contain">
-          </div>
-          <div class="min-w-0">
-            <div class="font-extrabold text-slate-900 leading-tight group-hover:text-teal-700 transition">
-              ${escapeHtml(p.name)}
-            </div>
-            <div class="text-sm text-slate-600 truncate">
-              ${escapeHtml(p.location || "")}
-            </div>
-          </div>
-        </div>
-      </a>
-    `).join("");
-  }
-
-  // Live updates from Firestore
-  db.collection("providers")
-    .where("lotusCertified", "==", true)
-    .onSnapshot((snap) => {
-      const list = [];
-      snap.forEach(doc => {
-        const d = doc.data() || {};
-        list.push({
-          name: d.businessName || d.name || "Certified Provider",
-          location: d.serviceArea || d.location || ""
-        });
-      });
-      renderCertified(list);
-    }, (err) => {
-      const el = document.getElementById("certifiedProviders");
-      if (el) el.innerHTML = `<div class="text-red-600">Error loading certified providers.</div>`;
-      console.error(err);
-    });
-</script>
 
 </body>
 </html>

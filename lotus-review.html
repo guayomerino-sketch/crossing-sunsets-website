@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leave a Lotus Review - Crossing Sunsets™</title>
+
+  <style>
+    :root{
+      --brand:#00bcd4;
+      --brand-dark:#0097a7;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --card:#ffffff;
+      --line:#e2e8f0;
+      --soft:#f8fafc;
+      --good:#10b981;
+      --shadow: 0 18px 40px rgba(2, 6, 23, .12);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 30% -10%, rgba(0,188,212,.22), transparent 60%),
+                  radial-gradient(900px 500px at 80% 0%, rgba(0,151,167,.18), transparent 55%),
+                  #f1f5f9;
+      color: var(--ink);
+      min-height:100vh;
+      padding: 28px 16px 40px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .shell{
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 14px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+    }
+
+    .brand img{
+      width:46px;height:46px;border-radius:12px;
+      object-fit:cover;
+      box-shadow: 0 10px 20px rgba(0,0,0,.10);
+      border: 2px solid rgba(255,255,255,.9);
+      background:#fff;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size: 26px;
+      letter-spacing: -0.3px;
+    }
+
+    .navlinks{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .navlinks a{
+      text-decoration:none;
+      font-weight: 700;
+      color: var(--brand-dark);
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .navlinks a:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(0,0,0,.08);
+      background: #fff;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero{
+      padding: 18px 20px 16px;
+      background: linear-gradient(135deg, rgba(0,188,212,.12), rgba(0,151,167,.06));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero h2{
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: -.2px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background:#fff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .pill .dot{
+      width: 10px; height:10px; border-radius: 999px;
+      background: var(--good);
+      box-shadow: 0 0 0 4px rgba(16,185,129,.15);
+    }
+
+    .content{
+      padding: 18px 20px 20px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 16px;
+    }
+
+    @media (max-width: 820px){
+      .content{grid-template-columns: 1fr}
+    }
+
+    .section{
+      border:1px solid var(--line);
+      background: var(--soft);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .section h3{
+      margin:0 0 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #334155;
+    }
+
+    label{
+      display:block;
+      font-weight: 800;
+      font-size: 13px;
+      color: #334155;
+      margin: 10px 0 6px;
+    }
+    .hint{
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 12px;
+      margin-left: 6px;
+    }
+    .req{ color:#ef4444; font-weight: 900; margin-left: 4px; }
+
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid #dbeafe;
+      background: #fff;
+      outline: none;
+      font-size: 15px;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+
+    textarea{
+      min-height: 128px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(0,188,212,.65);
+      box-shadow: 0 0 0 4px rgba(0,188,212,.16);
+    }
+
+    .providerBox{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .providerTag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 900;
+      color:#0f172a;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .providerTag small{
+      font-weight: 700;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    .lotusTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .lotusTitle strong{
+      font-size: 16px;
+    }
+    .score{
+      font-weight: 900;
+      color: var(--brand-dark);
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .lotusGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    @media (max-width: 520px){
+      .lotusGrid{grid-template-columns:1fr}
+    }
+
+    .lotusCard{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      padding: 12px;
+      border-radius: 14px;
+      border: 2px solid #e5e7eb;
+      background: #fff;
+      cursor: pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+      user-select:none;
+    }
+
+    .lotusCard:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 20px rgba(0,0,0,.06);
+    }
+
+    .lotusCard.active{
+      border-color: rgba(0,188,212,.85);
+      background: rgba(0,188,212,.08);
+    }
+
+    .lotusIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+
+    .lotusIcon img{
+      width: 34px; height: 34px;
+      object-fit: contain;
+      display:block;
+    }
+
+    .lotusText h4{
+      margin: 0;
+      font-size: 15px;
+    }
+    .lotusText p{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .badge{
+      display:none;
+      margin-top: 12px;
+      border-radius: 16px;
+      padding: 14px;
+      border: 2px solid rgba(255, 200, 80, .95);
+      background: linear-gradient(145deg, #111827, #000);
+      color: #fff;
+      text-align:center;
+      box-shadow: 0 20px 30px rgba(0,0,0,.22);
+      animation: pop .25s ease-out;
+    }
+    .badge img{
+      width: 92px;
+      height: 92px;
+      border-radius: 999px;
+      background:#fff;
+      padding: 8px;
+      border: 2px solid rgba(255, 200, 80, .95);
+      box-shadow: 0 0 20px rgba(255, 215, 0, .35);
+      margin-bottom: 8px;
+    }
+    .badge h4{
+      margin: 0 0 4px;
+      color: #FFD700;
+      letter-spacing: .08em;
+    }
+    .badge p{
+      margin:0;
+      color: rgba(255,255,255,.85);
+      font-size: 13px;
+    }
+    @keyframes pop{
+      from{transform: translateY(6px); opacity:0}
+      to{transform: translateY(0); opacity:1}
+    }
+
+    .actions{
+      padding: 0 20px 18px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    .btn{
+      border:none;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color:#fff;
+      flex: 1;
+      min-width: 260px;
+      box-shadow: 0 14px 26px rgba(0,188,212,.24);
+    }
+    .btnPrimary:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 18px 30px rgba(0,188,212,.28);
+    }
+    .btnGhost{
+      background:#fff;
+      border: 1px solid var(--line);
+      color: var(--brand-dark);
+    }
+    .btnGhost:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 18px rgba(0,0,0,.08);
+    }
+
+    .fineprint{
+      padding: 10px 20px 18px;
+      color: #94a3b8;
+      font-size: 12px;
+      text-align:center;
+    }
+
+    .status{
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .error{
+      color:#ef4444;
+      font-weight: 800;
+      margin-top: 10px;
+      display:none;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+
+    <div class="topbar">
+      <div class="brand">
+        <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets™ Logo" onerror="this.style.display='none'">
+        <div>
+          <h1>Crossing Sunsets™</h1>
+          <div style="color:#64748b;font-weight:700;font-size:13px;margin-top:2px;">Leave a Lotus Review</div>
+        </div>
+      </div>
+
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="browse-providers.html">Browse Providers</a>
+        <a href="lotus-review.html">Leave a Review</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hero">
+        <div class="hero-title">
+          <div>
+            <h2>Share Your Experience</h2>
+            <p>Help families choose care with verified, community-centered feedback.</p>
+            <div class="status" id="statusLine">Connecting…</div>
+          </div>
+          <div class="pill" title="We review submissions before publishing">
+            <span class="dot"></span>
+            Moderated & Verified
+          </div>
+        </div>
+      </div>
+
+      <form id="reviewForm">
+        <div class="content">
+
+          <!-- LEFT: Reviewer + Provider -->
+          <div class="section">
+            <h3>Reviewer</h3>
+
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" id="reviewerName" placeholder="Enter your full name" required>
+
+            <label>Email <span class="hint">(optional)</span></label>
+            <input type="email" id="email" placeholder="your.email@example.com">
+
+            <label>Location <span class="hint">(optional)</span></label>
+            <input type="text" id="location" placeholder="City, State">
+
+            <div style="height:10px"></div>
+
+            <h3>Provider</h3>
+
+            <!-- When providerId is present in URL, we show a locked tag. -->
+            <div class="providerBox" id="providerLocked" style="display:none;">
+              <div class="providerTag">
+                <span>🏥</span>
+                <span id="providerNameLocked">Selected Provider</span>
+                <small id="providerIdLocked"></small>
+              </div>
+              <button type="button" class="btn btnGhost" id="changeProviderBtn">Change</button>
+            </div>
+
+            <!-- When providerId is NOT present, we show a dropdown (works from nav). -->
+            <div id="providerPicker" style="display:none;">
+              <label>Provider Name <span class="req">*</span></label>
+              <select id="providerSelect">
+                <option value="">Loading providers…</option>
+              </select>
+              <div class="status">Tip: If you came from Browse Providers, the provider will auto-select.</div>
+            </div>
+
+            <!-- Hidden fields used for submit -->
+            <input type="hidden" id="providerId" value="">
+            <input type="hidden" id="providerName" value="">
+
+            <div class="error" id="providerError">Please select a provider.</div>
+          </div>
+
+          <!-- RIGHT: Lotus Rating + Review Text -->
+          <div class="section">
+            <div class="lotusTitle">
+              <strong>Lotus Rating System™</strong>
+              <div class="score" id="scorePill">0 / 4 selected</div>
+            </div>
+            <div style="color:#64748b;font-weight:700;font-size:13px;line-height:1.35;">
+              Select the qualities that describe the care, then explain why.
+            </div>
+
+            <div class="lotusGrid" style="margin-top:12px;">
+              <div class="lotusCard" data-key="compassionate">
+                <div class="lotusIcon">
+                  <img src="lotus-logo.png" alt="Lotus" onerror="this.outerHTML='🪷'">
+                </div>
+                <div class="lotusText">
+                  <h4>Compassionate <span style="color:#00bcd4;font-weight:900;">#1</span></h4>
+                  <p>Kind, caring, empathetic staff.</p>
+                </div>
+              </div>
+
+              <div class="lotusCard" data-key="responsive">
+                <div class="lotusIcon">
+                  <img src="lotus-logo.png" alt="Lotus" onerror="this.outerHTML='🪷'">
+                </div>
+                <div class="lotusText">
+                  <h4>Responsive <span style="color:#00bcd4;font-weight:900;">#2</span></h4>
+                  <p>Quick to respond to needs & concerns.</p>
+                </div>
+              </div>
+
+              <div class="lotusCard" data-key="supportive">
+                <div class="lotusIcon">
+                  <img src="lotus-logo.png" alt="Lotus" onerror="this.outerHTML='🪷'">
+                </div>
+                <div class="lotusText">
+                  <h4>Supportive <span style="color:#00bcd4;font-weight:900;">#3</span></h4>
+                  <p>Helpful guidance for family & patient.</p>
+                </div>
+              </div>
+
+              <div class="lotusCard" data-key="professional">
+                <div class="lotusIcon">
+                  <img src="lotus-logo.png" alt="Lotus" onerror="this.outerHTML='🪷'">
+                </div>
+                <div class="lotusText">
+                  <h4>Professional <span style="color:#00bcd4;font-weight:900;">#4</span></h4>
+                  <p>Skilled, knowledgeable, reliable.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="badge" id="badgeDisplay">
+              <img src="lotus-badge.png" alt="Lotus Certified" onerror="this.style.display='none'">
+              <h4>LOTUS CERTIFIED</h4>
+              <p>3+ traits selected — high confidence experience.</p>
+            </div>
+
+            <label style="margin-top:14px;">Tell us about the care received <span class="req">*</span></label>
+            <textarea id="reviewText" placeholder="What stood out? What mattered most to your family? Please be specific." required></textarea>
+
+            <div class="error" id="reviewError">Please select at least 1 Lotus trait and write a short review.</div>
+          </div>
+
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btnGhost" onclick="window.location.href='browse-providers.html'">← Back to Browse</button>
+          <button type="submit" class="btn btnPrimary" id="submitBtn">Submit Verified Review</button>
+        </div>
+
+        <div class="fineprint">© 2025 Crossing Sunossing Sunsets™ — All rights reserved.</div>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Firebase (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // =========================
+    // 1) Firebase Config
+    // =========================
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      projectId: "crossing-sunsets",
+    };
+
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const statusLine = document.getElementById('statusLine');
+
+    // =========================
+    // 2) URL Params (support both providerId and provider)
+    // =========================
+    const urlParams = new URLSearchParams(window.location.search);
+    const providerIdFromUrl = urlParams.get('providerId') || urlParams.get('provider') || '';
+    const providerNameFromUrl = urlParams.get('name') ? decodeURIComponent(urlParams.get('name')) : '';
+
+    // =========================
+    // 3) Lotus State
+    // =========================
+    const ratingState = { compassionate:false, responsive:false, supportive:false, professional:false };
+
+    const lotusCards = Array.from(document.querySelectorAll('.lotusCard'));
+    const scorePill = document.getElementById('scorePill');
+    const badgeDisplay = document.getElementById('badgeDisplay');
+
+    function selectedCount(){
+      return Object.values(ratingState).filter(Boolean).length;
+    }
+
+    function refreshScore(){
+      const count = selectedCount();
+      scorePill.textContent = `${count} / 4 selected`;
+      badgeDisplay.style.display = (count >= 3) ? 'block' : 'none';
+    }
+
+    lotusCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-key');
+        card.classList.toggle('active');
+        ratingState[key] = !ratingState[key];
+        refreshScore();
+      });
+    });
+
+    refreshScore();
+
+    // =========================
+    // 4) Provider UI Logic
+    // =========================
+    const providerLocked = document.getElementById('providerLocked');
+    const providerPicker = document.getElementById('providerPicker');
+    const providerSelect = document.getElementById('providerSelect');
+
+    const providerIdField = document.getElementById('providerId');
+    const providerNameField = document.getElementById('providerName');
+
+    const providerNameLocked = document.getElementById('providerNameLocked');
+    const providerIdLocked = document.getElementById('providerIdLocked');
+
+    const providerError = document.getElementById('providerError');
+
+    function showLockedProvider(pid, pname){
+      providerIdField.value = pid;
+      providerNameField.value = pname || '';
+      providerNameLocked.textContent = pname || 'Selected Provider';
+      providerIdLocked.textContent = pid ? `(${pid})` : '';
+      providerLocked.style.display = 'flex';
+      providerPicker.style.display = 'none';
+      providerError.style.display = 'none';
+      statusLine.textContent = 'Ready — provider selected.';
+    }
+
+    function showProviderPicker(){
+      providerLocked.style.display = 'none';
+      providerPicker.style.display = 'block';
+      statusLine.textContent = 'Select a provider to continue.';
+    }
+
+    document.getElementById('changeProviderBtn').addEventListener('click', () => {
+      showProviderPicker();
+    });
+
+    // Load providers list for picker (when needed)
+    async function loadProvidersIntoSelect(){
+      providerSelect.innerHTML = '<option value="">Select a provider…</option>';
+      try{
+        const snap = await db.collection('providers').get();
+        if (snap.empty){
+          providerSelect.innerHTML = '<option value="">No providers found</option>';
+          return;
+        }
+
+        const items = [];
+        snap.forEach(doc => {
+          const raw = doc.data() || {};
+          const name = raw.businessName || raw.name || 'Unknown Provider';
+          items.push({ id: doc.id, name });
+        });
+
+        // sort by name
+        items.sort((a,b)=> (a.name||'').localeCompare(b.name||''));
+
+        items.forEach(item => {
+          const opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = item.name;
+          opt.setAttribute('data-name', item.name);
+          providerSelect.appendChild(opt);
+        });
+
+        // Auto-select if providerIdFromUrl exists
+        if (providerIdFromUrl){
+          providerSelect.value = providerIdFromUrl;
+          const selectedOpt = providerSelect.options[providerSelect.selectedIndex];
+          const selectedName = providerNameFromUrl || (selectedOpt ? selectedOpt.getAttribute('data-name') : '');
+          showLockedProvider(providerIdFromUrl, selectedName);
+        }
+      }catch(e){
+        providerSelect.innerHTML = '<option value="">Error loading providers</option>';
+      }
+    }
+
+    providerSelect.addEventListener('change', () => {
+      const pid = providerSelect.value || '';
+      const opt = providerSelect.options[providerSelect.selectedIndex];
+      const pname = opt ? opt.getAttribute('data-name') : '';
+      if (pid){
+        showLockedProvider(pid, pname);
+      }
+    });
+
+    // Init provider UI
+    (async function initProvider(){
+      statusLine.textContent = 'Loading providers…';
+      await loadProvidersIntoSelect();
+
+      // If no providerId in URL, stay in picker mode
+      if (!providerIdFromUrl){
+        showProviderPicker();
+        statusLine.textContent = 'Select a provider to continue.';
+      } else {
+        // If URL had providerId but select couldn’t find it, still lock it with URL name
+        if (!providerIdField.value){
+          showLockedProvider(providerIdFromUrl, providerNameFromUrl || 'Selected Provider');
+        }
+      }
+    })();
+
+    // =========================
+    // 5) Submit to Firestore
+    // =========================
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewError = document.getElementById('reviewError');
+    const submitBtn = document.getElementById('submitBtn');
+
+    reviewForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      providerError.style.display = 'none';
+      reviewError.style.display = 'none';
+
+      const provider_id = (providerIdField.value || '').trim();
+      const provider_name = (providerNameField.value || '').trim();
+
+      const reviewer_name = (document.getElementById('reviewerName').value || '').trim();
+      const reviewer_email = (document.getElementById('email').value || '').trim();     // optional
+      const location = (document.getElementById('location').value || '').trim();        // optional
+      const review_text = (document.getElementById('reviewText').value || '').trim();
+
+      const lotus_rating = selectedCount(); // 0–4
+      const hasTrait = lotus_rating >= 1;
+
+      if (!provider_id){
+        providerError.style.display = 'block';
+        providerError.textContent = 'Please select a provider.';
+        return;
+      }
+      if (!reviewer_name){
+        alert('Please enter your name.');
+        return;
+      }
+      if (!hasTrait || review_text.length < 10){
+        reviewError.style.display = 'block';
+        return;
+      }
+
+      const payload = {
+        provider_id,
+        provider_name,
+        reviewer_name,
+        reviewer_email: reviewer_email || "",
+        location: location || "",
+        categories: { ...ratingState },
+        lotus_rating,
+        review_text,
+        approved: false,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        source: "website"
+      };
+
+      try{
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting…';
+
+        await db.collection('reviews').add(payload);
+
+        alert('Thank you! Your review has been submitted for verification.');
+        window.location.href = 'browse-providers.html';
+
+      }catch(err){
+        alert('Error submitting review. Please try again.');
+      }finally{
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Verified Review';
+      }
+    });
+  </script>
+</body>
+</html>

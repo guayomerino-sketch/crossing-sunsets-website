@@ -37,13 +37,12 @@
     }
     .welcome-text h1 { font-size:1.4rem; margin-bottom:0.2rem; }
     .welcome-text p { font-size:0.9rem; color:#607d8b; }
+
     .stat-row {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
       gap:0.75rem; margin-bottom:1.2rem;
     }
-    .stat-card {
-      border-radius:16px; padding:0.9rem; background:#e0f7fa; text-align:center;
-    }
+    .stat-card { border-radius:16px; padding:0.9rem; background:#e0f7fa; text-align:center; }
     .stat-card.pending { background:#fff3e0; }
     .stat-card.approved { background:#e8f5e9; }
     .stat-card.rejected { background:#ffebee; }
@@ -59,9 +58,7 @@
       display:flex; align-items:center; padding:0.5rem 0.9rem;
       box-shadow:0 4px 14px rgba(0,0,0,0.03); border:1px solid #e0e7f1;
     }
-    .search-box input {
-      border:none; outline:none; width:100%; font-size:0.95rem; margin-left:0.4rem;
-    }
+    .search-box input { border:none; outline:none; width:100%; font-size:0.95rem; margin-left:0.4rem; }
     .filter-select {
       border-radius:999px; border:1px solid #e0e7f1; padding:0.5rem 0.9rem; background:#fff;
       font-size:0.9rem;
@@ -73,18 +70,21 @@
       box-shadow:0 6px 20px rgba(0,0,0,0.04);
       display:flex; flex-direction:column; gap:0.4rem;
     }
-    .provider-main-row { display:flex; align-items:center; gap:0.8rem; }
+    .provider-main-row { display:flex; align-items:flex-start; gap:0.8rem; }
     .avatar {
       width:40px; height:40px; border-radius:999px;
       background:#00bcd4; color:#fff; display:flex; align-items:center;
       justify-content:center; font-weight:700; font-size:1.1rem;
+      flex: 0 0 auto;
+      margin-top: 2px;
     }
     .provider-info { flex:1; }
     .provider-name { font-weight:700; font-size:1rem; }
-    .provider-contact { font-size:0.85rem; color:#607d8b; }
+    .provider-contact { font-size:0.85rem; color:#607d8b; margin-top:2px; }
     .status-badge {
       padding:4px 10px; border-radius:999px; font-size:0.8rem;
       font-weight:600; display:inline-block; text-transform:capitalize;
+      margin-top: 6px;
     }
     .status-pending { background:#ffe0b2; color:#ef6c00; }
     .status-approved { background:#c8e6c9; color:#2e7d32; }
@@ -103,6 +103,13 @@
     .empty-state { margin-top:1rem; font-size:0.95rem; color:#90a4ae; text-align:center; }
     .status-message { margin-top:0.8rem; font-size:0.9rem; color:#388e3c; }
     .status-message.error { color:#c62828; }
+
+    .disclosure {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #607d8b;
+      line-height: 1.35;
+    }
 
     @media (max-width:600px){
       header { flex-direction:column; align-items:flex-start; gap:0.6rem; }
@@ -130,13 +137,16 @@
     <div class="welcome-card">
       <div class="welcome-text">
         <h1>Welcome, Admin</h1>
-        <p>Approve providers, update status, and manage bed availability.</p>
+        <p id="welcome-subtitle">Approve providers, update status, and manage bed availability.</p>
+        <div id="reviews-disclosure" class="disclosure" style="display:none;">
+          Reviews are verified before publishing.
+        </div>
       </div>
     </div>
 
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-label">Total Providers</div>
+        <div class="stat-label" id="stat-total-label">Total Providers</div>
         <div class="stat-value" id="stat-total">0</div>
       </div>
       <div class="stat-card pending">
@@ -154,10 +164,16 @@
     </div>
 
     <div class="filters-row">
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button id="tab-providers" class="btn-header btn-home" type="button">Providers</button>
+        <button id="tab-reviews" class="btn-header" type="button" style="background:#fff;border:1px solid #e0e7f1;color:#00bcd4;">Reviews</button>
+      </div>
+
       <div class="search-box">
         🔍
         <input id="search-input" type="text" placeholder="Search providers…" />
       </div>
+
       <select id="status-filter" class="filter-select">
         <option value="all">All statuses</option>
         <option value="pending">Pending</option>
@@ -168,7 +184,7 @@
 
     <div class="providers-list" id="providers-list"></div>
     <div class="empty-state" id="empty-state" style="display:none;">
-      No providers found for this view.
+      No items found for this view.
     </div>
 
     <div id="status-message" class="status-message"></div>
@@ -176,11 +192,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
     import {
       getFirestore,
       collection,
@@ -188,21 +200,21 @@
       updateDoc,
       deleteDoc,
       doc,
-      getDoc
+      getDoc,
+      query,
+      orderBy
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // 🔴 PASTE YOUR REAL CONFIG HERE (same you already use), replacing only this object:
- const firebaseConfig = {
-  apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-  authDomain: "crossing-sunsets.firebaseapp.com",
-  databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
-  projectId: "crossing-sunsets",
-  storageBucket: "crossing-sunsets.firebasestorage.app",
-  messagingSenderId: "83761464492",
-  appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-  measurementId: "G-LG8VN0EZB7"
-};
-
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+      measurementId: "G-LG8VN0EZB7"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -210,19 +222,29 @@
 
     const adminEmailChip = document.getElementById("admin-email-chip");
     const signoutBtn = document.getElementById("signout-btn");
+
     const providersListEl = document.getElementById("providers-list");
     const emptyStateEl = document.getElementById("empty-state");
     const statusMsgEl = document.getElementById("status-message");
 
+    const statTotalLabel = document.getElementById("stat-total-label");
     const statTotal = document.getElementById("stat-total");
     const statPending = document.getElementById("stat-pending");
     const statApproved = document.getElementById("stat-approved");
     const statRejected = document.getElementById("stat-rejected");
 
+    const welcomeSubtitle = document.getElementById("welcome-subtitle");
+    const reviewsDisclosure = document.getElementById("reviews-disclosure");
+
     const searchInput = document.getElementById("search-input");
     const statusFilter = document.getElementById("status-filter");
 
+    const tabProviders = document.getElementById("tab-providers");
+    const tabReviews = document.getElementById("tab-reviews");
+
     let providers = [];
+    let reviews = [];
+    let currentView = "providers"; // "providers" | "reviews"
 
     // Require admin
     onAuthStateChanged(auth, async (user) => {
@@ -230,20 +252,70 @@
         window.location.href = "admin-login.html";
         return;
       }
+
       const udoc = await getDoc(doc(db, "users", user.uid));
       if (!udoc.exists() || udoc.data().role !== "admin") {
         await signOut(auth);
         window.location.href = "admin-login.html";
         return;
       }
+
       adminEmailChip.textContent = user.email || "Admin";
-      loadProviders();
+      await loadProviders();
+      setView("providers");
     });
 
     signoutBtn.addEventListener("click", async () => {
       await signOut(auth);
       window.location.href = "index.html";
     });
+
+    function setView(view) {
+      currentView = view;
+
+      if (view === "providers") {
+        tabProviders.style.background = "#00bcd4";
+        tabProviders.style.color = "#fff";
+        tabReviews.style.background = "#fff";
+        tabReviews.style.color = "#00bcd4";
+
+        welcomeSubtitle.textContent = "Approve providers, update status, and manage bed availability.";
+        reviewsDisclosure.style.display = "none";
+        statTotalLabel.textContent = "Total Providers";
+
+        searchInput.placeholder = "Search providers…";
+        statusFilter.innerHTML = `
+          <option value="all">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        `;
+
+        renderProviders();
+      } else {
+        tabReviews.style.background = "#00bcd4";
+        tabReviews.style.color = "#fff";
+        tabProviders.style.background = "#fff";
+        tabProviders.style.color = "#00bcd4";
+
+        welcomeSubtitle.textContent = "Approve or reject submitted reviews before they go public.";
+        reviewsDisclosure.style.display = "block";
+        statTotalLabel.textContent = "Total Reviews";
+
+        searchInput.placeholder = "Search reviews…";
+        statusFilter.innerHTML = `
+          <option value="all">All</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        `;
+
+        loadReviews();
+      }
+    }
+
+    tabProviders.addEventListener("click", () => setView("providers"));
+    tabReviews.addEventListener("click", () => setView("reviews"));
 
     async function loadProviders() {
       statusMsgEl.textContent = "Loading providers…";
@@ -254,7 +326,6 @@
       try {
         const snapshot = await getDocs(collection(db, "providers"));
         providers = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-        renderProviders();
         statusMsgEl.textContent = "Providers loaded.";
       } catch (err) {
         console.error(err);
@@ -273,10 +344,7 @@
         const email = (p.email || "").toLowerCase();
 
         const matchesSearch =
-          !search ||
-          name.includes(search) ||
-          contact.includes(search) ||
-          email.includes(search);
+          !search || name.includes(search) || contact.includes(search) || email.includes(search);
 
         const currentStatus = p.status || "pending";
         const matchesStatus = status === "all" || currentStatus === status;
@@ -298,8 +366,8 @@
       providersListEl.innerHTML = "";
 
       if (filtered.length === 0) {
-        emptyStateEl.style.display = "true";
         emptyStateEl.style.display = "block";
+        emptyStateEl.textContent = "No providers found for this view.";
         return;
       } else {
         emptyStateEl.style.display = "none";
@@ -388,9 +456,7 @@
       if (!confirm(`Set provider status to "${status}"?`)) return;
       try {
         await updateDoc(doc(db, "providers", id), { status });
-        providers = providers.map((p) =>
-          p.id === id ? { ...p, status } : p
-        );
+        providers = providers.map((p) => (p.id === id ? { ...p, status } : p));
         renderProviders();
         statusMsgEl.textContent = `Status updated to ${status}.`;
         statusMsgEl.classList.remove("error");
@@ -403,23 +469,18 @@
 
     async function updateBeds(provider) {
       const current = provider.availableBeds ?? 0;
-      const input = prompt(
-        `Available beds for "${provider.businessName || "Provider"}":`,
-        current
-      );
+      const input = prompt(`Available beds for "${provider.businessName || "Provider"}":`, current);
       if (input === null) return;
+
       const beds = Number(input);
       if (Number.isNaN(beds) || beds < 0) {
         alert("Please enter a valid number.");
         return;
       }
+
       try {
-        await updateDoc(doc(db, "providers", provider.id), {
-          availableBeds: beds
-        });
-        providers = providers.map((p) =>
-          p.id === provider.id ? { ...p, availableBeds: beds } : p
-        );
+        await updateDoc(doc(db, "providers", provider.id), { availableBeds: beds });
+        providers = providers.map((p) => (p.id === provider.id ? { ...p, availableBeds: beds } : p));
         statusMsgEl.textContent = "Beds availability updated.";
         statusMsgEl.classList.remove("error");
       } catch (err) {
@@ -444,8 +505,216 @@
       }
     }
 
-    searchInput.addEventListener("input", renderProviders);
-    statusFilter.addEventListener("change", renderProviders);
+    // -------------------------
+    // Reviews (Moderation)
+    // -------------------------
+    function reviewStatus(r) {
+      if (r.rejected === true) return "rejected";
+      if (r.approved === true) return "approved";
+      return "pending";
+    }
+
+    async function loadReviews() {
+      statusMsgEl.textContent = "Loading reviews…";
+      statusMsgEl.classList.remove("error");
+      providersListEl.innerHTML = "";
+      emptyStateEl.style.display = "none";
+
+      try {
+        const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
+        const snapshot = await getDocs(q);
+        reviews = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+        renderReviews();
+        statusMsgEl.textContent = "Reviews loaded.";
+      } catch (err) {
+        console.error(err);
+        statusMsgEl.textContent = "Error loading reviews.";
+        statusMsgEl.classList.add("error");
+      }
+    }
+
+    function renderReviews() {
+      const search = searchInput.value.trim().toLowerCase();
+      const status = statusFilter.value;
+
+      let filtered = reviews.filter((r) => {
+        const pname = (r.provider_name || r.providerName || "").toLowerCase();
+        const rname = (r.reviewer_name || "").toLowerCase();
+        const text = (r.review_text || "").toLowerCase();
+
+        const matchesSearch =
+          !search || pname.includes(search) || rname.includes(search) || text.includes(search);
+
+        const st = reviewStatus(r);
+        const matchesStatus = status === "all" || st === status;
+
+        return matchesSearch && matchesStatus;
+      });
+
+      // stats
+      const total = reviews.length;
+      const pending = reviews.filter((r) => reviewStatus(r) === "pending").length;
+      const approved = reviews.filter((r) => reviewStatus(r) === "approved").length;
+      const rejected = reviews.filter((r) => reviewStatus(r) === "rejected").length;
+
+      statTotal.textContent = total;
+      statPending.textContent = pending;
+      statApproved.textContent = approved;
+      statRejected.textContent = rejected;
+
+      providersListEl.innerHTML = "";
+
+      if (filtered.length === 0) {
+        emptyStateEl.style.display = "block";
+        emptyStateEl.textContent = "No reviews found for this view.";
+        return;
+      } else {
+        emptyStateEl.style.display = "none";
+      }
+
+      filtered.forEach((r) => {
+        const card = document.createElement("div");
+        card.className = "provider-card";
+
+        const mainRow = document.createElement("div");
+        mainRow.className = "provider-main-row";
+
+        const avatar = document.createElement("div");
+        avatar.className = "avatar";
+        avatar.textContent = "🪷";
+
+        const info = document.createElement("div");
+        info.className = "provider-info";
+
+        const nameEl = document.createElement("div");
+        nameEl.className = "provider-name";
+        nameEl.textContent = r.provider_name || "Unknown Provider";
+
+        const metaEl = document.createElement("div");
+        metaEl.className = "provider-contact";
+
+        const st = reviewStatus(r);
+        const rating = (typeof r.lotus_rating === "number") ? r.lotus_rating : "";
+        const reviewer = r.reviewer_name ? `by ${r.reviewer_name}` : "by (anonymous)";
+        metaEl.textContent = `Rating: ${rating} · ${reviewer}`;
+
+        const statusBadge = document.createElement("span");
+        statusBadge.className =
+          "status-badge " +
+          (st === "approved"
+            ? "status-approved"
+            : st === "rejected"
+            ? "status-rejected"
+            : "status-pending");
+        statusBadge.textContent = st;
+
+        const textEl = document.createElement("div");
+        textEl.style.marginTop = "6px";
+        textEl.style.fontSize = "0.9rem";
+        textEl.style.color = "#455a64";
+        const full = (r.review_text || "");
+        textEl.textContent = full.slice(0, 260) + (full.length > 260 ? "…" : "");
+
+        info.appendChild(nameEl);
+        info.appendChild(metaEl);
+        info.appendChild(statusBadge);
+        info.appendChild(textEl);
+
+        mainRow.appendChild(avatar);
+        mainRow.appendChild(info);
+
+        const actions = document.createElement("div");
+        actions.className = "provider-actions";
+
+        const approveBtn = document.createElement("button");
+        approveBtn.className = "btn-small btn-approve";
+        approveBtn.textContent = "Approve";
+        approveBtn.onclick = () => approveReview(r.id);
+
+        const rejectBtn = document.createElement("button");
+        rejectBtn.className = "btn-small btn-reject";
+        rejectBtn.textContent = "Reject";
+        rejectBtn.onclick = () => rejectReview(r.id);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "btn-small btn-delete";
+        deleteBtn.textContent = "Delete";
+        deleteBtn.onclick = () => deleteReview(r.id);
+
+        actions.appendChild(approveBtn);
+        actions.appendChild(rejectBtn);
+        actions.appendChild(deleteBtn);
+
+        card.appendChild(mainRow);
+        card.appendChild(actions);
+
+        providersListEl.appendChild(card);
+      });
+    }
+
+    async function approveReview(id) {
+      if (!confirm("Approve this review?")) return;
+      try {
+        await updateDoc(doc(db, "reviews", id), {
+          approved: true,
+          rejected: false,
+          approvedAt: new Date()
+        });
+        reviews = reviews.map((r) => (r.id === id ? { ...r, approved: true, rejected: false } : r));
+        renderReviews();
+        statusMsgEl.textContent = "Review approved.";
+        statusMsgEl.classList.remove("error");
+      } catch (err) {
+        console.error(err);
+        statusMsgEl.textContent = "Could not approve review.";
+        statusMsgEl.classList.add("error");
+      }
+    }
+
+    async function rejectReview(id) {
+      if (!confirm("Reject this review?")) return;
+      try {
+        await updateDoc(doc(db, "reviews", id), {
+          approved: false,
+          rejected: true,
+          rejectedAt: new Date()
+        });
+        reviews = reviews.map((r) => (r.id === id ? { ...r, approved: false, rejected: true } : r));
+        renderReviews();
+        statusMsgEl.textContent = "Review rejected.";
+        statusMsgEl.classList.remove("error");
+      } catch (err) {
+        console.error(err);
+        statusMsgEl.textContent = "Could not reject review.";
+        statusMsgEl.classList.add("error");
+      }
+    }
+
+    async function deleteReview(id) {
+      if (!confirm("Delete this review? This cannot be undone.")) return;
+      try {
+        await deleteDoc(doc(db, "reviews", id));
+        reviews = reviews.filter((r) => r.id !== id);
+        renderReviews();
+        statusMsgEl.textContent = "Review deleted.";
+        statusMsgEl.classList.remove("error");
+      } catch (err) {
+        console.error(err);
+        statusMsgEl.textContent = "Could not delete review.";
+        statusMsgEl.classList.add("error");
+      }
+    }
+
+    // Search/filter events for current view
+    searchInput.addEventListener("input", () => {
+      if (currentView === "providers") renderProviders();
+      else renderReviews();
+    });
+
+    statusFilter.addEventListener("change", () => {
+      if (currentView === "providers") renderProviders();
+      else renderReviews();
+    });
   </script>
 </body>
 </html>

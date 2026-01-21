@@ -5,716 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Dashboard - Crossing Sunsets™</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif; }
-    body { min-height:100vh; background:#f5fbff; color:#023047; }
-    header {
-      background:#ffffff; border-bottom:1px solid #e0e7f1;
-      padding:0.8rem 1.2rem; display:flex; justify-content:space-between; align-items:center;
-      position:sticky; top:0; z-index:10;
-    }
-    .brand { display:flex; align-items:center; gap:10px; }
-    .brand-logo { width:40px; height:40px; border-radius:12px; }
-    .brand-title { display:flex; flex-direction:column; }
-    .brand-title span:first-child { font-size:0.85rem; color:#90a4ae; }
-    .brand-title span:last-child { font-size:1.1rem; font-weight:700; color:#00bcd4; }
-    .chip {
-      padding:6px 12px; border-radius:999px; background:#e0f7fa;
-      color:#006064; font-size:0.85rem; font-weight:600;
-    }
-    .btn-header {
-      padding:8px 16px; border-radius:999px; border:none;
-      font-size:0.9rem; font-weight:600; cursor:pointer;
-    }
-    .btn-home { background:#00bcd4; color:#fff; }
-    .btn-signout { background:#ffebee; color:#c62828; border:1px solid #ffcdd2; }
+    :root { --primary: #00bcd4; --dark: #023047; --danger: #ef4444; --success: #22c55e; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+    body { background: #f8fafc; color: #334155; }
+    
+    .navbar { background: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .brand { font-weight: 700; color: var(--primary); font-size: 1.25rem; }
+    .logout { color: var(--danger); text-decoration: none; cursor: pointer; font-weight: 600; }
 
-    main { max-width:1100px; margin:1.5rem auto 2.5rem auto; padding:0 1rem; }
-    .welcome-card {
-      background:#fff; border-radius:18px; padding:1.3rem 1.4rem;
-      box-shadow:0 8px 30px rgba(0,0,0,0.04);
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;
-      margin-bottom:1.2rem;
-    }
-    .welcome-text h1 { font-size:1.4rem; margin-bottom:0.2rem; }
-    .welcome-text p { font-size:0.9rem; color:#607d8b; }
+    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    
+    /* Stats Cards */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: 700; color: var(--dark); }
+    .stat-label { color: #64748b; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
 
-    .stat-row {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-      gap:0.75rem; margin-bottom:1.2rem;
-    }
-    .stat-card { border-radius:16px; padding:0.9rem; background:#e0f7fa; text-align:center; }
-    .stat-card.pending { background:#fff3e0; }
-    .stat-card.approved { background:#e8f5e9; }
-    .stat-card.rejected { background:#ffebee; }
-    .stat-label { font-size:0.85rem; color:#607d8b; margin-bottom:0.2rem; }
-    .stat-value { font-size:1.3rem; font-weight:700; }
+    /* Tabs */
+    .tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; }
+    .tab { padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+    .tab.active { color: var(--primary); border-color: var(--primary); }
 
-    .filters-row {
-      margin-top:0.4rem; margin-bottom:0.6rem;
-      display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center;
-    }
-    .search-box {
-      flex:1 1 220px; background:#fff; border-radius:999px;
-      display:flex; align-items:center; padding:0.5rem 0.9rem;
-      box-shadow:0 4px 14px rgba(0,0,0,0.03); border:1px solid #e0e7f1;
-    }
-    .search-box input { border:none; outline:none; width:100%; font-size:0.95rem; margin-left:0.4rem; }
-    .filter-select {
-      border-radius:999px; border:1px solid #e0e7f1; padding:0.5rem 0.9rem; background:#fff;
-      font-size:0.9rem;
-    }
+    /* Review Cards */
+    .review-card { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; display: flex; gap: 1.5rem; align-items: start; border: 1px solid #e2e8f0; }
+    .evidence-img { width: 140px; height: 140px; object-fit: cover; border-radius: 8px; border: 1px solid #cbd5e1; cursor: zoom-in; display: block; }
+    
+    .review-content { flex: 1; }
+    .review-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    .provider-email { font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem; }
+    .review-type { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-    .providers-list { margin-top:0.8rem; display:flex; flex-direction:column; gap:0.75rem; }
-    .provider-card {
-      background:#fff; border-radius:18px; padding:0.9rem 1rem;
-      box-shadow:0 6px 20px rgba(0,0,0,0.04);
-      display:flex; flex-direction:column; gap:0.4rem;
-    }
-    .provider-main-row { display:flex; align-items:flex-start; gap:0.8rem; }
-    .avatar {
-      width:40px; height:40px; border-radius:999px;
-      background:#00bcd4; color:#fff; display:flex; align-items:center;
-      justify-content:center; font-weight:700; font-size:1.1rem;
-      flex: 0 0 auto;
-      margin-top: 2px;
-    }
-    .provider-info { flex:1; }
-    .provider-name { font-weight:700; font-size:1rem; }
-    .provider-contact { font-size:0.85rem; color:#607d8b; margin-top:2px; }
-    .status-badge {
-      padding:4px 10px; border-radius:999px; font-size:0.8rem;
-      font-weight:600; display:inline-block; text-transform:capitalize;
-      margin-top: 6px;
-    }
-    .status-pending { background:#ffe0b2; color:#ef6c00; }
-    .status-approved { background:#c8e6c9; color:#2e7d32; }
-    .status-rejected { background:#ffcdd2; color:#c62828; }
+    /* Provider List Styles */
+    .provider-card { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #e2e8f0; }
+    .provider-header { display: flex; justify-content: space-between; align-items: center; }
+    .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+    .status-badge.Approved { background: #dcfce7; color: #166534; }
+    .status-badge.Pending { background: #ffedd5; color: #9a3412; }
 
-    .provider-actions { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.4rem; }
-    .btn-small {
-      padding:5px 10px; border-radius:999px; border:none;
-      font-size:0.78rem; font-weight:600; cursor:pointer;
-    }
-    .btn-approve { background:#e8f5e9; color:#2e7d32; }
-    .btn-reject { background:#ffebee; color:#c62828; }
-    .btn-delete { background:#eceff1; color:#455a64; }
-    .btn-bed { background:#ffe0b2; color:#e65100; }
-
-    .empty-state { margin-top:1rem; font-size:0.95rem; color:#90a4ae; text-align:center; }
-    .status-message { margin-top:0.8rem; font-size:0.9rem; color:#388e3c; }
-    .status-message.error { color:#c62828; }
-
-    .disclosure {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      color: #607d8b;
-      line-height: 1.35;
-    }
-
-    @media (max-width:600px){
-      header { flex-direction:column; align-items:flex-start; gap:0.6rem; }
-      .welcome-card { align-items:flex-start; }
-    }
+    .actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .btn { padding: 0.5rem 1rem; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; color: white; transition: 0.2s; }
+    .btn-approve { background: var(--success); }
+    .btn-reject { background: var(--danger); }
+    .btn-neutral { background: #64748b; }
+    .btn:hover { opacity: 0.9; }
+    
+    .empty-state { text-align: center; padding: 4rem; color: #94a3b8; font-style: italic; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <img src="crossing-sunsets-logo.png" class="brand-logo" alt="Logo" />
-      <div class="brand-title">
-        <span>Admin Dashboard</span>
-        <span>Crossing Sunsets™</span>
-      </div>
-    </div>
-    <div style="display:flex; gap:0.7rem; align-items:center;">
-      <div class="chip" id="admin-email-chip">Admin</div>
-      <button class="btn-header btn-home" onclick="window.location.href='index.html'">Home</button>
-      <button class="btn-header btn-signout" id="signout-btn">Sign Out</button>
-    </div>
-  </header>
 
-  <main>
-    <div class="welcome-card">
-      <div class="welcome-text">
-        <h1>Welcome, Admin</h1>
-        <p id="welcome-subtitle">Approve providers, update status, and manage bed availability.</p>
-        <div id="reviews-disclosure" class="disclosure" style="display:none;">
-          Reviews are verified before publishing.
-        </div>
-      </div>
-    </div>
+  <nav class="navbar">
+    <div class="brand">Crossing Sunsets Admin</div>
+    <a id="logoutBtn" class="logout">Sign Out</a>
+  </nav>
 
-    <div class="stat-row">
+  <div class="container">
+    <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label" id="stat-total-label">Total Providers</div>
-        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-number" id="pendingReviewCount">0</div>
+        <div class="stat-label">Pending Reviews</div>
       </div>
-      <div class="stat-card pending">
-        <div class="stat-label">Pending</div>
-        <div class="stat-value" id="stat-pending">0</div>
+      <div class="stat-card">
+        <div class="stat-number" id="activeProviderCount">0</div>
+        <div class="stat-label">Active Providers</div>
       </div>
-      <div class="stat-card approved">
-        <div class="stat-label">Approved</div>
-        <div class="stat-value" id="stat-approved">0</div>
-      </div>
-      <div class="stat-card rejected">
-        <div class="stat-label">Rejected</div>
-        <div class="stat-value" id="stat-rejected">0</div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalReviewCount">0</div>
+        <div class="stat-label">Total Reviews</div>
       </div>
     </div>
 
-    <div class="filters-row">
-      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-        <button id="tab-providers" class="btn-header btn-home" type="button">Providers</button>
-        <button id="tab-reviews" class="btn-header" type="button" style="background:#fff;border:1px solid #e0e7f1;color:#00bcd4;">Reviews</button>
-      </div>
-
-      <div class="search-box">
-        🔍
-        <input id="search-input" type="text" placeholder="Search providers…" />
-      </div>
-
-      <select id="status-filter" class="filter-select">
-        <option value="all">All statuses</option>
-        <option value="pending">Pending</option>
-        <option value="approved">Approved</option>
-        <option value="rejected">Rejected</option>
-      </select>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('reviews')" id="tab-reviews">Pending Reviews</div>
+      <div class="tab" onclick="switchTab('providers')" id="tab-providers">Manage Providers</div>
     </div>
 
-    <div class="providers-list" id="providers-list"></div>
-    <div class="empty-state" id="empty-state" style="display:none;">
-      No items found for this view.
+    <div id="reviews-section">
+      <div id="reviewsList">
+        <div class="empty-state">Loading reviews...</div>
+      </div>
     </div>
 
-    <div id="status-message" class="status-message"></div>
-  </main>
+    <div id="providers-section" style="display: none;">
+      <div id="providersList">
+        <div class="empty-state">Loading providers...</div>
+      </div>
+    </div>
+  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      updateDoc,
-      deleteDoc,
-      doc,
-      getDoc,
-      query,
-      orderBy
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-      authDomain: "crossing-sunsets.firebaseapp.com",
-      databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
-      projectId: "crossing-sunsets",
-      storageBucket: "crossing-sunsets.firebasestorage.app",
-      messagingSenderId: "83761464492",
-      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-      measurementId: "G-LG8VN0EZB7"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    const adminEmailChip = document.getElementById("admin-email-chip");
-    const signoutBtn = document.getElementById("signout-btn");
-
-    const providersListEl = document.getElementById("providers-list");
-    const emptyStateEl = document.getElementById("empty-state");
-    const statusMsgEl = document.getElementById("status-message");
-
-    const statTotalLabel = document.getElementById("stat-total-label");
-    const statTotal = document.getElementById("stat-total");
-    const statPending = document.getElementById("stat-pending");
-    const statApproved = document.getElementById("stat-approved");
-    const statRejected = document.getElementById("stat-rejected");
-
-    const welcomeSubtitle = document.getElementById("welcome-subtitle");
-    const reviewsDisclosure = document.getElementById("reviews-disclosure");
-
-    const searchInput = document.getElementById("search-input");
-    const statusFilter = document.getElementById("status-filter");
-
-    const tabProviders = document.getElementById("tab-providers");
-    const tabReviews = document.getElementById("tab-reviews");
-
-    let providers = [];
-    let reviews = [];
-    let currentView = "providers"; // "providers" | "reviews"
-
-    // Require admin
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = "admin-login.html";
-        return;
-      }
-
-      const udoc = await getDoc(doc(db, "users", user.uid));
-      if (!udoc.exists() || udoc.data().role !== "admin") {
-        await signOut(auth);
-        window.location.href = "admin-login.html";
-        return;
-      }
-
-      adminEmailChip.textContent = user.email || "Admin";
-      await loadProviders();
-      setView("providers");
-    });
-
-    signoutBtn.addEventListener("click", async () => {
-      await signOut(auth);
-      window.location.href = "index.html";
-    });
-
-    function setView(view) {
-      currentView = view;
-
-      if (view === "providers") {
-        tabProviders.style.background = "#00bcd4";
-        tabProviders.style.color = "#fff";
-        tabReviews.style.background = "#fff";
-        tabReviews.style.color = "#00bcd4";
-
-        welcomeSubtitle.textContent = "Approve providers, update status, and manage bed availability.";
-        reviewsDisclosure.style.display = "none";
-        statTotalLabel.textContent = "Total Providers";
-
-        searchInput.placeholder = "Search providers…";
-        statusFilter.innerHTML = `
-          <option value="all">All statuses</option>
-          <option value="pending">Pending</option>
-          <option value="approved">Approved</option>
-          <option value="rejected">Rejected</option>
-        `;
-
-        renderProviders();
-      } else {
-        tabReviews.style.background = "#00bcd4";
-        tabReviews.style.color = "#fff";
-        tabProviders.style.background = "#fff";
-        tabProviders.style.color = "#00bcd4";
-
-        welcomeSubtitle.textContent = "Approve or reject submitted reviews before they go public.";
-        reviewsDisclosure.style.display = "block";
-        statTotalLabel.textContent = "Total Reviews";
-
-        searchInput.placeholder = "Search reviews…";
-        statusFilter.innerHTML = `
-          <option value="all">All</option>
-          <option value="pending">Pending</option>
-          <option value="approved">Approved</option>
-          <option value="rejected">Rejected</option>
-        `;
-
-        loadReviews();
-      }
-    }
-
-    tabProviders.addEventListener("click", () => setView("providers"));
-    tabReviews.addEventListener("click", () => setView("reviews"));
-
-    async function loadProviders() {
-      statusMsgEl.textContent = "Loading providers…";
-      statusMsgEl.classList.remove("error");
-      providersListEl.innerHTML = "";
-      emptyStateEl.style.display = "none";
-
-      try {
-        const snapshot = await getDocs(collection(db, "providers"));
-        providers = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-        statusMsgEl.textContent = "Providers loaded.";
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Error loading providers.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    function renderProviders() {
-      const search = searchInput.value.trim().toLowerCase();
-      const status = statusFilter.value;
-
-      let filtered = providers.filter((p) => {
-        const name = (p.businessName || "").toLowerCase();
-        const contact = (p.contactName || "").toLowerCase();
-        const email = (p.email || "").toLowerCase();
-
-        const matchesSearch =
-          !search || name.includes(search) || contact.includes(search) || email.includes(search);
-
-        const currentStatus = p.status || "pending";
-        const matchesStatus = status === "all" || currentStatus === status;
-
-        return matchesSearch && matchesStatus;
-      });
-
-      // stats
-      const total = providers.length;
-      const pending = providers.filter((p) => (p.status || "pending") === "pending").length;
-      const approved = providers.filter((p) => p.status === "approved").length;
-      const rejected = providers.filter((p) => p.status === "rejected").length;
-
-      statTotal.textContent = total;
-      statPending.textContent = pending;
-      statApproved.textContent = approved;
-      statRejected.textContent = rejected;
-
-      providersListEl.innerHTML = "";
-
-      if (filtered.length === 0) {
-        emptyStateEl.style.display = "block";
-        emptyStateEl.textContent = "No providers found for this view.";
-        return;
-      } else {
-        emptyStateEl.style.display = "none";
-      }
-
-      filtered.forEach((p) => {
-        const card = document.createElement("div");
-        card.className = "provider-card";
-
-        const mainRow = document.createElement("div");
-        mainRow.className = "provider-main-row";
-
-        const avatar = document.createElement("div");
-        avatar.className = "avatar";
-        avatar.textContent = (p.businessName || "P").charAt(0).toUpperCase();
-
-        const info = document.createElement("div");
-        info.className = "provider-info";
-
-        const nameEl = document.createElement("div");
-        nameEl.className = "provider-name";
-        nameEl.textContent = p.businessName || "Unnamed Provider";
-
-        const contactEl = document.createElement("div");
-        contactEl.className = "provider-contact";
-        const pieces = [];
-        if (p.providerType) pieces.push(p.providerType);
-        if (p.serviceArea) pieces.push(p.serviceArea);
-        if (p.email) pieces.push(p.email);
-        contactEl.textContent = pieces.join(" · ");
-
-        const statusBadge = document.createElement("span");
-        const st = p.status || "pending";
-        statusBadge.className =
-          "status-badge " +
-          (st === "approved"
-            ? "status-approved"
-            : st === "rejected"
-            ? "status-rejected"
-            : "status-pending");
-        statusBadge.textContent = st;
-
-        info.appendChild(nameEl);
-        info.appendChild(contactEl);
-        info.appendChild(statusBadge);
-
-        mainRow.appendChild(avatar);
-        mainRow.appendChild(info);
-
-        const actions = document.createElement("div");
-        actions.className = "provider-actions";
-
-        const approveBtn = document.createElement("button");
-        approveBtn.className = "btn-small btn-approve";
-        approveBtn.textContent = "Approve";
-        approveBtn.onclick = () => updateStatus(p.id, "approved");
-
-        const rejectBtn = document.createElement("button");
-        rejectBtn.className = "btn-small btn-reject";
-        rejectBtn.textContent = "Reject";
-        rejectBtn.onclick = () => updateStatus(p.id, "rejected");
-
-        const bedBtn = document.createElement("button");
-        bedBtn.className = "btn-small btn-bed";
-        bedBtn.textContent = "Set beds";
-        bedBtn.onclick = () => updateBeds(p);
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "btn-small btn-delete";
-        deleteBtn.textContent = "Delete";
-        deleteBtn.onclick = () => deleteProvider(p.id);
-
-        actions.appendChild(approveBtn);
-        actions.appendChild(rejectBtn);
-        actions.appendChild(bedBtn);
-        actions.appendChild(deleteBtn);
-
-        card.appendChild(mainRow);
-        card.appendChild(actions);
-
-        providersListEl.appendChild(card);
-      });
-    }
-
-    async function updateStatus(id, status) {
-      if (!confirm(`Set provider status to "${status}"?`)) return;
-      try {
-        await updateDoc(doc(db, "providers", id), { status });
-        providers = providers.map((p) => (p.id === id ? { ...p, status } : p));
-        renderProviders();
-        statusMsgEl.textContent = `Status updated to ${status}.`;
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not update status.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    async function updateBeds(provider) {
-      const current = provider.availableBeds ?? 0;
-      const input = prompt(`Available beds for "${provider.businessName || "Provider"}":`, current);
-      if (input === null) return;
-
-      const beds = Number(input);
-      if (Number.isNaN(beds) || beds < 0) {
-        alert("Please enter a valid number.");
-        return;
-      }
-
-      try {
-        await updateDoc(doc(db, "providers", provider.id), { availableBeds: beds });
-        providers = providers.map((p) => (p.id === provider.id ? { ...p, availableBeds: beds } : p));
-        statusMsgEl.textContent = "Beds availability updated.";
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not update beds.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    async function deleteProvider(id) {
-      if (!confirm("Delete this provider? This cannot be undone.")) return;
-      try {
-        await deleteDoc(doc(db, "providers", id));
-        providers = providers.filter((p) => p.id !== id);
-        renderProviders();
-        statusMsgEl.textContent = "Provider deleted.";
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not delete provider.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    // -------------------------
-    // Reviews (Moderation)
-    // -------------------------
-    function reviewStatus(r) {
-      if (r.rejected === true) return "rejected";
-      if (r.approved === true) return "approved";
-      return "pending";
-    }
-
-    async function loadReviews() {
-      statusMsgEl.textContent = "Loading reviews…";
-      statusMsgEl.classList.remove("error");
-      providersListEl.innerHTML = "";
-      emptyStateEl.style.display = "none";
-
-      try {
-        const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
-        const snapshot = await getDocs(q);
-        reviews = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-        renderReviews();
-        statusMsgEl.textContent = "Reviews loaded.";
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Error loading reviews.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    function renderReviews() {
-      const search = searchInput.value.trim().toLowerCase();
-      const status = statusFilter.value;
-
-      let filtered = reviews.filter((r) => {
-        const pname = (r.provider_name || r.providerName || "").toLowerCase();
-        const rname = (r.reviewer_name || "").toLowerCase();
-        const text = (r.review_text || "").toLowerCase();
-
-        const matchesSearch =
-          !search || pname.includes(search) || rname.includes(search) || text.includes(search);
-
-        const st = reviewStatus(r);
-        const matchesStatus = status === "all" || st === status;
-
-        return matchesSearch && matchesStatus;
-      });
-
-      // stats
-      const total = reviews.length;
-      const pending = reviews.filter((r) => reviewStatus(r) === "pending").length;
-      const approved = reviews.filter((r) => reviewStatus(r) === "approved").length;
-      const rejected = reviews.filter((r) => reviewStatus(r) === "rejected").length;
-
-      statTotal.textContent = total;
-      statPending.textContent = pending;
-      statApproved.textContent = approved;
-      statRejected.textContent = rejected;
-
-      providersListEl.innerHTML = "";
-
-      if (filtered.length === 0) {
-        emptyStateEl.style.display = "block";
-        emptyStateEl.textContent = "No reviews found for this view.";
-        return;
-      } else {
-        emptyStateEl.style.display = "none";
-      }
-
-      filtered.forEach((r) => {
-        const card = document.createElement("div");
-        card.className = "provider-card";
-
-        const mainRow = document.createElement("div");
-        mainRow.className = "provider-main-row";
-
-        const avatar = document.createElement("div");
-        avatar.className = "avatar";
-        avatar.textContent = "🪷";
-
-        const info = document.createElement("div");
-        info.className = "provider-info";
-
-        const nameEl = document.createElement("div");
-        nameEl.className = "provider-name";
-        nameEl.textContent = r.provider_name || "Unknown Provider";
-
-        const metaEl = document.createElement("div");
-        metaEl.className = "provider-contact";
-
-        const st = reviewStatus(r);
-        const rating = (typeof r.lotus_rating === "number") ? r.lotus_rating : "";
-        const reviewer = r.reviewer_name ? `by ${r.reviewer_name}` : "by (anonymous)";
-        metaEl.textContent = `Rating: ${rating} · ${reviewer}`;
-
-        const statusBadge = document.createElement("span");
-        statusBadge.className =
-          "status-badge " +
-          (st === "approved"
-            ? "status-approved"
-            : st === "rejected"
-            ? "status-rejected"
-            : "status-pending");
-        statusBadge.textContent = st;
-
-        const textEl = document.createElement("div");
-        textEl.style.marginTop = "6px";
-        textEl.style.fontSize = "0.9rem";
-        textEl.style.color = "#455a64";
-        const full = (r.review_text || "");
-        textEl.textContent = full.slice(0, 260) + (full.length > 260 ? "…" : "");
-
-        info.appendChild(nameEl);
-        info.appendChild(metaEl);
-        info.appendChild(statusBadge);
-        info.appendChild(textEl);
-
-        mainRow.appendChild(avatar);
-        mainRow.appendChild(info);
-
-        const actions = document.createElement("div");
-        actions.className = "provider-actions";
-
-        const approveBtn = document.createElement("button");
-        approveBtn.className = "btn-small btn-approve";
-        approveBtn.textContent = "Approve";
-        approveBtn.onclick = () => approveReview(r.id);
-
-        const rejectBtn = document.createElement("button");
-        rejectBtn.className = "btn-small btn-reject";
-        rejectBtn.textContent = "Reject";
-        rejectBtn.onclick = () => rejectReview(r.id);
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "btn-small btn-delete";
-        deleteBtn.textContent = "Delete";
-        deleteBtn.onclick = () => deleteReview(r.id);
-
-        actions.appendChild(approveBtn);
-        actions.appendChild(rejectBtn);
-        actions.appendChild(deleteBtn);
-
-        card.appendChild(mainRow);
-        card.appendChild(actions);
-
-        providersListEl.appendChild(card);
-      });
-    }
-
-    async function approveReview(id) {
-      if (!confirm("Approve this review?")) return;
-      try {
-        await updateDoc(doc(db, "reviews", id), {
-          approved: true,
-          rejected: false,
-          approvedAt: new Date()
-        });
-        reviews = reviews.map((r) => (r.id === id ? { ...r, approved: true, rejected: false } : r));
-        renderReviews();
-        statusMsgEl.textContent = "Review approved.";
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not approve review.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    async function rejectReview(id) {
-      if (!confirm("Reject this review?")) return;
-      try {
-        await updateDoc(doc(db, "reviews", id), {
-          approved: false,
-          rejected: true,
-          rejectedAt: new Date()
-        });
-        reviews = reviews.map((r) => (r.id === id ? { ...r, approved: false, rejected: true } : r));
-        renderReviews();
-        statusMsgEl.textContent = "Review rejected.";
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not reject review.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    async function deleteReview(id) {
-      if (!confirm("Delete this review? This cannot be undone.")) return;
-      try {
-        await deleteDoc(doc(db, "reviews", id));
-        reviews = reviews.filter((r) => r.id !== id);
-        renderReviews();
-        statusMsgEl.textContent = "Review deleted.";
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not delete review.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    // Search/filter events for current view
-    searchInput.addEventListener("input", () => {
-      if (currentView === "providers") renderProviders();
-      else renderReviews();
-    });
-
-    statusFilter.addEventListener("change", () => {
-      if (currentView === "providers") renderProviders();
-      else renderReviews();
-    });
-  </script>
-</body>
-</html>
+    import { getAuth, signOut, onAuthStateChanged } from "

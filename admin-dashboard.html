@@ -3,96 +3,206 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin Dashboard - Crossing Sunsets™</title>
+  <title>Master Admin - Crossing Sunsets™</title>
   <style>
-    :root { --primary: #00bcd4; --dark: #023047; --danger: #ef4444; --success: #22c55e; }
+    /* Clean & Dense Layout for Admin Efficiency */
+    :root { --primary: #00bcd4; --dark: #0f172a; --bg: #f1f5f9; }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
-    body { background: #f8fafc; color: #334155; }
+    body { background: var(--bg); color: #334155; padding-bottom: 4rem; }
     
-    .navbar { background: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .brand { font-weight: 700; color: var(--primary); font-size: 1.25rem; }
-    .logout { color: var(--danger); text-decoration: none; cursor: pointer; font-weight: 600; }
+    .navbar { background: #fff; padding: 1rem 2rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .brand { font-weight: 800; color: var(--primary); font-size: 1.25rem; }
+    .logout { color: #ef4444; font-weight: 600; cursor: pointer; text-decoration: none; }
 
-    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 2rem auto; padding: 0 1.5rem; }
     
-    /* Stats Cards */
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-    .stat-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-align: center; }
-    .stat-number { font-size: 2rem; font-weight: 700; color: var(--dark); }
-    .stat-label { color: #64748b; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .section-title { font-size: 1.1rem; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.5px; }
+    .count-badge { background: var(--dark); color: #fff; padding: 2px 8px; border-radius: 99px; font-size: 0.8rem; }
 
-    /* Tabs */
-    .tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; }
-    .tab { padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 2px solid transparent; margin-bottom: -2px; }
-    .tab.active { color: var(--primary); border-color: var(--primary); }
-
-    /* Review Cards */
-    .review-card { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; display: flex; gap: 1.5rem; align-items: start; border: 1px solid #e2e8f0; }
-    .evidence-img { width: 140px; height: 140px; object-fit: cover; border-radius: 8px; border: 1px solid #cbd5e1; cursor: zoom-in; display: block; }
+    /* Card Styles */
+    .card-list { display: flex; flex-direction: column; gap: 1rem; }
+    .card { background: #fff; border-radius: 10px; padding: 1.25rem; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: transform 0.2s; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
     
-    .review-content { flex: 1; }
-    .review-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-    .provider-email { font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem; }
-    .review-type { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-
-    /* Provider List Styles */
-    .provider-card { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #e2e8f0; }
-    .provider-header { display: flex; justify-content: space-between; align-items: center; }
-    .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
-    .status-badge.Approved { background: #dcfce7; color: #166534; }
-    .status-badge.Pending { background: #ffedd5; color: #9a3412; }
-
-    .actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
-    .btn { padding: 0.5rem 1rem; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; color: white; transition: 0.2s; }
-    .btn-approve { background: var(--success); }
-    .btn-reject { background: var(--danger); }
-    .btn-neutral { background: #64748b; }
+    /* Header inside card */
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .card-title { font-weight: 700; color: var(--dark); font-size: 1rem; }
+    .status { font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+    
+    /* Status Colors */
+    .status.pending, .status.pending_verification, .status.Pending { background: #fff7ed; color: #c2410c; border: 1px solid #fdba74; }
+    .status.approved, .status.Approved { background: #f0fdf4; color: #15803d; border: 1px solid #86efac; }
+    
+    /* Content */
+    .card-body { font-size: 0.9rem; color: #475569; margin-bottom: 1rem; line-height: 1.5; }
+    .evidence-thumb { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-top: 0.5rem; border: 1px solid #cbd5e1; }
+    
+    /* Buttons */
+    .btn-group { display: flex; gap: 0.5rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem; }
+    .btn { flex: 1; padding: 0.5rem; border: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: white; }
+    .btn-approve { background: #22c55e; }
+    .btn-reject { background: #ef4444; }
+    .btn-delete { background: #64748b; }
     .btn:hover { opacity: 0.9; }
-    
-    .empty-state { text-align: center; padding: 4rem; color: #94a3b8; font-style: italic; }
+
+    @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
   <nav class="navbar">
-    <div class="brand">Crossing Sunsets Admin</div>
+    <div class="brand">Crossing Sunsets Admin (Master View)</div>
     <a id="logoutBtn" class="logout">Sign Out</a>
   </nav>
 
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number" id="pendingReviewCount">0</div>
-        <div class="stat-label">Pending Reviews</div>
+  <div class="main-grid">
+    
+    <section>
+      <div class="section-header">
+        <div class="section-title">Providers</div>
+        <span id="providerCount" class="count-badge">0</span>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" id="activeProviderCount">0</div>
-        <div class="stat-label">Active Providers</div>
+      <div id="providersList" class="card-list">
+        <p style="text-align:center; color:#94a3b8;">Loading providers...</p>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" id="totalReviewCount">0</div>
-        <div class="stat-label">Total Reviews</div>
-      </div>
-    </div>
+    </section>
 
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab('reviews')" id="tab-reviews">Pending Reviews</div>
-      <div class="tab" onclick="switchTab('providers')" id="tab-providers">Manage Providers</div>
-    </div>
-
-    <div id="reviews-section">
-      <div id="reviewsList">
-        <div class="empty-state">Loading reviews...</div>
+    <section>
+      <div class="section-header">
+        <div class="section-title">All Reviews & Evidence</div>
+        <span id="reviewCount" class="count-badge">0</span>
       </div>
-    </div>
-
-    <div id="providers-section" style="display: none;">
-      <div id="providersList">
-        <div class="empty-state">Loading providers...</div>
+      <div id="reviewsList" class="card-list">
+        <p style="text-align:center; color:#94a3b8;">Loading reviews...</p>
       </div>
-    </div>
+    </section>
+
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, signOut, onAuthStateChanged } from "
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, collection, query, onSnapshot, doc, updateDoc, deleteDoc, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) window.location.href = "login.html";
+      else initDashboard();
+    });
+
+    function initDashboard() {
+      // 1. FETCH ALL PROVIDERS (No filters)
+      const provQuery = query(collection(db, "providers"));
+      onSnapshot(provQuery, (snapshot) => {
+        const list = document.getElementById('providersList');
+        document.getElementById('providerCount').innerText = snapshot.size;
+        list.innerHTML = "";
+
+        if(snapshot.empty) list.innerHTML = "<p>No providers found in database.</p>";
+
+        snapshot.forEach(docSnap => {
+          const d = docSnap.data();
+          const id = docSnap.id;
+          const status = d.status || "Pending";
+          
+          list.innerHTML += `
+            <div class="card">
+              <div class="card-top">
+                <div class="card-title">${d.businessName || d.name || "Unnamed Provider"}</div>
+                <span class="status ${status}">${status}</span>
+              </div>
+              <div class="card-body">
+                Email: ${d.email || "No email"}<br>
+                Facility: ${d.facilityType || "Not set"}<br>
+                City: ${d.city || "Not set"}
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-approve" onclick="window.setStatus('providers','${id}','Approved')">Approve</button>
+                <button class="btn btn-reject" onclick="window.setStatus('providers','${id}','Rejected')">Reject</button>
+                <button class="btn btn-delete" onclick="window.deleteItem('providers','${id}')">Delete</button>
+              </div>
+            </div>
+          `;
+        });
+      });
+
+      // 2. FETCH ALL REVIEWS (No filters - Show me everything)
+      const reviewQuery = query(collection(db, "reviews"));
+      onSnapshot(reviewQuery, (snapshot) => {
+        const list = document.getElementById('reviewsList');
+        document.getElementById('reviewCount').innerText = snapshot.size;
+        list.innerHTML = "";
+
+        if(snapshot.empty) list.innerHTML = "<p>No reviews found.</p>";
+
+        snapshot.forEach(docSnap => {
+          const d = docSnap.data();
+          const id = docSnap.id;
+          const status = d.status || "pending";
+          const isHardCopy = d.type === 'hard_copy';
+
+          // Render Logic
+          let contentHTML = "";
+          let titleHTML = "";
+
+          if (isHardCopy) {
+            titleHTML = "📸 Evidence Upload";
+            contentHTML = `<a href="${d.fileUrl}" target="_blank"><img src="${d.fileUrl}" class="evidence-thumb" loading="lazy" /></a>`;
+          } else {
+            titleHTML = `🪷 Lotus Review (${d.rating}/4)`;
+            contentHTML = `<p>"${d.text || 'No text'}"</p>`;
+          }
+
+          list.innerHTML += `
+            <div class="card">
+              <div class="card-top">
+                <div class="card-title">${titleHTML}</div>
+                <span class="status ${status}">${status}</span>
+              </div>
+              <div class="card-body">
+                <strong>Provider:</strong> ${d.providerEmail || d.provider_name || 'Unknown'}<br>
+                ${contentHTML}
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-approve" onclick="window.setStatus('reviews','${id}','approved')">Approve</button>
+                <button class="btn btn-reject" onclick="window.setStatus('reviews','${id}','rejected')">Reject</button>
+                <button class="btn btn-delete" onclick="window.deleteItem('reviews','${id}')">Delete</button>
+              </div>
+            </div>
+          `;
+        });
+      });
+    }
+
+    // --- ACTIONS ---
+    window.setStatus = async (coll, id, status) => {
+      if(!confirm(`Change status to ${status}?`)) return;
+      try {
+        await updateDoc(doc(db, coll, id), { status: status });
+      } catch(e) { alert("Error: " + e.message); }
+    };
+
+    window.deleteItem = async (coll, id) => {
+      if(!confirm("Permanently DELETE this? Cannot be undone.")) return;
+      try {
+        await deleteDoc(doc(db, coll, id));
+      } catch(e) { alert("Error: " + e.message); }
+    };
+
+    document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
+  </script>
+</body>
+</html>

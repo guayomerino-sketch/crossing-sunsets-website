@@ -14,13 +14,8 @@
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
     .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
 
-    /* --- Page Header --- */
-    .header-section { max-width: 1200px; margin: 3rem auto 2rem; padding: 0 1.5rem; text-align: center; }
-    .header-section h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .header-section p { color: #64748b; font-size: 1.1rem; }
-
-    /* --- Grid & Cards --- */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    /* --- Grid & Cards (Restored to Original Design) --- */
+    .container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
 
     .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
@@ -52,14 +47,9 @@
     </div>
   </nav>
 
-  <div class="header-section">
-    <h1>Care Providers</h1>
-    <p>Find compassionate hospice, palliative care, and skilled nursing in your area.</p>
-  </div>
-
   <div class="container">
     <div class="grid" id="providersGrid">
-      <p style="text-align:center; grid-column:1/-1;">Loading Providers...</p>
+      <p style="text-align:center; grid-column:1/-1; padding: 2rem; font-size: 1.2rem; color: #666;">Loading Providers...</p>
     </div>
   </div>
 
@@ -82,7 +72,8 @@
     async function loadProviders() {
       const grid = document.getElementById('providersGrid');
       
-      // Load ALL providers and filter locally (Safe Revert)
+      // 1. SAFE LOAD: We fetch ALL providers, then check status manually.
+      // This prevents the "case sensitivity" bug (Approved vs approved)
       const q = query(collection(db, "providers"));
       
       try {
@@ -96,4 +87,54 @@
 
         let count = 0;
         snapshot.forEach(doc => {
-          const p =
+          const p = doc.data();
+          const id = doc.id;
+          
+          // 2. SAFETY FILTER: Allow "Approved", "approved", "APPROVED"
+          const status = (p.status || "").toLowerCase().trim();
+          if (status !== 'approved') return;
+
+          count++;
+
+          // 3. Simple Icon Logic
+          let icon = "🏥";
+          const type = (p.facilityType || "").toLowerCase();
+          if (type.includes("hospice")) icon = "☘️";
+          if (type.includes("nursing") || type.includes("skilled")) icon = "🏥";
+          if (type.includes("board") || type.includes("care")) icon = "🏠";
+          
+          grid.innerHTML += `
+            <div class="card">
+              <div class="card-header">
+                <div class="avatar">${icon}</div>
+                <div class="card-title">${p.businessName || "Provider"}</div>
+                <div style="font-size:0.9rem; opacity:0.9;">📍 ${p.city || "Location not specified"}</div>
+              </div>
+              <div class="card-body">
+                <span class="tag">${p.facilityType || "Care Provider"}</span>
+                <p class="description">${p.bio || "Dedicated to providing compassionate care."}</p>
+                <div style="font-size:0.9rem; color:#475569;">📧 ${p.email}</div>
+                
+                <div class="actions">
+                  <a href="profile.html?id=${id}" class="btn btn-primary">📖 Read Reviews</a>
+                  <a href="lotus-review.html?provider=${id}&name=${encodeURIComponent(p.businessName)}" class="btn btn-outline">✍️ Leave a Review</a>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        if (count === 0) {
+          grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No approved providers found.</p>';
+        }
+
+      } catch (error) {
+        console.error(error);
+        grid.innerHTML = `<p style="color:red; text-align:center;">Error loading providers. Please refresh.</p>`;
+      }
+    }
+
+    loadProviders();
+  </script>
+</body>
+</html>

@@ -14,31 +14,48 @@
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
     .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
 
-    /* --- Header --- */
-    .header-section { max-width: 1200px; margin: 3rem auto 2rem; padding: 0 1.5rem; text-align: center; }
-    .header-section h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .header-section p { color: #64748b; font-size: 1.1rem; }
+    /* --- Search & Filter Section --- */
+    .app-header { max-width: 1200px; margin: 2rem auto 1rem; padding: 0 1.5rem; }
+    .app-title { font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+    
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .filter-btn {
+      background: white; border: 1px solid #e2e8f0; color: #64748b;
+      padding: 10px 18px; border-radius: 99px; font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+    .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(0, 188, 212, 0.25); }
 
-    /* --- Grid & Cards --- */
+    .search-container { position: relative; width: 100%; max-width: 600px; margin-bottom: 2rem; }
+    .search-input {
+      width: 100%; padding: 14px 18px 14px 44px; border-radius: 12px;
+      border: 1px solid #cbd5e1; font-size: 16px; outline: none; transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1); }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+
+    /* --- Cards Grid --- */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
 
     .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
     .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
     
+    /* TEAL HEADER STYLE (Restored) */
     .card-header { background: var(--primary); padding: 2rem; text-align: center; color: white; }
-    .avatar { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--primary); }
-    .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .avatar { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
     
     .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
-    .tag { align-self: flex-start; background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+    .tag { align-self: flex-start; background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
     .description { font-size: 0.95rem; line-height: 1.6; color: #64748b; flex: 1; }
     
     .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
-    .btn { padding: 0.75rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
-    .btn-primary { background: #ff5722; color: white; } 
-    .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
-    .btn:hover { opacity: 0.9; }
+    .btn { padding: 0.75rem; border-radius: 8px; font-weight: 700; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
+    .btn-primary { background: #ff5722; color: white; box-shadow: 0 4px 12px rgba(255, 87, 34, 0.2); } 
+    .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: white; }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
   </style>
 </head>
 <body>
@@ -52,14 +69,28 @@
     </div>
   </nav>
 
-  <div class="header-section">
-    <h1>Care Providers</h1>
-    <p>Find compassionate hospice, palliative care, skilled nursing, and board & care in your area.</p>
+  <div class="app-header">
+    <h1 class="app-title">Browse Providers</h1>
+    <p style="color:#64748b; margin-bottom:1.5rem;">Find compassionate care in your area.</p>
+
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="applyFilter('all', this)">All Providers</button>
+      <button class="filter-btn" onclick="applyFilter('hospice', this)">🏥 Hospice</button>
+      <button class="filter-btn" onclick="applyFilter('skilled', this)">🩺 Skilled Nursing</button>
+      <button class="filter-btn" onclick="applyFilter('board', this)">🏠 Board & Care</button>
+      <button class="filter-btn" onclick="applyFilter('palliative', this)">❤️ Palliative</button>
+      <button class="filter-btn" onclick="applyFilter('memory', this)">🧠 Memory Care</button>
+    </div>
+
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search by city, state, or provider name..." onkeyup="runSearch()">
+    </div>
   </div>
 
   <div class="container">
     <div class="grid" id="providersGrid">
-      <p style="text-align:center; grid-column:1/-1; padding: 2rem; color: #666;">Loading Providers...</p>
+      <p style="text-align:center; grid-column:1/-1; padding:2rem; color:#666;">Loading Providers...</p>
     </div>
   </div>
 
@@ -82,7 +113,7 @@
     async function loadProviders() {
       const grid = document.getElementById('providersGrid');
       
-      // 1. Fetch ALL providers
+      // 1. Fetch ALL providers from DB
       const q = query(collection(db, "providers"));
       
       try {
@@ -99,33 +130,32 @@
           const p = doc.data();
           const id = doc.id;
           
-          // --- SAFETY LOGIC 1: STATUS ---
-          // Works for "Approved", "approved", "APPROVED"
+          // --- SAFETY LOGIC 1: STATUS CHECK ---
+          // Accepts "Approved", "approved", "APPROVED"
           const status = (p.status || "").toLowerCase().trim();
           if (status !== 'approved') return;
 
           count++;
 
-          // --- SAFETY LOGIC 2: TYPE OF CARE ---
-          // Checks BOTH 'facilityType' (Old DB) AND 'providerType' (New DB)
-          // This ensures no provider is missed.
+          // --- SAFETY LOGIC 2: TYPE CHECK ---
+          // Checks both 'facilityType' AND 'providerType'
           const rawType = (p.facilityType || p.providerType || "").toLowerCase();
           
-          let icon = "🏥"; // Default
-          let label = p.facilityType || p.providerType || "Care Provider";
-
           // Icon Logic
-          if (rawType.includes("hospice")) { icon = "☘️"; }
-          else if (rawType.includes("nursing") || rawType.includes("skilled")) { icon = "🏥"; }
-          else if (rawType.includes("board") || rawType.includes("care") || rawType.includes("rcfe")) { icon = "🏠"; }
-          else if (rawType.includes("memory")) { icon = "🧠"; }
-          else if (rawType.includes("dd") || rawType.includes("developmental")) { icon = "🤝"; }
+          let icon = "🏥";
+          if (rawType.includes("hospice")) icon = "☘️";
+          else if (rawType.includes("nursing") || rawType.includes("skilled")) icon = "🏥";
+          else if (rawType.includes("board") || rawType.includes("care") || rawType.includes("rcfe")) icon = "🏠";
+          else if (rawType.includes("memory")) icon = "🧠";
+          else if (rawType.includes("palliative")) icon = "❤️";
 
-          // Clean up the label for display (Remove underscores if present)
-          label = label.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+          // Label Logic (Clean up the text)
+          let label = p.facilityType || p.providerType || "Care Provider";
+          label = label.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()); // Capitalize words
 
+          // --- RENDER CARD (With filtering data attributes) ---
           grid.innerHTML += `
-            <div class="card">
+            <div class="card provider-card" data-type="${rawType}" data-search="${(p.businessName + ' ' + p.city).toLowerCase()}">
               <div class="card-header">
                 <div class="avatar">${icon}</div>
                 <div class="card-title">${p.businessName || "Provider"}</div>
@@ -134,7 +164,7 @@
               <div class="card-body">
                 <span class="tag">${label}</span>
                 <p class="description">${p.bio || p.description || "Dedicated to providing compassionate care."}</p>
-                <div style="font-size:0.9rem; color:#475569;">📧 ${p.email}</div>
+                <div style="font-size:0.9rem; color:#475569;">📧 ${p.email || "Contact for info"}</div>
                 
                 <div class="actions">
                   <a href="profile.html?id=${id}" class="btn btn-primary">📖 Read Reviews</a>
@@ -151,11 +181,59 @@
 
       } catch (error) {
         console.error(error);
-        grid.innerHTML = `<p style="color:red; text-align:center;">Error loading providers. Please check connection.</p>`;
+        grid.innerHTML = `<p style="color:red; text-align:center;">Error loading providers. Please refresh.</p>`;
       }
     }
 
     loadProviders();
+  </script>
+
+  <script>
+    window.applyFilter = function(category, btn) {
+      // 1. Update Buttons
+      if(btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      // 2. Filter Logic
+      const cards = document.querySelectorAll('.provider-card');
+      const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+      cards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        const search = card.getAttribute('data-search');
+
+        let matchesCat = false;
+        if (category === 'all') matchesCat = true;
+        else if (category === 'hospice' && type.includes('hospice')) matchesCat = true;
+        else if (category === 'skilled' && (type.includes('skilled') || type.includes('nursing'))) matchesCat = true;
+        else if (category === 'board' && (type.includes('board') || type.includes('care') || type.includes('rcfe'))) matchesCat = true;
+        else if (category === 'palliative' && type.includes('palliative')) matchesCat = true;
+        else if (category === 'memory' && type.includes('memory')) matchesCat = true;
+
+        if (matchesCat && search.includes(searchVal)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    window.runSearch = function() {
+      // Keep current category active while searching
+      const activeBtn = document.querySelector('.filter-btn.active');
+      let cat = 'all';
+      if(activeBtn) {
+        const txt = activeBtn.innerText.toLowerCase();
+        if(txt.includes('hospice')) cat = 'hospice';
+        else if(txt.includes('skilled')) cat = 'skilled';
+        else if(txt.includes('board')) cat = 'board';
+        else if(txt.includes('palliative')) cat = 'palliative';
+        else if(txt.includes('memory')) cat = 'memory';
+      }
+      applyFilter(cat, null);
+    }
   </script>
 </body>
 </html>

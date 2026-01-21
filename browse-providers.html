@@ -5,55 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Browse Care Providers - Crossing Sunsets™</title>
   <style>
-    :root { --primary: #00bcd4; --dark: #023047; --bg: #f8fafc; --text: #334155; }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
-    body { background: var(--bg); color: var(--text); padding-bottom: 4rem; }
+    /* --- COLOR PALETTE (Matches your App) --- */
+    :root { 
+      --primary: #00bcd4; /* The specific teal from your screenshots */
+      --primary-dark: #00acc1;
+      --text-dark: #334155;
+      --text-light: #64748b;
+      --bg-gray: #f8fafc;
+    }
 
-    /* --- Navigation --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+    body { background: var(--bg-gray); color: var(--text-dark); padding-bottom: 4rem; }
+
+    /* --- NAVIGATION --- */
     .nav { background: white; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
-    .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
+    .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
+    @media(max-width: 600px) { .nav { padding: 1rem; } .nav-links a { font-size: 0.85rem; margin-left: 10px; } }
 
-    /* --- Search & Filter Section --- */
-    .app-header { max-width: 1200px; margin: 2rem auto 1rem; padding: 0 1.5rem; }
-    .app-title { font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+    /* --- APP-STYLE HEADER & FILTERS --- */
+    .app-section { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
     
-    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .app-title { font-size: 2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .app-subtitle { color: var(--text-light); font-size: 1rem; margin-bottom: 1.5rem; max-width: 700px; line-height: 1.5; }
+    
+    .filter-label { font-weight: 700; font-size: 0.95rem; margin-bottom: 10px; display: block; color: var(--text-dark); }
+    
+    /* The "Pill" Buttons */
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
     .filter-btn {
-      background: white; border: 1px solid #e2e8f0; color: #64748b;
-      padding: 10px 18px; border-radius: 99px; font-weight: 700; font-size: 0.9rem;
-      cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+      background: white; 
+      border: 1.5px solid var(--primary); 
+      color: var(--primary);
+      padding: 10px 20px; 
+      border-radius: 99px; /* Pill Shape */
+      font-weight: 700; 
+      font-size: 0.9rem;
+      cursor: pointer; 
+      transition: all 0.2s ease;
+      display: flex; align-items: center; gap: 8px;
     }
-    .filter-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
-    .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(0, 188, 212, 0.25); }
+    .filter-btn:hover { background: #e0f7fa; transform: translateY(-1px); }
+    
+    /* Active State (Solid Teal) */
+    .filter-btn.active {
+      background: var(--primary); 
+      color: white; 
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+    }
 
-    .search-container { position: relative; width: 100%; max-width: 600px; margin-bottom: 2rem; }
+    /* Search Bar */
+    .search-wrapper { position: relative; max-width: 100%; margin-bottom: 2rem; }
     .search-input {
-      width: 100%; padding: 14px 18px 14px 44px; border-radius: 12px;
+      width: 100%; padding: 16px 20px 16px 50px; border-radius: 12px;
       border: 1px solid #cbd5e1; font-size: 16px; outline: none; transition: border-color 0.2s;
+      background: white;
     }
-    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1); }
-    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.1); }
+    .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.2rem; }
 
-    /* --- Cards Grid --- */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    /* --- PROVIDER GRID --- */
+    .section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-dark); }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
 
+    /* The Provider Card (Teal Header Style) */
     .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
     .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
     
-    /* TEAL HEADER STYLE (Restored) */
-    .card-header { background: var(--primary); padding: 2rem; text-align: center; color: white; }
-    .avatar { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .card-header { background: var(--primary); padding: 2rem; text-align: center; color: white; position: relative; }
+    .avatar { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
     .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .card-location { font-size: 0.9rem; opacity: 0.95; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 4px; }
     
     .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
-    .tag { align-self: flex-start; background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
-    .description { font-size: 0.95rem; line-height: 1.6; color: #64748b; flex: 1; }
+    .tag { align-self: flex-start; background: #e0f7fa; color: #006064; padding: 6px 14px; border-radius: 99px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+    .description { font-size: 0.95rem; line-height: 1.6; color: var(--text-light); flex: 1; }
+    .contact-info { font-size: 0.9rem; color: var(--text-dark); display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f1f5f9; }
     
-    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
-    .btn { padding: 0.75rem; border-radius: 8px; font-weight: 700; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
-    .btn-primary { background: #ff5722; color: white; box-shadow: 0 4px 12px rgba(255, 87, 34, 0.2); } 
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .btn { padding: 0.85rem; border-radius: 10px; font-weight: 700; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
+    .btn-primary { background: #ff5722; color: white; box-shadow: 0 4px 12px rgba(255, 87, 34, 0.25); } 
     .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: white; }
     .btn:hover { opacity: 0.9; transform: translateY(-1px); }
   </style>
@@ -69,28 +100,41 @@
     </div>
   </nav>
 
-  <div class="app-header">
+  <div class="app-section">
     <h1 class="app-title">Browse Providers</h1>
-    <p style="color:#64748b; margin-bottom:1.5rem;">Find compassionate care in your area.</p>
+    <p class="app-subtitle">Find compassionate hospice, palliative care, skilled nursing, Board and Care Facilities, and memory care in your area.</p>
 
+    <label class="filter-label">Filter by Type of Care:</label>
     <div class="filter-row">
-      <button class="filter-btn active" onclick="applyFilter('all', this)">All Providers</button>
-      <button class="filter-btn" onclick="applyFilter('hospice', this)">🏥 Hospice</button>
-      <button class="filter-btn" onclick="applyFilter('skilled', this)">🩺 Skilled Nursing</button>
-      <button class="filter-btn" onclick="applyFilter('board', this)">🏠 Board & Care</button>
-      <button class="filter-btn" onclick="applyFilter('palliative', this)">❤️ Palliative</button>
-      <button class="filter-btn" onclick="applyFilter('memory', this)">🧠 Memory Care</button>
+      <button class="filter-btn active" onclick="applyFilter('all', this)">
+        <span>✅</span> All Providers
+      </button>
+      <button class="filter-btn" onclick="applyFilter('hospice', this)">
+        <span>🏥</span> Hospice
+      </button>
+      <button class="filter-btn" onclick="applyFilter('skilled', this)">
+        <span>🩺</span> Skilled Nursing
+      </button>
+      <button class="filter-btn" onclick="applyFilter('board', this)">
+        <span>🏠</span> Board & Care
+      </button>
+      <button class="filter-btn" onclick="applyFilter('palliative', this)">
+        <span>❤️</span> Palliative Care
+      </button>
+      <button class="filter-btn" onclick="applyFilter('memory', this)">
+        <span>🧠</span> Memory Care
+      </button>
     </div>
 
-    <div class="search-container">
+    <div class="search-wrapper">
       <span class="search-icon">🔍</span>
       <input type="text" id="searchInput" class="search-input" placeholder="Search by city, state, or provider name..." onkeyup="runSearch()">
     </div>
-  </div>
-
-  <div class="container">
+    
+    <h2 class="section-title">Featured Providers</h2>
+    
     <div class="grid" id="providersGrid">
-      <p style="text-align:center; grid-column:1/-1; padding:2rem; color:#666;">Loading Providers...</p>
+      <p style="text-align:center; grid-column:1/-1; padding:3rem; font-size:1.1rem; color:#64748b;">Loading Providers...</p>
     </div>
   </div>
 
@@ -113,7 +157,7 @@
     async function loadProviders() {
       const grid = document.getElementById('providersGrid');
       
-      // 1. Fetch ALL providers from DB
+      // 1. FETCH ALL PROVIDERS
       const q = query(collection(db, "providers"));
       
       try {
@@ -130,41 +174,47 @@
           const p = doc.data();
           const id = doc.id;
           
-          // --- SAFETY LOGIC 1: STATUS CHECK ---
-          // Accepts "Approved", "approved", "APPROVED"
+          // --- THE CRITICAL FIX ---
+          // Use .toLowerCase() so "Approved" and "approved" BOTH work.
           const status = (p.status || "").toLowerCase().trim();
+          
+          // Only show approved
           if (status !== 'approved') return;
 
           count++;
 
-          // --- SAFETY LOGIC 2: TYPE CHECK ---
-          // Checks both 'facilityType' AND 'providerType'
+          // --- SMART TYPE DETECTION ---
+          // Check BOTH fields (facilityType is old DB, providerType is new DB)
           const rawType = (p.facilityType || p.providerType || "").toLowerCase();
           
-          // Icon Logic
-          let icon = "🏥";
+          let icon = "🏥"; // Default
           if (rawType.includes("hospice")) icon = "☘️";
           else if (rawType.includes("nursing") || rawType.includes("skilled")) icon = "🏥";
           else if (rawType.includes("board") || rawType.includes("care") || rawType.includes("rcfe")) icon = "🏠";
           else if (rawType.includes("memory")) icon = "🧠";
           else if (rawType.includes("palliative")) icon = "❤️";
 
-          // Label Logic (Clean up the text)
+          // Formatting the Tag Label
           let label = p.facilityType || p.providerType || "Care Provider";
-          label = label.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()); // Capitalize words
+          label = label.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
 
-          // --- RENDER CARD (With filtering data attributes) ---
+          // --- RENDER THE CARD ---
+          // Added 'data-type' and 'data-search' so filters work instantly
           grid.innerHTML += `
-            <div class="card provider-card" data-type="${rawType}" data-search="${(p.businessName + ' ' + p.city).toLowerCase()}">
+            <div class="card provider-card" 
+                 data-type="${rawType}" 
+                 data-search="${(p.businessName + ' ' + p.city + ' ' + p.state).toLowerCase()}">
+              
               <div class="card-header">
                 <div class="avatar">${icon}</div>
-                <div class="card-title">${p.businessName || "Provider"}</div>
-                <div style="font-size:0.9rem; opacity:0.9;">📍 ${p.city || "Location not specified"}</div>
+                <div class="card-title">${p.businessName || "Provider Name"}</div>
+                <div class="card-location">📍 ${p.city || "City"}, ${p.state || "CA"}</div>
               </div>
+              
               <div class="card-body">
                 <span class="tag">${label}</span>
-                <p class="description">${p.bio || p.description || "Dedicated to providing compassionate care."}</p>
-                <div style="font-size:0.9rem; color:#475569;">📧 ${p.email || "Contact for info"}</div>
+                <p class="description">${p.bio || p.description || "Dedicated to providing compassionate care for your loved ones."}</p>
+                <div class="contact-info">📧 ${p.email || "Contact for info"}</div>
                 
                 <div class="actions">
                   <a href="profile.html?id=${id}" class="btn btn-primary">📖 Read Reviews</a>
@@ -176,12 +226,12 @@
         });
 
         if (count === 0) {
-          grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No approved providers found.</p>';
+          grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No approved providers found yet.</p>';
         }
 
       } catch (error) {
-        console.error(error);
-        grid.innerHTML = `<p style="color:red; text-align:center;">Error loading providers. Please refresh.</p>`;
+        console.error("Firebase Error:", error);
+        grid.innerHTML = `<p style="color:red; text-align:center;">Error loading providers. Please check your connection.</p>`;
       }
     }
 
@@ -190,29 +240,31 @@
 
   <script>
     window.applyFilter = function(category, btn) {
-      // 1. Update Buttons
+      // 1. Highlight the correct button
       if(btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       }
 
-      // 2. Filter Logic
+      // 2. Filter the cards
       const cards = document.querySelectorAll('.provider-card');
       const searchVal = document.getElementById('searchInput').value.toLowerCase();
 
       cards.forEach(card => {
-        const type = card.getAttribute('data-type');
-        const search = card.getAttribute('data-search');
+        const typeData = card.getAttribute('data-type');
+        const searchData = card.getAttribute('data-search');
 
-        let matchesCat = false;
-        if (category === 'all') matchesCat = true;
-        else if (category === 'hospice' && type.includes('hospice')) matchesCat = true;
-        else if (category === 'skilled' && (type.includes('skilled') || type.includes('nursing'))) matchesCat = true;
-        else if (category === 'board' && (type.includes('board') || type.includes('care') || type.includes('rcfe'))) matchesCat = true;
-        else if (category === 'palliative' && type.includes('palliative')) matchesCat = true;
-        else if (category === 'memory' && type.includes('memory')) matchesCat = true;
+        let matchesCategory = false;
+        
+        if (category === 'all') matchesCategory = true;
+        else if (category === 'hospice' && typeData.includes('hospice')) matchesCategory = true;
+        else if (category === 'skilled' && (typeData.includes('skilled') || typeData.includes('nursing'))) matchesCategory = true;
+        else if (category === 'board' && (typeData.includes('board') || typeData.includes('care') || typeData.includes('rcfe'))) matchesCategory = true;
+        else if (category === 'palliative' && typeData.includes('palliative')) matchesCategory = true;
+        else if (category === 'memory' && typeData.includes('memory')) matchesCategory = true;
 
-        if (matchesCat && search.includes(searchVal)) {
+        // Show if matches BOTH Category AND Search
+        if (matchesCategory && searchData.includes(searchVal)) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
@@ -221,18 +273,20 @@
     }
 
     window.runSearch = function() {
-      // Keep current category active while searching
+      // Find which button is active so we don't break the category filter
       const activeBtn = document.querySelector('.filter-btn.active');
-      let cat = 'all';
+      let category = 'all';
+      
       if(activeBtn) {
         const txt = activeBtn.innerText.toLowerCase();
-        if(txt.includes('hospice')) cat = 'hospice';
-        else if(txt.includes('skilled')) cat = 'skilled';
-        else if(txt.includes('board')) cat = 'board';
-        else if(txt.includes('palliative')) cat = 'palliative';
-        else if(txt.includes('memory')) cat = 'memory';
+        if(txt.includes('hospice')) category = 'hospice';
+        else if(txt.includes('skilled')) category = 'skilled';
+        else if(txt.includes('board')) category = 'board';
+        else if(txt.includes('palliative')) category = 'palliative';
+        else if(txt.includes('memory')) category = 'memory';
       }
-      applyFilter(cat, null);
+      
+      applyFilter(category, null);
     }
   </script>
 </body>

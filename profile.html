@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Provider Profile - Crossing Sunsets™</title>
+  <style>
+    :root { --primary: #00bcd4; --dark: #023047; --bg: #f8fafc; --text: #334155; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 4rem; }
+
+    /* Navigation */
+    .nav { background: white; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .brand { font-weight: 800; color: var(--primary); font-size: 1.25rem; text-decoration: none; }
+    .back-link { color: #64748b; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+
+    /* Profile Header */
+    .header-container { background: white; border-bottom: 1px solid #e2e8f0; padding: 3rem 1.5rem; text-align: center; }
+    .provider-name { font-size: 2rem; color: var(--dark); font-weight: 800; margin-bottom: 0.5rem; }
+    .provider-meta { color: #64748b; font-size: 1.1rem; margin-bottom: 1.5rem; }
+    .badge { background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Main Layout */
+    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+    
+    .section-title { font-size: 1.5rem; color: var(--dark); font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section-title span { font-size: 1rem; color: #94a3b8; font-weight: 500; }
+
+    /* 1. WALL OF LOVE (Grid) */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem; }
+    .evidence-card { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s; background: white; border: 1px solid #e2e8f0; aspect-ratio: 1; cursor: zoom-in; position: relative; }
+    .evidence-card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+    .evidence-img { width: 100%; height: 100%; object-fit: cover; }
+    .overlay-icon { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; backdrop-filter: blur(4px); }
+
+    /* 2. DIGITAL REVIEWS (List) */
+    .reviews-list { display: flex; flex-direction: column; gap: 1rem; }
+    .review-item { background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+    .lotus-row { display: flex; gap: 4px; margin-bottom: 0.75rem; }
+    .lotus-icon { width: 24px; height: 24px; } /* You can replace with real SVG later */
+    .review-text { font-size: 1rem; line-height: 1.6; color: #334155; font-style: italic; }
+    .reviewer-name { margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 600; text-align: right; }
+
+    .empty-state { text-align: center; padding: 3rem; background: #f1f5f9; border-radius: 12px; color: #64748b; font-style: italic; grid-column: 1 / -1; }
+
+    /* Lightbox (Simple) */
+    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 2rem; }
+    .lightbox img { max-width: 100%; max-height: 100%; border-radius: 4px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="browse-providers.html" class="brand">Crossing Sunsets™</a>
+    <a href="browse-providers.html" class="back-link">← Back to Browse</a>
+  </nav>
+
+  <div id="loading" style="text-align:center; padding: 4rem;">Loading Profile...</div>
+
+  <div id="profile-content" style="display: none;">
+    
+    <div class="header-container">
+      <h1 class="provider-name" id="pName">Provider Name</h1>
+      <p class="provider-meta">
+        <span id="pCity">City</span> • <span class="badge" id="pType">Facility Type</span>
+      </p>
+      <div style="max-width: 600px; margin: 0 auto; line-height: 1.6;">
+        <p id="pBio">Dedicated to providing compassionate care for your loved ones.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      
+      <h2 class="section-title">Wall of Love <span>(Verified Evidence)</span></h2>
+      <div class="gallery-grid" id="wallGrid">
+        </div>
+
+      <h2 class="section-title">Family Stories <span>(Lotus Reviews)</span></h2>
+      <div class="reviews-list" id="reviewList">
+        </div>
+
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" />
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, getDoc, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 1. Get Provider ID from URL (e.g. profile.html?id=XYZ)
+    const urlParams = new URLSearchParams(window.location.search);
+    const providerId = urlParams.get('id');
+
+    async function loadProfile() {
+      if (!providerId) {
+        document.body.innerHTML = "<h2 style='text-align:center; margin-top:4rem;'>Error: No Provider Specified</h2>";
+        return;
+      }
+
+      try {
+        // A. Load Provider Details
+        const docRef = doc(db, "providers", providerId);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+          document.body.innerHTML = "<h2 style='text-align:center; margin-top:4rem;'>Provider Not Found</h2>";
+          return;
+        }
+
+        const pData = docSnap.data();
+        document.getElementById('pName').innerText = pData.businessName || pData.name || "Provider";
+        document.getElementById('pCity').innerText = pData.city || "Los Angeles, CA";
+        document.getElementById('pType').innerText = pData.facilityType || "Hospice";
+        // pData.bio could be added to your database later
+
+        // B. Load APPROVED Reviews (Both Types)
+        const q = query(
+          collection(db, "reviews"),
+          where("providerId", "==", providerId),
+          where("status", "==", "approved") // ONLY SHOW APPROVED
+        );
+
+        const querySnapshot = await getDocs(q);
+        const wallGrid = document.getElementById('wallGrid');
+        const reviewList = document.getElementById('reviewList');
+        
+        let hasEvidence = false;
+        let hasReviews = false;
+
+        querySnapshot.forEach((doc) => {
+          const r = doc.data();
+
+          if (r.type === 'hard_copy') {
+            // Add to Wall of Love
+            hasEvidence = true;
+            const card = document.createElement('div');
+            card.className = 'evidence-card';
+            card.onclick = () => openLightbox(r.fileUrl);
+            card.innerHTML = `
+              <img src="${r.fileUrl}" class="evidence-img" loading="lazy" />
+              <div class="overlay-icon">🔍 View</div>
+            `;
+            wallGrid.appendChild(card);
+          } else {
+            // Add to Lotus List
+            hasReviews = true;
+            const div = document.createElement('div');
+            div.className = 'review-item';
+            
+            // Generate Lotus Icons (🌸) based on rating
+            const lotusCount = r.rating || 0;
+            const stars = "🌸".repeat(lotusCount); 
+            
+            div.innerHTML = `
+              <div class="lotus-row" style="font-size:1.2rem;">${stars} <span style="font-size:0.9rem; color:#94a3b8; margin-left:8px;">(${lotusCount}/4 Lotus)</span></div>
+              <p class="review-text">"${r.text}"</p>
+              <div class="reviewer-name">- ${r.reviewerName || "Verified Family Member"}</div>
+            `;
+            reviewList.appendChild(div);
+          }
+        });
+
+        // Empty States
+        if (!hasEvidence) wallGrid.innerHTML = '<div class="empty-state">No hard copy evidence uploaded yet.</div>';
+        if (!hasReviews) reviewList.innerHTML = '<div class="empty-state">No digital reviews yet.</div>';
+
+        // Show Page
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('profile-content').style.display = 'block';
+
+      } catch (error) {
+        console.error("Error loading profile:", error);
+        document.getElementById('loading').innerText = "Error loading profile. Please try again.";
+      }
+    }
+
+    // Lightbox Function
+    window.openLightbox = (url) => {
+      document.getElementById('lightbox-img').src = url;
+      document.getElementById('lightbox').style.display = 'flex';
+    };
+
+    loadProfile();
+  </script>
+</body>
+</html>

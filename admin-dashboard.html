@@ -5,447 +5,147 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Dashboard - Crossing Sunsets™</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif; }
-    body { min-height:100vh; background:#f5fbff; color:#023047; }
-    header {
-      background:#ffffff; border-bottom:1px solid #e0e7f1;
-      padding:0.8rem 1.2rem; display:flex; justify-content:space-between; align-items:center;
-      position:sticky; top:0; z-index:10;
-    }
-    .brand { display:flex; align-items:center; gap:10px; }
-    .brand-logo { width:40px; height:40px; border-radius:12px; }
-    .brand-title { display:flex; flex-direction:column; }
-    .brand-title span:first-child { font-size:0.85rem; color:#90a4ae; }
-    .brand-title span:last-child { font-size:1.1rem; font-weight:700; color:#00bcd4; }
-    .chip {
-      padding:6px 12px; border-radius:999px; background:#e0f7fa;
-      color:#006064; font-size:0.85rem; font-weight:600;
-    }
-    .btn-header {
-      padding:8px 16px; border-radius:999px; border:none;
-      font-size:0.9rem; font-weight:600; cursor:pointer;
-    }
-    .btn-home { background:#00bcd4; color:#fff; }
-    .btn-signout { background:#ffebee; color:#c62828; border:1px solid #ffcdd2; }
+    :root { --primary: #00bcd4; --dark: #023047; --danger: #ef4444; --success: #22c55e; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+    body { background: #f8fafc; color: #334155; }
+    
+    .navbar { background: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .brand { font-weight: 700; color: var(--primary); font-size: 1.25rem; }
+    .logout { color: var(--danger); text-decoration: none; cursor: pointer; font-weight: 600; }
 
-    main { max-width:1100px; margin:1.5rem auto 2.5rem auto; padding:0 1rem; }
-    .welcome-card {
-      background:#fff; border-radius:18px; padding:1.3rem 1.4rem;
-      box-shadow:0 8px 30px rgba(0,0,0,0.04);
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;
-      margin-bottom:1.2rem;
-    }
-    .welcome-text h1 { font-size:1.4rem; margin-bottom:0.2rem; }
-    .welcome-text p { font-size:0.9rem; color:#607d8b; }
-    .stat-row {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-      gap:0.75rem; margin-bottom:1.2rem;
-    }
-    .stat-card {
-      border-radius:16px; padding:0.9rem; background:#e0f7fa; text-align:center;
-    }
-    .stat-card.pending { background:#fff3e0; }
-    .stat-card.approved { background:#e8f5e9; }
-    .stat-card.rejected { background:#ffebee; }
-    .stat-label { font-size:0.85rem; color:#607d8b; margin-bottom:0.2rem; }
-    .stat-value { font-size:1.3rem; font-weight:700; }
+    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    
+    /* Stats Cards */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: 700; color: var(--dark); }
+    .stat-label { color: #64748b; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
 
-    .filters-row {
-      margin-top:0.4rem; margin-bottom:0.6rem;
-      display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center;
-    }
-    .search-box {
-      flex:1 1 220px; background:#fff; border-radius:999px;
-      display:flex; align-items:center; padding:0.5rem 0.9rem;
-      box-shadow:0 4px 14px rgba(0,0,0,0.03); border:1px solid #e0e7f1;
-    }
-    .search-box input {
-      border:none; outline:none; width:100%; font-size:0.95rem; margin-left:0.4rem;
-    }
-    .filter-select {
-      border-radius:999px; border:1px solid #e0e7f1; padding:0.5rem 0.9rem; background:#fff;
-      font-size:0.9rem;
-    }
+    /* Tabs */
+    .tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; }
+    .tab { padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 600; color: #64748b; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+    .tab.active { color: var(--primary); border-color: var(--primary); }
 
-    .providers-list { margin-top:0.8rem; display:flex; flex-direction:column; gap:0.75rem; }
-    .provider-card {
-      background:#fff; border-radius:18px; padding:0.9rem 1rem;
-      box-shadow:0 6px 20px rgba(0,0,0,0.04);
-      display:flex; flex-direction:column; gap:0.4rem;
-    }
-    .provider-main-row { display:flex; align-items:center; gap:0.8rem; }
-    .avatar {
-      width:40px; height:40px; border-radius:999px;
-      background:#00bcd4; color:#fff; display:flex; align-items:center;
-      justify-content:center; font-weight:700; font-size:1.1rem;
-    }
-    .provider-info { flex:1; }
-    .provider-name { font-weight:700; font-size:1rem; }
-    .provider-contact { font-size:0.85rem; color:#607d8b; }
-    .status-badge {
-      padding:4px 10px; border-radius:999px; font-size:0.8rem;
-      font-weight:600; display:inline-block; text-transform:capitalize;
-    }
-    .status-pending { background:#ffe0b2; color:#ef6c00; }
-    .status-approved { background:#c8e6c9; color:#2e7d32; }
-    .status-rejected { background:#ffcdd2; color:#c62828; }
+    /* Review Cards */
+    .review-card { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; display: flex; gap: 1.5rem; align-items: start; border: 1px solid #e2e8f0; }
+    .evidence-img { width: 140px; height: 140px; object-fit: cover; border-radius: 8px; border: 1px solid #cbd5e1; cursor: zoom-in; display: block; }
+    
+    .review-content { flex: 1; }
+    .review-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    .provider-email { font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem; }
+    .review-type { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-    .provider-actions { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.4rem; }
-    .btn-small {
-      padding:5px 10px; border-radius:999px; border:none;
-      font-size:0.78rem; font-weight:600; cursor:pointer;
-    }
-    .btn-approve { background:#e8f5e9; color:#2e7d32; }
-    .btn-reject { background:#ffebee; color:#c62828; }
-    .btn-delete { background:#eceff1; color:#455a64; }
-    .btn-bed { background:#ffe0b2; color:#e65100; }
+    /* Provider List Styles */
+    .provider-card { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #e2e8f0; }
+    .provider-header { display: flex; justify-content: space-between; align-items: center; }
+    .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+    .status-badge.Approved { background: #dcfce7; color: #166534; }
+    .status-badge.Pending { background: #ffedd5; color: #9a3412; }
 
-    .empty-state { margin-top:1rem; font-size:0.95rem; color:#90a4ae; text-align:center; }
-    .status-message { margin-top:0.8rem; font-size:0.9rem; color:#388e3c; }
-    .status-message.error { color:#c62828; }
-
-    @media (max-width:600px){
-      header { flex-direction:column; align-items:flex-start; gap:0.6rem; }
-      .welcome-card { align-items:flex-start; }
-    }
+    .actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .btn { padding: 0.5rem 1rem; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; color: white; transition: 0.2s; }
+    .btn-approve { background: var(--success); }
+    .btn-reject { background: var(--danger); }
+    .btn-neutral { background: #64748b; }
+    .btn:hover { opacity: 0.9; }
+    
+    .empty-state { text-align: center; padding: 4rem; color: #94a3b8; font-style: italic; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <img src="crossing-sunsets-logo.png" class="brand-logo" alt="Logo" />
-      <div class="brand-title">
-        <span>Admin Dashboard</span>
-        <span>Crossing Sunsets™</span>
-      </div>
-    </div>
-    <div style="display:flex; gap:0.7rem; align-items:center;">
-      <div class="chip" id="admin-email-chip">Admin</div>
-      <button class="btn-header btn-home" onclick="window.location.href='index.html'">Home</button>
-      <button class="btn-header btn-signout" id="signout-btn">Sign Out</button>
-    </div>
-  </header>
 
-  <main>
-    <div class="welcome-card">
-      <div class="welcome-text">
-        <h1>Welcome, Admin</h1>
-        <p>Approve providers, update status, and manage bed availability.</p>
-      </div>
-    </div>
+  <nav class="navbar">
+    <div class="brand">Crossing Sunsets Admin</div>
+    <a id="logoutBtn" class="logout">Sign Out</a>
+  </nav>
 
-    <div class="stat-row">
+  <div class="container">
+    <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label">Total Providers</div>
-        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-number" id="pendingReviewCount">0</div>
+        <div class="stat-label">Pending Reviews</div>
       </div>
-      <div class="stat-card pending">
-        <div class="stat-label">Pending</div>
-        <div class="stat-value" id="stat-pending">0</div>
+      <div class="stat-card">
+        <div class="stat-number" id="activeProviderCount">0</div>
+        <div class="stat-label">Active Providers</div>
       </div>
-      <div class="stat-card approved">
-        <div class="stat-label">Approved</div>
-        <div class="stat-value" id="stat-approved">0</div>
-      </div>
-      <div class="stat-card rejected">
-        <div class="stat-label">Rejected</div>
-        <div class="stat-value" id="stat-rejected">0</div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalReviewCount">0</div>
+        <div class="stat-label">Total Reviews</div>
       </div>
     </div>
 
-    <div class="filters-row">
-      <div class="search-box">
-        🔍
-        <input id="search-input" type="text" placeholder="Search providers…" />
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('reviews')" id="tab-reviews">Pending Reviews</div>
+      <div class="tab" onclick="switchTab('providers')" id="tab-providers">Manage Providers</div>
+    </div>
+
+    <div id="reviews-section">
+      <div id="reviewsList">
+        <div class="empty-state">Loading reviews...</div>
       </div>
-      <select id="status-filter" class="filter-select">
-        <option value="all">All statuses</option>
-        <option value="pending">Pending</option>
-        <option value="approved">Approved</option>
-        <option value="rejected">Rejected</option>
-      </select>
     </div>
 
-    <div class="providers-list" id="providers-list"></div>
-    <div class="empty-state" id="empty-state" style="display:none;">
-      No providers found for this view.
+    <div id="providers-section" style="display: none;">
+      <div id="providersList">
+        <div class="empty-state">Loading providers...</div>
+      </div>
     </div>
-
-    <div id="status-message" class="status-message"></div>
-  </main>
+  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      updateDoc,
-      deleteDoc,
-      doc,
-      getDoc
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, collection, query, where, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // 🔴 PASTE YOUR REAL CONFIG HERE (same you already use), replacing only this object:
- const firebaseConfig = {
-  apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-  authDomain: "crossing-sunsets.firebaseapp.com",
-  databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
-  projectId: "crossing-sunsets",
-  storageBucket: "crossing-sunsets.firebasestorage.app",
-  messagingSenderId: "83761464492",
-  appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-  measurementId: "G-LG8VN0EZB7"
-};
-
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    const adminEmailChip = document.getElementById("admin-email-chip");
-    const signoutBtn = document.getElementById("signout-btn");
-    const providersListEl = document.getElementById("providers-list");
-    const emptyStateEl = document.getElementById("empty-state");
-    const statusMsgEl = document.getElementById("status-message");
-
-    const statTotal = document.getElementById("stat-total");
-    const statPending = document.getElementById("stat-pending");
-    const statApproved = document.getElementById("stat-approved");
-    const statRejected = document.getElementById("stat-rejected");
-
-    const searchInput = document.getElementById("search-input");
-    const statusFilter = document.getElementById("status-filter");
-
-    let providers = [];
-
-    // Require admin
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = "admin-login.html";
-        return;
-      }
-      const udoc = await getDoc(doc(db, "users", user.uid));
-      if (!udoc.exists() || udoc.data().role !== "admin") {
-        await signOut(auth);
-        window.location.href = "admin-login.html";
-        return;
-      }
-      adminEmailChip.textContent = user.email || "Admin";
-      loadProviders();
+    onAuthStateChanged(auth, (user) => {
+      if (!user) window.location.href = "login.html";
+      else startDashboard();
     });
 
-    signoutBtn.addEventListener("click", async () => {
-      await signOut(auth);
-      window.location.href = "index.html";
-    });
+    function startDashboard() {
+      // 1. LISTEN FOR PENDING REVIEWS
+      const reviewsQ = query(collection(db, "reviews"), where("status", "==", "pending_verification"));
+      
+      onSnapshot(reviewsQ, (snapshot) => {
+        const list = document.getElementById('reviewsList');
+        document.getElementById('pendingReviewCount').innerText = snapshot.size;
+        list.innerHTML = "";
 
-    async function loadProviders() {
-      statusMsgEl.textContent = "Loading providers…";
-      statusMsgEl.classList.remove("error");
-      providersListEl.innerHTML = "";
-      emptyStateEl.style.display = "none";
+        if (snapshot.empty) {
+          list.innerHTML = `<div class="empty-state">No pending reviews. All caught up!</div>`;
+          return;
+        }
 
-      try {
-        const snapshot = await getDocs(collection(db, "providers"));
-        providers = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-        renderProviders();
-        statusMsgEl.textContent = "Providers loaded.";
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Error loading providers.";
-        statusMsgEl.classList.add("error");
-      }
-    }
+        snapshot.forEach(docSnap => {
+          const data = docSnap.data();
+          const id = docSnap.id;
+          
+          // Is it an image (Hard Copy) or Text (Digital)?
+          const isHardCopy = data.type === 'hard_copy';
+          const title = isHardCopy ? "Hard Copy Evidence" : `Lotus Review (${data.rating}/4)`;
+          
+          const contentHTML = isHardCopy 
+            ? `<a href="${data.fileUrl}" target="_blank"><img src="${data.fileUrl}" class="evidence-img" title="Click to view full size" /></a>` 
+            : `<p style="font-style:italic; color:#475569;">"${data.text}"</p>`;
 
-    function renderProviders() {
-      const search = searchInput.value.trim().toLowerCase();
-      const status = statusFilter.value;
-
-      let filtered = providers.filter((p) => {
-        const name = (p.businessName || "").toLowerCase();
-        const contact = (p.contactName || "").toLowerCase();
-        const email = (p.email || "").toLowerCase();
-
-        const matchesSearch =
-          !search ||
-          name.includes(search) ||
-          contact.includes(search) ||
-          email.includes(search);
-
-        const currentStatus = p.status || "pending";
-        const matchesStatus = status === "all" || currentStatus === status;
-
-        return matchesSearch && matchesStatus;
-      });
-
-      // stats
-      const total = providers.length;
-      const pending = providers.filter((p) => (p.status || "pending") === "pending").length;
-      const approved = providers.filter((p) => p.status === "approved").length;
-      const rejected = providers.filter((p) => p.status === "rejected").length;
-
-      statTotal.textContent = total;
-      statPending.textContent = pending;
-      statApproved.textContent = approved;
-      statRejected.textContent = rejected;
-
-      providersListEl.innerHTML = "";
-
-      if (filtered.length === 0) {
-        emptyStateEl.style.display = "true";
-        emptyStateEl.style.display = "block";
-        return;
-      } else {
-        emptyStateEl.style.display = "none";
-      }
-
-      filtered.forEach((p) => {
-        const card = document.createElement("div");
-        card.className = "provider-card";
-
-        const mainRow = document.createElement("div");
-        mainRow.className = "provider-main-row";
-
-        const avatar = document.createElement("div");
-        avatar.className = "avatar";
-        avatar.textContent = (p.businessName || "P").charAt(0).toUpperCase();
-
-        const info = document.createElement("div");
-        info.className = "provider-info";
-
-        const nameEl = document.createElement("div");
-        nameEl.className = "provider-name";
-        nameEl.textContent = p.businessName || "Unnamed Provider";
-
-        const contactEl = document.createElement("div");
-        contactEl.className = "provider-contact";
-        const pieces = [];
-        if (p.providerType) pieces.push(p.providerType);
-        if (p.serviceArea) pieces.push(p.serviceArea);
-        if (p.email) pieces.push(p.email);
-        contactEl.textContent = pieces.join(" · ");
-
-        const statusBadge = document.createElement("span");
-        const st = p.status || "pending";
-        statusBadge.className =
-          "status-badge " +
-          (st === "approved"
-            ? "status-approved"
-            : st === "rejected"
-            ? "status-rejected"
-            : "status-pending");
-        statusBadge.textContent = st;
-
-        info.appendChild(nameEl);
-        info.appendChild(contactEl);
-        info.appendChild(statusBadge);
-
-        mainRow.appendChild(avatar);
-        mainRow.appendChild(info);
-
-        const actions = document.createElement("div");
-        actions.className = "provider-actions";
-
-        const approveBtn = document.createElement("button");
-        approveBtn.className = "btn-small btn-approve";
-        approveBtn.textContent = "Approve";
-        approveBtn.onclick = () => updateStatus(p.id, "approved");
-
-        const rejectBtn = document.createElement("button");
-        rejectBtn.className = "btn-small btn-reject";
-        rejectBtn.textContent = "Reject";
-        rejectBtn.onclick = () => updateStatus(p.id, "rejected");
-
-        const bedBtn = document.createElement("button");
-        bedBtn.className = "btn-small btn-bed";
-        bedBtn.textContent = "Set beds";
-        bedBtn.onclick = () => updateBeds(p);
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "btn-small btn-delete";
-        deleteBtn.textContent = "Delete";
-        deleteBtn.onclick = () => deleteProvider(p.id);
-
-        actions.appendChild(approveBtn);
-        actions.appendChild(rejectBtn);
-        actions.appendChild(bedBtn);
-        actions.appendChild(deleteBtn);
-
-        card.appendChild(mainRow);
-        card.appendChild(actions);
-
-        providersListEl.appendChild(card);
-      });
-    }
-
-    async function updateStatus(id, status) {
-      if (!confirm(`Set provider status to "${status}"?`)) return;
-      try {
-        await updateDoc(doc(db, "providers", id), { status });
-        providers = providers.map((p) =>
-          p.id === id ? { ...p, status } : p
-        );
-        renderProviders();
-        statusMsgEl.textContent = `Status updated to ${status}.`;
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not update status.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    async function updateBeds(provider) {
-      const current = provider.availableBeds ?? 0;
-      const input = prompt(
-        `Available beds for "${provider.businessName || "Provider"}":`,
-        current
-      );
-      if (input === null) return;
-      const beds = Number(input);
-      if (Number.isNaN(beds) || beds < 0) {
-        alert("Please enter a valid number.");
-        return;
-      }
-      try {
-        await updateDoc(doc(db, "providers", provider.id), {
-          availableBeds: beds
-        });
-        providers = providers.map((p) =>
-          p.id === provider.id ? { ...p, availableBeds: beds } : p
-        );
-        statusMsgEl.textContent = "Beds availability updated.";
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not update beds.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    async function deleteProvider(id) {
-      if (!confirm("Delete this provider? This cannot be undone.")) return;
-      try {
-        await deleteDoc(doc(db, "providers", id));
-        providers = providers.filter((p) => p.id !== id);
-        renderProviders();
-        statusMsgEl.textContent = "Provider deleted.";
-        statusMsgEl.classList.remove("error");
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not delete provider.";
-        statusMsgEl.classList.add("error");
-      }
-    }
-
-    searchInput.addEventListener("input", renderProviders);
-    statusFilter.addEventListener("change", renderProviders);
-  </script>
-</body>
-</html>
+          const html = `
+            <div class="review-card">
+              ${isHardCopy ? contentHTML : ''}
+              <div class="review-content">
+                <div class="review-header">
+                  <h3>${title}</h3>
+                  <span class="review-type">${isHardCopy ? 'Evidence

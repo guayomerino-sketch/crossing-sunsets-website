@@ -166,21 +166,7 @@
     // Helpers
     const $ = (id)=>document.getElementById(id);
     const slugify = (s)=> (s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,64);
-// --- BED AVAILABILITY LOGIC (STRICT: SNF ONLY) ---
-const type = (pData.facilityType || "").toLowerCase();
-const isSNF = type.includes("skilled") || type.includes("nursing");
 
-const bedContainer = document.getElementById('bedContainer');
-const bedCount = document.getElementById('bedCount');
-
-if (bedContainer && isSNF) {
-  // Show badge ONLY for Skilled Nursing
-  bedContainer.style.display = 'block';
-  bedCount.innerText = pData.beds_available || "0";
-} else if (bedContainer) {
-  // Hide for everyone else (Hospice, Board & Care, etc.)
-  bedContainer.style.display = 'none';
-}
     // Map select values to the Firestore schema you're using
 function normalizeProviderType(v){
   switch(v){

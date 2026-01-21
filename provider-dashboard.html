@@ -3,224 +3,205 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Provider Dashboard - Crossing Sunsets™</title>
+  <title>Upload Client Cards - Crossing Sunsets™</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box;
-        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;}
-    body { background:#f5fbff; color:#023047; min-height:100vh; }
-    header {
-      background:#ffffff; border-bottom:1px solid #e0e7f1;
-      padding:0.8rem 1.2rem; display:flex; justify-content:space-between; align-items:center;
-      position:sticky; top:0; z-index:10;
-    }
-    .brand { display:flex; align-items:center; gap:10px; }
-    .brand-logo { width:36px; height:36px; border-radius:12px; }
-    .brand-title span:first-child { font-size:0.85rem; color:#90a4ae; }
-    .brand-title span:last-child { font-size:1.05rem; font-weight:700; color:#00bcd4; }
-    .btn { padding:8px 16px; border-radius:999px; border:none; cursor:pointer; font-size:0.9rem; font-weight:600; }
-    .btn-signout { background:#ffebee; color:#c62828; border:1px solid #ffcdd2; }
-    main { max-width:720px; margin:1.7rem auto 2.5rem; padding:0 1rem; }
+    :root { --primary: #00bcd4; --dark: #023047; --orange: #ff6b35; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+    body { background: #f8fafc; color: #334155; min-height: 100vh; padding: 2rem; }
+    
+    .container { max-width: 800px; margin: 0 auto; }
+    
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .header h1 { color: var(--dark); font-size: 1.5rem; }
+    .logout { color: #dc2626; text-decoration: none; font-weight: 600; cursor: pointer; border: 1px solid #dc2626; padding: 0.5rem 1rem; border-radius: 8px; }
 
-    .card {
-      background:#ffffff; border-radius:18px; padding:1.4rem 1.5rem;
-      box-shadow:0 8px 30px rgba(0,0,0,0.04); margin-bottom:1.2rem;
-    }
-    .facility-name { font-size:1.3rem; font-weight:700; margin-bottom:0.2rem; }
-    .facility-meta { font-size:0.9rem; color:#607d8b; margin-bottom:0.7rem; }
+    /* Upload Card */
+    .card { background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    .card h2 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--dark); }
+    .subtitle { color: #64748b; margin-bottom: 1.5rem; font-size: 0.95rem; }
 
-    .field-row { margin-bottom:0.9rem; }
-    .field-label { font-size:0.9rem; font-weight:600; color:#455a64; margin-bottom:0.2rem; }
-    input[type="number"] {
-      width:100%; padding:0.55rem 0.7rem; border-radius:10px; border:1px solid #cfd8dc; font-size:0.95rem;
-    }
-    input[type="number"]:focus {
-      outline:none; border-color:#00bcd4; box-shadow:0 0 0 2px rgba(0,188,212,0.18);
-    }
-    .btn-save {
-      background:#00bcd4; color:#fff; margin-top:0.6rem; width:100%; padding:0.75rem;
-    }
-    .note { font-size:0.8rem; color:#90a4ae; margin-top:0.4rem; }
+    /* Drag & Drop Zone */
+    .upload-zone { border: 2px dashed #cbd5e1; border-radius: 12px; padding: 3rem 1.5rem; text-align: center; transition: 0.2s; cursor: pointer; background: #f8fafc; }
+    .upload-zone:hover { border-color: var(--primary); background: #ecfeff; }
+    .upload-zone p { margin-top: 1rem; color: #475569; font-weight: 500; }
+    input[type="file"] { display: none; }
 
-    .status { font-size:0.9rem; margin-top:0.8rem; color:#388e3c; }
-    .status.error { color:#c62828; }
+    .btn { background: var(--orange); color: white; border: none; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 100%; margin-top: 1rem; opacity: 0.5; pointer-events: none; transition: 0.2s; }
+    .btn.active { opacity: 1; pointer-events: auto; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3); }
+
+    /* Gallery of Uploads */
+    .gallery-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--dark); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+    .evidence-item { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }
+    .evidence-item img { width: 100%; height: 100%; object-fit: cover; }
+    .badge { position: absolute; top: 8px; right: 8px; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .badge.pending { background: #fff7ed; color: #c2410c; border: 1px solid #fdba74; }
+    .badge.approved { background: #f0fdf4; color: #15803d; border: 1px solid #86efac; }
+
+    .status-msg { margin-top: 1rem; text-align: center; font-weight: 500; }
+    .status-msg.success { color: #16a34a; }
+    .status-msg.error { color: #dc2626; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <img src="crossing-sunsets-logo.png" class="brand-logo" alt="Logo" />
-      <div class="brand-title">
-        <span>Provider Dashboard</span>
-        <span>Crossing Sunsets™</span>
-      </div>
-    </div>
-    <button class="btn btn-signout" id="signout-btn">Sign Out</button>
-  </header>
 
-  <main>
-    <div class="card" id="facility-card" style="display:none;">
-      <div class="facility-name" id="facility-name"></div>
-      <div class="facility-meta" id="facility-meta"></div>
-
-      <div class="field-row">
-        <div class="field-label">Total Licensed Beds</div>
-        <input type="number" id="total-beds" min="0" />
-      </div>
-
-      <div class="field-row">
-        <div class="field-label">Beds Currently Available</div>
-        <input type="number" id="available-beds" min="0" />
-      </div>
-
-      <button class="btn btn-save" id="save-beds-btn">Save Bed Availability</button>
-      <div class="note">
-        Please update whenever bed availability changes. This helps families
-        see current openings at your facility.
-      </div>
-
-      <div id="status-message" class="status"></div>
+  <div class="container">
+    <div class="header">
+      <h1>Provider Dashboard</h1>
+      <a id="logoutBtn" class="logout">Sign Out</a>
     </div>
 
-    <div class="card" id="loading-card">
-      Loading your facility information…
+    <div class="card">
+      <h2>Upload "Wall of Love" Evidence</h2>
+      <p class="subtitle">Upload photos of Thank You cards or handwritten notes from families. These will be displayed on your profile as verified evidence.</p>
+      
+      <form id="uploadForm">
+        <label class="upload-zone" id="dropZone">
+          <input type="file" id="fileInput" accept="image/*" />
+          <svg width="48" height="48" fill="none" stroke="#94a3b8" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <p id="fileName">Click to select photo (JPG/PNG)</p>
+        </label>
+        <button type="submit" id="submitBtn" class="btn">Upload Evidence</button>
+        <div id="msgBox" class="status-msg"></div>
+      </form>
     </div>
-  </main>
+
+    <div>
+      <h3 class="gallery-title">Your Uploaded Evidence</h3>
+      <div class="grid" id="evidenceGrid">
+        </div>
+    </div>
+  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import {
-      getFirestore,
-      doc,
-      getDoc,
-      updateDoc
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, query, where, onSnapshot, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // 🔴 SAME CONFIG OBJECT HERE (copy–paste from admin-dashboard.html)
     const firebaseConfig = {
-  apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-  authDomain: "crossing-sunsets.firebaseapp.com",
-  databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
-  projectId: "crossing-sunsets",
-  storageBucket: "crossing-sunsets.firebasestorage.app",
-  messagingSenderId: "83761464492",
-  appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-  measurementId: "G-LG8VN0EZB7"
-};
-
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
+    const storage = getStorage(app);
 
-    const loadingCard = document.getElementById("loading-card");
-    const facilityCard = document.getElementById("facility-card");
-    const signoutBtn = document.getElementById("signout-btn");
-    const facilityNameEl = document.getElementById("facility-name");
-    const facilityMetaEl = document.getElementById("facility-meta");
-    const totalBedsInput = document.getElementById("total-beds");
-    const availableBedsInput = document.getElementById("available-beds");
-    const saveBedsBtn = document.getElementById("save-beds-btn");
-    const statusMsgEl = document.getElementById("status-message");
+    const fileInput = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+    const submitBtn = document.getElementById('submitBtn');
+    const msgBox = document.getElementById('msgBox');
+    const evidenceGrid = document.getElementById('evidenceGrid');
 
-    let providerDocId = null;
+    let currentUser = null;
 
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = "provider-login.html";
-        return;
-      }
-
-      try {
-        const udocRef = doc(db, "users", user.uid);
-        const udoc = await getDoc(udocRef);
-        if (!udoc.exists()) throw new Error("No user record.");
-        const data = udoc.data();
-// Allow provider or staff users with writeAccess to use this page
-const allowedRoles = ["provider", "staff"];
-
-if (!allowedRoles.includes(data.role) || data.writeAccess !== true) {
-  await signOut(auth);
-  window.location.href = "provider-login.html";
-  return;
-}
-
-       
-
-        providerDocId = data.facilityId;
-        if (!providerDocId) throw new Error("Missing facilityId for this user.");
-
-        await loadFacility();
-      } catch (err) {
-        console.error(err);
-        loadingCard.textContent = "Could not load facility. Please contact support.";
+    // 1. Auth & Realtime Listener
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUser = user;
+        loadEvidence(user.uid);
+      } else {
+        window.location.href = 'login.html';
       }
     });
 
-    signoutBtn.addEventListener("click", async () => {
-      await signOut(auth);
-      window.location.href = "index.html";
-    });
+    // 2. Load Previous Uploads (Realtime)
+    function loadEvidence(uid) {
+      const q = query(
+        collection(db, "reviews"), 
+        where("providerId", "==", uid),
+        where("type", "==", "hard_copy"), // Filter for evidence only
+        orderBy("uploadedAt", "desc")
+      );
 
-    async function loadFacility() {
-      const pref = doc(db, "providers", providerDocId);
-      const pdoc = await getDoc(pref);
-      if (!pdoc.exists()) {
-        loadingCard.textContent = "Facility not found in providers collection.";
-        return;
-      }
-      const p = pdoc.data();
-
-      facilityNameEl.textContent = p.businessName || "Your Facility";
-      const metaParts = [];
-      if (p.providerType) metaParts.push(p.providerType);
-      if (p.serviceArea) metaParts.push(p.serviceArea);
-      if (p.phone) metaParts.push(p.phone);
-      facilityMetaEl.textContent = metaParts.join(" · ");
-
-      totalBedsInput.value = p.totalBeds ?? "";
-      availableBedsInput.value = p.availableBeds ?? "";
-
-      loadingCard.style.display = "none";
-      facilityCard.style.display = "block";
+      onSnapshot(q, (snapshot) => {
+        evidenceGrid.innerHTML = "";
+        if(snapshot.empty) {
+          evidenceGrid.innerHTML = "<p style='color:#94a3b8; font-style:italic;'>No evidence uploaded yet.</p>";
+          return;
+        }
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement('div');
+          div.className = 'evidence-item';
+          // Status badge logic
+          const statusClass = data.status === 'approved' ? 'approved' : 'pending';
+          const statusText = data.status === 'approved' ? 'Live' : 'Reviewing';
+          
+          div.innerHTML = `
+            <img src="${data.fileUrl}" loading="lazy" />
+            <span class="badge ${statusClass}">${statusText}</span>
+          `;
+          evidenceGrid.appendChild(div);
+        });
+      });
     }
 
-    saveBedsBtn.addEventListener("click", async () => {
-      statusMsgEl.textContent = "";
-      statusMsgEl.classList.remove("error");
-
-      const total = Number(totalBedsInput.value);
-      const avail = Number(availableBedsInput.value);
-
-      if (Number.isNaN(total) || total < 0 || Number.isNaN(avail) || avail < 0) {
-        statusMsgEl.textContent = "Please enter valid numbers.";
-        statusMsgEl.classList.add("error");
-        return;
-      }
-
-      if (avail > total) {
-        statusMsgEl.textContent = "Available beds cannot be greater than total beds.";
-        statusMsgEl.classList.add("error");
-        return;
-      }
-
-      try {
-        await updateDoc(doc(db, "providers", providerDocId), {
-          totalBeds: total,
-          availableBeds: avail,
-          updatedAt: new Date().toISOString()
-        });
-        statusMsgEl.textContent = "Bed availability updated.";
-      } catch (err) {
-        console.error(err);
-        statusMsgEl.textContent = "Could not save. Please try again.";
-        statusMsgEl.classList.add("error");
+    // 3. UI Interactions
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        if(file.size > 5 * 1024 * 1024) {
+          alert("File too large. Max 5MB.");
+          return;
+        }
+        fileName.textContent = "Selected: " + file.name;
+        fileName.style.color = "#023047";
+        submitBtn.classList.add('active');
       }
     });
+
+    // 4. Upload Logic
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!fileInput.files[0] || !currentUser) return;
+
+      const file = fileInput.files[0];
+      submitBtn.textContent = "Uploading...";
+      submitBtn.classList.remove('active');
+
+      try {
+        // Upload Image
+        const storagePath = `evidence/${currentUser.uid}/${Date.now()}_${file.name}`;
+        const storageRef = ref(storage, storagePath);
+        const snapshot = await uploadBytes(storageRef, file);
+        const url = await getDownloadURL(snapshot.ref);
+
+        // Save to DB (Explicitly NO RATING)
+        await addDoc(collection(db, "reviews"), {
+          providerId: currentUser.uid,
+          providerEmail: currentUser.email,
+          fileUrl: url,
+          type: "hard_copy",         // <--- This differentiates it from star reviews
+          rating: null,              // <--- Ensure this is null so it doesn't break math
+          uploadedAt: serverTimestamp(),
+          status: "pending_verification" // Waiting for your approval
+        });
+
+        msgBox.textContent = "Upload successful! Admin will verify shortly.";
+        msgBox.className = "status-msg success";
+        submitBtn.textContent = "Upload Evidence";
+        fileName.textContent = "Click to select photo";
+        fileInput.value = "";
+        
+      } catch (err) {
+        console.error(err);
+        msgBox.textContent = "Error: " + err.message;
+        msgBox.className = "status-msg error";
+        submitBtn.textContent = "Upload Evidence";
+        submitBtn.classList.add('active');
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
   </script>
 </body>
 </html>

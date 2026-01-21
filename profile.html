@@ -154,7 +154,21 @@
         document.getElementById('pName').innerText = pData.businessName || "Provider";
         document.getElementById('pCity').innerText = pData.city || "Los Angeles, CA";
         document.getElementById('pType').innerText = pData.facilityType || "Hospice";
+// --- BED AVAILABILITY LOGIC (STRICT: SNF ONLY) ---
+const type = (pData.facilityType || "").toLowerCase();
+const isSNF = type.includes("skilled") || type.includes("nursing");
 
+const bedContainer = document.getElementById('bedContainer');
+const bedCount = document.getElementById('bedCount');
+
+if (bedContainer && isSNF) {
+  // Show badge ONLY for Skilled Nursing
+  bedContainer.style.display = 'block';
+  bedCount.innerText = pData.beds_available || "0";
+} else if (bedContainer) {
+  // Hide for everyone else
+  bedContainer.style.display = 'none';
+}
         // B. Load Reviews - SMART FIX
         // We query ALL reviews for this provider, then filter locally.
         // This solves the Case Sensitivity issue (Approved vs approved).

@@ -40,10 +40,12 @@
     
     /* Buttons */
     .btn-group { display: flex; gap: 0.5rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem; }
-    .btn { flex: 1; padding: 0.5rem; border: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: white; }
+    .btn { flex: 1; padding: 0.5rem; border: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: white; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; }
     .btn-approve { background: #22c55e; }
     .btn-reject { background: #ef4444; }
     .btn-delete { background: #64748b; }
+    /* NEW: View Profile Button Color */
+    .btn-view { background: #0ea5e9; } 
     .btn:hover { opacity: 0.9; }
 
     @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
@@ -104,14 +106,14 @@
     });
 
     function initDashboard() {
-      // 1. FETCH ALL PROVIDERS (No filters)
+      // 1. FETCH ALL PROVIDERS
       const provQuery = query(collection(db, "providers"));
       onSnapshot(provQuery, (snapshot) => {
         const list = document.getElementById('providersList');
         document.getElementById('providerCount').innerText = snapshot.size;
         list.innerHTML = "";
 
-        if(snapshot.empty) list.innerHTML = "<p>No providers found in database.</p>";
+        if(snapshot.empty) list.innerHTML = "<p>No providers found.</p>";
 
         snapshot.forEach(docSnap => {
           const d = docSnap.data();
@@ -126,10 +128,11 @@
               </div>
               <div class="card-body">
                 Email: ${d.email || "No email"}<br>
-                Facility: ${d.facilityType || "Not set"}<br>
                 City: ${d.city || "Not set"}
               </div>
               <div class="btn-group">
+                <a href="profile.html?id=${id}" target="_blank" class="btn btn-view">View Profile</a>
+                
                 <button class="btn btn-approve" onclick="window.setStatus('providers','${id}','Approved')">Approve</button>
                 <button class="btn btn-reject" onclick="window.setStatus('providers','${id}','Rejected')">Reject</button>
                 <button class="btn btn-delete" onclick="window.deleteItem('providers','${id}')">Delete</button>
@@ -139,7 +142,7 @@
         });
       });
 
-      // 2. FETCH ALL REVIEWS (No filters - Show me everything)
+      // 2. FETCH ALL REVIEWS
       const reviewQuery = query(collection(db, "reviews"));
       onSnapshot(reviewQuery, (snapshot) => {
         const list = document.getElementById('reviewsList');

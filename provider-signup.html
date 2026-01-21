@@ -168,17 +168,19 @@
     const slugify = (s)=> (s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,64);
 
     // Map select values to the Firestore schema you're using
-    function normalizeProviderType(v){
-      switch(v){
-        case "skilled_nursing": return "skilled_nursing";
-        case "memory_care":     return "memory_care";
-        case "assisted_living": return "assisted_living";
-        case "home_health":     return "home_health";
-        case "palliative":      return "palliative";
-        case "hospice":         return "hospice";
-        default:                return "other";
-      }
-    }
+function normalizeProviderType(v){
+  switch(v){
+    case "skilled_nursing": return "skilled_nursing";
+    case "boarding_care":   return "boarding_care"; // Elderly
+    case "dd_home":         return "dd_home";       // DD Homes
+    case "memory_care":     return "memory_care";
+    case "assisted_living": return "assisted_living";
+    case "home_health":     return "home_health";
+    case "palliative":      return "palliative";
+    case "hospice":         return "hospice";
+    default:                return "other";
+  }
+}
 
     $("signupForm").addEventListener("submit", async (e)=>{
       e.preventDefault();

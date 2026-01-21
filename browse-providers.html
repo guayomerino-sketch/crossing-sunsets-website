@@ -1,67 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave a Review - Crossing Sunsets™</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .form-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 450px; border-top: 6px solid #48bb78; }
-        h2 { color: #1e293b; text-align: center; margin-bottom: 20px; }
-        input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
-        button { width: 100%; padding: 14px; background-color: #48bb78; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; }
-        button:hover { background-color: #38a169; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Browse Care Providers - Crossing Sunsets™</title>
+  <style>
+    /* Crossing Sunsets Standard Theme */
+    :root { --primary: #00bcd4; --dark: #023047; --bg: #f8fafc; --text: #334155; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 4rem; }
+
+    /* Navigation */
+    .nav { background: white; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* Layout */
+    .container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+
+    /* Provider Card */
+    .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    
+    .card-header { background: var(--primary); padding: 2rem; text-align: center; color: white; position: relative; }
+    .avatar { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card-location { font-size: 0.9rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; gap: 5px; }
+
+    .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
+    .tag { align-self: flex-start; background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+    .description { font-size: 0.95rem; line-height: 1.6; color: #64748b; flex: 1; }
+    
+    .meta-row { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #475569; }
+    
+    /* Buttons */
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .btn { padding: 0.75rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
+    .btn-primary { background: #ff5722; color: white; } /* "Read Reviews" Orange */
+    .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+
+    .btn:hover { opacity: 0.9; }
+  </style>
 </head>
 <body>
-<div class="form-card">
-    <h2>Share Your Experience</h2>
-    <form id="reviewForm">
-        <input type="text" id="reviewerName" placeholder="Your Name" required>
-        <input type="email" id="reviewerEmail" placeholder="Your Email (Private)" required>
-        <input type="text" id="location" placeholder="City, State" required>
-        <select id="lotusRating">
-            <option value="4">☘️☘️☘️☘️ (4 - Perfect Care)</option>
-            <option value="3">☘️☘️☘️ (3 - Great Care)</option>
-            <option value="2">☘️☘️ (2 - Average)</option>
-            <option value="1">☘️ (1 - Needs Improvement)</option>
-        </select>
-        <textarea id="reviewText" rows="4" placeholder="Tell us about the care received..." required></textarea>
-        <button type="submit">Submit Verified Review</button>
-    </form>
-</div>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-        authDomain: "crossing-sunsets.firebaseapp.com",
-        projectId: "crossing-sunsets",
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const urlParams = new URLSearchParams(window.location.search);
-    const pId = urlParams.get('provider'); // Recovers the ID logic for the app
 
-    document.getElementById('reviewForm').onsubmit = async (e) => {
-        e.preventDefault();
-        const reviewData = {
-            provider_id: pId || "unknown", // Keeps your existing database structure
-            reviewer_name: document.getElementById('reviewerName').value,
-            reviewer_email: document.getElementById('reviewerEmail').value,
-            location: document.getElementById('location').value,
-            lotus_rating: parseInt(document.getElementById('lotusRating').value),
-            review_text: document.getElementById('reviewText').value,
-            approved: false, // Moderation safety remains active
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            source: "website"
-        };
-        try {
-            await db.collection('reviews').add(reviewData);
-            alert("Thank you! Review submitted for verification.");
-            window.location.href = "browse-providers.html";
-        } catch (err) { alert("Error. Please try again."); }
+  <nav class="nav">
+    <a href="#" class="brand">
+      <img src="https://via.placeholder.com/40/00bcd4/ffffff?text=CS" style="border-radius:50%" />
+      Crossing Sunsets™
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="browse-providers.html" style="color:var(--primary)">Browse Providers</a>
+      <a href="lotus-review.html">Leave a Review</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="grid" id="providersGrid">
+      </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
     };
-</script>
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadProviders() {
+      const grid = document.getElementById('providersGrid');
+      grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Loading Providers...</p>';
+
+      // Only show APPROVED providers
+      const q = query(collection(db, "providers"), where("status", "==", "Approved"));
+      
+      try {
+        const snapshot = await getDocs(q);
+        grid.innerHTML = ""; // Clear loading message
+
+        if (snapshot.empty) {
+          grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No approved providers found yet.</p>';
+          return;
+        }
+
+        snapshot.forEach(doc => {
+          const p = doc.data();
+          
+          // THIS IS THE FIX: The link now points to profile.html
+          const profileLink = `profile.html?id=${doc.id}`;
+          
+          // Fallback icons based on facility type
+          let icon = "🏥";
+          if (p.facilityType === "Hospice") icon = "☘️";
+          if (p.facilityType === "Home Care") icon = "🏠";
+
+          grid.innerHTML += `
+            <div class="card">
+              <div class="card-header">
+                <div class="avatar">${icon}</div>
+                <div class="card-title">${p.businessName || "Provider"}</div>
+                <div class="card-location">📍 ${p.city || "Location not specified"}</div>
+              </div>
+              <div class="card-body">
+                <span class="tag">${p.facilityType || "Care Provider"}</span>
+                <p class="description">
+                  ${p.bio || "Quality care services."}
+                </p>
+
+                <div class="meta-row">📧 Email: <a href="mailto:${p.email}">${p.email}</a></div>
+                
+                <div class="actions">
+                  <a href="${profileLink}" class="btn btn-primary">📖 Read Reviews</a>
+                  <a href="lotus-review.html" class="btn btn-outline">✍️ Leave a Review</a>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+      } catch (error) {
+        console.error(error);
+        grid.innerHTML = `<p style="color:red; text-align:center;">Error loading providers.</p>`;
+      }
+    }
+
+    loadProviders();
+  </script>
 </body>
 </html>

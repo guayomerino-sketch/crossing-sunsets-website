@@ -175,6 +175,15 @@
           let label = p.facilityType || p.providerType || "Care Provider";
           label = label.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
 
+          // --- SNF BED DISPLAY LOGIC ---
+          let bedHtml = "";
+          // Check for "skilled" AND "nursing" (covers "skilled-nursing", "skilled_nursing", "Skilled Nursing")
+          if (rawType.includes("skilled") && rawType.includes("nursing")) {
+             const avail = p.availableBeds || 0;
+             const total = p.totalBeds || 0;
+             bedHtml = `<div style="margin-top:0.5rem; font-weight:700; color:#d32f2f; background:#ffebee; padding:4px 8px; border-radius:4px; display:inline-block; font-size:0.85rem;">🛏 Beds Available: ${avail} / ${total}</div>`;
+          }
+
           // Build Contact Section
           let contactHtml = "";
           if (p.email) contactHtml += `<div class="contact-item"><span>📧</span> ${p.email}</div>`;
@@ -190,7 +199,7 @@
               </div>
               <div class="card-body">
                 <span class="tag">${label}</span>
-                <p class="description">${p.bio || p.description || "Dedicated to providing compassionate care."}</p>
+                ${bedHtml} <p class="description">${p.bio || p.description || "Dedicated to providing compassionate care."}</p>
                 
                 <div class="contact-list">
                   ${contactHtml || '<div class="contact-item">Contact for info</div>'}

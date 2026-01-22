@@ -60,7 +60,7 @@
       display: flex; align-items: center; justify-content: center; 
       font-size: 2.5rem; color: var(--primary); 
       box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
-      overflow: hidden; /* Ensures image fits circle */
+      overflow: hidden; 
       border: 3px solid white;
     }
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -98,15 +98,18 @@
 
   <div class="app-section">
     <h1 class="app-title">Browse Providers</h1>
-    <p class="app-subtitle">Find compassionate hospice, palliative care, skilled nursing, Board and Care Facilities, and memory care in your area.</p>
+    <p class="app-subtitle">Find compassionate hospice, palliative care, skilled nursing, DD Homes, and more in your area.</p>
 
     <div class="filter-row">
-      <button class="filter-btn active" onclick="applyFilter('all', this)"><span>✅</span> All Providers</button>
+      <button class="filter-btn active" onclick="applyFilter('all', this)"><span>✅</span> All</button>
       <button class="filter-btn" onclick="applyFilter('hospice', this)"><span>🏥</span> Hospice</button>
       <button class="filter-btn" onclick="applyFilter('skilled', this)"><span>🩺</span> Skilled Nursing</button>
       <button class="filter-btn" onclick="applyFilter('board', this)"><span>🏠</span> Board & Care</button>
-      <button class="filter-btn" onclick="applyFilter('palliative', this)"><span>❤️</span> Palliative</button>
+      <button class="filter-btn" onclick="applyFilter('dd', this)"><span>🤝</span> DD Home</button>
+      <button class="filter-btn" onclick="applyFilter('assisted', this)"><span>🏘️</span> Assisted Living</button>
       <button class="filter-btn" onclick="applyFilter('memory', this)"><span>🧠</span> Memory Care</button>
+      <button class="filter-btn" onclick="applyFilter('palliative', this)"><span>❤️</span> Palliative</button>
+      <button class="filter-btn" onclick="applyFilter('home', this)"><span>🚑</span> Home Health</button>
     </div>
 
     <div class="search-wrapper">
@@ -158,26 +161,33 @@
           const status = (p.status || "").toLowerCase().trim();
           if (status !== 'approved') return;
 
-          // Determine Type & Icon
+          // --- TYPE NORMALIZATION ---
           const rawType = (p.facilityType || p.providerType || "").toLowerCase();
-          let fallbackIcon = "🏥";
-          if (rawType.includes("hospice")) fallbackIcon = "☘️";
-          else if (rawType.includes("nursing") || rawType.includes("skilled")) fallbackIcon = "🏥";
-          else if (rawType.includes("board") || rawType.includes("care")) fallbackIcon = "🏠";
-          else if (rawType.includes("memory")) fallbackIcon = "🧠";
+          
+          let icon = "🏥"; // Default
+          let displayLabel = p.facilityType || p.providerType || "Care Provider";
+
+          if (rawType.includes("hospice")) { icon = "🏥"; displayLabel = "Hospice Care"; }
+          else if (rawType.includes("nursing") || rawType.includes("skilled")) { icon = "🩺"; displayLabel = "Skilled Nursing"; }
+          else if (rawType.includes("dd") || rawType.includes("developmental") || rawType.includes("arf")) { icon = "🤝"; displayLabel = "DD Home (ARF)"; }
+          else if (rawType.includes("assisted")) { icon = "🏘️"; displayLabel = "Assisted Living"; }
+          else if (rawType.includes("memory")) { icon = "🧠"; displayLabel = "Memory Care"; }
+          else if (rawType.includes("palliative")) { icon = "❤️"; displayLabel = "Palliative Care"; }
+          else if (rawType.includes("home") && rawType.includes("health")) { icon = "🚑"; displayLabel = "Home Health"; }
+          else if (rawType.includes("board") || rawType.includes("care") || rawType.includes("rcfe")) { icon = "🏠"; displayLabel = "Board & Care"; }
+
+          // Clean label format if it's still raw
+          displayLabel = displayLabel.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
           
           // LOGIC: Use 'logo' field if exists, otherwise use fallback Emoji
-          let avatarContent = fallbackIcon;
+          let avatarContent = icon;
           if (p.logo) {
             avatarContent = `<img src="${p.logo}" alt="Logo">`;
           }
 
-          let label = p.facilityType || p.providerType || "Care Provider";
-          label = label.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
-
           // --- SNF BED DISPLAY LOGIC ---
           let bedHtml = "";
-          // Check for "skilled" AND "nursing" (covers "skilled-nursing", "skilled_nursing", "Skilled Nursing")
+          // Check for "skilled" AND "nursing"
           if (rawType.includes("skilled") && rawType.includes("nursing")) {
              const avail = p.availableBeds || 0;
              const total = p.totalBeds || 0;
@@ -198,9 +208,13 @@
                 <div class="card-location">📍 ${p.city || "City"}, ${p.state || "CA"}</div>
               </div>
               <div class="card-body">
-                <span class="tag">${label}</span>
+                <span class="tag">${displayLabel}</span>
                 ${bedHtml} <p class="description">${p.bio || p.description || "Dedicated to providing compassionate care."}</p>
                 
+                <div class="contact-item" style="margin-top:0.5rem; color:#0f172a; font-weight:600;">
+                  <span>👤</span> Patient Liaison: Iris Merino
+                </div>
+
                 <div class="contact-list">
                   ${contactHtml || '<div class="contact-item">Contact for info</div>'}
                 </div>
@@ -231,9 +245,17 @@
       cards.forEach(card => {
         const type = card.getAttribute('data-type');
         const search = card.getAttribute('data-search');
-        let matchesCat = (category === 'all') || type.includes(category);
-        if(category==='board' && (type.includes('care') || type.includes('rcfe'))) matchesCat = true;
-        if(category==='skilled' && type.includes('nursing')) matchesCat = true;
+        
+        let matchesCat = (category === 'all');
+        
+        if (category !== 'all') {
+            if (category === 'dd' && (type.includes('dd') || type.includes('developmental') || type.includes('arf'))) matchesCat = true;
+            else if (category === 'skilled' && type.includes('nursing')) matchesCat = true;
+            else if (category === 'board' && (type.includes('board') || type.includes('care') || type.includes('rcfe'))) matchesCat = true;
+            else if (category === 'assisted' && type.includes('assisted')) matchesCat = true;
+            else if (category === 'home' && type.includes('home')) matchesCat = true;
+            else if (type.includes(category)) matchesCat = true;
+        }
 
         if (matchesCat && search.includes(searchVal)) card.style.display = 'flex';
         else card.style.display = 'none';
@@ -248,6 +270,11 @@
         if(txt.includes('hospice')) cat = 'hospice';
         else if(txt.includes('skilled')) cat = 'skilled';
         else if(txt.includes('board')) cat = 'board';
+        else if(txt.includes('dd') || txt.includes('developmental')) cat = 'dd';
+        else if(txt.includes('assisted')) cat = 'assisted';
+        else if(txt.includes('home')) cat = 'home';
+        else if(txt.includes('palliative')) cat = 'palliative';
+        else if(txt.includes('memory')) cat = 'memory';
       }
       applyFilter(cat, null);
     }

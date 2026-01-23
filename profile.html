@@ -431,7 +431,6 @@
     .back-link{ width: 100%; text-align:center; }
   }
 </style>
-
 </head>
 <body>
 
@@ -587,11 +586,21 @@ if (bedContainer && isSNF) {
             // Handle Text (Fallback if missing)
             const textContent = r.text || "No written review provided.";
             
-            div.innerHTML = `
-              <div class="lotus-row" style="font-size:1.2rem;">${stars}</div>
-              <p class="review-text">"${textContent}"</p>
-              <div class="reviewer-name">- ${r.reviewerName || "Verified Family Member"}</div>
-            `;
+          div.innerHTML = `
+  <div class="review-card">
+    <div class="review-card-header">
+      <div class="lotus-row">${stars}</div>
+      <span class="review-badge">Verified Family</span>
+    </div>
+
+    <p class="review-text">“${textContent}”</p>
+
+    <div class="review-footer">
+      — ${r.reviewerName || "Verified Family Member"}
+    </div>
+  </div>
+`;
+
             reviewList.appendChild(div);
           }
         });

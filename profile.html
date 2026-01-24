@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Peace Reviews - Crossing Sunsets™</title>
+    <style>
+        /* --- CSS STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f3f4f6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav { display: flex; gap: 2rem; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.8; }
+
+        .provider-header {
+            background: white;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .provider-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0EA5E9;
+            margin-bottom: 0.5rem;
+            display: flex;       /* Added for Badge alignment */
+            align-items: center; /* Added for Badge alignment */
+            flex-wrap: wrap;     /* Ensures it wraps on mobile */
+        }
+
+        .provider-location {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+
+        .leave-review-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+            margin-bottom: 2rem;
+        }
+
+        .leave-review-btn:hover { transform: translateY(-2px); }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .review-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-name { font-size: 1.25rem; font-weight: 600; color: #1f2937; }
+        .review-date { color: #6b7280; font-size: 0.9rem; }
+
+        .lotus-total {
+            font-size: 1.3rem;
+            color: #14B8A6;
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.5rem 0;
+        }
+
+        .lotus-rating {
+            margin: 1rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .lotus-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #F0FDFA 0%, #E0F2FE 100%);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #14B8A6;
+            font-weight: 500;
+        }
+
+        .review-text { color: #374151; line-height: 1.8; margin-top: 1rem; }
+        .provider-info { margin-top: 0.5rem; color: #14B8A6; font-weight: 500; }
+        .loading { text-align: center; padding: 3rem; color: #6b7280; font-size: 1.1rem; }
+        .no-reviews { text-align: center; padding: 3rem; background: white; border-radius: 12px; color: #6b7280; }
+        .error-message { background: #fee; color: #c00; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                Crossing Sunsets™
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="browse-providers.html">Browse Providers</a>
+                <a href="quick-signup.html">Leave a Review</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="provider-header">
+        <div class="provider-name">
+            ☘️ AllPeace Care Hospice
+            
+            <span style="
+                display: inline-flex; 
+                align-items: center; 
+                background: linear-gradient(145deg, #1e293b, #0f172a); 
+                padding: 6px 14px; 
+                border-radius: 50px; 
+                border: 2px solid #FFD700; 
+                margin-left: 15px; 
+                margin-top: 5px; /* Spacing for mobile wrapping */
+                vertical-align: middle;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            ">
+                <img src="lotus-badge.png" style="width: 24px; height: 24px; margin-right: 8px; border-radius: 50%;">
+                <span style="color: #FFD700; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Lotus Certified</span>
+            </span>
+            </div>
+        <div class="provider-location">📍 Torrance, California</div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Reviews</h1>
+        
+        <a href="quick-signup.html?provider=allpeace" class="leave-review-btn">
+            ✍️ Leave a Review
+        </a>
+
+        <div id="error-container"></div>
+        <div id="loading" class="loading">Loading reviews...</div>
+        <div id="reviews-container" class="reviews-container" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, query, orderBy, onSnapshot, where } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+            authDomain: "crossing-sunsets.firebaseapp.com",
+            projectId: "crossing-sunsets",
+            storageBucket: "crossing-sunsets.firebasestorage.app",
+            messagingSenderId: "83761464492",
+            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+            measurementId: "G-LG8VN0EZB7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const loadingEl = document.getElementById('loading');
+        const reviewsContainer = document.getElementById('reviews-container');
+        const errorContainer = document.getElementById('error-container');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const provider = urlParams.get('provider') || 'allpeace';
+
+        const q = query(collection(db, 'reviews'), orderBy('timestamp', 'desc'));
+
+        onSnapshot(q, (snapshot) => {
+            loadingEl.style.display = 'none';
+            reviewsContainer.style.display = 'flex';
+            reviewsContainer.innerHTML = '';
+
+            if (snapshot.empty) {
+                reviewsContainer.innerHTML = `
+                    <div class="no-reviews">
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">📝 No reviews yet</p>
+                        <p>Be the first to share your experience!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const review = doc.data();
+                const reviewCard = createReviewCard(review);
+                reviewsContainer.appendChild(reviewCard);
+            });
+        }, (error) => {
+            console.error('Error loading reviews:', error);
+            loadingEl.style.display = 'none';
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    ⚠️ Error loading reviews. Please check your Firebase configuration.
+                </div>
+            `;
+        });
+
+        function createReviewCard(review) {
+            const card = document.createElement('div');
+            card.className = 'review-card';
+
+            let dateString = 'Just now';
+            if (review.timestamp) {
+                const date = review.timestamp.toDate();
+                dateString = date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric'
+                });
+            }
+
+            const lotusCount = [
+                review.lotus_compassionate,
+                review.lotus_professional,
+                review.lotus_responsive,
+                review.lotus_supportive
+            ].filter(Boolean).length;
+
+            let lotusBadges = '';
+            if (review.lotus_compassionate) lotusBadges += '<span class="lotus-badge">🪷 Compassionate Care</span>';
+            if (review.lotus_professional) lotusBadges += '<span class="lotus-badge">🪷 Professional</span>';
+            if (review.lotus_responsive) lotusBadges += '<span class="lotus-badge">🪷 Responsive</span>';
+            if (review.lotus_supportive) lotusBadges += '<span class="lotus-badge">🪷 Supportive</span>';
+
+            card.innerHTML = `
+                <div class="review-header">
+                    <div class="reviewer-name">${escapeHtml(review.reviewer_name || 'Anonymous')}</div>
+                    <div class="review-date">${dateString}</div>
+                </div>
+                <div class="lotus-total">
+                    <strong>${lotusCount} ${lotusCount === 1 ? 'Lotus' : 'Lotuses'} 🪷</strong>
+                </div>
+                ${review.provider_name ? `<div class="provider-info">Provider: ${escapeHtml(review.provider_name)}</div>` : ''}
+                ${review.location ? `<div class="provider-info">📍 ${escapeHtml(review.location)}</div>` : ''}
+                <div class="lotus-rating">
+                    ${lotusBadges}
+                </div>
+                <div class="review-text">${escapeHtml(review.review_text || '')}</div>
+            `;
+
+            return card;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

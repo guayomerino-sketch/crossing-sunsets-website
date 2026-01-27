@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Partners Access - Crossing Sunsets™</title>
+  <style>
+    :root { --bg:#0b1220; --card:#0f172a; --ink:#e5e7eb; --muted:#94a3b8; --brand:#00bcd4; }
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(1200px 600px at 50% 20%, rgba(0,188,212,.25), transparent 60%), var(--bg);color:var(--ink);padding:24px}
+    .card{width:min(520px,100%);background:rgba(15,23,42,.92);border:1px solid rgba(148,163,184,.15);border-radius:18px;padding:22px 20px;box-shadow:0 22px 70px rgba(0,0,0,.45)}
+    h1{margin:0 0 8px;font-size:20px}
+    p{margin:0 0 16px;color:var(--muted);line-height:1.45}
+    .row{display:flex;gap:10px}
+    input{flex:1;padding:12px 12px;border-radius:12px;border:1px solid rgba(148,163,184,.2);background:#0b1220;color:var(--ink);outline:none}
+    button{padding:12px 14px;border-radius:12px;border:0;background:var(--brand);color:#012b31;font-weight:800;cursor:pointer}
+    .hint{margin-top:12px;font-size:12px;color:rgba(148,163,184,.9)}
+    .err{margin-top:10px;color:#fca5a5;font-size:13px;display:none}
+    a{color:var(--brand)}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Partners Access</h1>
+    <p>This page is for invited providers and partners. If you need help, email <a href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a>.</p>
+
+    <div class="row">
+      <input id="code" type="password" placeholder="Enter access code" />
+      <button id="go">Continue</button>
+    </div>
+
+    <div id="err" class="err">That code didn’t match. Please try again.</div>
+    <div class="hint">Tip: You can share the code in your outreach email.</div>
+  </div>
+
+  <script>
+    // Change this anytime. (Soft gate — not true security, but locks the path.)
+    const ACCESS_CODE = "CS-PARTNER-2026";
+
+    function proceed(){
+      const v = (document.getElementById('code').value || "").trim();
+      if(v === ACCESS_CODE){
+        window.location.href = "plans.html";
+      } else {
+        document.getElementById('err').style.display = "block";
+      }
+    }
+    document.getElementById('go').addEventListener('click', proceed);
+    document.getElementById('code').addEventListener('keydown', (e)=>{ if(e.key==="Enter") proceed(); });
+  </script>
+</body>
+</html>

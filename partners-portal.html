@@ -32,6 +32,24 @@
     </style>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
+<!-- Partners Portal Access Gate -->
+<script>
+  (function () {
+    const KEY = "cs_partner_gate_ok";
+    const PASS = "SUNSET2026"; // change this anytime
+
+    if (localStorage.getItem(KEY) === "true") return;
+
+    const entered = prompt("Crossing Sunsets™ Partners Portal\n\nEnter access code:");
+    if (entered && entered.trim() === PASS) {
+      localStorage.setItem(KEY, "true");
+      return;
+    }
+
+    alert("Access denied.");
+    window.location.href = "index.html";
+  })();
+</script>
 
     <div class="bg-teal-900 text-white py-1 px-4">
         <div class="max-w-7xl mx-auto flex justify-end">

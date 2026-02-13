@@ -3,49 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partners Portal - Crossing Sunsets™</title>
+    <title>Partners Portal - Crossing Sunsets™</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Inter', sans-serif; }
-        
-        /* Brand Color Class */
-        .brand-bg {
-            background-color: #00acc1; 
-        }
-        
-        /* Fix for Google Translate styling to make it look cleaner */
-        .goog-te-gadget-simple {
-            background-color: transparent !important;
-            border: none !important;
-            padding: 0 !important;
-        }
-        .goog-te-gadget-simple span {
-            color: white !important;
-            font-size: 12px !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value span {
-            text-decoration: none !important;
-        }
+        .brand-bg { background-color: #00acc1; }
+        .goog-te-gadget-simple { background-color: transparent !important; border: none !important; padding: 0 !important; }
+        .goog-te-gadget-simple span { color: white !important; font-size: 12px !important; }
+        .goog-te-gadget-simple .goog-te-menu-value span { text-decoration: none !important; }
     </style>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
-<!-- Partners Portal Access Gate -->
+
 <script>
   (function () {
     const KEY = "cs_partner_gate_ok";
-    const PASS = "SUNSET2026"; // change this anytime
-
+    const PASS = "SUNSET2026"; 
     if (localStorage.getItem(KEY) === "true") return;
-
     const entered = prompt("Crossing Sunsets™ Partners Portal\n\nEnter access code:");
     if (entered && entered.trim() === PASS) {
       localStorage.setItem(KEY, "true");
       return;
     }
-
     alert("Access denied.");
     window.location.href = "index.html";
   })();
@@ -56,32 +38,28 @@
             <div id="google_translate_element"></div>
         </div>
         <script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </div>
 
     <nav class="brand-bg text-white shadow-md relative z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
-                
                 <div class="flex items-center gap-4">
                     <a href="#" class="flex-shrink-0">
                         <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-16 w-auto bg-white rounded-lg p-1 shadow-sm"> 
                     </a>
                 </div>
-
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="provider-login.html" class="hover:text-yellow-200 font-medium transition">Provider Login</a>
-<a href="mailto:support@crossingsunsets.com" class="hover:text-yellow-200 font-medium transition">Partner Support</a>
-                    
+                    <a href="mailto:support@crossingsunsets.com" class="hover:text-yellow-200 font-medium transition">Partner Support</a>
                     <div class="relative group">
                         <button class="bg-white/20 hover:bg-white/30 text-white px-5 py-2 rounded-full text-sm font-bold transition flex items-center cursor-pointer">
                             <i class="fa-solid fa-lock mr-2"></i> Login <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
                         </button>
-                        
                         <div class="hidden group-hover:block absolute right-0 mt-0 w-48 bg-white rounded-md shadow-xl py-2 text-gray-800 border border-gray-100 animate-fade-in-down pt-2">
                             <a href="provider-login.html" class="block px-4 py-3 text-sm hover:bg-teal-50 hover:text-teal-700 border-b border-gray-100 transition">
                                 <i class="fa-solid fa-user-doctor mr-2 text-teal-500"></i> Provider Login
@@ -91,251 +69,131 @@ function googleTranslateElementInit() {
                             </a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="brand-bg relative"> 
+    <div class="brand-bg relative pb-20"> 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-            
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-               Partners Portal<br><span class="text-white/90">Crossing Sunsets™</span>
+                Partners Portal<br><span class="text-white/90">Crossing Sunsets™</span>
             </h1>
-<p class="text-white/90 text-sm mt-3 max-w-2xl mx-auto">
-  Private page for verified partners. Please log in to manage your listing or contact support.
-</p>
-            <!-- Soft Privacy Notice -->
-<div class="mt-4 max-w-2xl mx-auto bg-white/10 border border-white/25 rounded-xl px-4 py-3 text-center">
-  <p class="text-white/80 text-xs md:text-sm">
-    Access to this portal is intended for approved Crossing Sunsets™ partners only.
-</div>
 
-  <!-- Plans Grid (12-month plans only) -->
-<div id="plansGrid" class="plans-grid">
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="bg-white/10 border border-white/30 rounded-2xl p-8 shadow-2xl backdrop-blur-sm">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">A Strategic Alliance for Quality Providers</h2>
+                    <p class="text-white/90 text-lg italic mb-6">
+                        "Navigating the industry’s <strong>trust deficit</strong> with transparency and proprietary excellence."
+                    </p>
+                    <p class="text-white/80 text-md leading-relaxed mb-8">
+                        At Crossing Sunsets™, we view our facilities as more than just providers—you are our allies. In a market where families are searching for certainty, we provide the <strong>Proprietary Intellectual Property</strong> you need to demonstrate your competitive edge and lead with integrity.
+                    </p>
 
-
-    <!-- Lotus Certified Section -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
-  <div class="inline-flex items-center gap-3 bg-white/10 border border-white/25 rounded-full px-6 py-3 shadow-md">
-    <img src="lotus-certified-badge.png" alt="Lotus Certified" class="h-10 w-auto">
-    <span class="text-white font-semibold text-sm md:text-base">
-      Lotus Certified™ Providers Meet Our Highest Standards of Care
-    </span>
-  </div>
-
-  <p class="mt-4 text-white/80 text-sm max-w-2xl mx-auto">
-    Certification is awarded based on verified reviews, responsiveness, transparency,
-    and family-centered outcomes.
-  </p>
-</div>
-<!-- Stripe Participation License -->
-<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 text-center">
-  <div class="bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg">
-    <h3 class="text-white font-bold text-lg md:text-xl">
-      Provider Participation License
-    </h3>
-    <p class="text-white/80 text-sm mt-2">
-      Providers pay for the privilege of participation in a standards-based verification framework.
-      Payment does not guarantee placement, referrals, or continued listing.
-    </p>
-
-    <div class="mt-5 flex flex-col sm:flex-row gap-4 justify-center">
-     <a href="https://buy.stripe.com/eVqfZg5fH9RlaUZc9idUY0j"
-   target="_blank" rel="noopener noreferrer"
-   class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-white text-teal-800 font-extrabold shadow hover:bg-teal-50 transition">
-  Apply — Participation License (Standard)
-</a>
-</a>
-
-      <a href="https://buy.stripe.com/eVq8wO4bD0gL0gl2yIdUY0h"
-         target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-yellow-400 text-gray-900 font-extrabold shadow hover:brightness-95 transition">
-        Apply — Participation License (Enhanced)
-      </a>
-    </div>
-
-    <p class="text-white/70 text-xs mt-4 leading-relaxed">
-      Participation is subject to independent evaluation, published standards, and ongoing accountability through the Lotus Rating System™.
-      Crossing Sunsets™ reserves the right to suspend or revoke participation regardless of payment status.
-    </p>
-  </div>
-</div>
-<p class="text-white/70 text-xs mt-4 leading-relaxed max-w-xl mx-auto">
-  Participation Licenses are issued on an annual basis and are available in
-  Standard and Enhanced tiers. Payment grants the right to participate in the
-  Crossing Sunsets™ standards-based verification framework and does not guarantee
-  placement, referrals, ranking, or continued listing. Participation is subject
-  to independent evaluation, published standards, and ongoing accountability.
-</p>
-
-<!-- Partner Actions -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-  <div class="bg-white/10 border border-white/20 rounded-2xl p-5 md:p-6 text-center">
-    <p class="text-white/90 text-sm md:text-base">
-      Already a partner? Log in to update your listing, upload changes, or respond to reviews.
-    </p>
-
-    <div class="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="provider-login.html"
-         class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-white text-teal-700 font-extrabold shadow-lg hover:bg-teal-50 transition">
-        Provider Login
-      </a>
-
-      <a href="mailto:support@crossingsunsets.com?subject=Partner%20Onboarding%20Help"
-         class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-white/10 text-white font-extrabold border border-white/30 hover:bg-white/20 transition">
-        Request Onboarding Help
-      </a>
-
-      <a href="admin-login.html"
-         class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-white/5 text-white font-bold border border-white/20 hover:bg-white/15 transition">
-        Admin Login
-      </a>
-    </div>
-  </div>
-</div>
-
-            <div class="relative mx-auto w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 mb-8 bg-black">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls playsinline>
-                        <source src="Thepromovideo.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="grid md:grid-cols-2 gap-6 text-left">
+                        <div class="bg-white rounded-xl p-5 shadow-inner">
+                            <span class="inline-block bg-teal-600 text-white text-[10px] font-bold px-2 py-1 rounded mb-2">PROPRIETARY IP</span>
+                            <h4 class="text-teal-900 font-bold mb-1">Lotus Rating System™</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                A sophisticated <strong>Quality Validation Framework</strong>. Our proprietary algorithm translates your operational standards into a recognized symbol of market trust.
+                            </p>
+                        </div>
+                        <div class="bg-white rounded-xl p-5 shadow-inner border-l-4 border-yellow-400">
+                            <span class="inline-block bg-yellow-500 text-white text-[10px] font-bold px-2 py-1 rounded mb-2">PROPRIETARY IP</span>
+                            <h4 class="text-teal-900 font-bold mb-1">Coaching System™</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                Your <strong>Operational Excellence Protocol</strong>. A systematized coaching methodology serving as your proprietary roadmap to bridge the trust deficit.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="mb-8">
-                <p class="text-teal-900 font-bold text-sm md:text-base uppercase tracking-wider bg-white/90 inline-block px-6 py-2 rounded-full shadow-lg">
-                    <i class="fa-solid fa-shield-heart mr-2 text-teal-600"></i> 
-                    Trusted by Families, Caregivers, Social Workers, and Legal Guardians statewide.
-                </p>
+            <div class="inline-flex items-center gap-3 bg-white/10 border border-white/25 rounded-full px-6 py-3 shadow-md mb-8">
+                <img src="lotus-certified-badge.png" alt="Lotus Certified" class="h-10 w-auto">
+                <span class="text-white font-semibold text-sm md:text-base">
+                  Lotus Certified™ Providers Meet Our Highest Standards of Care
+                </span>
             </div>
 
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-white/95 mb-10 font-light leading-relaxed">
-                Private access for providers and partners to manage listings, submit updates, and connect with our team.
-            </p>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white border-4 border-yellow-400 rounded-2xl p-8 shadow-2xl">
+                    <h3 class="text-teal-900 font-black text-2xl uppercase tracking-tight">
+                      Provider Participation License
+                    </h3>
+                    <p class="text-gray-600 text-sm mt-3">
+                      Secure your place in a standards-based verification framework. 
+                      The <strong>Enhanced License</strong> includes full access to our proprietary IP coaching suite.
+                    </p>
 
-        <div class="flex justify-center mb-8 animate-fade-in-up delay-100">
-    <img src="lotus-badge.png" alt="Lotus Rating System" style="height: 80px; width: auto;">
-</div> 
-         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-200" style="margin-top: 30px;">
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://buy.stripe.com/eVqfZg5fH9RlaUZc9idUY0j" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-teal-800 text-white font-bold shadow-lg hover:bg-teal-900 transition w-full sm:w-auto">
+                            Standard License
+                        </a>
+                        <a href="https://buy.stripe.com/eVq8wO4bD0gL0gl2yIdUY0h" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-400 text-gray-900 font-black shadow-lg hover:bg-yellow-300 transition w-full sm:w-auto border-2 border-yellow-500">
+                            Enhanced (Proprietary IP Access)
+                        </a>
+                    </div>
 
-  <a href="provider-login.html"
-     class="px-8 py-4 bg-white text-teal-700 font-bold rounded-full shadow-lg hover:bg-teal-50 transition transform hover:-translate-y-1 text-lg w-full sm:w-auto text-center"
-     style="display:inline-block;text-decoration:none;color:#00695c;background-color:white;padding:15px 30px;border-radius:50px;font-weight:bold;margin:10px;">
-    Provider Login
-  </a>
+                    <p class="text-gray-400 text-[10px] mt-6 leading-relaxed italic">
+                      *Participation is subject to independent evaluation. The Lotus Rating System™ and Coaching Protocols are protected intellectual property.
+                    </p>
+                </div>
+            </div>
 
-  <a href="admin-login.html"
-     class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition text-lg w-full sm:w-auto text-center"
-     style="display:inline-block;text-decoration:none;color:white;border:2px solid white;padding:13px 28px;border-radius:50px;font-weight:bold;margin:10px;">
-    Admin Login
-  </a>
-
-  <a href="mailto:support@crossingsunsets.com"
-     class="px-8 py-4 bg-transparent border-2 border-white/70 text-white font-bold rounded-full hover:bg-white/10 transition text-lg w-full sm:w-auto text-center"
-     style="display:inline-block;text-decoration:none;color:white;border:2px solid rgba(255,255,255,.7);padding:13px 28px;border-radius:50px;font-weight:bold;margin:10px;">
-    Contact Support
-  </a>
-
-</div>
-
-        
-        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
-            <svg class="relative block w-full h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
-            </svg>
+            <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+                <svg class="relative block w-full h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
+                </svg>
+            </div>
         </div>
     </div>
-</div>
-</div>
+
     <div class="bg-white py-16 flex-grow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-               
-            
-             <div class="text-center mt-10">
-               
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-gray-50 py-12 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Take Crossing Sunsets with you</h2>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="download-app.html" class="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-                    <i class="fa-brands fa-apple text-3xl mr-3"></i>
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold">Download on the</div>
-                        <div class="font-bold text-lg leading-none">App Store</div>
-                    </div>
-                </a>
-                 <a href="download-app.html" class="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-                    <i class="fa-brands fa-google-play text-2xl mr-3"></i>
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold">Get it on</div>
-                        <div class="font-bold text-lg leading-none">Google Play</div>
-                    </div>
-                </a>
+            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-10">
+                <p class="text-gray-700 text-lg mb-6">Already a partner? Manage your listing or get support.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="provider-login.html" class="px-8 py-3 bg-teal-700 text-white font-bold rounded-full hover:bg-teal-800 transition">Provider Login</a>
+                    <a href="mailto:support@crossingsunsets.com" class="px-8 py-3 border-2 border-teal-700 text-teal-700 font-bold rounded-full hover:bg-teal-50 transition">Onboarding Help</a>
+                </div>
             </div>
         </div>
     </div>
 
     <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
-                
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
+                <div class="col-span-2">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
                         <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-12 w-auto bg-white rounded p-1">
                         <span class="text-white text-xl font-bold ml-2">Crossing Sunsets™</span>
                     </div>
-                    <p class="text-sm text-gray-400 leading-relaxed max-w-xs">
-                        Connecting families with compassionate end-of-life care providers. Dignity, comfort, and peace of mind when it matters most.
-                    </p>
+                    <p class="text-sm text-gray-400 max-w-xs mx-auto md:mx-0">Connecting families with compassionate end-of-life care providers. Dignity and peace of mind when it matters most.</p>
                 </div>
-
                 <div>
-                    <h3 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Company</h3>
+                    <h3 class="text-white font-semibold mb-4 uppercase text-sm">Company</h3>
                     <ul class="space-y-2 text-sm">
                         <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
-                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy</a></li>
                     </ul>
                 </div>
-
                 <div>
-                    <h3 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Connect</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-teal-600 transition text-white">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-teal-600 transition text-white">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-teal-600 transition text-white">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-white font-semibold mb-4 uppercase text-sm">Legal</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Disclaimers</a></li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                <p>© 2025 Crossing Sunsets™ — All rights reserved.</p>
-<a href="terms.html" style="color: #00b4d8;; text-decoration: underline; margin-left: 15px;">Terms & Disclaimers</a>
-                <p class="mt-2 md:mt-0">Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for Caregivers.</p>
+            <div class="border-t border-gray-800 pt-8 text-xs text-gray-500 flex flex-col md:flex-row justify-between">
+                <p>© 2026 Crossing Sunsets™ — All rights reserved.</p>
+                <p class="mt-2 md:mt-0">Designed for Caregivers.</p>
             </div>
         </div>
     </footer>
-
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>

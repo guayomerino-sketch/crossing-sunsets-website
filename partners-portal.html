@@ -23,14 +23,27 @@
   (function () {
     const KEY = "cs_partner_gate_ok";
     const PASS = "SUNSET2026"; 
+
+    // If they already logged in, let them through
     if (localStorage.getItem(KEY) === "true") return;
-    const entered = prompt("Crossing Sunsets™ Partners Portal\n\nEnter access code:");
-    if (entered && entered.trim() === PASS) {
-      localStorage.setItem(KEY, "true");
-      return;
+
+    let authenticated = false;
+    while (!authenticated) {
+        const entered = prompt("Crossing Sunsets™ Partners Portal\n\nPlease enter your Access Code:");
+        
+        // If they hit cancel
+        if (entered === null) {
+            window.location.href = "index.html";
+            break;
+        }
+
+        if (entered.trim() === PASS) {
+            localStorage.setItem(KEY, "true");
+            authenticated = true;
+        } else {
+            alert("Incorrect code. Please check your credentials and try again.");
+        }
     }
-    alert("Access denied.");
-    window.location.href = "index.html";
   })();
 </script>
 

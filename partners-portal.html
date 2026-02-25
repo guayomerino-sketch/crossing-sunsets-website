@@ -14,6 +14,39 @@
         .goog-te-gadget-simple { background-color: transparent !important; border: none !important; padding: 0 !important; }
         .goog-te-gadget-simple span { color: white !important; font-size: 12px !important; }
         .goog-te-gadget-simple .goog-te-menu-value span { text-decoration: none !important; }
+        /* --- 3-Step progression line (behind cards) --- */
+.cs-steps3{
+  position: relative;
+}
+
+/* the line */
+.cs-steps3::before{
+  content:"";
+  position:absolute;
+  left:10%;
+  right:10%;
+  top:54px;              /* aligns behind the STEP pill + icon area */
+  height:2px;
+  border-radius:999px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,.18),
+    rgba(255,255,255,.38),
+    rgba(255,255,255,.18)
+  );
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ensure the cards sit above the line */
+.cs-steps3 > div{
+  position: relative;
+  z-index:1;
+}
+
+/* hide on small screens (prevents awkward overlap) */
+@media (max-width: 767px){
+  .cs-steps3::before{ display:none; }
+}
     </style>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
@@ -121,8 +154,7 @@
       Clear steps. Clean standards. A trust layer families can recognize.
     </p>
   </div>
-
-  <div class="grid md:grid-cols-3 gap-4 text relative">
+<div class="grid md:grid-cols-3 gap-4 text-left cs-steps3">
       <div class="absolute left-0 right-0 top-1/2 h-px bg-white/20 hidden md:block"></div>
     <!-- Step 1 -->
 <div class="bg-white/10 border border-white/25 rounded-2xl p-5 shadow-xl backdrop-blur-sm hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-2xl hover:border-white/40 transition duration-300">

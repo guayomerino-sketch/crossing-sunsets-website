@@ -14,29 +14,21 @@
         .goog-te-gadget-simple { background-color: transparent !important; border: none !important; padding: 0 !important; }
         .goog-te-gadget-simple span { color: white !important; font-size: 12px !important; }
         .goog-te-gadget-simple .goog-te-menu-value span { text-decoration: none !important; }
-
+        .gradient-btn { background: linear-gradient(to right, #2DD4BF, #EAB308); }
     </style>
 </head>
 <body class="bg-white flex flex-col min-h-screen">
 
+<!-- Password Gate -->
 <script>
   (function () {
     const KEY = "cs_partner_gate_ok";
     const PASS = "SUNSET2026"; 
-
-    // If they already logged in, let them through
     if (localStorage.getItem(KEY) === "true") return;
-
     let authenticated = false;
     while (!authenticated) {
         const entered = prompt("Crossing Sunsets™ Partners Portal\n\nPlease enter your Access Code:");
-        
-        // If they hit cancel
-        if (entered === null) {
-            window.location.href = "index.html";
-            break;
-        }
-
+        if (entered === null) { window.location.href = "index.html"; break; }
         if (entered.trim() === PASS) {
             localStorage.setItem(KEY, "true");
             authenticated = true;
@@ -47,6 +39,7 @@
   })();
 </script>
 
+    <!-- Language Bar -->
     <div class="bg-teal-900 text-white py-1 px-4">
         <div class="max-w-7xl mx-auto flex justify-end">
             <div id="google_translate_element"></div>
@@ -59,11 +52,12 @@
         <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </div>
 
+    <!-- Navigation -->
     <nav class="brand-bg text-white shadow-md relative z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <div class="flex items-center gap-4">
-                    <a href="#" class="flex-shrink-0">
+                    <a href="index.html" class="flex-shrink-0">
                         <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-16 w-auto bg-white rounded-lg p-1 shadow-sm"> 
                     </a>
                 </div>
@@ -88,273 +82,165 @@
         </div>
     </nav>
 
-    <div class="brand-bg relative pb-20"> 
+    <!-- Hero Section -->
+    <div class="brand-bg relative pb-12"> 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
                 Partners Portal<br><span class="text-white/90">Crossing Sunsets™</span>
             </h1>
 
-            <div class="max-w-4xl mx-auto mb-12">
-             
-</div>
-      <h4 class="text-white text-lg font-bold leading-snug">
-        Claim Your Place
-      </h4>
-      <p class="text-white/80 text-sm mt-2 leading-relaxed">
-        Choose your participation license and submit your provider details for verification.
-      </p>
-
-      <div class="mt-4">
-        <a href="#provider-license"
-           class="inline-flex items-center justify-center w-full px-4 py-2 rounded-xl font-semibold text-sm bg-white text-teal-900 hover:opacity-95 transition">
-          View License Options
-        </a>
-      </div>
-    </div>
-
-    <!-- Step 2 -->
-    <div class="bg-white/10 border border-white/25 rounded-2xl p-5 shadow-xl backdrop-blur-sm hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-2xl hover:border-white/40 transition duration-300">
-      <div class="flex items-center justify-between mb-3">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold bg-white/15 text-white">
-          STEP 2
-        </span>
-        <span class="text-white/70 text-xs">Verification</span>
-      </div>
-<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-3">
-  <img src="lotus-logo.png" class="w-6 h-6" />
-</div>
-      <h4 class="text-white text-lg font-bold leading-snug">
-        Earn the Trust Mark
-      </h4>
-    
-      <p class="text-white/80 text-sm mt-2 leading-relaxed">
-        We confirm consistency across CPR&amp;S and publish your verified standing as a trust signal.
-      </p>
-
-      <div class="mt-4">
-        <div class="text-white/70 text-xs">
-          Verified providers may display the Lotus Certified™ badge.
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 3 --><div class="bg-white/10 border border-white/25 rounded-2xl p-5 shadow-xl backdrop-blur-sm hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-2xl hover:border-white/40 transition duration-300">
-      <div class="flex items-center justify-between mb-3">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold bg-white/15 text-white">
-          STEP 3
-        </span>
-        <span class="text-white/70 text-xs">Visibility</span>
-      </div>
-<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-3">
-  <img src="lotus-logo.png" class="w-6 h-6" />
-</div>
-      <h4 class="text-white text-lg font-bold leading-snug">
-        Grow With Clarity
-      </h4>
-      <p class="text-white/80 text-sm mt-2 leading-relaxed">
-        High-performing partners gain stronger presentation, clearer differentiation, and reputation stability.
-      </p>
-
-      <div class="mt-4">
-        <a href="#partner-support"
-           class="inline-flex items-center justify-center w-full px-4 py-2 rounded-xl font-semibold text-sm bg-teal-900/70 text-white border border-white/25 hover:bg-teal-900/85 transition">
-          Get Onboarding Help
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /3-Step Partner Path -->
-<!-- ========================= -->
-            <div class="inline-flex items-center gap-3 bg-white/10 border border-white/25 rounded-full px-6 py-3 shadow-md mb-8">
+            <div class="inline-flex items-center gap-3 bg-white/10 border border-white/25 rounded-full px-6 py-3 shadow-md mb-12">
                 <img src="lotus-certified-badge.png" alt="Lotus Certified" class="h-10 w-auto">
                 <span class="text-white font-semibold text-sm md:text-base">
                   Lotus Certified™ Providers Meet Our Highest Standards of Care
                 </span>
             </div>
 
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-center">
-    <div class="bg-white/10 border border-white/20 rounded-3xl p-8 md:p-10 shadow-2xl backdrop-blur-sm">
-        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-8 rounded" role="alert">
-  <p class="font-bold">Notice to Potential Partners</p>
-  <p>App applications are temporarily on pause. We will resume shortly.</p>
-</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
-           <!-- FINALIZED DOMAIN AUTHORITY & STRATEGIC INQUIRY SECTION -->
-<div class="mt-16 bg-teal-900/20 p-8 rounded-3xl border border-teal-500/30 shadow-2xl">
-    <div class="text-center mb-10">
-        <h3 class="text-white text-3xl font-bold uppercase tracking-wider">Domain Authority & Culture Stewardship</h3>
-        <p class="text-teal-200 mt-2 max-w-2xl mx-auto italic text-sm">
-            "Governed by the industry's leading clinical experts and behavioral culture architects."
-        </p>
-    </div>
-
-    <!-- Team / Expertise Grid (Restoring All 5 Members) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
-        
-        <!-- Eduardo Merino -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-yellow-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Eduardo Merino</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Architect of Cognitive Culture</p>
-            <p class="text-gray-500 text-[10px] mt-2 italic text-center">Specialist in Choice Theory & Behavioral Transformation.</p>
-        </div>
-
-        <!-- Deborah Atwell -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Deborah Atwell</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Cognitive Coaching</p>
-        </div>
-
-        <!-- Patty Rosas -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Patty Rosas, NPA</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Governance</p>
-        </div>
-
-        <!-- Angie Cash -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Angie Cash</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Strategy Implementation</p>
-        </div>
-
-        <!-- Iris Merino -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Iris Merino, LVN</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Specialist</p>
-        </div>
-    </div>
-
-    <!-- Strategic Inquiry Button -->
-    <div class="text-center border-t border-teal-500/20 pt-8">
-        <div class="inline-block p-1 rounded-full bg-gradient-to-r from-teal-400 to-yellow-500 shadow-lg">
-            <a href="mailto:partnerships@crossingsunsets.app?subject=Strategic Inquiry: APFM x Crossing Sunsets" 
-               class="block px-12 py-4 bg-teal-900 text-white font-bold rounded-full hover:bg-teal-800 transition">
-                INQUIRE ABOUT STRATEGIC ACQUISITION
-            </a>
-        </div>
-    </div>
-</div>
-
-            <div class="bg-white rounded-2xl p-6 text-left shadow-lg border-t-4 border-yellow-500">
-                <span class="bg-yellow-100 text-yellow-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Proprietary IP</span>
-                <h4 class="text-gray-900 font-bold text-xl mt-2 mb-2">Coaching System™</h4>
-                <p class="text-gray-600 text-sm leading-relaxed">
-                    Your <span class="font-semibold">Operational Excellence Protocol</span>. A systematized coaching methodology serving as your proprietary roadmap to bridge the trust deficit.
-                </p>
+            <!-- 3-Step Path -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Step 1 -->
+                <div class="bg-white/10 border border-white/25 rounded-2xl p-6 text-left shadow-xl backdrop-blur-sm transition hover:bg-white/15">
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold bg-white/20 text-white mb-4">STEP 1</span>
+                    <h4 class="text-white text-lg font-bold mb-2">Claim Your Place</h4>
+                    <p class="text-white/80 text-sm">Choose your participation license and submit your provider details for verification.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white/10 border border-white/25 rounded-2xl p-6 text-left shadow-xl backdrop-blur-sm transition hover:bg-white/15">
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold bg-white/20 text-white mb-4">STEP 2</span>
+                    <h4 class="text-white text-lg font-bold mb-2">Earn the Trust Mark</h4>
+                    <p class="text-white/80 text-sm">We confirm consistency across CPR&S and publish your verified standing as a trust signal.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white/10 border border-white/25 rounded-2xl p-6 text-left shadow-xl backdrop-blur-sm transition hover:bg-white/15">
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold bg-white/20 text-white mb-4">STEP 3</span>
+                    <h4 class="text-white text-lg font-bold mb-2">Grow With Clarity</h4>
+                    <p class="text-white/80 text-sm">High-performing partners gain stronger presentation and clearer brand differentiation.</p>
+                </div>
             </div>
         </div>
-
-  <!-- Finalized Domain Authority & Strategic Inquiry Section -->
-<div class="mt-16 bg-teal-900/20 p-8 rounded-3xl border border-teal-500/30 shadow-2xl">
-    <div class="text-center mb-10">
-        <h3 class="text-white text-3xl font-bold uppercase tracking-wider">Domain Authority & Culture Stewardship</h3>
-        <p class="text-teal-200 mt-2 max-w-2xl mx-auto italic text-sm">
-            "Governed by the industry's leading clinical experts and behavioral culture architects."
-        </p>
-    </div>
-
-    <!-- Team / Expertise Grid (All 5 Members Restored) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
         
-        <!-- Eduardo Merino -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-yellow-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Eduardo Merino</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Architect of Cognitive Culture</p>
-            <p class="text-gray-500 text-[10px] mt-2 italic">Specialist in Choice Theory & Behavioral Transformation.</p>
-        </div>
-
-        <!-- Deborah Atwell -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Deborah Atwell</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Cognitive Coaching</p>
-        </div>
-
-        <!-- Patty Rosas -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Patty Rosas, NPA</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Governance</p>
-        </div>
-
-        <!-- Angie Cash -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Angie Cash</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Strategy Implementation</p>
-        </div>
-
-        <!-- Iris Merino -->
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Iris Merino, LVN</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Specialist</p>
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
+            </svg>
         </div>
     </div>
 
-    <!-- Strategic Inquiry Button -->
-    <div class="text-center border-t border-teal-500/20 pt-8">
-        <div class="inline-block p-1 rounded-full bg-gradient-to-r from-teal-400 to-yellow-500 shadow-lg">
-            <a href="mailto:partnerships@crossingsunsets.app?subject=Strategic Inquiry: APFM x Crossing Sunsets" 
-               class="block px-12 py-4 bg-teal-900 text-white font-bold rounded-full hover:bg-teal-800 transition">
-                INQUIRE ABOUT STRATEGIC ACQUISITION
-            </a>
-        </div>
-    </div>
-</div>
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Patty Rosas, NPA</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Governance</p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Angie Cash</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Strategy Implementation</p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-teal-500 text-center">
-            <h4 class="text-teal-900 font-bold text-base">Iris Merino, LVN</h4>
-            <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Specialist</p>
-        </div>
-    </div>
-
-    <div class="text-center border-t border-teal-500/20 pt-8">
-        <h4 class="text-white font-bold mb-6 text-xl">Operational Licensing Tiers</h4>
-        <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-10">
+    <!-- Main Content Area -->
+    <div class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
             
-            <a href="https://buy.stripe.com/eVqfZg5fH9RlauZc9idu0j" target="_blank" rel="noopener noreferrer" 
-               class="w-full md:w-auto px-10 py-4 bg-white text-teal-900 font-black rounded-full shadow-2xl hover:bg-teal-50 transition transform hover:-translate-y-1">
-                SECURE STANDARD LICENSE
-            </a>
+            <!-- Pause Alert -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-16 rounded-r-xl">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fa-solid fa-circle-info text-yellow-400"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700">
+                            <strong>Notice to Potential Partners:</strong> App applications are temporarily on pause. We will resume shortly.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            <a href="https://buy.stripe.com/eVq8w04bDb0gL0glZyIdUY0h" target="_blank" rel="noopener noreferrer" 
-               class="w-full md:w-auto px-10 py-4 bg-yellow-400 text-gray-900 font-black rounded-full shadow-2xl hover:bg-yellow-300 transition transform hover:-translate-y-1">
-                SECURE ENHANCED LICENSE (IP COACHING)
-            </a>
-        </div>
-        
-        <div class="inline-block p-1 rounded-full bg-gradient-to-r from-teal-400 to-yellow-500 shadow-lg">
-            <a href="mailto:partnerships@crossingsunsets.app?subject=Partnership Inquiry" 
-               class="block px-12 py-4 bg-teal-900 text-white font-bold rounded-full hover:bg-teal-800 transition">
-                INQUIRE ABOUT STRATEGIC ACQUISITION
-            </a>
-        </div>
-    </div>
-</div>
+            <!-- Proprietary IP Section -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">A Strategic Alliance for Quality Providers</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto italic">"Navigating the industry's trust deficit with transparency and proprietary excellence."</p>
+            </div>
 
-                    <p class="text-gray-400 text-[10px] mt-6 leading-relaxed italic">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border-t-4 border-teal-500">
+                    <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Proprietary IP</span>
+                    <h4 class="text-gray-900 font-bold text-xl mt-4 mb-2">Lotus Rating System™</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        A sophisticated Quality Validation Framework. Our proprietary algorithm translates your operational standards into a recognized symbol of market trust.
+                    </p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg border-t-4 border-yellow-500">
+                    <span class="bg-yellow-100 text-yellow-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">Proprietary IP</span>
+                    <h4 class="text-gray-900 font-bold text-xl mt-4 mb-2">Coaching System™</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Your Operational Excellence Protocol. A systematized coaching methodology serving as your proprietary roadmap to bridge the trust deficit.
+                    </p>
+                </div>
+            </div>
+
+            <!-- DOMAIN AUTHORITY & EXPERT TEAM SECTION -->
+            <div class="bg-teal-900/10 p-8 md:p-12 rounded-3xl border border-teal-500/20 shadow-xl">
+                <div class="text-center mb-12">
+                    <h3 class="text-teal-900 text-3xl font-bold uppercase tracking-wider">Domain Authority & Culture Stewardship</h3>
+                    <p class="text-teal-700 mt-2 max-w-2xl mx-auto italic text-sm">
+                        "Governed by the industry's leading clinical experts and behavioral culture architects."
+                    </p>
+                </div>
+
+                <!-- Team Grid (All 5 Members) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+                    <!-- Eduardo Merino -->
+                    <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-yellow-500 text-center flex flex-col items-center">
+                        <h4 class="text-teal-900 font-bold text-base">Eduardo Merino</h4>
+                        <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest mb-2">Architect of Cognitive Culture</p>
+                        <p class="text-gray-500 text-[10px] italic">Specialist in Choice Theory & Behavioral Transformation.</p>
+                    </div>
+                    <!-- Deborah Atwell -->
+                    <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-teal-500 text-center flex flex-col items-center justify-center">
+                        <h4 class="text-teal-900 font-bold text-base">Deborah Atwell</h4>
+                        <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Cognitive Coaching</p>
+                    </div>
+                    <!-- Patty Rosas -->
+                    <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-teal-500 text-center flex flex-col items-center justify-center">
+                        <h4 class="text-teal-900 font-bold text-base">Patty Rosas, NPA</h4>
+                        <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Governance</p>
+                    </div>
+                    <!-- Angie Cash -->
+                    <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-teal-500 text-center flex flex-col items-center justify-center">
+                        <h4 class="text-teal-900 font-bold text-base">Angie Cash</h4>
+                        <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Strategy Implementation</p>
+                    </div>
+                    <!-- Iris Merino -->
+                    <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-teal-500 text-center flex flex-col items-center justify-center">
+                        <h4 class="text-teal-900 font-bold text-base">Iris Merino, LVN</h4>
+                        <p class="text-teal-700 font-semibold text-[9px] uppercase tracking-widest">Clinical Specialist</p>
+                    </div>
+                </div>
+
+                <!-- Licensing Tiers & Stripe Buttons -->
+                <div class="text-center border-t border-teal-500/20 pt-10">
+                    <h4 class="text-teal-900 font-bold mb-8 text-xl uppercase tracking-wide">Operational Licensing Tiers</h4>
+                    <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-10">
+                        <a href="https://buy.stripe.com/eVqfZg5fH9RlauZc9idu0j" target="_blank" rel="noopener noreferrer" 
+                           class="w-full md:w-auto px-10 py-4 bg-white text-teal-900 font-black rounded-full shadow-lg hover:bg-teal-50 transition transform hover:-translate-y-1 border border-teal-100">
+                            SECURE STANDARD LICENSE
+                        </a>
+                        <a href="https://buy.stripe.com/eVq8w04bDb0gL0glZyIdUY0h" target="_blank" rel="noopener noreferrer" 
+                           class="w-full md:w-auto px-10 py-4 bg-yellow-400 text-gray-900 font-black rounded-full shadow-lg hover:bg-yellow-300 transition transform hover:-translate-y-1">
+                            SECURE ENHANCED LICENSE (IP COACHING)
+                        </a>
+                    </div>
+                    
+                    <!-- Acquisition CTA -->
+                    <div class="inline-block p-1 rounded-full gradient-btn shadow-xl mt-4">
+                        <a href="mailto:partnerships@crossingsunsets.app?subject=Strategic Inquiry: APFM x Crossing Sunsets" 
+                           class="block px-12 py-4 bg-teal-900 text-white font-bold rounded-full hover:bg-teal-800 transition">
+                            INQUIRE ABOUT STRATEGIC ACQUISITION
+                        </a>
+                    </div>
+                    <p class="text-teal-700 text-[10px] mt-6 leading-relaxed italic">
                       *Participation is subject to independent evaluation. The Lotus Rating System™ and Coaching Protocols are protected intellectual property.
                     </p>
                 </div>
             </div>
 
-            <div class="absolute bottom-0 w-full overflow-hidden leading-none">
-                <svg class="relative block w-full h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
-                </svg>
-            </div>
         </div>
     </div>
 
-    <div class="bg-white py-16 flex-grow">
+    <!-- Partner Support Footer CTA -->
+    <div class="bg-gray-50 border-t border-gray-100 py-16">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-10">
+            <div class="bg-white border border-gray-200 rounded-3xl p-10 shadow-sm max-w-4xl mx-auto">
                 <p class="text-gray-700 text-lg mb-6">Already a partner? Manage your listing or get support.</p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="provider-login.html" class="px-8 py-3 bg-teal-700 text-white font-bold rounded-full hover:bg-teal-800 transition">Provider Login</a>
@@ -364,6 +250,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid md:grid-cols-4 gap-8 mb-8">

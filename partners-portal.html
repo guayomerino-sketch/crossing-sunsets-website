@@ -90,7 +90,49 @@
             </div>
         </div>
     </nav>
+<section class="max-w-4xl mx-auto my-16 p-10 bg-slate-900 border border-[#EEB300]/20 rounded-xl shadow-2xl">
+    <div class="text-center">
+        <h2 class="text-white text-2xl font-bold uppercase tracking-widest mb-4">Live C.P.R.S. Directory Demonstration</h2>
+        <p class="text-slate-400 mb-8 text-base leading-relaxed">
+            The pilot directory and objective behavioral data are restricted to authorized entities. 
+            Access is granted only after an executive M&A review and a signed Non-Disclosure Agreement.
+        </p>
+        
+        <div class="max-w-xs mx-auto">
+            <label class="block text-[10px] text-[#EEB300] uppercase font-bold mb-3 tracking-[0.2em]">
+                Enter Sandbox Passcode
+            </label>
+            <input type="password" id="sandbox-input" 
+                   class="w-full bg-slate-800 border border-slate-700 p-4 rounded text-white text-center font-mono tracking-[0.5em] mb-4 focus:border-[#EEB300] outline-none transition"
+                   placeholder="••••••••">
+            
+            <button onclick="verifySandbox()" 
+                    class="w-full bg-[#EEB300] hover:bg-[#d4a200] text-slate-900 font-bold py-4 rounded uppercase text-xs tracking-widest transition shadow-lg">
+                Unlock Demonstration
+            </button>
+            
+            <p id="sandbox-error" class="text-red-500 text-[10px] mt-4 hidden uppercase font-bold tracking-widest">
+                Invalid Passcode. Access Denied.
+            </p>
+        </div>
+    </div>
+</section>
 
+<script>
+    function verifySandbox() {
+        const input = document.getElementById('sandbox-input').value;
+        const error = document.getElementById('sandbox-error');
+        
+        // Gate 2 Passcode
+        if (input === 'CROSSING2026') {
+            sessionStorage.setItem('sandbox_access', 'true');
+            // Redirect to your pilot directory file
+            window.location.href = 'browse-providers.html'; 
+        } else {
+            error.classList.remove('hidden');
+        }
+    }
+</script>
     <!-- Hero Section -->
     <div class="hero-gradient relative pb-24 overflow-hidden"> 
         <!-- Subtle Sun Glow Effect -->

@@ -92,31 +92,72 @@
     </nav>
 <section class="max-w-4xl mx-auto my-16 p-10 bg-slate-900 border border-[#EEB300]/20 rounded-xl shadow-2xl">
     <div class="text-center">
-        <h2 class="text-white text-2xl font-bold uppercase tracking-widest mb-4">Live C.P.R.S. Directory Demonstration</h2>
+        <h2 class="text-white text-2xl font-bold uppercase tracking-widest mb-4">Enterprise Access Terminal</h2>
         <p class="text-slate-400 mb-8 text-base leading-relaxed">
-            The pilot directory and objective behavioral data are restricted to authorized entities. 
-            Access is granted only after an executive M&A review and a signed Non-Disclosure Agreement.
+            Enter your executive passcode below to unlock authorized portal data or the live sandbox demonstration.
         </p>
         
         <div class="max-w-xs mx-auto">
             <label class="block text-[10px] text-[#EEB300] uppercase font-bold mb-3 tracking-[0.2em]">
-                Enter Sandbox Passcode
+                Enter Executive Passcode
             </label>
-            <input type="password" id="sandbox-input" 
+            <input type="password" id="universal-access-input" 
                    class="w-full bg-slate-800 border border-slate-700 p-4 rounded text-white text-center font-mono tracking-[0.5em] mb-4 focus:border-[#EEB300] outline-none transition"
                    placeholder="••••••••">
             
-            <button onclick="verifySandbox()" 
+            <button onclick="handleUniversalAccess()" 
                     class="w-full bg-[#EEB300] hover:bg-[#d4a200] text-slate-900 font-bold py-4 rounded uppercase text-xs tracking-widest transition shadow-lg">
-                Unlock Demonstration
+                Unlock Access
             </button>
             
-            <p id="sandbox-error" class="text-red-500 text-[10px] mt-4 hidden uppercase font-bold tracking-widest">
+            <p id="universal-error" class="text-red-500 text-[10px] mt-4 hidden uppercase font-bold tracking-widest">
                 Invalid Passcode. Access Denied.
             </p>
         </div>
     </div>
 </section>
+
+<script>
+    function handleUniversalAccess() {
+        const input = document.getElementById('universal-access-input').value;
+        const error = document.getElementById('universal-error');
+        
+        // Gate 1: Unlocks the Portal contents (Professional Stewardship)
+        if (input === 'SUNSET2026') {
+            sessionStorage.setItem('cs_partner_gate_ok', 'true');
+            location.reload(); 
+        } 
+        // Gate 2: Directly reveals the "Find Support" Sandbox work (Behavioral Standards)
+        else if (input === 'CROSSING2026') {
+            sessionStorage.setItem('sandbox_access', 'true');
+            window.location.href = 'privatebrowse.html';
+        } 
+        else {
+            error.classList.remove('hidden');
+        }
+    }
+</script>
+
+<script>
+    function handleUniversalAccess() {
+        const input = document.getElementById('universal-access-input').value;
+        const error = document.getElementById('universal-error');
+        
+        // Gate 1: Unlocks the Portal contents (e.g., M&A mission)
+        if (input === 'SUNSET2026') {
+            sessionStorage.setItem('cs_partner_gate_ok', 'true');
+            location.reload(); 
+        } 
+        // Gate 2: Directly reveals the "Find Support" Sandbox work
+        else if (input === 'CROSSING2026') {
+            sessionStorage.setItem('sandbox_access', 'true');
+            window.location.href = 'privatebrowse.html';
+        } 
+        else {
+            error.classList.remove('hidden');
+        }
+    }
+</script>
 
 <script>
     function verifySandbox() {
@@ -230,9 +271,9 @@
                 <div class="absolute top-0 right-0 w-64 h-64 bg-teal-400/5 blur-[80px] rounded-full"></div>
                 
                 <div class="text-center mb-16">
-                    <h3 class="text-teal-950 text-4xl font-black uppercase tracking-tighter">Domain Authority & Culture Stewardship</h3>
+                    <h3 class="text-teal-950 text-4xl font-black uppercase tracking-tighter">Domain Authority & Culture Advocacy</h3>
                     <p class="text-teal-600 mt-4 max-w-3xl mx-auto font-medium italic">
-                        "Governed by the industry's leading clinical minds and behavioral architects."
+                        "Governed by the industry's leading minds."
                     </p>
                 </div>
 
@@ -244,7 +285,7 @@
                             <i class="fa-solid fa-compass brand-yellow text-2xl"></i>
                         </div>
                         <h4 class="text-teal-950 font-black text-lg leading-tight">Eduardo Merino</h4>
-                        <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest mb-3">Founder & Expert Architect of Cognitive Culture</p>
+                        <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest mb-3">Founder & Visionary</p>
                         <p class="text-gray-400 text-[9px] italic leading-tight">Specialist in transforming care practices rooted in Choice Theory & Behavioral Shift.</p>
                     </div>
                     <!-- Deborah Atwell -->
@@ -260,7 +301,7 @@
                         <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa-solid fa-file-shield brand-teal text-2xl"></i>
                         </div>
-                        <h4 class="text-teal-950 font-black text-lg">Patty Rosas, NPA</h4>
+                        <h4 class="text-teal-950 font-black text-lg">Patty Rosas, NP</h4>
                         <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest">Clinical Governance</p>
                     </div>
                     <!-- Angie Cash -->

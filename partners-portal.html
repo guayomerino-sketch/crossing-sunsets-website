@@ -3,411 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partners Portal - Crossing Sunsets™</title>
+    <title>Partners Portal | Crossing Sunsets™</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
         
-        /* Vibrant Brand Palette */
-        .brand-teal { color: #2DD4BF; }
-        .brand-yellow { color: #EAB308; }
-        
-        /* Exciting Hero Gradient */
-        .hero-gradient { 
-            background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%); 
+        /* Preserved Aqua Branding */
+        .portal-header {
+            background: linear-gradient(135deg, #4da099 0%, #35827b 100%); /* Preserved aqua gradient */
         }
         
-        /* The "Happy" Button Gradient */
-        .action-gradient { 
-            background: linear-gradient(to right, #2DD4BF, #EAB308); 
+        .mastery-card {
+            background-color: #4da099;
+            border-radius: 24px;
+            padding: 32px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(53, 130, 123, 0.1);
         }
 
-        .goog-te-gadget-simple { background-color: transparent !important; border: none !important; padding: 0 !important; }
-        .goog-te-gadget-simple span { color: white !important; font-size: 12px !important; }
+        .step-badge {
+            background-color: #f6c845; /* Original Step Gold */
+            color: #1a1a1a;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 99px;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
 
-        /* Smooth Animations */
-        .animate-fade-in { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .section-teal {
+            background-color: #35827b;
+            color: white;
         }
     </style>
 </head>
-<body class="bg-white flex flex-col min-h-screen">
+<body>
 
-<!-- Password Gate -->
-<script>
-  (function () {
-    const KEY = "cs_partner_gate_ok";
-    const PASS = "SUNSET2026"; 
-    if (localStorage.getItem(KEY) === "true") return;
-    let authenticated = false;
-    while (!authenticated) {
-        const entered = prompt("Crossing Sunsets™ Partners Portal\n\nPlease enter your Access Code:");
-        if (entered === null) { window.location.href = "index.html"; break; }
-        if (entered.trim() === PASS) {
-            localStorage.setItem(KEY, "true");
-            authenticated = true;
-        } else {
-            alert("Incorrect code. Please check your credentials and try again.");
-        }
-    }
-  })();
-</script>
-
-    <!-- Global Language Bar -->
-    <div class="bg-teal-950 text-white py-1 px-4">
-        <div class="max-w-7xl mx-auto flex justify-end">
-            <div id="google_translate_element"></div>
+    <header class="portal-header p-16 text-center text-white">
+        <h1 class="text-4xl font-bold mb-3">Partners Portal</h1>
+        <p class="text-xl font-light opacity-90 mb-4">Crossing Sunsets™</p>
+        <div class="inline-block bg-white/10 px-6 py-2 rounded-full text-[10px] border border-white/20 uppercase tracking-[0.2em]">
+            Lotus Certified™: The New B2B Standard for Professional Advocacy
         </div>
-        <script type="text/javascript">
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-            }
-        </script>
-        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    </div>
+    </header>
 
-    <!-- Navigation -->
-    <nav class="hero-gradient text-white shadow-lg relative z-50 border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
-                <div class="flex items-center gap-4">
-                    <a href="index.html" class="flex-shrink-0">
-                        <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-16 w-auto bg-white rounded-xl p-1.5 shadow-md transform transition hover:scale-105"> 
-                    </a>
+    <main class="max-w-7xl mx-auto px-6 py-20">
+        
+        <div class="text-center mb-12">
+            <h2 class="text-[#35827b] font-bold uppercase tracking-[0.2em] text-sm">Enterprise Mastery: The Licensing Journey</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-24">
+            <div class="mastery-card">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="step-badge">Step 1</span>
+                    <i class="fa-solid fa-file-signature text-2xl opacity-40"></i>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="provider-login.html" class="hover:text-yellow-300 font-semibold transition">Provider Login</a>
-                    <a href="mailto:support@crossingsunsets.com" class="hover:text-yellow-300 font-semibold transition">Partner Support</a>
-                    <button class="bg-white/20 hover:bg-white/30 text-white px-6 py-2.5 rounded-full text-sm font-bold transition flex items-center border border-white/20">
-                        <i class="fa-solid fa-lock mr-2"></i> Private Portal
-                    </button>
+                <h3 class="text-2xl font-bold mb-4">Standard of Care Licensing</h3>
+                <p class="text-sm opacity-90 leading-relaxed">
+                    Secure your B2B license to begin formal verification of standardized behavioral outcomes across your network.
+                </p>
+            </div>
+
+            <div class="mastery-card">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="step-badge">Step 2</span>
+                    <i class="fa-solid fa-award text-2xl opacity-40"></i>
                 </div>
+                <h3 class="text-2xl font-bold mb-4">Earn the Lotus Rating™</h3>
+                <p class="text-sm opacity-90 leading-relaxed">
+                    Verify mastery of the Standards of Care (CPRS) to publish your verified standing as a global market trust signal.
+                </p>
+            </div>
+
+            <div class="mastery-card">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="step-badge">Step 3</span>
+                    <i class="fa-solid fa-rocket text-2xl opacity-40"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Grow With Clarity</h3>
+                <p class="text-sm opacity-90 leading-relaxed">
+                    Gain premium presentation, institutional differentiation, and verifiable reputation stability through Lotus Rating Certification.
+                </p>
             </div>
         </div>
-    </nav>
-<section class="max-w-4xl mx-auto my-16 p-10 bg-slate-900 border border-[#EEB300]/20 rounded-xl shadow-2xl">
-    <div class="text-center">
-        <h2 class="text-white text-2xl font-bold uppercase tracking-widest mb-4">Enterprise Access Terminal</h2>
-        <p class="text-slate-400 mb-8 text-base leading-relaxed">
-            Enter your executive passcode below to unlock authorized portal data or the live sandbox demonstration.
-        </p>
-        
-        <div class="max-w-xs mx-auto">
-            <label class="block text-[10px] text-[#EEB300] uppercase font-bold mb-3 tracking-[0.2em]">
-                Enter Executive Passcode
-            </label>
-            <input type="password" id="universal-access-input" 
-                   class="w-full bg-slate-800 border border-slate-700 p-4 rounded text-white text-center font-mono tracking-[0.5em] mb-4 focus:border-[#EEB300] outline-none transition"
-                   placeholder="••••••••">
-            
-            <button onclick="handleUniversalAccess()" 
-                    class="w-full bg-[#EEB300] hover:bg-[#d4a200] text-slate-900 font-bold py-4 rounded uppercase text-xs tracking-widest transition shadow-lg">
-                Unlock Access
-            </button>
-            
-            <p id="universal-error" class="text-red-500 text-[10px] mt-4 hidden uppercase font-bold tracking-widest">
-                Invalid Passcode. Access Denied.
+
+        <div class="border-t border-slate-100 pt-16 text-center">
+            <h2 class="text-2xl font-bold text-[#35827b] mb-4">A Strategic Alliance for Quality</h2>
+            <p class="text-slate-500 italic max-w-2xl mx-auto mb-12 text-sm">
+                "Facilitating the trust-deficit with clinical transparency and behavioral mastery."
             </p>
-        </div>
-    </div>
-</section>
-
-<script>
-    function handleUniversalAccess() {
-        const input = document.getElementById('universal-access-input').value;
-        const error = document.getElementById('universal-error');
-        
-        // Gate 1: Unlocks the Portal contents (Professional Stewardship)
-        if (input === 'SUNSET2026') {
-            sessionStorage.setItem('cs_partner_gate_ok', 'true');
-            location.reload(); 
-        } 
-        // Gate 2: Directly reveals the "Find Support" Sandbox work (Behavioral Standards)
-        else if (input === 'CROSSING2026') {
-            sessionStorage.setItem('sandbox_access', 'true');
-            window.location.href = 'privatebrowse.html';
-        } 
-        else {
-            error.classList.remove('hidden');
-        }
-    }
-</script>
-
-<script>
-    function handleUniversalAccess() {
-        const input = document.getElementById('universal-access-input').value;
-        const error = document.getElementById('universal-error');
-        
-        // Gate 1: Unlocks the Portal contents (e.g., M&A mission)
-        if (input === 'SUNSET2026') {
-            sessionStorage.setItem('cs_partner_gate_ok', 'true');
-            location.reload(); 
-        } 
-        // Gate 2: Directly reveals the "Find Support" Sandbox work
-        else if (input === 'CROSSING2026') {
-            sessionStorage.setItem('sandbox_access', 'true');
-            window.location.href = 'privatebrowse.html';
-        } 
-        else {
-            error.classList.remove('hidden');
-        }
-    }
-</script>
-
-<script>
-    function verifySandbox() {
-        const input = document.getElementById('sandbox-input').value;
-        const error = document.getElementById('sandbox-error');
-        
-        // Gate 2 Passcode
-        if (input === 'CROSSING2026') {
-            sessionStorage.setItem('sandbox_access', 'true');
-            // Redirect to your pilot directory file
-            window.location.href = 'browse-providers.html'; 
-        } else {
-            error.classList.remove('hidden');
-        }
-    }
-</script>
-    <!-- Hero Section -->
-    <div class="hero-gradient relative pb-24 overflow-hidden"> 
-        <!-- Subtle Sun Glow Effect -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-yellow-400/20 blur-[120px] rounded-full -mr-20 -mt-20"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center relative z-10">
-            <h1 class="text-5xl md:text-6xl font-black text-white mb-8 tracking-tight animate-fade-in">
-                Partners Portal<br><span class="text-yellow-300">Crossing Sunsets™</span>
-            </h1>
-
-            <div class="inline-flex items-center gap-4 bg-white/20 border border-white/30 backdrop-blur-md rounded-full px-8 py-3 shadow-2xl mb-16 animate-fade-in" style="animation-delay: 0.1s">
-                <img src="lotus-certified-badge.png" alt="Lotus Certified" class="h-10 w-auto brightness-110">
-                <span class="text-white font-bold text-sm md:text-base">
-                  Lotus Certified™: The New Gold Standard for Professional Care Advocacy
-                </span>
-            </div>
-
-            <!-- 3-Step Partner Path -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto animate-fade-in" style="animation-delay: 0.2s">
-                <!-- Step 1 -->
-                <div class="bg-white/10 border border-white/30 rounded-3xl p-8 text-left shadow-2xl backdrop-blur-lg transition duration-300 hover:bg-white/20 hover:-translate-y-2 group">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-4 py-1.5 rounded-full text-xs font-black bg-yellow-400 text-teal-950 uppercase tracking-widest">STEP 1</span>
-                        <i class="fa-solid fa-file-contract text-white/50 group-hover:text-yellow-300 transition-colors"></i>
-                    </div>
-                    <h4 class="text-white text-xl font-bold mb-3">Claim Your Place</h4>
-                    <p class="text-white/80 text-sm leading-relaxed">Secure your license and submit provider details for clinical and behavioral verification.</p>
-                </div>
-                <!-- Step 2 -->
-                <div class="bg-white/10 border border-white/30 rounded-3xl p-8 text-left shadow-2xl backdrop-blur-lg transition duration-300 hover:bg-white/20 hover:-translate-y-2 group">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-4 py-1.5 rounded-full text-xs font-black bg-teal-400 text-teal-950 uppercase tracking-widest">STEP 2</span>
-                        <i class="fa-solid fa-award text-white/50 group-hover:text-teal-300 transition-colors"></i>
-                    </div>
-                    <h4 class="text-white text-xl font-bold mb-3">Earn the Trust Mark</h4>
-                    <p class="text-white/80 text-sm leading-relaxed">Verifying consistency across CPR&S standards to publish your verified standing as a market trust signal.</p>
-                </div>
-                <!-- Step 3 -->
-                <div class="bg-white/10 border border-white/30 rounded-3xl p-8 text-left shadow-2xl backdrop-blur-lg transition duration-300 hover:bg-white/20 hover:-translate-y-2 group">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-4 py-1.5 rounded-full text-xs font-black bg-white text-teal-950 uppercase tracking-widest">STEP 3</span>
-                        <i class="fa-solid fa-rocket text-white/50 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-white text-xl font-bold mb-3">Grow With Clarity</h4>
-                    <p class="text-white/80 text-sm leading-relaxed">Gain premium presentation, institutional differentiation, and verifiable reputation stability.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bottom Wave -->
-        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
-            <svg class="relative block w-full h-[60px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="white"></path>
-            </svg>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="bg-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Dynamic Alert -->
-            <div class="bg-orange-50 border-l-8 border-orange-400 p-6 mb-20 rounded-2xl shadow-sm flex items-center">
-                <div class="bg-orange-400 p-3 rounded-full mr-4">
-                    <i class="fa-solid fa-clock-rotate-left text-white"></i>
-                </div>
-                <div>
-                    <h5 class="text-orange-900 font-bold text-lg">Strategic Integration Notice</h5>
-                    <p class="text-orange-800">Applications are temporarily on pause for system calibration. We will resume shortly.</p>
-                </div>
-            </div>
-
-            <!-- IP Cards -->
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-teal-950 mb-4 tracking-tight">A STRATEGIC ALLIANCE FOR QUALITY</h2>
-                <div class="h-1.5 w-24 bg-yellow-400 mx-auto rounded-full mb-6"></div>
-                <p class="text-teal-700 max-w-2xl mx-auto italic font-medium">"Navigating the trust deficit with clinical transparency and behavioral architecture."</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-24">
-                <div class="group bg-white rounded-[2rem] p-10 shadow-xl border-t-8 border-teal-400 transition hover:shadow-2xl hover:-translate-y-1">
-                    <span class="bg-teal-50 text-teal-600 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Proprietary IP</span>
-                    <h4 class="text-teal-950 font-black text-2xl mt-6 mb-4">Lotus Rating System™</h4>
-                    <p class="text-gray-600 leading-relaxed">A sophisticated behavioral validation engine. Our algorithm translates clinical operations into a recognized symbol of market trust and safety.</p>
-                </div>
-                <div class="group bg-white rounded-[2rem] p-10 shadow-xl border-t-8 border-yellow-400 transition hover:shadow-2xl hover:-translate-y-1">
-                    <span class="bg-yellow-50 text-yellow-600 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Proprietary IP</span>
-                    <h4 class="text-teal-950 font-black text-2xl mt-6 mb-4">Coaching System™</h4>
-                    <p class="text-gray-600 leading-relaxed">Your roadmap to excellence. A systematized methodology shifting care culture from task-based duties to purpose-driven connection.</p>
-                </div>
-            </div>
-
-            <!-- DOMAIN AUTHORITY & EXPERT TEAM -->
-            <div class="bg-teal-50/50 p-10 md:p-16 rounded-[3rem] border-2 border-teal-100 shadow-inner relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-teal-400/5 blur-[80px] rounded-full"></div>
-                
-                <div class="text-center mb-16">
-                    <h3 class="text-teal-950 text-4xl font-black uppercase tracking-tighter">Domain Authority & Culture Advocacy</h3>
-                    <p class="text-teal-600 mt-4 max-w-3xl mx-auto font-medium italic">
-                        "Governed by the industry's leading minds."
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm text-left">
+                    <h4 class="text-teal-600 font-bold uppercase text-[10px] tracking-widest mb-2">Trademark</h4>
+                    <h3 class="text-xl font-bold mb-4">Lotus Rating System™</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        A multidimensional validation engine. Our algorithm translates clinical operations into a recognized symbol of market trust and safety.
                     </p>
                 </div>
-
-                <!-- Team Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-20">
-                    <!-- Eduardo Merino -->
-                    <div class="bg-white rounded-3xl p-8 shadow-lg border-b-8 border-yellow-400 text-center transform transition hover:scale-105">
-                        <div class="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-compass brand-yellow text-2xl"></i>
-                        </div>
-                        <h4 class="text-teal-950 font-black text-lg leading-tight">Eduardo Merino</h4>
-                        <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest mb-3">Founder & Visionary</p>
-                        <p class="text-gray-400 text-[9px] italic leading-tight">Specialist in transforming care practices rooted in Choice Theory & Behavioral Shift.</p>
-                    </div>
-                    <!-- Deborah Atwell -->
-                    <div class="bg-white rounded-3xl p-8 shadow-lg border-b-8 border-teal-400 text-center transform transition hover:scale-105">
-                        <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-brain brand-teal text-2xl"></i>
-                        </div>
-                        <h4 class="text-teal-950 font-black text-lg">Deborah Atwell</h4>
-                        <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest">Cognitive Coaching</p>
-                    </div>
-                    <!-- Patty Rosas -->
-                    <div class="bg-white rounded-3xl p-8 shadow-lg border-b-8 border-teal-400 text-center transform transition hover:scale-105">
-                        <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-file-shield brand-teal text-2xl"></i>
-                        </div>
-                        <h4 class="text-teal-950 font-black text-lg">Patty Rosas, NP</h4>
-                        <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest">Clinical Governance</p>
-                    </div>
-                    <!-- Angie Cash -->
-                    <div class="bg-white rounded-3xl p-8 shadow-lg border-b-8 border-teal-400 text-center transform transition hover:scale-105">
-                        <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-chart-line brand-teal text-2xl"></i>
-                        </div>
-                        <h4 class="text-teal-950 font-black text-lg">Angie Cash</h4>
-                        <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest">Ops Implementation</p>
-                    </div>
-                    <!-- Iris Merino -->
-                    <div class="bg-white rounded-3xl p-8 shadow-lg border-b-8 border-teal-400 text-center transform transition hover:scale-105">
-                        <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-stethoscope brand-teal text-2xl"></i>
-                        </div>
-                        <h4 class="text-teal-950 font-black text-lg">Iris Merino, LVN</h4>
-                        <p class="text-teal-600 font-bold text-[10px] uppercase tracking-widest">Clinical Specialist</p>
-                    </div>
-
-             </div></div></div></div></div><div class="bg-teal-600 py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 animate-fade-in" style="animation-delay: 0.2s">
-                <div class="bg-white/10 border border-white/30 rounded-3xl p-8 text-left shadow-2xl backdrop-blur-lg transition duration-300 hover:bg-white/20 group">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-4 py-1.5 rounded-full text-xs font-black bg-yellow-400 text-teal-950 uppercase tracking-widest">STEP 1</span>
-                        <i class="fa-solid fa-file-contract text-white/50 group-hover:text-yellow-300 transition-colors"></i>
-                    </div>
-                    <h4 class="text-white text-xl font-bold mb-3">Claim Your Place</h4>
-                    <p class="text-white/80 text-sm leading-relaxed">Secure your license and submit provider details for clinical and behavioral verification.</p>
-                </div>
-                <div class="bg-white/10 border border-white/30 rounded-3xl p-8 text-left shadow-2xl backdrop-blur-lg transition duration-300 hover:bg-white/20 group">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-4 py-1.5 rounded-full text-xs font-black bg-teal-400 text-teal-950 uppercase tracking-widest">STEP 2</span>
-                        <i class="fa-solid fa-award text-white/50 group-hover:text-teal-300 transition-colors"></i>
-                    </div>
-                    <h4 class="text-white text-xl font-bold mb-3">Earn the Trust Mark</h4>
-                    <p class="text-white/80 text-sm leading-relaxed">Verifying consistency across CPR&S standards to publish your verified standing as a market trust signal.</p>
-                </div>
-                <div class="bg-white/10 border border-white/30 rounded-3xl p-8 text-left shadow-2xl backdrop-blur-lg transition duration-300 hover:bg-white/20 group">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="px-4 py-1.5 rounded-full text-xs font-black bg-white text-teal-950 uppercase tracking-widest">STEP 3</span>
-                        <i class="fa-solid fa-rocket text-white/50 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-white text-xl font-bold mb-3">Grow With Clarity</h4>
-                    <p class="text-white/80 text-sm leading-relaxed">Gain premium presentation, institutional differentiation, and verifiable reputation stability.</p>
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm text-left">
+                    <h4 class="text-amber-500 font-bold uppercase text-[10px] tracking-widest mb-2">Consistency</h4>
+                    <h3 class="text-xl font-bold mb-4">Coaching System™</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Your roadmap to excellence. A standardized methodology shifting care culture from task-based roles to purpose-driven connection.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <div class="bg-white py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch max-w-6xl mx-auto mb-24">
-                <div class="bg-white rounded-3xl p-10 shadow-xl border border-slate-200 flex flex-col hover:shadow-2xl transition">
-                    <div class="flex justify-between items-start mb-8">
-                        <div>
-                            <h3 class="text-3xl font-black text-slate-900 tracking-tight">Standard License</h3>
-                            <p class="text-teal-600 font-bold text-[10px] uppercase tracking-[0.3em] mt-2">Behavioral Verification</p>
-                        </div>
-                        <div class="bg-teal-50 p-4 rounded-2xl text-teal-500"><i class="fa-solid fa-shield-check text-3xl"></i></div>
-                    </div>
-                    <p class="text-slate-600 text-base leading-relaxed mb-10 flex-grow">
-                        The baseline for verified professional care standards. Includes full C.P.R.S. Auditing and foundational Choice Theory Behavioral Coaching to ensure staff meet global standards of care.
-                    </p>
-                    <div class="pt-6 border-t border-slate-100">
-                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Status: Enterprise Verification Active</span>
-                    </div>
-                </div>
-
-                <div class="bg-[#EEB300] rounded-3xl p-10 shadow-2xl flex flex-col transform md:scale-105 border-4 border-white/30 hover:scale-[1.07] transition duration-500">
-                    <div class="flex justify-between items-start mb-8">
-                        <div>
-                            <h3 class="text-3xl font-black text-slate-950 tracking-tight">Tier 3+ Enhanced</h3>
-                            <p class="text-slate-900 font-black text-[10px] uppercase tracking-[0.3em] mt-2">Strategic Monetization</p>
-                        </div>
-                        <div class="bg-slate-950 p-4 rounded-2xl text-[#EEB300] shadow-lg"><i class="fa-solid fa-bolt-lightning text-3xl"></i></div>
-                    </div>
-                    <p class="text-slate-950 text-base leading-relaxed mb-10 flex-grow font-semibold">
-                        Acts as a high-impact Facility Turnaround Engine. Unlocks the full Care Savings Plus™ monetization suite and localized PR strategy for underperforming facilities.
-                    </p>
-                    <a href="mailto:partnerships@crossingsunsets.app?subject=Tier%203+%20Strategic%20Inquiry" 
-                       class="w-full py-5 bg-slate-950 text-white rounded-2xl font-black uppercase text-xs tracking-[0.2em] text-center hover:bg-black transition shadow-2xl">
-                        Inquire About Strategic Acquisition
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="bg-black text-white py-20 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center items-center gap-4 mb-10 opacity-80">
-                <img src="crossing-sunsets-logo.png" alt="CS" class="h-10 w-auto grayscale brightness-200">
-                <span class="text-xl font-black tracking-[0.3em] uppercase">Crossing Sunsets™</span>
-            </div>
-            <nav class="flex flex-wrap justify-center gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-10">
-                <a href="about.html" class="hover:text-[#EEB300] transition">Vision</a>
-                <a href="terms.html" class="hover:text-[#EEB300] transition">Legal Authority</a>
-                <a href="mailto:support@crossingsunsets.app" class="hover:text-[#EEB300] transition">Executive Support</a>
-            </nav>
-            <div class="text-[9px] text-slate-700 uppercase tracking-[0.5em] font-medium leading-loose">
-                © 2026 CS Global — All Rights Reserved. <br/>
-                Standardized Behavioral Outcomes & Professional Advocacy Frameworks.
-            </div>
-        </div>
+    <footer class="p-12 section-teal text-center">
+        <p class="font-bold uppercase tracking-widest text-xs mb-4">A Strategic Alliance for Quality</p>
+        <p class="text-[10px] opacity-70">© 2026 Crossing Sunsets™ | Mastery of the Standards of Care (CPRS)</p>
     </footer>
+
 </body>
 </html>
-Hyper Icon

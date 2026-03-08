@@ -1,145 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partners Portal | Crossing Sunsets™</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
-        .aqua-gradient { background: linear-gradient(135deg, #4da099 0%, #35827b 100%); }
-        .mastery-card {
-            background-color: #4da099;
-            border-radius: 20px;
-            padding: 24px;
-            color: white;
-            transition: transform 0.3s ease;
-        }
-        .mastery-card:hover { transform: translateY(-5px); }
-        .step-badge {
-            background-color: #f6c845;
-            color: #1a1a1a;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 99px;
-            font-size: 10px;
-            text-transform: uppercase;
-        }
-        .expert-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 16px;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen">
-
-    <header class="py-16 px-6 text-center">
-        <h2 class="text-xs font-bold tracking-[0.4em] uppercase mb-4 text-[#35827b]">Partners Portal</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed italic">
-            "A systematic approach to Standards of Care."
-        </p>
-    </header>
-
-    <main class="flex-grow pb-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            
-            <div class="mb-16">
-                <h2 class="text-center text-[#35827b] font-bold uppercase tracking-widest text-xs mb-8">Enterprise Mastery: The Licensing Journey</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="mastery-card">
-                        <span class="step-badge">Step 1</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Standard of Care Licensing</h3>
-                        <p class="text-sm opacity-90">Secure your B2B license to begin verification of Standards of Care.</p>
-                    </div>
-                    <div class="mastery-card">
-                        <span class="step-badge">Step 2</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Earn the Lotus Rating™</h3>
-                        <p class="text-sm opacity-90">Verify mastery of the Standards of Care (CPRS) to publish your verified standing.</p>
-                    </div>
-                    <div class="mastery-card">
-                        <span class="step-badge">Step 3</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Grow With Clarity</h3>
-                        <p class="text-sm opacity-90">Stand out with a name people trust. Prove your excellence and grow with confidence.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-24 bg-slate-50 p-10 rounded-3xl border border-slate-100 text-center">
-                <h2 class="text-[#35827b] font-bold uppercase tracking-widest text-xs mb-6">Provider Validation & Mastery</h2>
-                <p class="text-slate-500 text-sm mb-10 max-w-2xl mx-auto">
-                    Access to the verified provider database is restricted. Please enter your partner credentials to browse the standards of care network.
-                </p>
-                
-                <button onclick="verifyCrossingGate()" class="aqua-gradient text-white px-12 py-4 rounded-full font-bold text-sm uppercase tracking-[0.2em] shadow-xl hover:brightness-110 transition-all transform hover:scale-105 mb-12">
-                    <i class="fa-solid fa-key mr-3"></i> Unlock Provider Database
-                </button>
-
-                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
-                    <div class="mastery-card cursor-pointer" onclick="verifyCrossingGate()">
-                        <span class="step-badge">Step 2</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Master the 4 Lotuses</h3>
-                        <p class="text-sm opacity-90">Demonstrate excellence across: Compassionate, Professional, Responsive, and Safe care.</p>
-                    </div>
-                    <div class="mastery-card cursor-pointer" onclick="verifyCrossingGate()">
-                        <span class="step-badge">Step 3</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Lotus Rating Certification</h3>
-                        <p class="text-sm opacity-90">Finalize your Lotus Rating Certification™ through the CPR = S standard.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mb-12">
-                <h2 class="text-[#35827b] font-bold uppercase tracking-widest text-xs">Care Authority & Culture Coaching</h2>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="expert-card">
-                    <h3 class="font-bold text-slate-800 text-sm">Eduardo Merino</h3>
-                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Founder / CEO</p>
-                </div>
-                <div class="expert-card">
-                    <h3 class="font-bold text-slate-800 text-sm">Deborah Atwell</h3>
-                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Standards Licensing</p>
-                </div>
-                <div class="expert-card">
-                    <h3 class="font-bold text-slate-800 text-sm">Laura Draper, NP</h3>
-                    <p class="text-[#35827b] text-[10px] font-bold uppercase">M&A Licensing Review</p>
-                </div>
-                <div class="expert-card">
-                    <h3 class="font-bold text-slate-800 text-sm">Angela Cash</h3>
-                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Strategy & Coaching</p>
-                </div>
-                <div class="expert-card">
-                    <h3 class="font-bold text-slate-800 text-sm">Dr. Natasha Bogolsposkaya</h3>
-                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Culture Strategist</p>
-                </div>
-                <div class="expert-card">
-                    <h3 class="font-bold text-slate-800 text-sm">Iris Merino</h3>
-                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Lotus Standards Expert</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="p-12 border-t border-slate-200 bg-white text-center">
-        <p class="text-xs text-slate-400">Compassionate + Professional + Responsive = <strong>SAFE</strong></p>
-        <p class="text-[10px] text-slate-300 mt-4">© 2026 Crossing Sunsets™</p>
-    </footer>
-
-    <script>
-    function verifyCrossingGate() {
-        const secret = prompt("Please enter the provider access code:");
-        if (secret === "CROSSING2026") {
-            window.location.href = "browse-providers.html";
-        } else if (secret !== null) {
-            alert("Incorrect code. Access is restricted to verified partners.");
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partners Portal | Crossing Sunsets™</title>
+  <style>
+    :root {
+      --teal: #56a7a1;
+      --teal-deep: #3f9790;
+      --gold: #e0b12c;
+      --white: #ffffff;
+      --bg: #f3f4f4;
+      --panel: #eef0f1;
+      --line: #dde2e4;
+      --ink: #1f4d4a;
+      --muted: #5b7d7a;
+      --max: 980px;
+      --radius-xl: 26px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
     }
-    </script>
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 24px;
+    }
+
+    .intro {
+      text-align: center;
+      padding-top: 26px;
+      padding-bottom: 8px;
+    }
+
+    .mini-brand {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-weight: 800;
+      color: #356c69;
+      margin-bottom: 14px;
+    }
+
+    .section-kicker {
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #4a7c79;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 2.4vw, 36px);
+      line-height: 1.08;
+      margin: 0;
+    }
+
+    .section-title .italic { font-style: italic; font-weight: 500; }
+
+    .section-copy {
+      max-width: 680px;
+      margin: 10px auto 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px;
+    }
+
+    .three-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .pill-gold { background: var(--gold); color: #2c3e3c; }
+    .pill-teal { background: #2e8f88; color: #fff; }
+
+    .top-card,
+    .panel,
+    .expert-card,
+    .bottom-card {
+      border-radius: var(--radius-lg);
+    }
+
+    .top-card {
+      background: var(--teal);
+      color: white;
+      padding: 14px 18px 16px;
+      min-height: 108px;
+      text-align: center;
+      box-shadow: none;
+    }
+
+    .top-card h3,
+    .panel h3,
+    .bottom-card h4 {
+      margin: 12px 0 8px;
+      line-height: 1.14;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .top-card p,
+    .panel p,
+    .bottom-card p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .portal-shell {
+      background: #eef0f1;
+      border: 1px solid #e6eaeb;
+      border-radius: 22px;
+      padding: 22px 26px 26px;
+      margin-top: 40px;
+    }
+
+    .shell-kicker,
+    .expert-label,
+    .muted-grid-title,
+    .notice {
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #4a7c79;
+    }
+
+    .shell-kicker { margin-bottom: 20px; }
+    .expert-label { text-align: left; margin: 14px 0 12px 28px; }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--teal);
+      color: white;
+      min-height: 280px;
+      padding: 18px 18px 16px;
+    }
+
+    .panel.panel-light {
+      background: #f3f5f5;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      min-height: 216px;
+      margin-top: 32px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+    }
+
+    .panel-title-note {
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #4a7c79;
+      margin: 10px 0 12px;
+      text-align: center;
+    }
+
+    .panel.panel-light p {
+      text-align: center;
+      color: #66827f;
+      max-width: 210px;
+      margin: 0 auto;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .panel h3 {
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .panel > .pill {
+      display: table;
+      margin: 0 auto;
+    }
+
+    .panel:not(.panel-light) p {
+      text-align: center;
+      max-width: 230px;
+      margin: 0 auto;
+      color: rgba(255,255,255,.92);
+    }
+
+    .unlock-btn {
+      display: block;
+      margin: 26px auto 0;
+      min-width: 160px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4fa79f, #2f8f88);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 20px rgba(47, 143, 136, 0.20);
+      cursor: pointer;
+    }
+
+    .experts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 390px;
+      margin: 0 auto;
+    }
+
+    .expert-card {
+      min-height: 110px;
+      background: #f9fbfb;
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .expert-name {
+      font-weight: 800;
+      line-height: 1.18;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: #1e2a2a;
+    }
+
+    .expert-role {
+      font-size: 9px;
+      line-height: 1.35;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: #35706d;
+      font-weight: 800;
+    }
+
+    .micro-footer {
+      text-align: center;
+      font-size: 10px;
+      color: #8a9bb0;
+      margin-top: 46px;
+    }
+
+    .legal {
+      text-align: center;
+      font-size: 10px;
+      color: #a7afb8;
+      margin-top: 8px;
+    }
+
+    .bottom-steps {
+      padding-top: 26px;
+      padding-bottom: 34px;
+    }
+
+    .muted-grid-title { margin-bottom: 18px; }
+
+    .bottom-card {
+      min-height: 108px;
+      padding: 14px 18px 16px;
+      color: white;
+      background: var(--teal);
+    }
+
+    .bottom-card.gold {
+      background: var(--gold);
+      color: #29413f;
+    }
+
+    .notice {
+      margin-top: 22px;
+      color: #9aa4af;
+      font-size: 9px;
+    }
+
+    .gate-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 29, 28, 0.52);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 1000;
+    }
+
+    .gate-modal.show { display: flex; }
+
+    .gate-box {
+      width: min(460px, 100%);
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 28px 60px rgba(12, 38, 36, 0.24);
+    }
+
+    .gate-box h2 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .gate-box p {
+      margin: 0 0 18px;
+      color: rgba(33,72,70,.75);
+      line-height: 1.6;
+    }
+
+    .gate-box input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(33,72,70,.18);
+      font-size: 16px;
+      outline: none;
+    }
+
+    .gate-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .gate-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .gate-btn.primary { background: var(--gold); color: #2a3c3a; }
+    .gate-btn.secondary { background: #ecf1f1; color: #345b58; }
+    .gate-error {
+      margin-top: 10px;
+      color: #b13b3b;
+      font-size: 13px;
+      min-height: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .three-cards,
+      .portal-grid,
+      .experts {
+        grid-template-columns: 1fr;
+      }
+
+      .expert-label { margin-left: 0; text-align: center; }
+      .panel.panel-light { margin-top: 0; }
+      .experts { max-width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 22px 14px; }
+      .portal-shell { padding: 16px; }
+      .unlock-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  
+
+  <main>
+    <section class="section intro" id="partner-portal">
+      <div class="three-cards" style="margin-top:0;">
+        <article class="top-card">
+          <span class="pill pill-gold">Step 1</span>
+          <h3>Standard of Care Licensing</h3>
+          <p>Secure your B2B license to begin verification of Standards of Care.</p>
+        </article>
+        <article class="top-card">
+          <span class="pill pill-gold">Step 2</span>
+          <h3>Earn the Lotus Rating™</h3>
+          <p>Verify mastery of the Standards of Care (CPRS) to publish your verified standing.</p>
+        </article>
+        <article class="top-card">
+          <span class="pill pill-gold">Step 3</span>
+          <h3>Grow With Clarity</h3>
+          <p>Stand out with a name people trust. Prove your excellence and grow with confidence.</p>
+        </article>
+      </div>
+
+      <div class="portal-shell">
+        <div class="shell-kicker">Provider Validation: Mastering the Lotuses</div>
+        <div class="portal-grid">
+          <article class="panel panel-light">
+            <div class="panel-title-note">Provider Validation &amp; Mastery</div>
+            <p>
+              Access to the verified provider database is restricted. Please enter your partner
+              credentials to browse the standards of care network.
+            </p>
+            <button class="unlock-btn" id="openGateBtn" type="button">🔑 Unlock Provider Database</button>
+          </article>
+
+          <article class="panel">
+            <span class="pill pill-gold">Step 2</span>
+            <h3>Master the 4 Lotuses</h3>
+            <p>
+              Demonstrate excellence across Compassionate, Professional, Responsive, and Safe care.
+            </p>
+          </article>
+
+          <article class="panel">
+            <span class="pill pill-gold">Step 3</span>
+            <h3>Lotus Rating Certification</h3>
+            <p>
+              Finalize your Lotus Rating Certification™ through the CPRS standard.
+            </p>
+          </article>
+        </div>
+
+        <div class="expert-wrap">
+          <div class="expert-label">Care Authority &amp; Culture Coaching</div>
+          <div class="experts">
+            <article class="expert-card">
+              <div class="expert-name">Eduardo<br>Merino</div>
+              <div class="expert-role">Founder / CEO</div>
+            </article>
+            <article class="expert-card">
+              <div class="expert-name">Deborah<br>Atwell,<br>Cognitive Coach</div>
+              <div class="expert-role">Standards Licensing</div>
+            </article>
+            <article class="expert-card">
+              <div class="expert-name">Laura<br>Draper,<br>NP</div>
+              <div class="expert-role">M&amp;A Licensing Review</div>
+            </article>
+            <article class="expert-card">
+              <div class="expert-name">Angela<br>Cash,<br>Cognitive Coach</div>
+              <div class="expert-role">Strategy Coaching</div>
+            </article>
+            <article class="expert-card">
+              <div class="expert-name">Dr.<br>Natasha<br>Bogolpskaya</div>
+              <div class="expert-role">Culture Strategist</div>
+            </article>
+            <article class="expert-card">
+              <div class="expert-name">Iris<br>Merino,<br>LVN &amp;<br>Hospice Expert</div>
+              <div class="expert-role">Lotus Standards Expert</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="micro-footer">Compassionate + Professional + Responsive + SAFE</div>
+        <div class="legal">© 2026 Crossing Sunsets™</div>
+      </div>
+    </section>
+
+    <section class="section bottom-steps">
+      <div class="muted-grid-title">Mastery of the Standards of Care</div>
+      <div class="three-cards">
+        <article class="bottom-card">
+          <span class="pill pill-gold">Step 1</span>
+          <h4>Standard of Care Licensing</h4>
+          <p>Secure your B2B license to begin formal verification of standardized behavioral outcomes across your network.</p>
+        </article>
+        <article class="bottom-card">
+          <span class="pill pill-gold">Step 2</span>
+          <h4>Earn the Lotus Rating™</h4>
+          <p>Verify mastery of the Standards of Care (CPRS) to publish your verified standing as a global market trust signal.</p>
+        </article>
+        <article class="bottom-card gold">
+          <span class="pill pill-teal">Step 3</span>
+          <h4>Grow With Clarity</h4>
+          <p>Stand out. Use your Lotus Certification to prove your excellence and grow with total confidence.</p>
+        </article>
+      </div>
+      <div class="notice">Notice. Restricted to authorized enterprise partners and active M&amp;A licensing reviews.</div>
+    </section>
+  </main>
+
+  <div class="gate-modal" id="gateModal" aria-hidden="true">
+    <div class="gate-box" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+      <h2 id="gateTitle">Partner Access</h2>
+      <p>Enter the authorized password to access the verified provider database.</p>
+      <input id="gatePassword" type="password" placeholder="Enter password" autocomplete="current-password" />
+      <div class="gate-actions">
+        <button class="gate-btn primary" id="submitGate" type="button">Continue</button>
+        <button class="gate-btn secondary" id="closeGate" type="button">Close</button>
+      </div>
+      <div class="gate-error" id="gateError"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const PASSWORD = 'CROSSING2026';
+      const TARGET = 'browse-providers.html';
+
+      const modal = document.getElementById('gateModal');
+      const openBtn = document.getElementById('openGateBtn');
+      const closeBtn = document.getElementById('closeGate');
+      const submitBtn = document.getElementById('submitGate');
+      const input = document.getElementById('gatePassword');
+      const error = document.getElementById('gateError');
+
+      function openGate() {
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+        error.textContent = '';
+        input.value = '';
+        setTimeout(() => input.focus(), 60);
+      }
+
+      function closeGate() {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      function submitGate() {
+        const value = input.value.trim();
+        if (value === PASSWORD) {
+          sessionStorage.setItem('cs_partner_gate', 'granted');
+          window.location.href = TARGET;
+          return;
+        }
+        error.textContent = 'Incorrect password. Please try again.';
+        input.focus();
+        input.select();
+      }
+
+      openBtn.addEventListener('click', openGate);
+      closeBtn.addEventListener('click', closeGate);
+      submitBtn.addEventListener('click', submitGate);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') submitGate();
+        if (e.key === 'Escape') closeGate();
+      });
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeGate();
+      });
+    })();
+  </script>
 </body>
 </html>

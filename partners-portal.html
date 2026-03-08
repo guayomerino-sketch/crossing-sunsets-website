@@ -560,57 +560,55 @@
   </div>
 
   <script>
-    (function () {
-      const PASSWORD = 'CROSSING2026';
-     const TARGET = 'indexforpublic.html';
+  (function () {
+    const PASSWORD = 'CROSSING2026';
+    const TARGET = 'indexforpublic.html';
 
-      const modal = document.getElementById('gateModal');
-      const openBtn = document.getElementById('openGateBtn');
-      const closeBtn = document.getElementById('closeGate');
-      const submitBtn = document.getElementById('submitGate');
-      const input = document.getElementById('gatePassword');
-      const error = document.getElementById('gateError');
+    const modal = document.getElementById('gateModal');
+    const openBtn = document.getElementById('openGateBtn');
+    const closeBtn = document.getElementById('closeGate');
+    const submitBtn = document.getElementById('submitGate');
+    const input = document.getElementById('gatePassword');
+    const error = document.getElementById('gateError');
 
-      function openGate() {
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden', 'false');
-        error.textContent = '';
-        input.value = '';
-        setTimeout(() => input.focus(), 60);
+    function openGate() {
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      error.textContent = '';
+      input.value = '';
+      setTimeout(() => input.focus(), 60);
+    }
+
+    function closeGate() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function submitGate() {
+      const value = input.value.trim();
+      if (value === PASSWORD) {
+        sessionStorage.setItem('cs_partner_gate', 'granted');
+        window.location.href = TARGET;
+        return;
       }
+      error.textContent = 'Incorrect password. Please try again.';
+      input.focus();
+      input.select();
+    }
 
-      function closeGate() {
-        modal.classList.remove('show');
-        modal.setAttribute('aria-hidden', 'true');
-      }
+    openBtn.addEventListener('click', openGate);
+    closeBtn.addEventListener('click', closeGate);
+    submitBtn.addEventListener('click', submitGate);
 
-      function submitGate() {
-        const value = input.value.trim();
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitGate();
+      if (e.key === 'Escape') closeGate();
+    });
 
-        if (value === PASSWORD) {
-          sessionStorage.setItem('cs_partner_gate', 'granted');
-          window.location.href = TARGET;
-          return;
-        }
-
-        error.textContent = 'Incorrect password. Please try again.';
-        input.focus();
-        input.select();
-      }
-
-      openBtn.addEventListener('click', openGate);
-      closeBtn.addEventListener('click', closeGate);
-      submitBtn.addEventListener('click', submitGate);
-
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') submitGate();
-        if (e.key === 'Escape') closeGate();
-      });
-
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeGate();
-      });
-    })();
-  </script>
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeGate();
+    });
+  })();
+</script>
 </body>
 </html>

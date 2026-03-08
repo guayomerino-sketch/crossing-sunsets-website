@@ -62,11 +62,11 @@
             <div class="mb-16">
                 <h2 class="text-center text-[#35827b] font-bold uppercase tracking-widest text-xs mb-8">Enterprise Mastery: The Licensing Journey</h2>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="mastery-card">
-                        <span class="step-badge">Step 1</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Standard of Care Licensing</h3>
-                        <p class="text-sm opacity-90">Secure your B2B license to begin formal verification of standardized behavioral outcomes.</p>
-                    </div>
+                   <div class="mastery-card cursor-pointer" onclick="verifyCrossingGate()">
+    <span class="step-badge">Step 1</span>
+    <h3 class="text-xl font-bold mt-4 mb-2">Claim Your Place</h3>
+    <p class="text-sm opacity-90">Secure your license and submit provider details for clinical and behavioral verification.</p>
+</div>
                     <div class="mastery-card">
                         <span class="step-badge">Step 2</span>
                         <h3 class="text-xl font-bold mt-4 mb-2">Earn the Lotus Rating™</h3>
@@ -122,12 +122,15 @@
 
    <script>
     function verifyCrossingGate() {
+        // This creates the input box you are looking for
         const secret = prompt("Please enter the provider access code:");
+        
         if (secret === "CROSSING2026") {
-            // This is the direct link to your provider listings
+            // If correct, they go to the hospice/provider listings
             window.location.href = "browse-providers.html"; 
         } else if (secret !== null) {
-            alert("Incorrect code. Access to the provider database is restricted to verified partners.");
+            // If wrong, they stay on the page with a warning
+            alert("Incorrect code. Access is restricted to verified partners.");
         }
     }
 </script>

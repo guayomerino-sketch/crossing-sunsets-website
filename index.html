@@ -1,237 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossing Sunsets | The Verifiable Standard of Care</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
-        .aqua-gradient { background: linear-gradient(135deg, #4da099 0%, #35827b 100%); }
-        .btn-gold { background: #f6c845; color: #1a1a1a; }
-        .card-mastery { background: #4da099; color: white; border-radius: 20px; transition: all 0.3s; }
-        .card-mastery:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(53, 130, 123, 0.2); }
-        .card-growth { background: #f6c845; color: #1a1a1a; border-radius: 20px; transition: all 0.3s; }
-        .card-growth:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(246, 200, 69, 0.3); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crossing Sunsets | The Lotus Rating System™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
+    .aqua-gradient { background: linear-gradient(135deg, #4da099 0%, #35827b 100%); }
+    .btn-gold { background: #f6c845; color: #1a1a1a; }
+    .card-mastery { background: #4da099; color: white; border-radius: 20px; transition: all 0.3s; }
+    .card-mastery:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(53, 130, 123, 0.2); }
+    .card-growth { background: #f6c845; color: #1a1a1a; border-radius: 20px; transition: all 0.3s; }
+    .card-growth:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(246, 200, 69, 0.3); }
+  </style>
+
+  <script>
+    (function () {
+      const granted = sessionStorage.getItem('cs_gate_one') === 'granted';
+      if (granted) return;
+
+      const password = prompt('Please enter the private access code:');
+      if (password === 'SUNSET2026') {
+        sessionStorage.setItem('cs_gate_one', 'granted');
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          document.body.innerHTML = `
+            <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,Arial,sans-serif;background:#f8f8f8;">
+              <div style="text-align:center;padding:40px;">
+                <h1 style="font-size:32px;margin-bottom:12px;color:#35827b;">Access restricted</h1>
+                <p style="color:#666;">This page requires authorized private access.</p>
+              </div>
+            </div>
+          `;
+        });
+      }
+    })();
+  </script>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <header class="aqua-gradient text-white p-12 md:p-24 text-center">
-        <nav class="flex justify-between items-center mb-16">
-            <div class="flex items-center gap-3">
-                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-12 w-auto">
-                <span class="text-xl font-bold tracking-widest uppercase">Crossing Sunsets</span>
-            </div>
-            <a href="partners-portal.html" class="text-sm font-semibold uppercase tracking-widest hover:opacity-80 transition">
-                <i class="fa-solid fa-lock mr-2 text-xs"></i> Partner Login
-            </a>
-        </nav>
-
-        <h2 class="text-xs font-bold tracking-[0.4em] uppercase mb-4 opacity-90">Domain Advocacy & Culture Coaching</h2>
-        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            The Verifiable <br/><span class="italic font-light">Standard of Care.</span>
-        </h1>
-        <p class="text-lg md:text-xl leading-relaxed mb-12 max-w-3xl mx-auto opacity-95">
-            Crossing Sunsets is a <strong>B2B Standards of Care Pioneer</strong>. We build and license <strong>Standardized Behavioral Outcomes</strong> through the <strong>Lotus Rating System™</strong>.
-        </p>
-
-        <div class="flex flex-col sm:flex-row justify-center gap-6">
-            <a href="partners-portal.html" class="btn-gold px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest shadow-xl hover:brightness-110 transition">
-                Enterprise Partner Login
-            </a>
-            <a href="mailto:support@crossingsunsets.app" class="border border-white/40 bg-white/10 hover:bg-white/20 px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition">
-                Request Demonstration Access
-            </a>
-        </div>
-    </header>
-
-    <section class="py-16 bg-white text-center px-6 border-b border-slate-100">
-        <p class="text-[#35827b] font-medium text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Crossing Sunsets™</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
-        .aqua-gradient { background: linear-gradient(135deg, #4da099 0%, #35827b 100%); }
-        .mastery-card {
-            background-color: #4da099;
-            border-radius: 20px;
-            padding: 24px;
-            color: white;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .mastery-card:hover { transform: translateY(-5px); }
-        .step-badge {
-            background-color: #f6c845;
-            color: #1a1a1a;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 99px;
-            font-size: 10px;
-            text-transform: uppercase;
-        }
-        .expert-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 24px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen">
-
-    <nav class="p-8 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-10 w-auto">
-                <span class="text-lg font-bold tracking-widest uppercase text-[#35827b]">Crossing Sunsets</span>
-            </div>
-            <a href="index.html" class="text-sm font-semibold text-slate-500 hover:text-[#35827b] transition uppercase tracking-widest">Home</a>
-        </div>
+  <header class="aqua-gradient text-white p-12 md:p-24 text-center">
+    <nav class="flex justify-between items-center mb-16">
+      <div class="flex items-center gap-3">
+        <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-12 w-auto">
+        <span class="text-xl font-bold tracking-widest uppercase">Crossing Sunsets</span>
+      </div>
+      <a href="partners-portal.html" class="text-sm font-semibold uppercase tracking-widest hover:opacity-80 transition">
+        <i class="fa-solid fa-lock mr-2 text-xs"></i> Partner Login
+      </a>
     </nav>
 
-    <header class="py-16 px-6 text-center">
-        <h2 class="text-xs font-bold tracking-[0.4em] uppercase mb-4 text-[#35827b]">Our Mission & Advocacy</h2>
-        <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed italic">
-            "A systematic approach to Standards of Care."
-    </header>
-
-    <main class="flex-grow pb-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            
-            <div class="mb-16">
-                <h2 class="text-center text-[#35827b] font-bold uppercase tracking-widest text-xs mb-8">Enterprise Mastery: The Licensing Journey</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="mastery-card">
-                        <span class="step-badge">Step 1</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Standard of Care Licensing</h3>
-                        <p class="text-sm opacity-90">Secure your B2B license to begin  verification of Standards of Care.</p>
-                    </div>
-                    <div class="mastery-card">
-                        <span class="step-badge">Step 2</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Earn the Lotus Rating™</h3>
-                        <p class="text-sm opacity-90">Verify mastery of the Standards of Care (CPRS) to publish your verified standing.</p>
-                    </div>
-                    <div class="mastery-card">
-                        <span class="step-badge">Step 3</span>
-                        <h3 class="text-xl font-bold mt-4 mb-2">Grow With Clarity</h3>
-                        <p class="text-sm opacity-90">Stand out with a name people trust. Prove your excellence and grow with confidence.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-24 bg-slate-50 p-10 rounded-3xl border border-slate-100">
-    <h2 class="text-center text-[#35827b] font-bold uppercase tracking-widest text-xs mb-8">Provider Validation: Mastering the Lotuses</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-        
-    <div class="mb-24 bg-slate-50 p-12 rounded-3xl border border-slate-100 text-center">
-    <h2 class="text-[#35827b] font-bold uppercase tracking-widest text-xs mb-6">Provider Validation & Mastery</h2>
-    <p class="text-slate-500 text-sm mb-10 max-w-2xl mx-auto">
-        Access to the verified provider database is restricted. Please enter your partner credentials to browse the standards of care network.
+    <h2 class="text-xs font-bold tracking-[0.4em] uppercase mb-4 opacity-90">Domain Advocacy &amp; Culture Coaching</h2>
+    <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+      The Verifiable <br><span class="italic font-light">Standard of Care.</span>
+    </h1>
+    <p class="text-lg md:text-xl leading-relaxed mb-12 max-w-3xl mx-auto opacity-95">
+      Crossing Sunsets is a <strong>B2B Standards of Care Pioneer</strong>. We build and license
+      <strong>Certified Standards of Care</strong> through the <strong>Lotus Rating System™</strong>.
     </p>
-    
-    <button onclick="verifyCrossingGate()" class="aqua-gradient text-white px-12 py-4 rounded-full font-bold text-sm uppercase tracking-[0.2em] shadow-xl hover:brightness-110 transition-all transform hover:scale-105">
-        <i class="fa-solid fa-key mr-3"></i> Unlock Provider Database
-    </button>
-</div>
 
-        <div class="mastery-card cursor-pointer" onclick="verifyCrossingGate()">
-            <span class="step-badge">Step 2</span>
-            <h3 class="text-xl font-bold mt-4 mb-2">Master the 4 Lotuses</h3>
-            <p class="text-sm opacity-90">Demonstrate excellence across: Compassionate, Professional, Responsive, and Safe care.</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-6">
+      <a href="partners-portal.html" class="btn-gold px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest shadow-xl hover:brightness-110 transition">
+        Enterprise Partner Login
+      </a>
+      <a href="mailto:support@crossingsunsets.app" class="border border-white/40 bg-white/10 hover:bg-white/20 px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition">
+        Request Demonstration Access
+      </a>
+    </div>
+  </header>
+
+  <section class="py-16 bg-white text-center px-6 border-b border-slate-100">
+    <p class="text-[#35827b] font-medium text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+      Crossing Sunsets™ helps make quality visible for families.
+    </p>
+  </section>
+
+  <main class="flex-grow bg-slate-50 py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-center text-[#35827b] font-bold uppercase tracking-widest text-xs mb-12">
+        Mastery of the Standards of Care
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-mastery p-8 shadow-lg">
+          <span class="bg-[#f6c845] text-[#1a1a1a] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Step 1</span>
+          <h3 class="text-2xl font-bold mt-4 mb-4">Standard of Care Licensing</h3>
+          <p class="text-sm opacity-90 leading-relaxed">
+            Secure your B2B license to begin the verification process.
+          </p>
         </div>
 
-        <div class="mastery-card cursor-pointer" onclick="verifyCrossingGate()">
-            <span class="step-badge">Step 3</span>
-            <h3 class="text-xl font-bold mt-4 mb-2">Lotus Rating Certification</h3>
-            <p class="text-sm opacity-90">Finalize your Lotus Rating Certification™ through the CPR = S standard.</p>
+        <div class="card-mastery p-8 shadow-lg">
+          <span class="bg-[#f6c845] text-[#1a1a1a] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Step 2</span>
+          <h3 class="text-2xl font-bold mt-4 mb-4">Earn the Lotus Rating™</h3>
+          <p class="text-sm opacity-90 leading-relaxed">
+            Verify mastery of the Standards of Care (CPRS) to publish your verified standing as a global market trust signal.
+          </p>
         </div>
 
-
-            <div class="text-center mb-12">
-                <h2 class="text-[#35827b] font-bold uppercase tracking-widest text-xs">Care Authority & Culture Coaching</h2>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="expert-card"><h3 class="font-bold">Eduardo Merino</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Founder / CEO</p></div>
-                <div class="expert-card"><h3 class="font-bold">Deborah Atwell, Cognitive Coach</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Standards Licensing</p></div>
-                <div class="expert-card"><h3 class="font-bold">Laura Draper, NP</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">M&A Licensing Review</p></div>
-                <div class="expert-card"><h3 class="font-bold">Angela Cash, Cognitive Coach</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Strategy & Coaching</p></div>
-                <div class="expert-card"><h3 class="font-bold">Dr. Natasha Bogolsposkaya</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Culture Strategist</p></div>
-                <div class="expert-card"><h3 class="font-bold">Iris Merino, LVN & Hospice Expert</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Lotus Standards Expert</p></div>
-            </div>
+        <div class="card-growth p-8 shadow-xl">
+          <div class="flex justify-between items-start">
+            <span class="bg-[#35827b] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Step 3</span>
+            <i class="fa-solid fa-chart-line text-[#35827b]"></i>
+          </div>
+          <h3 class="text-2xl font-bold mt-4 mb-4 text-[#35827b]">Grow With Clarity</h3>
+          <p class="text-sm leading-relaxed text-[#35827b] opacity-80">
+            Stand out. Use your Lotus Certification to prove your excellence and grow with total confidence.
+          </p>
         </div>
-    </main>
+      </div>
+    </div>
+  </main>
 
-    <footer class="p-12 border-t border-slate-200 bg-white text-center">
-        <p class="text-xs text-slate-400">Compassionate + Professional + Responsive = <strong>SAFE</strong></p>
-        <p class="text-[10px] text-slate-300 mt-4">© 2026 Crossing Sunsets™</p>
-    </footer>
-
-    <script>
-    function verifyCrossingGate() {
-        const secret = prompt("Please enter the provider access code:");
-        if (secret === "CROSSING2026") {
-            window.location.href = "browse-providers.html"; 
-        } else if (secret !== null) {
-            alert("Incorrect code. Access is restricted to verified partners.");
-        }
-    }
-    </script>
-
-</body>
-</html>
-"
-        </p>
-    </section>
-
-    <main class="flex-grow bg-slate-50 py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-[#35827b] font-bold uppercase tracking-widest text-xs mb-12">Mastery of the Standards of Care</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-mastery p-8 shadow-lg">
-                    <span class="bg-[#f6c845] text-[#1a1a1a] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Step 1</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-4">Standard of Care Licensing</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">Secure your B2B license to begin formal verification of standardized behavioral outcomes across your network.</p>
-                </div>
-
-                <div class="card-mastery p-8 shadow-lg">
-                    <span class="bg-[#f6c845] text-[#1a1a1a] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Step 2</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-4">Earn the Lotus Rating™</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">Verify mastery of the Standards of Care (CPRS) to publish your verified standing as a global market trust signal.</p>
-                </div>
-
-                <div class="card-growth p-8 shadow-xl">
-                    <div class="flex justify-between items-start">
-                        <span class="bg-[#35827b] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Step 3</span>
-                        <i class="fa-solid fa-chart-line text-[#35827b]"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mt-4 mb-4 text-[#35827b]">Grow With Clarity</h3>
-                    <p class="text-sm leading-relaxed text-[#35827b] opacity-80">Stand out. Use your Lotus Certification to prove your excellence and grow with total confidence.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="p-12 border-t border-slate-200 bg-slate-50 text-center">
-        <p class="text-[11px] text-slate-500 uppercase tracking-widest leading-loose mb-6">
-            <strong class="text-[#35827b]">Notice:</strong> Restricted to authorized enterprise partners and active M&A licensing reviews.
-        </p>
-        <p class="text-sm text-[#35827b] font-bold mb-2">The Last Journey Transition</p>
-        <p class="text-xs text-slate-400">Compassionate + Professional + Responsive = <strong>SAFE</strong></p>
-        <p class="mt-8 text-[10px] text-slate-300 italic">Last Updated: February 2026</p>
-    </footer>
+  <footer class="p-12 border-t border-slate-200 bg-slate-50 text-center">
+    <p class="text-[11px] text-slate-500 uppercase tracking-widest leading-loose mb-6">
+      <strong class="text-[#35827b]">Notice:</strong> Restricted to authorized enterprise partners and active M&amp;A licensing reviews.
+    </p>
+    <p class="text-sm text-[#35827b] font-bold mb-2">The Last Journey Transition</p>
+    <p class="text-xs text-slate-400">Compassionate + Professional + Responsive = <strong>SAFE</strong></p>
+    <p class="mt-8 text-[10px] text-slate-300 italic">Last Updated: March 2026</p>
+  </footer>
 
 </body>
 </html>

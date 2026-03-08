@@ -16,7 +16,6 @@
             padding: 24px;
             color: white;
             transition: transform 0.3s ease;
-            cursor: pointer;
         }
         .mastery-card:hover { transform: translateY(-5px); }
         .step-badge {
@@ -32,8 +31,9 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 20px;
-            padding: 24px;
+            padding: 16px;
             text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
@@ -75,17 +75,18 @@
                 <p class="text-slate-500 text-sm mb-10 max-w-2xl mx-auto">
                     Access to the verified provider database is restricted. Please enter your partner credentials to browse the standards of care network.
                 </p>
+                
                 <button onclick="verifyCrossingGate()" class="aqua-gradient text-white px-12 py-4 rounded-full font-bold text-sm uppercase tracking-[0.2em] shadow-xl hover:brightness-110 transition-all transform hover:scale-105 mb-12">
                     <i class="fa-solid fa-key mr-3"></i> Unlock Provider Database
                 </button>
 
                 <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <div class="mastery-card" onclick="verifyCrossingGate()">
+                    <div class="mastery-card cursor-pointer" onclick="verifyCrossingGate()">
                         <span class="step-badge">Step 2</span>
                         <h3 class="text-xl font-bold mt-4 mb-2">Master the 4 Lotuses</h3>
                         <p class="text-sm opacity-90">Demonstrate excellence across: Compassionate, Professional, Responsive, and Safe care.</p>
                     </div>
-                    <div class="mastery-card" onclick="verifyCrossingGate()">
+                    <div class="mastery-card cursor-pointer" onclick="verifyCrossingGate()">
                         <span class="step-badge">Step 3</span>
                         <h3 class="text-xl font-bold mt-4 mb-2">Lotus Rating Certification</h3>
                         <p class="text-sm opacity-90">Finalize your Lotus Rating Certification™ through the CPR = S standard.</p>
@@ -97,15 +98,38 @@
                 <h2 class="text-[#35827b] font-bold uppercase tracking-widest text-xs">Care Authority & Culture Coaching</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="expert-card"><h3 class="font-bold">Eduardo Merino</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Founder / CEO</p></div>
-                <div class="expert-card"><h3 class="font-bold">Deborah Atwell</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Standards Licensing</p></div>
-                <div class="expert-card"><h3 class="font-bold">Laura Draper, NP</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">M&A Licensing Review</p></div>
-                <div class="expert-card"><h3 class="font-bold">Angela Cash</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Strategy & Coaching</p></div>
-                <div class="expert-card"><h3 class="font-bold">Dr. Natasha Bogolsposkaya</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Culture Strategist</p></div>
-                <div class="expert-card"><h3 class="font-bold">Iris Merino</h3><p class="text-[#35827b] text-[10px] font-bold uppercase">Lotus Standards Expert</p></div>
+                <div class="expert-card">
+                    <h3 class="font-bold text-slate-800 text-sm">Eduardo Merino</h3>
+                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Founder / CEO</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="font-bold text-slate-800 text-sm">Deborah Atwell</h3>
+                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Standards Licensing</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="font-bold text-slate-800 text-sm">Laura Draper, NP</h3>
+                    <p class="text-[#35827b] text-[10px] font-bold uppercase">M&A Licensing Review</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="font-bold text-slate-800 text-sm">Angela Cash</h3>
+                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Strategy & Coaching</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="font-bold text-slate-800 text-sm">Dr. Natasha Bogolsposkaya</h3>
+                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Culture Strategist</p>
+                </div>
+                <div class="expert-card">
+                    <h3 class="font-bold text-slate-800 text-sm">Iris Merino</h3>
+                    <p class="text-[#35827b] text-[10px] font-bold uppercase">Lotus Standards Expert</p>
+                </div>
             </div>
         </div>
     </main>
+
+    <footer class="p-12 border-t border-slate-200 bg-white text-center">
+        <p class="text-xs text-slate-400">Compassionate + Professional + Responsive = <strong>SAFE</strong></p>
+        <p class="text-[10px] text-slate-300 mt-4">© 2026 Crossing Sunsets™</p>
+    </footer>
 
     <script>
     function verifyCrossingGate() {

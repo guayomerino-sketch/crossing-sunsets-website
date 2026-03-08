@@ -120,17 +120,17 @@
         <p class="text-[10px] text-slate-300 mt-4">© 2026 Crossing Sunsets™</p>
     </footer>
 
-    <script>
-        function checkProviderAccess() {
-            const accessCode = prompt("Please enter the provider access code:");
-            if (accessCode === "CROSSING2026") {
-                // Replace with the actual URL of your provider portal
-                window.location.href = "provider-portal.html"; 
-            } else if (accessCode !== null) {
-                alert("Incorrect code. Access restricted to verified partners.");
-            }
+   <script>
+    function verifyCrossingGate() {
+        const secret = prompt("Please enter the provider access code:");
+        if (secret === "CROSSING2026") {
+            // This is the direct link to your provider listings
+            window.location.href = "browse-providers.html"; 
+        } else if (secret !== null) {
+            alert("Incorrect code. Access to the provider database is restricted to verified partners.");
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>

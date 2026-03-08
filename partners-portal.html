@@ -559,7 +559,21 @@
     </div>
   </div>
 
-  <script>
+<script>
+  (function () {
+    const granted = sessionStorage.getItem('cs_gate_one') === 'granted';
+    if (granted) return;
+
+    const password = prompt('Please enter the private access code:');
+    if (password === 'SUNSET2026') {
+      sessionStorage.setItem('cs_gate_one', 'granted');
+    } else {
+      window.location.replace('index.html');
+    }
+  })();
+</script>
+
+<script>
   (function () {
     const PASSWORD = 'CROSSING2026';
     const TARGET = 'indexforpublic.html';

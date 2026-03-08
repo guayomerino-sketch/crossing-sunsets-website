@@ -17,28 +17,6 @@
     .card-growth:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(246, 200, 69, 0.3); }
   </style>
 
-  <script>
-    (function () {
-      const granted = sessionStorage.getItem('cs_gate_one') === 'granted';
-      if (granted) return;
-
-      const password = prompt('Please enter the private access code:');
-      if (password === 'SUNSET2026') {
-        sessionStorage.setItem('cs_gate_one', 'granted');
-      } else {
-        document.addEventListener('DOMContentLoaded', function () {
-          document.body.innerHTML = `
-            <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,Arial,sans-serif;background:#f8f8f8;">
-              <div style="text-align:center;padding:40px;">
-                <h1 style="font-size:32px;margin-bottom:12px;color:#35827b;">Access restricted</h1>
-                <p style="color:#666;">This page requires authorized private access.</p>
-              </div>
-            </div>
-          `;
-        });
-      }
-    })();
-  </script>
 </head>
 <body class="flex flex-col min-h-screen">
 

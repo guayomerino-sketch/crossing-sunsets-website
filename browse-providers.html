@@ -1,142 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Browse Care Providers - Crossing Sunsets™</title>
-  <style>
-    /* Crossing Sunsets Standard Theme */
-    :root { --primary: #00bcd4; --dark: #023047; --bg: #f8fafc; --text: #334155; }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
-    body { background: var(--bg); color: var(--text); padding-bottom: 4rem; }
-
-    /* Navigation */
-    .nav { background: white; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
-    .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--primary); }
-
-    /* Layout */
-    .container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-
-    /* Provider Card */
-    .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossing Sunsets™ | Browse Certified Providers</title>
     
-    .card-header { background: var(--primary); padding: 2rem; text-align: center; color: white; position: relative; }
-    .avatar { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .card-location { font-size: 0.9rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; gap: 5px; }
+    <style>
+        /* Immersive Background */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #006B70 0%, #003a3d 100%);
+            min-height: 100vh;
+            color: white;
+            padding-bottom: 60px;
+        }
 
-    .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
-    .tag { align-self: flex-start; background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
-    .description { font-size: 0.95rem; line-height: 1.6; color: #64748b; flex: 1; }
-    
-    .meta-row { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #475569; }
-    
-    /* Buttons */
-    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
-    .btn { padding: 0.75rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
-    .btn-primary { background: #ff5722; color: white; } /* "Read Reviews" Orange */
-    .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+        /* Navigation */
+        .nav-container {
+            width: 100%;
+            padding: 24px 48px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
 
-    .btn:hover { opacity: 0.9; }
-  </style>
+        .logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 18px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            margin: 0 0 12px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Frosted Glass Shared Class */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* The C.P.R.S. Public Rubric */
+        .rubric-section {
+            padding: 32px;
+            margin-bottom: 48px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .rubric-item h3 {
+            color: #F57C00;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0 0 8px 0;
+        }
+
+        .rubric-item p {
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Provider Grid */
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .provider-card {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .provider-badge {
+            display: inline-block;
+            background: rgba(245, 124, 0, 0.2);
+            color: #F57C00;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(245, 124, 0, 0.3);
+        }
+
+        .provider-card h2 {
+            font-size: 22px;
+            margin: 0 0 8px 0;
+        }
+
+        .provider-card .location {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 24px;
+        }
+
+        .provider-card .details {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        /* Action Buttons */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #F57C00;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #e56b00;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+    </style>
 </head>
 <body>
 
-  <nav class="nav">
-    <a href="#" class="brand">
-      <img src="https://via.placeholder.com/40/00bcd4/ffffff?text=CS" style="border-radius:50%" />
-      Crossing Sunsets™
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="browse-providers.html" style="color:var(--primary)">Browse Providers</a>
-      <a href="lotus-review.html">Leave a Review</a>
-    </div>
-  </nav>
+    <nav class="nav-container">
+        <div class="logo">CROSSING SUNSETS™</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="partners-portal.html">Provider Login</a>
+        </div>
+    </nav>
 
-  <div class="container">
-    <div class="grid" id="providersGrid">
-      </div>
-  </div>
+    <div class="container">
+        <div class="page-header">
+            <h1>Certified Providers</h1>
+            <p>Find facilities that have earned the Lotus Rating™ by committing to transparent, verifiable, and objective standards of care.</p>
+        </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-      authDomain: "crossing-sunsets.firebaseapp.com",
-      projectId: "crossing-sunsets",
-      storageBucket: "crossing-sunsets.firebasestorage.app",
-      messagingSenderId: "83761464492",
-      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    async function loadProviders() {
-      const grid = document.getElementById('providersGrid');
-      grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Loading Providers...</p>';
-
-      // Only show APPROVED providers
-      const q = query(collection(db, "providers"), where("status", "==", "Approved"));
-      
-      try {
-        const snapshot = await getDocs(q);
-        grid.innerHTML = ""; // Clear loading message
-
-        if (snapshot.empty) {
-          grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No approved providers found yet.</p>';
-          return;
-        }
-
-        snapshot.forEach(doc => {
-          const p = doc.data();
-          
-          // THIS IS THE FIX: The link now points to profile.html
-          const profileLink = `profile.html?id=${doc.id}`;
-          
-          // Fallback icons based on facility type
-          let icon = "🏥";
-          if (p.facilityType === "Hospice") icon = "☘️";
-          if (p.facilityType === "Home Care") icon = "🏠";
-
-          grid.innerHTML += `
-            <div class="card">
-              <div class="card-header">
-                <div class="avatar">${icon}</div>
-                <div class="card-title">${p.businessName || "Provider"}</div>
-                <div class="card-location">📍 ${p.city || "Location not specified"}</div>
-              </div>
-              <div class="card-body">
-                <span class="tag">${p.facilityType || "Care Provider"}</span>
-                <p class="description">
-                  ${p.bio || "Quality care services."}
-                </p>
-
-                <div class="meta-row">📧 Email: <a href="mailto:${p.email}">${p.email}</a></div>
-                
-                <div class="actions">
-                  <a href="${profileLink}" class="btn btn-primary">📖 Read Reviews</a>
-                  <a href="lotus-review.html" class="btn btn-outline">✍️ Leave a Review</a>
-                </div>
-              </div>
+        <!-- The Secret Sauce: Public C.P.R.S. Rubric -->
+        <div class="glass-card rubric-section">
+            <div class="rubric-item">
+                <h3>Compassionate</h3>
+                <p>An emotionally supportive, attentive presence characterized by high Emotional Intelligence.</p>
             </div>
-          `;
-        });
+            <div class="rubric-item">
+                <h3>Professional</h3>
+                <p>Skilled, accountable, and reliable care delivery with total ownership of the patient environment.</p>
+            </div>
+            <div class="rubric-item">
+                <h3>Responsive</h3>
+                <p>Timely communication and frictionless follow-through. Families never have to ask twice.</p>
+            </div>
+            <div class="rubric-item">
+                <h3>Safe</h3>
+                <p>The resulting environment when Compassionate, Professional, and Responsive standards are objectively met.</p>
+            </div>
+        </div>
 
-      } catch (error) {
-        console.error(error);
-        grid.innerHTML = `<p style="color:red; text-align:center;">Error loading providers.</p>`;
-      }
-    }
+        <!-- Featured Providers Grid -->
+        <div class="provider-grid">
+            
+            <!-- Provider 1 -->
+            <div class="glass-card provider-card">
+                <div>
+                    <span class="provider-badge">4-Lotus Certified</span>
+                    <h2>EASE IN Hospice Care, Inc.</h2>
+                    <div class="location">Glendale, CA • Hospice Care</div>
+                    <div class="details">
+                        Providing specialized support for life-limiting illnesses. We replace administrative mystery with objective proof, ensuring your loved one receives compassionate, responsive care.
+                        <br><br>
+                        <strong>Liaison:</strong> Iris Merino<br>
+                        <strong>Phone:</strong> (747) 215-6794
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary">Read Reviews</a>
+                    <a href="#" class="btn btn-secondary">Leave Review</a>
+                </div>
+            </div>
 
-    loadProviders();
-  </script>
+            <!-- Provider 2 -->
+            <div class="glass-card provider-card">
+                <div>
+                    <span class="provider-badge">4-Lotus Certified</span>
+                    <h2>AllPeace Care Hospice</h2>
+                    <div class="location">Torrance, CA • Hospice Care</div>
+                    <div class="details">
+                        Compassionate care affirming life fully and comfortably. Our staff logs real-time behavioral data to verify safety and provide your family with absolute peace of mind.
+                        <br><br>
+                        <strong>Liaison:</strong> Iris Merino<br>
+                        <strong>Phone:</strong> (310) 956-1240
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary">Read Reviews</a>
+                    <a href="#" class="btn btn-secondary">Leave Review</a>
+                </div>
+            </div>
+
+            <!-- Placeholder for additional providers -->
+            <div class="glass-card provider-card" style="opacity: 0.6; display: flex; align-items: center; justify-content: center; text-align: center;">
+                <div>
+                    <h2>Expand Your Network</h2>
+                    <p style="font-size: 14px;">Looking to certify your facility?</p>
+                    <a href="index.html" class="btn btn-secondary" style="display: inline-block; margin-top: 16px;">Learn the Framework</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>

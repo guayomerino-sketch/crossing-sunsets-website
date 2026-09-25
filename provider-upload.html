@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upload Review Cards - Crossing Sunsets™</title>
+  <style>
+    *{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+    body{margin:0;min-height:100vh;background:#f5fbff;color:#023047;display:flex;align-items:center;justify-content:center;padding:20px}
+    .card{width:100%;max-width:720px;background:#fff;border:1px solid #e0e7f1;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.05);padding:18px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{width:40px;height:40px;border-radius:12px}
+    h1{font-size:18px;margin:0}
+    .sub{color:#607d8b;margin:6px 0 14px 0;font-size:14px;line-height:1.35}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#e0f7fa;color:#006064;font-weight:700;font-size:13px}
+    label{display:block;font-weight:800;margin:12px 0 6px}
+    input[type="file"], textarea{width:100%;border:1px solid #e0e7f1;border-radius:12px;padding:12px;font-size:14px}
+    textarea{min-height:90px;resize:vertical}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{border:none;border-radius:999px;padding:12px 16px;font-weight:800;cursor:pointer}
+    .btnPrimary{background:#00bcd4;color:#fff}
+    .btnGhost{background:#fff;border:1px solid #e0e7f1;color:#00bcd4}
+    .status{margin-top:10px;font-size:14px;color:#607d8b}
+    .status.error{color:#c62828;font-weight:800}
+    .status.ok{color:#2e7d32;font-weight:800}
+    .list{margin-top:8px;color:#455a64;font-size:13px}
+    .list li{margin:6px 0}
+    .small{margin-top:10px;color:#90a4ae;font-size:12px;line-height:1.35}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="top">
+      <div class="brand">
+        <img src="crossing-sunsets-logo.png" alt="Logo" onerror="this.style.display='none'"/>
+        <div>
+          <h1>Upload Review Cards</h1>
+          <div class="pill" id="provider-pill">Loading provider…</div>
+        </div>
+      </div>
+      <button class="btn btnGhost" id="signoutBtn" type="button">Sign Out</button>
+    </div>
+
+    <div class="sub">
+      Upload photos or PDFs of handwritten cards or printed reviews.
+      <strong>Uploads are private and reviewed before publishing.</strong>
+      <br><strong>Tip:</strong> Avoid patient identifiers or sensitive medical details.
+    </div>
+
+    <label>Upload files (images or PDFs)</label>
+    <input id="files" type="file" multiple accept="image/*,application/pdf" />
+
+    <div class="list" id="fileList"></div>
+
+    <label>Optional notes</label>
+    <textarea id="notes" placeholder="Any context you want us to know? (optional)"></textarea>
+
+    <div class="row">
+      <button class="btn btnPrimary" id="uploadBtn" type="button">Upload</button>
+      <button class="btn btnGhost" id="clearBtn" type="button">Clear</button>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="small">© 2025 Crossing Sunsets™ — All rights reserved.</div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc, collection, addDoc, serverTimestamp, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      databaseURL: "https://crossing-sunsets-default-rtdb.firebaseio.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
+      measurementId: "G-LG8VN0EZB7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    const providerPill = document.getElementById("provider-pill");
+    const signoutBtn = document.getElementById("signoutBtn");
+    const filesInput = document.getElementById("files");
+    const fileList = document.getElementById("fileList");
+    const notesEl = document.getElementById("notes");
+    const uploadBtn = document.getElementById("uploadBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const statusEl = document.getElementById("status");
+
+    let currentUser = null;
+    let providerId = "";
+    let providerName = "";
+
+    function setStatus(msg, type="") {
+      statusEl.textContent = msg;
+      statusEl.className = "status" + (type ? " " + type : "");
+    }
+
+    function renderFileList() {
+      const files = Array.from(filesInput.files || []);
+      if (!files.length) { fileList.innerHTML = ""; return; }
+      const items = files.map(f => `<li>${f.name} <span style="color:#90a4ae">(${Math.round(f.size/1024)} KB)</span></li>`).join("");
+      fileList.innerHTML = `<ul>${items}</ul>`;
+    }
+
+    filesInput.addEventListener("change", renderFileList);
+
+    clearBtn.addEventListener("click", () => {
+      filesInput.value = "";
+      notesEl.value = "";
+      renderFileList();
+      setStatus("");
+    });
+
+    signoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "index.html";
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        // For now, reuse admin-login to authenticate.
+        // Later we can add provider-login.html, same style.
+        window.location.href = "admin-login.html";
+        return;
+      }
+
+      currentUser = user;
+
+      const udoc = await getDoc(doc(db, "users", user.uid));
+      if (!udoc.exists()) {
+        await signOut(auth);
+        window.location.href = "admin-login.html";
+        return;
+      }
+
+      const data = udoc.data() || {};
+      if (data.role !== "provider") {
+        await signOut(auth);
+        window.location.href = "admin-login.html";
+        return;
+      }
+
+      providerId = data.providerId || "";
+      providerName = data.providerName || "";
+      providerPill.textContent = providerName ? providerName : `Provider: ${providerId || "(missing providerId)"}`;
+
+      if (!providerId) setStatus("Your account is missing providerId. Ask admin to set users/{uid}.providerId.", "error");
+      else setStatus("Ready to upload.", "");
+    });
+
+    uploadBtn.addEventListener("click", async () => {
+      const files = Array.from(filesInput.files || []);
+      const notes = (notesEl.value || "").trim();
+
+      if (!currentUser) return;
+      if (!files.length) return setStatus("Please select at least one file.", "error");
+      if (!providerId) return setStatus("Missing providerId on your user account.", "error");
+
+      const maxMB = 12;
+      const tooBig = files.find(f => (f.size / (1024*1024)) > maxMB);
+      if (tooBig) return setStatus(`File too large: ${tooBig.name}. Keep files under ${maxMB}MB.`, "error");
+
+      try {
+        uploadBtn.disabled = true;
+        setStatus("Uploading…");
+
+        const docRef = await addDoc(collection(db, "review_uploads"), {
+          providerId,
+          providerName: providerName || "",
+          uploadedByUid: currentUser.uid,
+          uploadedByEmail: currentUser.email || "",
+          notes,
+          files: [],
+          status: "pending",
+          createdAt: serverTimestamp()
+        });
+
+        const uploadId = docRef.id;
+        const uploadedFiles = [];
+
+        for (const f of files) {
+          const safeName = (f.name || "file").replace(/[^\w.\-() ]+/g, "_");
+          const storagePath = `provider_uploads/${providerId}/${uploadId}/${safeName}`;
+          const storageRef = ref(storage, storagePath);
+
+          await uploadBytes(storageRef, f, { contentType: f.type || "application/octet-stream" });
+          const downloadUrl = await getDownloadURL(storageRef);
+
+          uploadedFiles.push({
+            name: f.name,
+            contentType: f.type || "",
+            size: f.size,
+            storagePath,
+            downloadUrl
+          });
+        }
+
+        await updateDoc(doc(db, "review_uploads", uploadId), { files: uploadedFiles });
+
+        setStatus("Upload complete. Thank you!", "ok");
+        filesInput.value = "";
+        notesEl.value = "";
+        renderFileList();
+
+      } catch (e) {
+        console.error(e);
+        setStatus("Upload failed. Please try again.", "error");
+      } finally {
+        uploadBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

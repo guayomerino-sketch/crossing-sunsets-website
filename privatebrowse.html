@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script>
-  (function () {
-    const granted = sessionStorage.getItem('cs_partner_gate') === 'granted';
-    if (!granted) {
-      window.location.replace('partners-portal.html');
-    }
-  })();
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,16 +43,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 
-                <div class="flex items-center gap-4">
-                    <a href="#" class="flex-shrink-0">
-                        <img src="crossing-sunsets-logo.png" alt="Crossing Sunsets" class="h-16 w-auto bg-white rounded-lg p-1 shadow-sm"> 
-                    </a>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-6">
+            
                     
                     <a href="#" class="hover:text-yellow-200 font-medium transition">Home</a>
-                  <a href="browse-providers.html" class="hover:text-yellow-200 font-medium transition">Lotus Network</a>
+                    <a href="browse-providers.html" class="hover:text-yellow-200 font-medium transition">Find Providers</a>
                     
                     <div class="relative group">
                         <button class="bg-white/20 hover:bg-white/30 text-white px-5 py-2 rounded-full text-sm font-bold transition flex items-center cursor-pointer">
@@ -82,49 +68,105 @@
         </div>
     </nav>
 
-    <div class="brand-bg relative overflow-hidden"> 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-            
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-              The Benchmark for Elite Care
-            </h1>
+   <!-- HERO (Apple-style / full-screen) -->
+<section class="brand-bg relative overflow-hidden">
+  <!-- soft gradient + vignette -->
+  <div class="absolute inset-0 opacity-70">
+    <div class="absolute -top-40 -left-40 w-[680px] h-[680px] bg-white/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-56 -right-56 w-[760px] h-[760px] bg-yellow-200/20 rounded-full blur-3xl"></div>
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/0 to-black/20"></div>
 
-            <div class="relative mx-auto w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 mb-8 bg-black">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls playsinline>
-                        <source src="Thepromovideo.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
+ 
 
-            <div class="mb-8">
-                <p class="text-teal-900 font-bold text-sm md:text-base uppercase tracking-wider bg-white/90 inline-block px-6 py-2 rounded-full shadow-lg">
-                    <i class="fa-solid fa-shield-heart mr-2 text-teal-600"></i> 
-               MEASURED BY THE LOTUS RATING SYSTEM™: C.P.R.S. STANDARDS™
-                </p>
-            </div>
-
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-white/95 mb-10 font-light leading-relaxed">
-              Find care with absolute certainty. We connect you with elite providers verified by the 4-Lotus standard.
-            </p>
-
-           <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-  <a href="browse-providers.html" style="background-color: #F57C00; color: white; padding: 14px 28px; border-radius: 50px; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(245, 124, 0, 0.3); text-align: center;">
-    Find Lotus Providers
-  </a>
-  <a href="mailto:providers@crossingsunsets.com?subject=Lotus%20Network%20Partnership%20Inquiry" style="background-color: white; color: #006B70; padding: 14px 28px; border-radius: 50px; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; border: 2px solid white; text-align: center;">
-    Become a Partner
-  </a>
+    <!-- hero text -->
+    <div class="min-h-[86vh] flex flex-col items-center justify-center text-center">
+      <!-- HERO Brand Logo (3D, centered) -->
+<div class="flex justify-center mb-6">
+  <img
+    src="crossing-sunsets-logo-3d.png"
+    alt="Crossing Sunsets™"
+    class="h-24 sm:h-28 md:h-32 w-auto"
+    style="filter: drop-shadow(0 30px 55px rgba(0,0,0,.35));"
+  />
 </div>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+        Find Compassionate Support for<br class="hidden sm:block"> Life’s Most Important Journey
+      </h1>
+
+      <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg text-white/90 font-light leading-relaxed">
+        Navigate complex care decisions with confidence. We connect you with trusted palliative support and hospice providers in your area.
+      </p>
+
+      <!-- video card -->
+      <div class="mt-8 w-full max-w-5xl">
+        <div class="relative mx-auto w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-black"
+             style="box-shadow: 0 40px 90px rgba(0,0,0,.35);">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+            <video class="absolute top-0 left-0 w-full h-full object-cover" controls playsinline preload="metadata">
+              <source src="promo-video-v2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
-        
-        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
-            <svg class="relative block w-full h-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
-            </svg>
-        </div>
+
+        <!-- trust pill + lotus (3D-ish) -->
+     <div class="mt-8 flex justify-center relative z-20">
+    <div class="group bg-white border-2 border-white/80 pr-10 pl-3 py-3 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.2)] flex items-center gap-5 transform transition hover:scale-105 duration-300 cursor-pointer backdrop-blur-md">
+      <div class="relative -ml-6">
+         <img src="lotus-certificate.png" alt="Lotus Certified" class="h-24 w-24 object-contain drop-shadow-xl group-hover:rotate-12 transition duration-500">
+      </div>
+      
+      <div class="flex flex-col justify-center text-left">
+        <span class="text-teal-900 font-extrabold text-xl tracking-tight leading-none">Lotus Rating System™</span>
+        <span class="text-xs text-teal-600 font-bold tracking-widest uppercase mt-1">The Gold Standard in Care</span>
+      </div>
     </div>
+  </div>
+
+  <div class="mt-10 mb-20 flex flex-col sm:flex-row justify-center items-center gap-8 relative z-20">
+    
+    <a href="browse-providers.html" 
+       class="bg-white text-teal-700 hover:bg-teal-50 px-12 py-5 rounded-full text-lg font-bold shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl min-w-[280px] text-center border-2 border-transparent">
+       Find Support Near Me
+    </a>
+
+ <a
+  href="mailto:support@crossingsunsets.app?subject=Request%20Information"
+  class="bg-teal-800/40 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-12 py-5 rounded-full text-lg font-bold shadow-xl transition inline-flex items-center justify-center gap-3"
+>
+  ✉️ Request Information
+</a>
+
+
+<p class="mt-3 text-white/90 text-sm">
+  Email: <a class="underline" href="mailto:support@crossingsunsets.app">support@crossingsunsets.app</a>
+</p>
+
+
+    
+  </div>
+
+        <!-- subtle scroll cue -->
+        <div class="mt-10 flex justify-center">
+          <div class="w-7 h-12 rounded-full border border-white/35 flex items-start justify-center p-2 opacity-80">
+            <div class="w-1.5 h-1.5 rounded-full bg-white animate-bounce"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom wave -->
+  <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+    <svg class="relative block w-full h-[55px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+     svg { pointer-events: none !important; }
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
+    </svg>
+  </div>
+</section>
+
 
     <div class="bg-white py-16 flex-grow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,41 +207,52 @@
         </div>
     </div>
 <!-- Platform Update Banner -->
-<div class="max-w-7xl mx-auto px-4 mt-6">
-  <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-    <h3 class="text-sm font-extrabold text-gray-900 mb-2">
-      Platform Update in Progress
+<div class="max-w-7xl mx-auto px-4 mt-8">
+  <div class="bg-white border-l-4 border-yellow-400 border border-gray-300 rounded-xl p-6 shadow-md">
+    <h3 class="text-base font-extrabold text-gray-900 mb-3 flex items-center gap-2">
+      <span>⚠️</span> Platform Update in Progress
     </h3>
-    <p class="text-sm text-gray-600 leading-relaxed">
+    <p class="text-base text-gray-800 leading-relaxed">
       We’re actively working on updates to improve stability and user experience across our web and mobile apps.
-     A recent system update required us to temporarily pause certain iOS features while we finalize improvements.
+      A recent system update required us to temporarily pause certain iOS features while we finalize improvements.
       <br><br>
-      Everything is moving forward — thank you for being part of the journey.
+      <strong>Everything is moving forward</strong> — thank you for being part of the journey.
     </p>
   </div>
 </div>
 
+
     <div class="bg-gray-50 py-12 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Take Crossing Sunsets with you</h2>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="download-app.html" class="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-                    <i class="fa-brands fa-apple text-3xl mr-3"></i>
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold">Download on the</div>
-                        <div class="font-bold text-lg leading-none">App Store</div>
-                    </div>
-                </a>
-                 <a href="download-app.html" class="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-                    <i class="fa-brands fa-google-play text-2xl mr-3"></i>
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold">Get it on</div>
-                        <div class="font-bold text-lg leading-none">Google Play</div>
-                    </div>
-                </a>
-            </div>
+           <h2 class="text-2xl font-bold text-gray-800 mb-4">
+  Take Crossing Sunsets with you
+</h2>
+
+<p class="text-gray-700 max-w-xl mx-auto mb-6 text-center">
+  Our mobile apps are temporarily unavailable while we finalize important updates.
+  The web experience remains fully accessible.
+</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 opacity-60 cursor-not-allowed pointer-events-none">
+  <div class="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg">
+    <i class="fa-brands fa-apple text-2xl mr-3"></i>
+    <div class="text-left">
+      <div class="text-xs uppercase font-semibold">iOS</div>
+      <div class="font-bold text-lg">Update in Progress</div>
+    </div>
+  </div>
+
+  <div class="inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg">
+    <i class="fa-brands fa-google-play text-2xl mr-3"></i>
+    <div class="text-left">
+      <div class="text-xs uppercase font-semibold">Android</div>
+      <div class="font-bold text-lg">Update in Progress</div>
+    </div>
+  </div>
+</div>
+
         </div>
     </div>
+
 
     <footer class="bg-gray-900 text-gray-300 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -211,17 +264,38 @@
                         <span class="text-white text-xl font-bold ml-2">Crossing Sunsets™</span>
                     </div>
                     <p class="text-sm text-gray-400 leading-relaxed max-w-xs">
-                        Connecting families with compassionate end-of-life care providers. Dignity, comfort, and peace of mind when it matters most.
-                    </p>
+                       <p>
+Crossing Sunsets™ is a care-navigation platform for families and caregivers.
+Healthcare providers participate through an annual Participation License and are independently evaluated under published standards.
+Payment does not guarantee placement, referrals, or continued listing.
+   </p>
                 </div>
 
                 <div>
                     <h3 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Company</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
-                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
-                    </ul>
+                
+
+             <ul class="space-y-2 text-sm">
+                     <li><a href="partners-portal.html" class="hover:text-white transition">Partners Portal</a></li>
+  <li>
+    <a href="about.html" class="hover:text-white transition">
+      About Us
+    </a>
+  </li>
+
+  <li>
+    <a href="mailto:support@crossingsunsets.app" class="hover:text-white transition">
+      Contact Support
+    </a>
+  </li>
+
+  <li>
+    <a href="privacy.html" class="hover:text-white transition">
+      Privacy Policy
+    </a>
+  </li>
+</ul>
+
                 </div>
 
                 <div>
@@ -241,7 +315,7 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                <p>&copy; 2025 Crossing Sunsets. All rights reserved.</p><a href="terms.html" style="color: #00b4d8;; text-decoration: underline; margin-left: 15px;">Terms & Disclaimers</a>
+                <p>&copy; 2025 Crossing Sunsets™. All rights reserved.</p><a href="terms.html" style="color: #00b4d8;; text-decoration: underline; margin-left: 15px;">Terms & Disclaimers</a>
                 <p class="mt-2 md:mt-0">Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for Caregivers.</p>
             </div>
         </div>
@@ -256,3 +330,6 @@
 
 </body>
 </html>
+Hyper Icon
+Hyper Icon
+Hyper Icon

@@ -46,7 +46,6 @@
         <p>1) Fill out this form • 2) You’ll choose a plan • 3) We approve your listing</p>
       </div>
 
-      <!-- SIGNUP FORM -->
       <form id="signupForm" novalidate>
         <h3 style="color:#00b4d8;margin-bottom:1rem;">Organization Information</h3>
         <div class="form-group">
@@ -59,8 +58,10 @@
           <select id="care_type" required>
             <option value="">Select Type of Care</option>
             <option value="hospice">Hospice Care</option>
+            <option value="skilled_nursing">Skilled Nursing (SNF)</option>
+            <option value="boarding_care">Board & Care (Elderly - RCFE)</option>
+            <option value="dd_home">DD Home (Adult Residential - ARF)</option>
             <option value="palliative">Palliative Care</option>
-            <option value="skilled_nursing">Skilled Nursing</option>
             <option value="assisted_living">Assisted Living</option>
             <option value="memory_care">Memory Care</option>
             <option value="home_health">Home Health Care</option>
@@ -143,7 +144,6 @@
     </div>
   </div>
 
-  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
@@ -171,6 +171,8 @@
     function normalizeProviderType(v){
       switch(v){
         case "skilled_nursing": return "skilled_nursing";
+        case "boarding_care":   return "boarding_care"; // Elderly
+        case "dd_home":         return "dd_home";       // DD Homes
         case "memory_care":     return "memory_care";
         case "assisted_living": return "assisted_living";
         case "home_health":     return "home_health";

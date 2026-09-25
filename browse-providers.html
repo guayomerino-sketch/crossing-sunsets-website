@@ -3,69 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Browse Care Providers - Crossing Sunsets™</title>
+  <title>Lotus Certified Network - Crossing Sunsets™</title>
   <style>
-    /* Crossing Sunsets Standard Theme */
-    :root { --primary: #00bcd4; --dark: #023047; --bg: #f8fafc; --text: #334155; }
+    /* --- COLOR PALETTE --- */
+    :root { 
+      --primary: #00bcd4;
+      --text-dark: #334155;
+      --text-light: #64748b;
+      --bg-gray: #f8fafc;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
-    body { background: var(--bg); color: var(--text); padding-bottom: 4rem; }
+    body { background: var(--bg-gray); color: var(--text-dark); padding-bottom: 4rem; }
 
-    /* Navigation */
-    .nav { background: white; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+    /* --- NAVIGATION --- */
+    .nav { background: white; padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
-    .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--primary); }
+    .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; margin-left: 1.5rem; transition: color 0.2s; }
 
-    /* Layout */
-    .container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    /* --- FILTER SECTION --- */
+    .app-section { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
+    .app-title { font-size: 2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .app-subtitle { color: var(--text-light); font-size: 1rem; margin-bottom: 1.5rem; }
+    
+    .filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+    .filter-btn {
+      background: white; border: 1.5px solid var(--primary); color: var(--primary);
+      padding: 10px 20px; border-radius: 99px; font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;
+    }
+    .filter-btn:hover { background: #e0f7fa; transform: translateY(-1px); }
+    .filter-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3); }
 
-    /* Provider Card */
+    .search-wrapper { position: relative; max-width: 100%; margin-bottom: 2rem; }
+    .search-input {
+      width: 100%; padding: 16px 20px 16px 50px; border-radius: 12px;
+      border: 1px solid #cbd5e1; font-size: 16px; outline: none; transition: border-color 0.2s;
+      background: white;
+    }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.1); }
+    .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.2rem; }
+
+    /* --- CARDS --- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+
     .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
     .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
     
     .card-header { background: var(--primary); padding: 2rem; text-align: center; color: white; position: relative; }
-    .avatar { width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .card-location { font-size: 0.9rem; opacity: 0.9; display: flex; align-items: center; justify-content: center; gap: 5px; }
+    
+    /* Updated Avatar to support Real Logos */
+    .avatar { 
+      width: 90px; height: 90px; 
+      background: white; border-radius: 50%; 
+      margin: 0 auto 1rem; 
+      display: flex; align-items: center; justify-content: center; 
+      font-size: 2.5rem; color: var(--primary); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+      overflow: hidden; 
+      border: 3px solid white;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-    .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
-    .tag { align-self: flex-start; background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
-    .description { font-size: 0.95rem; line-height: 1.6; color: #64748b; flex: 1; }
+    .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .card-location { font-size: 0.9rem; opacity: 0.95; font-weight: 500; }
     
-    .meta-row { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #475569; }
+    .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.8rem; }
+    .tag { align-self: flex-start; background: #e0f7fa; color: #006064; padding: 6px 14px; border-radius: 99px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+    .description { font-size: 0.95rem; line-height: 1.6; color: var(--text-light); flex: 1; margin-bottom: 0.5rem; }
     
-    /* Buttons */
+    /* Improved Contact Section */
+    .contact-list { font-size: 0.9rem; color: var(--text-dark); display: flex; flex-direction: column; gap: 6px; padding-top: 1rem; border-top: 1px solid #f1f5f9; }
+    .contact-item { display: flex; align-items: center; gap: 8px; }
+    .contact-link { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .contact-link:hover { text-decoration: underline; }
+
     .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
-    .btn { padding: 0.75rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
-    .btn-primary { background: #ff5722; color: white; } /* "Read Reviews" Orange */
-    .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
-
-    .btn:hover { opacity: 0.9; }
+    .btn { padding: 0.85rem; border-radius: 10px; font-weight: 700; text-align: center; text-decoration: none; transition: opacity 0.2s; font-size: 0.95rem; }
+    .btn-primary { background: #ff5722; color: white; box-shadow: 0 4px 12px rgba(255, 87, 34, 0.25); } 
+    .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: white; }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <a href="#" class="brand">
-      <img src="https://via.placeholder.com/40/00bcd4/ffffff?text=CS" style="border-radius:50%" />
-      Crossing Sunsets™
-    </a>
+   <a href="index.html" class="brand" style="color: #00bcd4;"><img src="crossing-sunsets-logo.png" alt="Crossing Sunsets Logo" style="height: 32px; width: auto; margin-right: 8px;">Crossing Sunsets™</a>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="browse-providers.html" style="color:var(--primary)">Browse Providers</a>
-      <a href="lotus-review.html">Authorized Access</a>
+      <a href="browse-providers.html" style="color:var(--primary)">Lotus Certified Network</a>
+     <button onclick="verifyAccess('${id}', '${encodeURIComponent(p.businessName)}')" class="btn btn-outline" style="border: 2px solid #F57C00; color: #F57C00; cursor: pointer;">✍️ Authorized Access</button>
     </div>
   </nav>
 
-  <div class="container">
+  <div class="app-section">
+    <h1 class="app-title">Lotus Network</h1>
+    <p class="app-subtitle"><p class="app-subtitle">Find our Lotus network of verified care providers in your area.</p></p>
+
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="applyFilter('all', this)"><span>✅</span> All</button>
+      <button class="filter-btn" onclick="applyFilter('hospice', this)"><span>🏥</span> Hospice</button>
+      <button class="filter-btn" onclick="applyFilter('skilled', this)"><span>🩺</span> Skilled Nursing</button>
+      <button class="filter-btn" onclick="applyFilter('board', this)"><span>🏠</span> Board & Care</button>
+      <button class="filter-btn" onclick="applyFilter('dd', this)"><span>🤝</span> DD Home</button>
+      <button class="filter-btn" onclick="applyFilter('assisted', this)"><span>🏘️</span> Assisted Living</button>
+      <button class="filter-btn" onclick="applyFilter('memory', this)"><span>🧠</span> Memory Care</button>
+      <button class="filter-btn" onclick="applyFilter('palliative', this)"><span>❤️</span> Palliative</button>
+      <button class="filter-btn" onclick="applyFilter('home', this)"><span>🚑</span> Home Health</button>
+    </div>
+
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search by city, state, or provider name..." onkeyup="runSearch()">
+    </div>
+    
+    <h2 style="font-size:1.5rem; font-weight:800; margin-bottom:1.5rem; color:color:#00bcd4;">Lotus Certified Providers</h2>
+    
     <div class="grid" id="providersGrid">
-      </div>
+      <p style="text-align:center; grid-column:1/-1; padding:3rem; color:#64748b;">Loading Providers...</p>
+    </div>
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, query } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
@@ -81,49 +142,86 @@
 
     async function loadProviders() {
       const grid = document.getElementById('providersGrid');
-      grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Loading Providers...</p>';
-
-      // Only show APPROVED providers
-      const q = query(collection(db, "providers"), where("status", "==", "Approved"));
+      const q = query(collection(db, "providers"));
       
       try {
         const snapshot = await getDocs(q);
-        grid.innerHTML = ""; // Clear loading message
+        grid.innerHTML = ""; 
 
         if (snapshot.empty) {
-          grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No approved providers found yet.</p>';
+          grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No providers found.</p>';
           return;
         }
 
         snapshot.forEach(doc => {
           const p = doc.data();
+          const id = doc.id;
           
-          // THIS IS THE FIX: The link now points to profile.html
-          const profileLink = `profile.html?id=${doc.id}`;
+          // Safety: Case-insensitive Check
+          const status = (p.status || "").toLowerCase().trim();
+          if (status !== 'approved') return;
+
+          // --- TYPE NORMALIZATION ---
+          const rawType = (p.facilityType || p.providerType || "").toLowerCase();
           
-          // Fallback icons based on facility type
-          let icon = "🏥";
-          if (p.facilityType === "Hospice") icon = "☘️";
-          if (p.facilityType === "Home Care") icon = "🏠";
+          let icon = "🏥"; // Default
+          let displayLabel = p.facilityType || p.providerType || "Care Provider";
+
+          if (rawType.includes("hospice")) { icon = "🏥"; displayLabel = "Hospice Care"; }
+          else if (rawType.includes("nursing") || rawType.includes("skilled")) { icon = "🩺"; displayLabel = "Skilled Nursing"; }
+          else if (rawType.includes("dd") || rawType.includes("developmental") || rawType.includes("arf")) { icon = "🤝"; displayLabel = "DD Home (ARF)"; }
+          else if (rawType.includes("assisted")) { icon = "🏘️"; displayLabel = "Assisted Living"; }
+          else if (rawType.includes("memory")) { icon = "🧠"; displayLabel = "Memory Care"; }
+          else if (rawType.includes("palliative")) { icon = "❤️"; displayLabel = "Palliative Care"; }
+          else if (rawType.includes("home") && rawType.includes("health")) { icon = "🚑"; displayLabel = "Home Health"; }
+          else if (rawType.includes("board") || rawType.includes("care") || rawType.includes("rcfe")) { icon = "🏠"; displayLabel = "Board & Care"; }
+
+          // Clean label format if it's still raw
+          displayLabel = displayLabel.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+          
+          // LOGIC: Use 'logo' field if exists, otherwise use fallback Emoji
+          let avatarContent = icon;
+          if (p.logo) {
+            avatarContent = `<img src="${p.logo}" alt="Logo">`;
+          }
+
+          // --- SNF BED DISPLAY LOGIC ---
+          let bedHtml = "";
+          // Check for "skilled" AND "nursing"
+          if (rawType.includes("skilled") && rawType.includes("nursing")) {
+             const avail = p.availableBeds || 0;
+             const total = p.totalBeds || 0;
+             bedHtml = `<div style="margin-top:0.5rem; font-weight:700; color:#d32f2f; background:#ffebee; padding:4px 8px; border-radius:4px; display:inline-block; font-size:0.85rem;">🛏 Beds Available: ${avail} / ${total}</div>`;
+          }
+
+          // Build Contact Section
+          let contactHtml = "";
+          if (p.email) contactHtml += `<div class="contact-item"><span>📧</span> ${p.email}</div>`;
+          if (p.phone) contactHtml += `<div class="contact-item"><span>📞</span> ${p.phone}</div>`;
+          if (p.website) contactHtml += `<div class="contact-item"><span>🌐</span> <a href="${p.website}" target="_blank" class="contact-link">Visit Website</a></div>`;
 
           grid.innerHTML += `
-            <div class="card">
+            <div class="card provider-card" data-type="${rawType}" data-search="${(p.businessName + ' ' + p.city).toLowerCase()}">
               <div class="card-header">
-                <div class="avatar">${icon}</div>
-                <div class="card-title">${p.businessName || "Provider"}</div>
-                <div class="card-location">📍 ${p.city || "Location not specified"}</div>
+                <div class="avatar">${avatarContent}</div>
+                <div class="card-title">${p.businessName || "Provider Name"}</div>
+                <div class="card-location">📍 ${p.city || "City"}, ${p.state || "CA"}</div>
               </div>
               <div class="card-body">
-                <span class="tag">${p.facilityType || "Care Provider"}</span>
-                <p class="description">
-                  ${p.bio || "Quality care services."}
-                </p>
+                <span class="tag">${displayLabel}</span>
+                ${bedHtml} <p class="description">${p.bio || p.description || "Dedicated to providing compassionate care."}</p>
+                
+                <div class="contact-item" style="margin-top:0.5rem; color:#0f172a; font-weight:600;">
+                  <span>👤</span> Patient Advocate: Iris Merino
+                </div>
 
-                <div class="meta-row">📧 Email: <a href="mailto:${p.email}">${p.email}</a></div>
+                <div class="contact-list">
+                  ${contactHtml || '<div class="contact-item">Contact for info</div>'}
+                </div>
                 
                 <div class="actions">
-                  <a href="${profileLink}" class="btn btn-primary">📖 Read Reviews</a>
-                  <a href="lotus-review.html" class="btn btn-outline">✍️ Authorized Access</a>
+                  <a href="profile.html?id=${id}" class="btn btn-primary">📖 Read Reviews</a>
+                  <a href="lotus-review.html?providerId=${id}&name=${encodeURIComponent(p.businessName)}" class="btn btn-outline">✍️ Authorized Access</a>
                 </div>
               </div>
             </div>
@@ -137,6 +235,59 @@
     }
 
     loadProviders();
+    
+    // Filter Logic
+    window.applyFilter = function(category, btn) {
+      if(btn) { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
+      const cards = document.querySelectorAll('.provider-card');
+      const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+      cards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        const search = card.getAttribute('data-search');
+        
+        let matchesCat = (category === 'all');
+        
+        if (category !== 'all') {
+            if (category === 'dd' && (type.includes('dd') || type.includes('developmental') || type.includes('arf'))) matchesCat = true;
+            else if (category === 'skilled' && type.includes('nursing')) matchesCat = true;
+            else if (category === 'board' && (type.includes('board') || type.includes('care') || type.includes('rcfe'))) matchesCat = true;
+            else if (category === 'assisted' && type.includes('assisted')) matchesCat = true;
+            else if (category === 'home' && type.includes('home')) matchesCat = true;
+            else if (type.includes(category)) matchesCat = true;
+        }
+
+        if (matchesCat && search.includes(searchVal)) card.style.display = 'flex';
+        else card.style.display = 'none';
+      });
+    }
+
+    window.runSearch = function() {
+      const activeBtn = document.querySelector('.filter-btn.active');
+      let cat = 'all';
+      if(activeBtn) {
+        const txt = activeBtn.innerText.toLowerCase();
+        if(txt.includes('hospice')) cat = 'hospice';
+        else if(txt.includes('skilled')) cat = 'skilled';
+        else if(txt.includes('board')) cat = 'board';
+        else if(txt.includes('dd') || txt.includes('developmental')) cat = 'dd';
+        else if(txt.includes('assisted')) cat = 'assisted';
+        else if(txt.includes('home')) cat = 'home';
+        else if(txt.includes('palliative')) cat = 'palliative';
+        else if(txt.includes('memory')) cat = 'memory';
+      }
+      applyFilter(cat, null);
+    }
+    window.verifyAccess = function(id, encodedName) {
+    let pin = prompt("Authorized Access Only. Enter Provider PIN:");
+    
+    // Master PIN set to 2026.
+    if (pin === "2026") { 
+        window.location.href = `lotus-review.html?providerId=${id}&name=${encodedName}`;
+    } else if (pin !== null) {
+        alert("Incorrect PIN. Access is restricted to verified partners.");
+    }
+};
   </script>
 </body>
 </html>

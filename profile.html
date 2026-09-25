@@ -1,327 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Peace Reviews - Crossing Sunsets™</title>
-    <style>
-        /* --- CSS STYLES --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Provider Profile - Crossing Sunsets™</title>
+<style>
+  :root{
+    --bg:#f7f8fa;
+    --ink:#0b1220;
+    --muted:rgba(11,18,32,.62);
+    --line:rgba(15,23,42,.10);
+    --card:#ffffff;
+    --brand:#00bcd4;
+    --brandDark:#0097a7;
+    --shadow: 0 18px 45px rgba(2, 6, 23, .08);
+    --shadowSm: 0 10px 25px rgba(2, 6, 23, .06);
+    --radius:22px;
+    --radiusSm:16px;
+    --gold:#f59e0b;
+  }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #f3f4f6;
-        }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 20% -10%, rgba(0,188,212,.18), transparent 60%),
+      radial-gradient(900px 500px at 85% 0%, rgba(0,151,167,.14), transparent 55%),
+      var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 4rem;
+  }
 
-        header {
-            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+  /* NAV */
+  .nav{
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav .brand{
+    font-weight: 900;
+    color: var(--brand);
+    font-size: 1.15rem;
+    text-decoration:none;
+    letter-spacing: -0.02em;
+  }
+  .back-link{
+    color: rgba(11,18,32,.62);
+    text-decoration:none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(15,23,42,.10);
+    background: rgba(255,255,255,.85);
+    box-shadow: var(--shadowSm);
+  }
+  .back-link:hover{ filter: brightness(.98); }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  /* LOADING */
+  #loading{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 48px 16px;
+    color: var(--muted);
+    font-weight: 700;
+    text-align:center;
+  }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
+  /* PROVIDER HEADER */
+  .header-container{
+    background: rgba(255,255,255,.92);
+    border-bottom: 1px solid var(--line);
+    text-align:center;
+    padding: 44px 16px 30px;
+  }
+  .provider-name{
+    font-size: clamp(28px, 3.2vw, 44px);
+    letter-spacing: -0.03em;
+    font-weight: 900;
+    color: var(--ink);
+    margin-top: 10px;
+  }
+  .provider-meta{
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: 8px;
+    display:flex;
+    gap: 10px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  .facility-tag{
+    background: rgba(0,188,212,.10);
+    color: #0b5561;
+    border: 1px solid rgba(0,188,212,.18);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
 
-        nav { display: flex; gap: 2rem; }
-        nav a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
-        nav a:hover { opacity: 0.8; }
+  /* Lotus Certified badge */
+  .lotus-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    color: #b45309;
+    border: 1px solid rgba(245,158,11,.45);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: .08em;
+    box-shadow: var(--shadowSm);
+  }
 
-        .provider-header {
-            background: white;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 1200px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+  /* MAIN LAYOUT */
+  .container{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
 
-        .provider-name {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #0EA5E9;
-            margin-bottom: 0.5rem;
-            display: flex;       /* Added for Badge alignment */
-            align-items: center; /* Added for Badge alignment */
-            flex-wrap: wrap;     /* Ensures it wraps on mobile */
-        }
+  .section-header-row{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    margin: 26px 0 14px;
+  }
+  .section-title{
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  .counter-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 26px;
+    min-width: 34px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(11,18,32,.92);
+    color: #fff;
+    font-weight: 900;
+    font-size: 13px;
+  }
 
-        .provider-location {
-            color: #6b7280;
-            font-size: 1.1rem;
-        }
+  /* SECTION HEADERS (“Evidence Gallery”, “Family Stories”) */
+  .section-label{
+    color: rgba(11,18,32,.45);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .10em;
+    font-weight: 900;
+    margin: 18px 0 12px;
+  }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+  /* EVIDENCE GALLERY */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px;
+  }
+  .evidence-card{
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--line);
+    border-radius: var(--radiusSm);
+    overflow:hidden;
+    box-shadow: var(--shadowSm);
+    aspect-ratio: 1;
+    cursor: zoom-in;
+    position: relative;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .evidence-card:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  .evidence-img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:block;
+  }
+  .overlay-icon{
+    position:absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 12px;
+    color: #fff;
+    background: rgba(2,6,23,.55);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.18);
+  }
+/* =========================
+   PREMIUM REVIEW CARDS
+   ========================= */
 
-        .page-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #1f2937;
-        }
+.reviews-list{
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-        .leave-review-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #14B8A6 0%, #0EA5E9 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
-            margin-bottom: 2rem;
-        }
+.review-item{
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 12px 30px rgba(2, 6, 23, .08);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
 
-        .leave-review-btn:hover { transform: translateY(-2px); }
+/* subtle brand glow / accent ribbon */
+.review-item::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(700px 220px at 12% 0%, rgba(0,188,212,.12), transparent 55%),
+    radial-gradient(520px 240px at 90% 20%, rgba(245,158,11,.10), transparent 55%);
+  pointer-events:none;
+}
 
-        .reviews-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+.review-item:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 46px rgba(2, 6, 23, .12);
+}
 
-        .review-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s;
-        }
+.review-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
 
-        .review-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.lotus-row{
+  display:flex;
+  gap: 4px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1;
+  position: relative;
+}
 
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
+.review-badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(0,188,212,.10);
+  border: 1px solid rgba(0,188,212,.20);
+  color: rgba(2, 55, 71, .92);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  position: relative;
+}
 
-        .reviewer-name { font-size: 1.25rem; font-weight: 600; color: #1f2937; }
-        .review-date { color: #6b7280; font-size: 0.9rem; }
+.review-badge .dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16,185,129,.14);
+}
 
-        .lotus-total {
-            font-size: 1.3rem;
-            color: #14B8A6;
-            margin: 1rem 0 0.5rem 0;
-            padding: 0.5rem 0;
-        }
+.review-text{
+  position: relative;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(11,18,32,.88);
+  font-style: italic;
+}
 
-        .lotus-rating {
-            margin: 1rem 0;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+/* decorative quote mark */
+.review-text::before{
+  content:"“";
+  font-size: 42px;
+  line-height: 1;
+  color: rgba(0,188,212,.22);
+  font-style: normal;
+  font-weight: 900;
+  position:absolute;
+  left: -2px;
+  top: -18px;
+}
 
-        .lotus-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, #F0FDFA 0%, #E0F2FE 100%);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: #14B8A6;
-            font-weight: 500;
-        }
+.review-meta{
+  position: relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15,23,42,.08);
+  color: rgba(11,18,32,.58);
+  font-weight: 800;
+  font-size: 13px;
+}
 
-        .review-text { color: #374151; line-height: 1.8; margin-top: 1rem; }
-        .provider-info { margin-top: 0.5rem; color: #14B8A6; font-weight: 500; }
-        .loading { text-align: center; padding: 3rem; color: #6b7280; font-size: 1.1rem; }
-        .no-reviews { text-align: center; padding: 3rem; background: white; border-radius: 12px; color: #6b7280; }
-        .error-message { background: #fee; color: #c00; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+.reviewer-name{
+  margin: 0;
+  color: rgba(11,18,32,.70);
+  font-weight: 900;
+}
 
-        footer {
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-    </style>
+.review-source{
+  font-weight: 900;
+  color: rgba(0,151,167,.95);
+  background: rgba(0,151,167,.08);
+  border: 1px solid rgba(0,151,167,.15);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+@media (max-width: 520px){
+  .review-item{ padding: 16px 14px 14px; }
+  .review-top{ flex-direction: column; align-items:flex-start; }
+  .review-meta{ flex-direction: column; align-items:flex-start; }
+}
+
+  /* FAMILY STORIES */
+  .reviews-list{
+    display:flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .review-item{
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 16px 14px;
+    box-shadow: var(--shadowSm);
+  }
+  .lotus-row{
+    display:flex;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .review-text{
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(11,18,32,.88);
+    font-style: italic;
+  }
+  .reviewer-name{
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 800;
+    text-align:right;
+  }
+
+  /* Empty states */
+  .empty-state{
+    text-align:center;
+    padding: 22px 16px;
+    border-radius: var(--radius);
+    border: 1px dashed rgba(15,23,42,.14);
+    background: rgba(2,6,23,.03);
+    color: var(--muted);
+    font-style: italic;
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  /* LIGHTBOX */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background: rgba(0,0,0,.92);
+    z-index: 1000;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding: 20px;
+  }
+  .lightbox img{
+    max-width: min(1100px, 96vw);
+    max-height: 86vh;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.55);
+  }
+  .lightbox-close{
+    position:absolute;
+    top: 18px;
+    right: 18px;
+    color: #fff;
+    font-size: 34px;
+    line-height: 1;
+    cursor: pointer;
+    user-select:none;
+    opacity: .9;
+  }
+
+  /* RESPONSIVE POLISH */
+  @media (max-width: 520px){
+    .nav{ padding: 12px 12px; }
+    .header-container{ padding: 36px 12px 24px; }
+    .review-item{ padding: 14px; }
+    .back-link{ width: 100%; text-align:center; }
+  }
+  /* REVIEW CARD (Family Stories) */
+.review-card{
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: var(--shadowSm);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.review-card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.review-card-header{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  margin-bottom: 10px;
+}
+
+.review-badge{
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,188,212,.12);
+  color: #0b5561;
+  border: 1px solid rgba(0,188,212,.25);
+}
+
+.review-footer{
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 800;
+  text-align: right;
+}
+
+</style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo">
-                Crossing Sunsets™
-            </a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="browse-providers.html">Browse Providers</a>
-                <a href="quick-signup.html">Leave a Review</a>
-            </nav>
-        </div>
-    </header>
 
-    <div class="provider-header">
-        <div class="provider-name">
-            ☘️ AllPeace Care Hospice
-            
-            <span style="
-                display: inline-flex; 
-                align-items: center; 
-                background: linear-gradient(145deg, #1e293b, #0f172a); 
-                padding: 6px 14px; 
-                border-radius: 50px; 
-                border: 2px solid #FFD700; 
-                margin-left: 15px; 
-                margin-top: 5px; /* Spacing for mobile wrapping */
-                vertical-align: middle;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            ">
-                <img src="lotus-badge.png" style="width: 24px; height: 24px; margin-right: 8px; border-radius: 50%;">
-                <span style="color: #FFD700; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Lotus Certified</span>
-            </span>
-            </div>
-        <div class="provider-location">📍 Torrance, California</div>
+  <nav class="nav">
+    <a href="browse-providers.html" class="brand">Crossing Sunsets™</a>
+    <a href="browse-providers.html" class="back-link">← Back to Browse</a>
+  </nav>
+
+  <div id="loading" style="text-align:center; padding: 4rem;">Loading Profile...</div>
+
+  <div id="profile-content" style="display: none;">
+    
+    <div class="header-container">
+     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+  <img 
+    src="lotus-certificate.png" 
+    alt="Lotus Rating System Gold Standard" 
+    style="width: 220px; height: auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));"
+  >
+  <div class="lotus-badge" style="margin-top: 12px; border: 2px solid #fbbf24; background: #fffbeb; color: #b45309; font-weight: 800; letter-spacing: 0.5px; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.1);">
+    ✨ LOTUS CERTIFIED PROVIDER
+  </div>
+</div>
+
+      <h1 class="provider-name" id="pName">Provider Name</h1>
+      <p class="provider-meta">
+        <span id="pCity">City</span> • <span class="facility-tag" id="pType">Facility Type</span>
+      </p>
     </div>
 
     <div class="container">
-        <h1 class="page-title">Reviews</h1>
-        
-        <a href="quick-signup.html?provider=allpeace" class="leave-review-btn">
-            ✍️ Leave a Review
-        </a>
+      
+      <div class="section-header-row">
+        <div class="section-title">Verified Reviews</div>
+        <div id="reviewCounter" class="counter-badge">0</div>
+      </div>
 
-        <div id="error-container"></div>
-        <div id="loading" class="loading">Loading reviews...</div>
-        <div id="reviews-container" class="reviews-container" style="display: none;"></div>
+      <h3 style="color:#94a3b8; font-size:0.9rem; text-transform:uppercase; margin-bottom:1rem; font-weight:600;">Evidence Gallery</h3>
+      <div class="gallery-grid" id="wallGrid">
+        </div>
+
+      <h3 style="color:#94a3b8; font-size:0.9rem; text-transform:uppercase; margin-top:3rem; margin-bottom:1rem; font-weight:600;">Family Stories</h3>
+      <div class="reviews-list" id="reviewList">
+        </div>
+
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" />
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
+      authDomain: "crossing-sunsets.firebaseapp.com",
+      projectId: "crossing-sunsets",
+      storageBucket: "crossing-sunsets.firebasestorage.app",
+      messagingSenderId: "83761464492",
+      appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const providerId = urlParams.get('id');
+
+    async function loadProfile() {
+      if (!providerId) {
+        document.body.innerHTML = "<h2 style='text-align:center; margin-top:4rem;'>Error: No Provider Specified</h2>";
+        return;
+      }
+
+      try {
+        // A. Load Provider Details
+        const docRef = doc(db, "providers", providerId);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+          document.body.innerHTML = "<h2 style='text-align:center; margin-top:4rem;'>Provider Not Found</h2>";
+          return;
+        }
+
+        const pData = docSnap.data();
+        document.getElementById('pName').innerText = pData.businessName || "Provider";
+        document.getElementById('pCity').innerText = pData.city || "Los Angeles, CA";
+        document.getElementById('pType').innerText = pData.facilityType || "Hospice";
+// --- BED AVAILABILITY LOGIC (STRICT: SNF ONLY) ---
+const type = (pData.facilityType || "").toLowerCase();
+const isSNF = type.includes("skilled") || type.includes("nursing");
+
+const bedContainer = document.getElementById('bedContainer');
+const bedCount = document.getElementById('bedCount');
+
+if (bedContainer && isSNF) {
+  // Show badge ONLY for Skilled Nursing
+  bedContainer.style.display = 'block';
+  bedCount.innerText = pData.beds_available || "0";
+} else if (bedContainer) {
+  // Hide for everyone else
+  bedContainer.style.display = 'none';
+}
+        // B. Load Reviews - SMART FIX
+        // We query ALL reviews for this provider, then filter locally.
+        // This solves the Case Sensitivity issue (Approved vs approved).
+        const q = query(
+          collection(db, "reviews"),
+          where("provider_id", "==", providerId)
+        );
+
+        const querySnapshot = await getDocs(q);
+        
+        const wallGrid = document.getElementById('wallGrid');
+        const reviewList = document.getElementById('reviewList');
+        
+        let hasEvidence = false;
+        let hasReviews = false;
+        let approvedCount = 0;
+
+        querySnapshot.forEach((doc) => {
+          const r = doc.data();
+          
+          // SMART FILTER: Check lowercase status
+          const status = r.status ? r.status.toLowerCase() : "pending";
+          if (status !== 'approved') return; // Skip if not approved
+
+          approvedCount++;
+
+          if (r.type === 'hard_copy') {
+            hasEvidence = true;
+            const card = document.createElement('div');
+            card.className = 'evidence-card';
+            card.onclick = () => openLightbox(r.fileUrl);
+            card.innerHTML = `
+              <img src="${r.fileUrl}" class="evidence-img" loading="lazy" />
+              <div class="overlay-icon">🔍 View</div>
+            `;
+            wallGrid.appendChild(card);
+          } else {
+            hasReviews = true;
+            const div = document.createElement('div');
+            div.className = 'review-item';
+            
+            // Handle Rating (Fallback if missing)
+            const rating = r.rating || 4; 
+            const stars = "🪷".repeat(rating); 
+            
+            // Handle Text (Fallback if missing)
+            const textContent = r.text || "No written review provided.";
+            
+          div.innerHTML = `
+  <div class="review-card">
+    <div class="review-card-header">
+      <div class="lotus-row">${stars}</div>
+      <span class="review-badge">Verified Family</span>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Crossing Sunsets™. All rights reserved.</p>
-    </footer>
+    <p class="review-text">“${textContent}”</p>
 
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, query, orderBy, onSnapshot, where } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+    <div class="review-footer">
+      — ${r.reviewerName || "Verified Family Member"}
+    </div>
+  </div>
+`;
 
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyB410YcmXKj09W82ck6tZ2WYhyLdyZWtEQ",
-            authDomain: "crossing-sunsets.firebaseapp.com",
-            projectId: "crossing-sunsets",
-            storageBucket: "crossing-sunsets.firebasestorage.app",
-            messagingSenderId: "83761464492",
-            appId: "1:83761464492:web:9e05d8af5a45fe1ff38b09",
-            measurementId: "G-LG8VN0EZB7"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        const loadingEl = document.getElementById('loading');
-        const reviewsContainer = document.getElementById('reviews-container');
-        const errorContainer = document.getElementById('error-container');
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const provider = urlParams.get('provider') || 'allpeace';
-
-        const q = query(collection(db, 'reviews'), orderBy('timestamp', 'desc'));
-
-        onSnapshot(q, (snapshot) => {
-            loadingEl.style.display = 'none';
-            reviewsContainer.style.display = 'flex';
-            reviewsContainer.innerHTML = '';
-
-            if (snapshot.empty) {
-                reviewsContainer.innerHTML = `
-                    <div class="no-reviews">
-                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">📝 No reviews yet</p>
-                        <p>Be the first to share your experience!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            snapshot.forEach((doc) => {
-                const review = doc.data();
-                const reviewCard = createReviewCard(review);
-                reviewsContainer.appendChild(reviewCard);
-            });
-        }, (error) => {
-            console.error('Error loading reviews:', error);
-            loadingEl.style.display = 'none';
-            errorContainer.innerHTML = `
-                <div class="error-message">
-                    ⚠️ Error loading reviews. Please check your Firebase configuration.
-                </div>
-            `;
+            reviewList.appendChild(div);
+          }
         });
 
-        function createReviewCard(review) {
-            const card = document.createElement('div');
-            card.className = 'review-card';
+        // UPDATE COUNTER
+        document.getElementById('reviewCounter').innerText = approvedCount;
 
-            let dateString = 'Just now';
-            if (review.timestamp) {
-                const date = review.timestamp.toDate();
-                dateString = date.toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric'
-                });
-            }
+        if (!hasEvidence) wallGrid.innerHTML = '<div class="empty-state">No verified evidence yet.</div>';
+        if (!hasReviews) reviewList.innerHTML = '<div class="empty-state">No family stories yet.</div>';
 
-            const lotusCount = [
-                review.lotus_compassionate,
-                review.lotus_professional,
-                review.lotus_responsive,
-                review.lotus_supportive
-            ].filter(Boolean).length;
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('profile-content').style.display = 'block';
 
-            let lotusBadges = '';
-            if (review.lotus_compassionate) lotusBadges += '<span class="lotus-badge">🪷 Compassionate Care</span>';
-            if (review.lotus_professional) lotusBadges += '<span class="lotus-badge">🪷 Professional</span>';
-            if (review.lotus_responsive) lotusBadges += '<span class="lotus-badge">🪷 Responsive</span>';
-            if (review.lotus_supportive) lotusBadges += '<span class="lotus-badge">🪷 Supportive</span>';
+      } catch (error) {
+        console.error("Error loading profile:", error);
+        document.getElementById('loading').innerText = "Error loading profile.";
+      }
+    }
 
-            card.innerHTML = `
-                <div class="review-header">
-                    <div class="reviewer-name">${escapeHtml(review.reviewer_name || 'Anonymous')}</div>
-                    <div class="review-date">${dateString}</div>
-                </div>
-                <div class="lotus-total">
-                    <strong>${lotusCount} ${lotusCount === 1 ? 'Lotus' : 'Lotuses'} 🪷</strong>
-                </div>
-                ${review.provider_name ? `<div class="provider-info">Provider: ${escapeHtml(review.provider_name)}</div>` : ''}
-                ${review.location ? `<div class="provider-info">📍 ${escapeHtml(review.location)}</div>` : ''}
-                <div class="lotus-rating">
-                    ${lotusBadges}
-                </div>
-                <div class="review-text">${escapeHtml(review.review_text || '')}</div>
-            `;
+    window.openLightbox = (url) => {
+      document.getElementById('lightbox-img').src = url;
+      document.getElementById('lightbox').style.display = 'flex';
+    };
 
-            return card;
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-    </script>
+    loadProfile();
+  </script>
 </body>
 </html>

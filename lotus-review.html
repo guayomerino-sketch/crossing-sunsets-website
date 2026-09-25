@@ -4,7 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Leave a Lotus Review - Crossing Sunsets™</title>
-
+<script>
+  if (sessionStorage.getItem('cs_partner_gate') !== 'granted') {
+    let pin = prompt("Authorized Access Only. Please enter PIN:");
+    if (pin === "2026") {
+      sessionStorage.setItem('cs_partner_gate', 'granted');
+    } else {
+      window.location.replace("browse-providers.html");
+    }
+  }
+</script>
   <style>
     :root{
       --brand:#00bcd4;
